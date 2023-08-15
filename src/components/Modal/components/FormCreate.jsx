@@ -53,7 +53,7 @@ function FormCreate({ handle }) {
             type="text"
             className="py-1.5 rounded-md bg-transparent border text-white indent-3 focus:outline-none"
             {...register("lugar", {
-              required: { value: true, message: "No puedo estar vacio" },
+              required: { value: true, message: "No puede estar vacio" },
             })}
           />
           {errors.lugar && (

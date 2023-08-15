@@ -82,11 +82,11 @@ function Login() {
                   )}
                 </section>
                 <section className="grid">
-                  <label htmlFor="" className="text-sm">
+                  <label htmlFor=""  className="text-sm">
                     Contraseña
                   </label>
                   <input
-                    type="text"
+                    type="password"
                     {...register("contraseña", {
                       required: {
                         value: true,
