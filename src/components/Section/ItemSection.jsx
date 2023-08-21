@@ -2,7 +2,6 @@ import Listsection from "./components/Listsection";
 import { A11y, Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { GetEmpresas } from "../../services/ApiGets";
-import { useEffect, useState } from "react";
 import { ColorConteners } from "../../assets/DataDefault";
 import ItSection from "../Navbar/components/ItSection";
 import { useQuery } from "@tanstack/react-query";
@@ -18,9 +17,9 @@ function ItemSection() {
     queryKey: ["Empresas"],
     queryFn: GetEmpresas,
   });
-
-  
-
+  if(isLoading)return <h2 className="text-center">Cargando ...</h2>
+  if(isError)return <h2 className="text-center">Ha sucedido un error</h2>
+  if(error)return <h2 className="text-center">Ha sucedido un error, comuniquese con el administrador</h2>
   return (
     <section className="py-4 mt-8">
       <header className=" flex  lg:hidden justify-between items-center mb-6">

@@ -9,10 +9,26 @@ Currently, two official plugins are available:
 
 //
 switch (type) {
-    case 'CREATEEMPRESA':
-    return  <FormCreate handle={funct}/>;
-    case 'CREATESUCURSAL':
-    return <FormCSucursal handle={funct} />
- 
+case 'CREATEEMPRESA':
+return <FormCreate handle={funct}/>;
+case 'CREATESUCURSAL':
+return <FormCSucursal handle={funct} />
+case 'CREATEUSER':
+return <FormCUser>
+
 }
 eso son los tipos de modales
+
+{TypeDisp === "PC" &&
+DatPc?.map((valu, index) => (
+<option value={valu.nombre} key={index}>
+{valu.nombre}
+</option>
+))}
+
+                    {TypeDisp === "LAPTOP" &&
+                      DatLap?.map((value, index) => (
+                        <option value={value.nombre} key={index}>
+                          {value.nombre}
+                        </option>
+                      ))}

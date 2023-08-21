@@ -229,3 +229,34 @@ export const DataCategory=[
   {name:'Usuarios',icon:<IconEmpresas/>},
   {name:"Inventario",icon:<IconInvent white={true} />}
 ]
+
+
+export const TipyAsign=[
+  {name:'PC'},{name:'LAPTOP'}
+]
+
+export const CategoryInventaio=[
+  {name:'General'},{name:'Pc'},{name:'Laptop'},{name:'Servidores'},{name:'Red'},{name:'Impresora'}
+]
+
+export const MarcasPCLAP=['Antrix','Hp','Dell','Acer','Asus','Ibm','Lenovo','Lg','Toshiba','Msi','Sony'
+]
+export const PlacaModelPCLAP=[
+  "ASUS",
+  "MSI",
+  "Gigabyte",
+  "ASRock",
+  "EVGA",
+  "Biostar",
+  "Dell",
+  "HP",
+  "Lenovo",
+  "Acer",
+  "Apple",
+  "Microsoft",
+  "Razer",
+  "Alienware"
+]
+export const ModeloProcesador=[
+  'AMD','INTEL'
+]

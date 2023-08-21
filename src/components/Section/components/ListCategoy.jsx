@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { DataCategory } from "../../../assets/DataDefault"
 
 function ListCategoy() {
-  return (
+  const {idUsuario} =useParams()
+  return !idUsuario && (
     <article className="grid grid-cols-2 lg:px-6 gap-3 md:gap-6">
         {DataCategory.map((dato,index)=>(
             <header key={index} className="bg-slate-800 rounded-md md:rounded-xl text-white py-7 grid place-content-center">
-                <Link to={dato.name} className="flex gap-4">
+                <Link to={dato.name} className="flex gap-">
                 {dato.name}{dato.icon}
                 </Link>
             </header>

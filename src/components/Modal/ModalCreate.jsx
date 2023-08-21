@@ -1,5 +1,6 @@
 
 import FormCSucursal from "./components/FormCSucursal";
+import FormCUser from "./components/FormCUser";
 import FormCreate from "./components/FormCreate"
 
 function ModalCreate({funct,type}) {
@@ -10,6 +11,8 @@ function ModalCreate({funct,type}) {
           return  <FormCreate handle={funct}/>;
         case 'CREATESUCURSAL':
           return <FormCSucursal handle={funct} />
+        case 'CREATEUSER':
+          return <FormCUser handle={funct} />
  
       }
   }
