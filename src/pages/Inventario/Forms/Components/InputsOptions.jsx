@@ -15,7 +15,9 @@ function InputsOptions({ register, setValue, options, name, tyoe }) {
     <div className="relative">
       <input
         type={tyoe ?? "text"}
-        {...register(name)}
+        {...register(name,{
+          required: true
+        })}
         onClick={toggleOptions}
         onChange={(e)=>setSelectedOption(e.target.value)}
         value={selectedOption}
@@ -23,7 +25,7 @@ function InputsOptions({ register, setValue, options, name, tyoe }) {
       />
 
       {showOptions && (
-        <div className=" rounded-md absolute w-full h-[200px] overflow-y-auto ">
+        <div className=" rounded-md absolute w-full h-[200px] overflow-y-auto z-10 ">
           {options.map((option) => (
             <div
               key={option}

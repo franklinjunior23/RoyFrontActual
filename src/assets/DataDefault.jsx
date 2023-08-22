@@ -260,3 +260,20 @@ export const PlacaModelPCLAP=[
 export const ModeloProcesador=[
   'AMD','INTEL'
 ]
+export const marcasMemoriaRAM = [
+  "Kingston",
+  "Corsair",
+  "G.Skill",
+  "Crucial",
+  "HyperX",
+  "ADATA",
+  "Samsung",
+  "Team Group",
+  "Patriot",
+  "Transcend",
+  "Hynix",
+  "PNY",
+  "Apacer",
+  "Mushkin",
+  "Ballistix",
+];

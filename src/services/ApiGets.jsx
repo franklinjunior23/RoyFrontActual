@@ -43,3 +43,9 @@ export const GetDispUser = async()=>{
   const resp = await axiosInstance.get('Dispositivos/PCLAP');
   return resp.data
 }
+
+export const CreateDispR = async(data,empresa,sucursal)=>{
+  console.log(empresa,sucursal)
+  const resp = await axiosInstance.post(`Dispositivos/${empresa}/${sucursal}`,data);
+  return resp.data
+}
