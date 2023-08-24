@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import CreateDisp from "../Forms/CreateDisp";
+import GeneralSect from "./GeneralSect";
 
 function CategoryInvent() {
   const { CategoryInventario } = useParams();
 
   switch (CategoryInventario) {
     case "General":
-      return <h1>Gemerañ</h1>;
+      return <GeneralSect/>;
     case "Pc":
       return <h2>pces</h2>;
     case "Laptop":

@@ -49,3 +49,9 @@ export const CreateDispR = async(data,empresa,sucursal)=>{
   const resp = await axiosInstance.post(`Dispositivos/${empresa}/${sucursal}`,data);
   return resp.data
 }
+
+export const GetDispositos = async()=>{
+  const resp= await axiosInstance.get('Dispositivos/');
+  console.log(resp)
+  return resp.data
+}

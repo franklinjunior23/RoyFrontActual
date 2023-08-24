@@ -3,7 +3,7 @@ import { CategoryInventaio } from "../../../assets/DataDefault";
 import PcLapForm from "./Components/PcLapForm";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../../services/ConfigApi";
 
 function ActionType({ type, register, watch, setValue, control }) {
@@ -29,8 +29,8 @@ function CreateDisp() {
   const { nombreE, sucursalN } = useParams();
 
   const { handleSubmit, register, watch, setValue, control } = useForm();
-  const typeDisp = watch("Tipo");
-
+  const typeDisp = watch("tipo");
+  const navi = useNavigate()
  
   const mutation = useMutation({
     mutationFn: async (data) => {
@@ -41,7 +41,8 @@ function CreateDisp() {
       return resp.data;
     },
     onSuccess: () => {
-       return toast.success("cargando");
+        toast.success("Dispositivo creado");
+         navi(-1)
     },
   });
   const HandleSubt = async (data) => {
@@ -63,7 +64,7 @@ function CreateDisp() {
           </section>
           <section className="grid">
             <label>Tipo</label>
-            <select {...register("Tipo")} className="border py-2">
+            <select {...register("tipo")} className="border py-2">
               <option defaultValue="Defa">Seleccionar</option>
               {CategoryInventaio.filter(
                 (value) => value.name !== "General"
