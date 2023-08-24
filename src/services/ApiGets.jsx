@@ -52,6 +52,9 @@ export const CreateDispR = async(data,empresa,sucursal)=>{
 
 export const GetDispositos = async()=>{
   const resp= await axiosInstance.get('Dispositivos/');
-  console.log(resp)
+  return resp.data
+}
+export const DeleteDisposito = async (id)=>{
+  const resp = await axiosInstance.delete(`Dispositivos/${id}`)
   return resp.data
 }

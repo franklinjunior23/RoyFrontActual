@@ -5,13 +5,14 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../../services/ConfigApi";
+import RedFrom from "./Components/RedFrom";
 
 function ActionType({ type, register, watch, setValue, control }) {
   if (!type || type === "Defa") {
     return null;
   }
 
-  if (type === "Pc" || type === "Laptop" || type === "Servidores") {
+  if (type === "Pc" || type === "Laptop" || type === "Servidores")
     return (
       <PcLapForm
         register={register}
@@ -20,9 +21,16 @@ function ActionType({ type, register, watch, setValue, control }) {
         control={control}
       />
     );
-  } else {
-    return <h2>son otras cosas</h2>;
-  }
+
+  if (type === "Red")
+    return (
+      <RedFrom
+        register={register}
+        watch={watch}
+        setValue={setValue}
+        control={control}
+      />
+    );
 }
 
 function CreateDisp() {
@@ -30,8 +38,8 @@ function CreateDisp() {
 
   const { handleSubmit, register, watch, setValue, control } = useForm();
   const typeDisp = watch("tipo");
-  const navi = useNavigate()
- 
+  const navi = useNavigate();
+
   const mutation = useMutation({
     mutationFn: async (data) => {
       const resp = await axiosInstance.post(
@@ -41,14 +49,13 @@ function CreateDisp() {
       return resp.data;
     },
     onSuccess: () => {
-        toast.success("Dispositivo creado");
-         navi(-1)
+      toast.success("Dispositivo creado");
+      navi(-1);
     },
   });
   const HandleSubt = async (data) => {
     await mutation.mutate(data);
   };
-
 
   return (
     <main className="mt-8 pb-8">

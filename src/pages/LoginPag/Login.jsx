@@ -21,11 +21,9 @@ function Login() {
 
       return toast.success(`Bienvenido ${data.user.nombre}`);
     }
-    if (data.loged == false) {
+    
       return toast.error("Coloque sus datos correctos");
-    }
-
-    console.log(data);
+    
   }
   useEffect(() => {
     if (LogedAuth) {
