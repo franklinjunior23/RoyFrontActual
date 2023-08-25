@@ -1,6 +1,11 @@
 import { useParams } from "react-router-dom";
 import CreateDisp from "../Forms/CreateDisp";
 import GeneralSect from "./GeneralSect";
+import PCSect from "./PCSect";
+import RedSect from "./RedSect";
+import LaptopSect from "./LaptopSect";
+import ServidorSect from "./ServidorSect";
+import ImpresoraSect from "./ImpresoraSect";
 
 function CategoryInvent() {
   const { CategoryInventario } = useParams();
@@ -9,15 +14,15 @@ function CategoryInvent() {
     case "General":
       return <GeneralSect/>;
     case "Pc":
-      return <h2>pces</h2>;
+      return <PCSect/>;
     case "Laptop":
-      return <h2>Laptop</h2>;
+      return <LaptopSect/>;
     case "Servidores":
-      return <h2>servidores</h2>;
+      return <ServidorSect/>;
     case "Red":
-      return <h2>Redes dispositivos</h2>;
+      return <RedSect/>;
     case "Impresora":
-      return <h2>Impresoras</h2>;
+      return <ImpresoraSect/>;
     case "Create":
       return <CreateDisp />;
   }

@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../../services/ConfigApi";
 import RedFrom from "./Components/RedFrom";
+import ImpresForm from "./Components/ImpresForm";
 
 function ActionType({ type, register, watch, setValue, control }) {
   if (!type || type === "Defa") {
@@ -31,6 +32,13 @@ function ActionType({ type, register, watch, setValue, control }) {
         control={control}
       />
     );
+  if (type === "Impresora")
+   return (
+    <ImpresForm register={register}
+    watch={watch}
+    setValue={setValue}
+    control={control} />
+  );
 }
 
 function CreateDisp() {
@@ -71,7 +79,7 @@ function CreateDisp() {
           </section>
           <section className="grid">
             <label>Tipo</label>
-            <select {...register("tipo")} className="border py-2">
+            <select {...register("tipo")} className="border py-2 indent-2 px-2">
               <option defaultValue="Defa">Seleccionar</option>
               {CategoryInventaio.filter(
                 (value) => value.name !== "General"
