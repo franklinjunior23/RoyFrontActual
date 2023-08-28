@@ -26,9 +26,7 @@ export const GetUserByEmpresaAndSucursal = async (empresa, sucursal) => {
   return resp.data;
 };
 export const CreateUserByempresaAndSucursal = async (empresa,sucursal,datos) => {
-    console.log(datos)
   const resp = await axiosInstance.post(`Users/${empresa}/${sucursal}`, datos);
-    console.log(resp)
   return resp.data;
 };
 export const GetUserById =async(id)=>{
@@ -45,7 +43,6 @@ export const GetDispUser = async()=>{
 }
 
 export const CreateDispR = async(data,empresa,sucursal)=>{
-  console.log(empresa,sucursal)
   const resp = await axiosInstance.post(`Dispositivos/${empresa}/${sucursal}`,data);
   return resp.data
 }

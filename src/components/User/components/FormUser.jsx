@@ -7,7 +7,8 @@ import { TipyAsign } from "../../../assets/DataDefault";
 
 function FormUser({ id }) {
   const navi = useNavigate();
-  const { data, isLoading } = useQuery(["UserData", id], () => GetUserById(id));
+  
+const { data, isLoading } = useQuery(["UserData", id], () => GetUserById(id));
   const { data: DataDisp } = useQuery({
     initialData: [],
     queryKey:['DipsData'],
@@ -15,6 +16,8 @@ function FormUser({ id }) {
   });
   const DatPc = DataDisp.filter((value) => value.tipo === "PC");
   const DatLap = DataDisp.filter((value) => value.tipo === "LAPTOP");
+  
+  
 
   const { handleSubmit, register, watch } = useForm({
     values: {
@@ -42,7 +45,7 @@ function FormUser({ id }) {
 
   if (!data.where) {
     toast.error("Error Usuario no encontrado");
-    return navi(-1);
+    return navi(-1,{replace:true});
   }
   const TypeDisp = watch("tipo_disp");
   //const HandleSub = () => {};

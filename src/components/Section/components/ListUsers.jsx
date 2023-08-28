@@ -13,12 +13,10 @@ function ListUsers() {
   });
   if(isLoading) return <h3 className="text-center"> Cargando ...</h3>
   if (isError) return <h1>A sucedido un error</h1>;
-
+  if(data?.length===0)return <h2 className="mt-10 text-center">No hay Usuarios Registrados</h2>
   return (
     <main className="mt-8 ">
-      {data.length === 0 ? (
-        <h2>No Existe Ningun Usuario</h2>
-      ) : (
+     
         <main className="grid gap-y-2 md:grid-cols-2 md:gap-x-5">
           {
             data.map((dato) => (
@@ -26,7 +24,7 @@ function ListUsers() {
             ) )
           }
         </main>
-      )}
+     
     </main>
   );
 }

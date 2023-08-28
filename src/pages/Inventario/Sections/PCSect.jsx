@@ -4,7 +4,7 @@ import ItemDisp from "./ItemDisp";
 
 function PCSect() {
     const { data, isLoading, isError } = useQuery(["GetDisp"], GetDispositos);
-    console.log(data)
+    if(isLoading)return <h2>Carganado ....</h2>
   return (
     <main className="mt-5">
         <section className="grid grid-cols-2 md:grid-cols-3 gap-5">

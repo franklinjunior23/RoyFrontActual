@@ -18,14 +18,13 @@ function DashboardPage() {
                 alt=""
               />
               <div className=" absolute  m-auto bottom-0 left-[38%] ">
-                <h6 className=" bg-white py-1 px-3 rounded-md  ">{RoleUser}</h6>
+                <h6 className=" bg-white py-1 px-3 rounded-md shadow-md">{RoleUser}</h6>
               </div>
             </div>
             <div className="text-center">
               <h4 className=" mt-6 text-xl text-Slet font-bold">
                 {LogedAuth.nombre} {LogedAuth?.apellido}
               </h4>
-              <span className="mt-2">Correogmail@instiscorp.com</span>
             </div>
             <div>
               <Navlinks />

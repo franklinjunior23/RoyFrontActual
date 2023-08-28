@@ -277,3 +277,8 @@ export const marcasMemoriaRAM = [
   "Mushkin",
   "Ballistix",
 ];
+export const Tipo_Doc=['Dni','Pasaporte','Ce']
+export const TypeUser =['WorkGroup','Dominio']
+export const Nivel_Red=['User','Admin','User-Ts','Invitado','Teletrabajo']
+export const Type_Email=['POP','IMAP','WEB']
+export const Estado_User=['Retirado','Activo','En Proceso']
