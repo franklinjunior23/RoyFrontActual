@@ -1,6 +1,9 @@
 import { IconDotsVertical, IconUser } from "@tabler/icons-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { DeleteUserById } from "../../../services/ApiGets";
+import { toast } from "sonner";
 
 // eslint-disable-next-line react/prop-types
 function ItemUsers({ dato }) {
@@ -10,12 +13,31 @@ function ItemUsers({ dato }) {
   const HandleEditarUser = ()=>{
     setActiveOption(!ActiveOption)
   }
+  const navi = useNavigate();
+  const QueryCli = useQueryClient()
+  const {isLoading,mutate:UpdateUser} =useMutation({
+    mutationFn:DeleteUserById,
+    onSuccess:(dat)=>{
+      console.log(dat)
+      setActiveOption(false)
+      QueryCli.invalidateQueries('UsersSucur')
+      return toast.success('Usuario Eliminado Correctamente')
+    },
+    onError:()=>{
+      setActiveOption(false)
+      return toast.error('Hubo un Problema')
+    }
+  })
+
+  const DeleteUser =()=>{
+    UpdateUser(id)
+  }
   const EditModal = ()=>{
     return(
       <aside className="absolute -bottom-10 z-20 right-10 py-2 bg-white shadow-md rounded-md">
           <ul className="flex flex-col gap-2">
             <Link to={id} className="px-5">Editar</Link>
-            <li className="px-5" onClick={()=>console.log(id)}>Borrar</li>
+            <li className="px-5" onClick={DeleteUser}>{isLoading?'Borrando ...':'Eliminar'}</li>
           </ul>
       </aside>
     )

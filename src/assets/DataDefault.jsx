@@ -1,183 +1,179 @@
 export const IconHome = () => {
   return (
-   <div>
-     <svg
-       xmlns="http://www.w3.org/2000/svg"
-       width={25}
-       height={23}
-       viewBox="0 0 20 20"
-       fill="none"
-     >
-       <path
-         d="M14.8375 19.266H4.44947C1.9915 19.266 0 17.2655 0 14.8076V8.16026C0 6.94022 0.753539 5.40623 1.72238 4.65269L6.55759 0.88499C8.01084 -0.245315 10.3343 -0.299139 11.8413 0.7594L17.3852 4.64372C18.4527 5.38828 19.287 6.98507 19.287 8.28585V14.8165C19.287 17.2655 17.2955 19.266 14.8375 19.266ZM7.38289 1.94353L2.54768 5.71123C1.91076 6.21359 1.34561 7.35287 1.34561 8.16026V14.8076C1.34561 16.521 2.73606 17.9204 4.44947 17.9204H14.8375C16.5509 17.9204 17.9414 16.5299 17.9414 14.8165V8.28585C17.9414 7.42463 17.3224 6.23153 16.6137 5.74711L11.0698 1.8628C10.0472 1.14514 8.3607 1.18102 7.38289 1.94353Z"
-         fill="#292D32"
-       />
-     </svg>
-   </div>
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={25}
+        height={23}
+        viewBox="0 0 20 20"
+        fill="none"
+      >
+        <path
+          d="M14.8375 19.266H4.44947C1.9915 19.266 0 17.2655 0 14.8076V8.16026C0 6.94022 0.753539 5.40623 1.72238 4.65269L6.55759 0.88499C8.01084 -0.245315 10.3343 -0.299139 11.8413 0.7594L17.3852 4.64372C18.4527 5.38828 19.287 6.98507 19.287 8.28585V14.8165C19.287 17.2655 17.2955 19.266 14.8375 19.266ZM7.38289 1.94353L2.54768 5.71123C1.91076 6.21359 1.34561 7.35287 1.34561 8.16026V14.8076C1.34561 16.521 2.73606 17.9204 4.44947 17.9204H14.8375C16.5509 17.9204 17.9414 16.5299 17.9414 14.8165V8.28585C17.9414 7.42463 17.3224 6.23153 16.6137 5.74711L11.0698 1.8628C10.0472 1.14514 8.3607 1.18102 7.38289 1.94353Z"
+          fill="#292D32"
+        />
+      </svg>
+    </div>
   );
 };
-export const IconEmpresas = ({black}) => {
-  const Negro='#000000'
-  const blanco = '#ffff'
-  const defecto = "#292D32"
+export const IconEmpresas = ({ black }) => {
+  const Negro = "#000000";
+  const blanco = "#ffff";
+  const defecto = "#292D32";
   return (
-   <div>
-     <svg
-  xmlns="http://www.w3.org/2000/svg"
-  width={25}
-  height={24}
-  viewBox="0 0 25 25"
-  fill="none"
->
-  <path
-    d="M19.274 6.89409C19.2054 6.88267 19.1255 6.88267 19.0569 6.89409C17.4806 6.83698 16.2241 5.54622 16.2241 3.94705C16.2241 2.31361 17.5377 1 19.1712 1C20.8046 1 22.1182 2.32503 22.1182 3.94705C22.1068 5.54622 20.8503 6.83698 19.274 6.89409Z"
-    stroke={ black ? Negro :blanco}
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  />
-  <path
-    d="M18.0968 15.2099C19.6617 15.4726 21.3865 15.1984 22.5973 14.3874C24.2079 13.3137 24.2079 11.5546 22.5973 10.4809C21.3751 9.66989 19.6274 9.39573 18.0625 9.66988"
-    stroke={ black ? Negro :blanco}
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  />
-  <path
-    d="M5.53125 6.89409C5.59979 6.88267 5.67975 6.88267 5.74828 6.89409C7.32461 6.83698 8.5811 5.54622 8.5811 3.94705C8.5811 2.31361 7.2675 1 5.63406 1C4.00062 1 2.68701 2.32503 2.68701 3.94705C2.69843 5.54622 3.95493 6.83698 5.53125 6.89409Z"
-    stroke={ black ? Negro :blanco}
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  />
-  <path
-    d="M6.70847 15.2099C5.14357 15.4726 3.41875 15.1984 2.20795 14.3874C0.597351 13.3137 0.597351 11.5546 2.20795 10.4809C3.43017 9.66989 5.17784 9.39573 6.74274 9.66988"
-    stroke={ black ? Negro :blanco}
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  />
-  <path
-    d="M12.4205 15.4268C12.3519 15.4154 12.272 15.4154 12.2034 15.4268C10.6271 15.3697 9.37061 14.079 9.37061 12.4798C9.37061 10.8464 10.6842 9.53271 12.3177 9.53271C13.9511 9.53271 15.2647 10.8578 15.2647 12.4798C15.2533 14.079 13.9968 15.3811 12.4205 15.4268Z"
-    stroke={ black ? Negro :blanco}
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  />
-  <path
-    d="M15.7451 19.0248C13.9289 17.814 10.9247 17.814 9.09711 19.0248C7.48651 20.0985 7.48651 21.8576 9.09711 22.9313C10.9247 24.1536 13.9175 24.1536 15.7451 22.9313"
-    stroke={ black ? Negro :blanco}
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  />
-</svg>
-
-   </div>
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={25}
+        height={24}
+        viewBox="0 0 25 25"
+        fill="none"
+      >
+        <path
+          d="M19.274 6.89409C19.2054 6.88267 19.1255 6.88267 19.0569 6.89409C17.4806 6.83698 16.2241 5.54622 16.2241 3.94705C16.2241 2.31361 17.5377 1 19.1712 1C20.8046 1 22.1182 2.32503 22.1182 3.94705C22.1068 5.54622 20.8503 6.83698 19.274 6.89409Z"
+          stroke={black ? Negro : blanco}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M18.0968 15.2099C19.6617 15.4726 21.3865 15.1984 22.5973 14.3874C24.2079 13.3137 24.2079 11.5546 22.5973 10.4809C21.3751 9.66989 19.6274 9.39573 18.0625 9.66988"
+          stroke={black ? Negro : blanco}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M5.53125 6.89409C5.59979 6.88267 5.67975 6.88267 5.74828 6.89409C7.32461 6.83698 8.5811 5.54622 8.5811 3.94705C8.5811 2.31361 7.2675 1 5.63406 1C4.00062 1 2.68701 2.32503 2.68701 3.94705C2.69843 5.54622 3.95493 6.83698 5.53125 6.89409Z"
+          stroke={black ? Negro : blanco}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M6.70847 15.2099C5.14357 15.4726 3.41875 15.1984 2.20795 14.3874C0.597351 13.3137 0.597351 11.5546 2.20795 10.4809C3.43017 9.66989 5.17784 9.39573 6.74274 9.66988"
+          stroke={black ? Negro : blanco}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M12.4205 15.4268C12.3519 15.4154 12.272 15.4154 12.2034 15.4268C10.6271 15.3697 9.37061 14.079 9.37061 12.4798C9.37061 10.8464 10.6842 9.53271 12.3177 9.53271C13.9511 9.53271 15.2647 10.8578 15.2647 12.4798C15.2533 14.079 13.9968 15.3811 12.4205 15.4268Z"
+          stroke={black ? Negro : blanco}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M15.7451 19.0248C13.9289 17.814 10.9247 17.814 9.09711 19.0248C7.48651 20.0985 7.48651 21.8576 9.09711 22.9313C10.9247 24.1536 13.9175 24.1536 15.7451 22.9313"
+          stroke={black ? Negro : blanco}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
   );
 };
 export const IconUsers = () => {
   return (
     <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={25}
-    height={22}
-    viewBox="0 0 19 22"
-    fill="none"
-  >
-    <path
-      d="M9.2355 10.5872C11.8829 10.5872 14.0291 8.44104 14.0291 5.79361C14.0291 3.14617 11.8829 1 9.2355 1C6.58807 1 4.44189 3.14617 4.44189 5.79361C4.44189 8.44104 6.58807 10.5872 9.2355 10.5872Z"
-      stroke="#292D32"
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M17.4708 20.1744C17.4708 16.4642 13.7797 13.4634 9.23541 13.4634C4.69108 13.4634 1 16.4642 1 20.1744"
-      stroke="#292D32"
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-  
+      xmlns="http://www.w3.org/2000/svg"
+      width={25}
+      height={22}
+      viewBox="0 0 19 22"
+      fill="none"
+    >
+      <path
+        d="M9.2355 10.5872C11.8829 10.5872 14.0291 8.44104 14.0291 5.79361C14.0291 3.14617 11.8829 1 9.2355 1C6.58807 1 4.44189 3.14617 4.44189 5.79361C4.44189 8.44104 6.58807 10.5872 9.2355 10.5872Z"
+        stroke="#292D32"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M17.4708 20.1744C17.4708 16.4642 13.7797 13.4634 9.23541 13.4634C4.69108 13.4634 1 16.4642 1 20.1744"
+        stroke="#292D32"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 };
-export const IconInvent = ({white}) => {
-  const Negro='#000000'
-  const blanco = '#ffff'
-  const defecto = "#292D32"
+export const IconInvent = ({ white }) => {
+  const Negro = "#000000";
+  const blanco = "#ffff";
+  const defecto = "#292D32";
   return (
     <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={25}
-    height={25}
-    viewBox="0 0 23 24"
-    fill="none"
-  >
-    <path
-      d="M15.5416 23.041H6.96825C2.01709 23.041 1.09545 20.7369 0.85968 18.4971L0.0559208 9.91295C-0.0619638 8.7877 -0.0941143 7.12659 1.02043 5.88345C1.98494 4.81177 3.58174 4.29736 5.89657 4.29736H16.6133C18.9389 4.29736 20.5357 4.82249 21.4895 5.88345C22.604 7.12659 22.5719 8.7877 22.454 9.92367L21.6502 18.4864C21.4144 20.7369 20.4928 23.041 15.5416 23.041ZM5.89657 5.89416C4.08543 5.89416 2.84228 6.24782 2.20999 6.95513C1.68487 7.53383 1.5134 8.42333 1.65272 9.7522L2.45648 18.3363C2.63867 20.0296 3.09949 21.4335 6.96825 21.4335H15.5416C19.3997 21.4335 19.8712 20.0296 20.0534 18.3256L20.8572 9.76291C20.9965 8.42333 20.825 7.53383 20.2999 6.95513C19.6676 6.24782 18.4245 5.89416 16.6133 5.89416H5.89657Z"
-      fill={white ? blanco:defecto}
-    />
-    <path
-      d="M15.5412 5.89423C15.1019 5.89423 14.7375 5.52986 14.7375 5.09047V4.23313C14.7375 2.32554 14.7375 1.60752 12.1119 1.60752H10.3972C7.77158 1.60752 7.77158 2.32554 7.77158 4.23313V5.09047C7.77158 5.52986 7.40721 5.89423 6.96782 5.89423C6.52843 5.89423 6.16406 5.52986 6.16406 5.09047V4.23313C6.16406 2.34698 6.16406 0 10.3972 0H12.1119C16.345 0 16.345 2.34698 16.345 4.23313V5.09047C16.345 5.52986 15.9806 5.89423 15.5412 5.89423Z"
-      fill={white ? blanco:defecto}
-    />
-    <path
-      d="M11.2547 16.611C8.30762 16.611 8.30762 14.7892 8.30762 13.6961V12.5922C8.30762 11.0812 8.67199 10.7168 10.1831 10.7168H12.3264C13.8375 10.7168 14.2018 11.0812 14.2018 12.5922V13.6639C14.2018 14.7785 14.2018 16.611 11.2547 16.611ZM9.91513 12.3243V12.5922V13.6961C9.91513 14.7999 9.91513 15.0035 11.2547 15.0035C12.5943 15.0035 12.5943 14.832 12.5943 13.6853V12.5922C12.5943 12.5065 12.5943 12.41 12.5943 12.3243C12.5086 12.3243 12.4121 12.3243 12.3264 12.3243H10.1831C10.0973 12.3243 10.0009 12.3243 9.91513 12.3243Z"
-      fill={white ? blanco:defecto}
-    />
-    <path
-      d="M13.3977 14.4892C13.0012 14.4892 12.6475 14.1891 12.6046 13.7819C12.5511 13.3425 12.8618 12.9353 13.3012 12.8817C16.1305 12.528 18.8418 11.4563 21.1245 9.79524C21.4781 9.52732 21.9818 9.61306 22.2497 9.97743C22.5069 10.3311 22.4319 10.8348 22.0676 11.1027C19.5598 12.9245 16.602 14.0927 13.4941 14.4892C13.462 14.4892 13.4298 14.4892 13.3977 14.4892Z"
-      fill={white ? blanco:defecto}
-    />
-    <path
-      d="M9.1123 14.4996C9.08017 14.4996 9.04802 14.4996 9.01587 14.4996C6.07947 14.1674 3.21809 13.0957 0.742514 11.4025C0.378143 11.156 0.281692 10.6523 0.528178 10.2879C0.774664 9.92355 1.27835 9.8271 1.64272 10.0736C3.90396 11.6168 6.50814 12.592 9.18732 12.9028C9.62671 12.9564 9.94821 13.3529 9.89463 13.7923C9.86247 14.1995 9.51954 14.4996 9.1123 14.4996Z"
-      fill={white ? blanco:defecto}
-    />
-  </svg>
-  
+      xmlns="http://www.w3.org/2000/svg"
+      width={25}
+      height={25}
+      viewBox="0 0 23 24"
+      fill="none"
+    >
+      <path
+        d="M15.5416 23.041H6.96825C2.01709 23.041 1.09545 20.7369 0.85968 18.4971L0.0559208 9.91295C-0.0619638 8.7877 -0.0941143 7.12659 1.02043 5.88345C1.98494 4.81177 3.58174 4.29736 5.89657 4.29736H16.6133C18.9389 4.29736 20.5357 4.82249 21.4895 5.88345C22.604 7.12659 22.5719 8.7877 22.454 9.92367L21.6502 18.4864C21.4144 20.7369 20.4928 23.041 15.5416 23.041ZM5.89657 5.89416C4.08543 5.89416 2.84228 6.24782 2.20999 6.95513C1.68487 7.53383 1.5134 8.42333 1.65272 9.7522L2.45648 18.3363C2.63867 20.0296 3.09949 21.4335 6.96825 21.4335H15.5416C19.3997 21.4335 19.8712 20.0296 20.0534 18.3256L20.8572 9.76291C20.9965 8.42333 20.825 7.53383 20.2999 6.95513C19.6676 6.24782 18.4245 5.89416 16.6133 5.89416H5.89657Z"
+        fill={white ? blanco : defecto}
+      />
+      <path
+        d="M15.5412 5.89423C15.1019 5.89423 14.7375 5.52986 14.7375 5.09047V4.23313C14.7375 2.32554 14.7375 1.60752 12.1119 1.60752H10.3972C7.77158 1.60752 7.77158 2.32554 7.77158 4.23313V5.09047C7.77158 5.52986 7.40721 5.89423 6.96782 5.89423C6.52843 5.89423 6.16406 5.52986 6.16406 5.09047V4.23313C6.16406 2.34698 6.16406 0 10.3972 0H12.1119C16.345 0 16.345 2.34698 16.345 4.23313V5.09047C16.345 5.52986 15.9806 5.89423 15.5412 5.89423Z"
+        fill={white ? blanco : defecto}
+      />
+      <path
+        d="M11.2547 16.611C8.30762 16.611 8.30762 14.7892 8.30762 13.6961V12.5922C8.30762 11.0812 8.67199 10.7168 10.1831 10.7168H12.3264C13.8375 10.7168 14.2018 11.0812 14.2018 12.5922V13.6639C14.2018 14.7785 14.2018 16.611 11.2547 16.611ZM9.91513 12.3243V12.5922V13.6961C9.91513 14.7999 9.91513 15.0035 11.2547 15.0035C12.5943 15.0035 12.5943 14.832 12.5943 13.6853V12.5922C12.5943 12.5065 12.5943 12.41 12.5943 12.3243C12.5086 12.3243 12.4121 12.3243 12.3264 12.3243H10.1831C10.0973 12.3243 10.0009 12.3243 9.91513 12.3243Z"
+        fill={white ? blanco : defecto}
+      />
+      <path
+        d="M13.3977 14.4892C13.0012 14.4892 12.6475 14.1891 12.6046 13.7819C12.5511 13.3425 12.8618 12.9353 13.3012 12.8817C16.1305 12.528 18.8418 11.4563 21.1245 9.79524C21.4781 9.52732 21.9818 9.61306 22.2497 9.97743C22.5069 10.3311 22.4319 10.8348 22.0676 11.1027C19.5598 12.9245 16.602 14.0927 13.4941 14.4892C13.462 14.4892 13.4298 14.4892 13.3977 14.4892Z"
+        fill={white ? blanco : defecto}
+      />
+      <path
+        d="M9.1123 14.4996C9.08017 14.4996 9.04802 14.4996 9.01587 14.4996C6.07947 14.1674 3.21809 13.0957 0.742514 11.4025C0.378143 11.156 0.281692 10.6523 0.528178 10.2879C0.774664 9.92355 1.27835 9.8271 1.64272 10.0736C3.90396 11.6168 6.50814 12.592 9.18732 12.9028C9.62671 12.9564 9.94821 13.3529 9.89463 13.7923C9.86247 14.1995 9.51954 14.4996 9.1123 14.4996Z"
+        fill={white ? blanco : defecto}
+      />
+    </svg>
   );
 };
 export const IconConfig = () => {
   return (
     <svg
-  xmlns="http://www.w3.org/2000/svg"
-  width={25}
-  height={24}
-  viewBox="0 0 24 24"
-  fill="none"
->
-  <path
-    d="M22.4708 9.58833V14.956C22.4708 20.3237 20.3237 22.4708 14.956 22.4708H8.51479C3.14708 22.4708 1 20.3237 1 14.956V8.51479C1 3.14708 3.14708 1 8.51479 1H13.8825"
-    stroke="#292D32"
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  />
-  <path
-    d="M22.4711 9.58833H18.177C14.9564 9.58833 13.8828 8.51479 13.8828 5.29417V1L22.4711 9.58833Z"
-    stroke="#292D32"
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  />
-  <path
-    d="M6.36768 12.8091H12.8089"
-    stroke="#292D32"
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  />
-  <path
-    d="M6.36768 17.103H10.6618"
-    stroke="#292D32"
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  />
-</svg>
-
+      xmlns="http://www.w3.org/2000/svg"
+      width={25}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M22.4708 9.58833V14.956C22.4708 20.3237 20.3237 22.4708 14.956 22.4708H8.51479C3.14708 22.4708 1 20.3237 1 14.956V8.51479C1 3.14708 3.14708 1 8.51479 1H13.8825"
+        stroke="#292D32"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M22.4711 9.58833H18.177C14.9564 9.58833 13.8828 8.51479 13.8828 5.29417V1L22.4711 9.58833Z"
+        stroke="#292D32"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.36768 12.8091H12.8089"
+        stroke="#292D32"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.36768 17.103H10.6618"
+        stroke="#292D32"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 };
 export const IconEmpresa = () => {
@@ -213,7 +209,7 @@ export const IconEmpresa = () => {
   );
 };
 export const NavData = [
-    {name : "Home",url:'',icon:<IconHome/>},
+  { name: "Home", url: "", icon: <IconHome /> },
   { name: "Empresas", url: "Empresas", icon: <IconHome /> },
   { name: "Usuarios", url: "Usuarios", icon: <IconEmpresas black={true} /> },
   { name: "Inventario", url: "Inventario", icon: <IconUsers /> },
@@ -221,27 +217,43 @@ export const NavData = [
   { name: "Configuracion", url: "Configuracion", icon: <IconConfig /> },
 ];
 
-export const ColorConteners =[
-  {name:'#8FC8CC'},{name:"#6E3278"},{name:"#F3794E"},{name:"#FF8484"}
-]
+export const ColorConteners = [
+  { name: "#8FC8CC" },
+  { name: "#6E3278" },
+  { name: "#F3794E" },
+  { name: "#FF8484" },
+];
 
-export const DataCategory=[
-  {name:'Usuarios',icon:<IconEmpresas/>},
-  {name:"Inventario",icon:<IconInvent white={true} />}
-]
+export const DataCategory = [
+  { name: "Usuarios", icon: <IconEmpresas /> },
+  { name: "Inventario", icon: <IconInvent white={true} /> },
+];
 
+export const TipyAsign = [{ name: "PC" }, { name: "LAPTOP" }];
 
-export const TipyAsign=[
-  {name:'PC'},{name:'LAPTOP'}
-]
+export const CategoryInventaio = [
+  { name: "General" },
+  { name: "Pc" },
+  { name: "Laptop" },
+  { name: "Servidores" },
+  { name: "Red" },
+  { name: "Impresora" },
+];
 
-export const CategoryInventaio=[
-  {name:'General'},{name:'Pc'},{name:'Laptop'},{name:'Servidores'},{name:'Red'},{name:'Impresora'}
-]
-
-export const MarcasPCLAP=['Antrix','Hp','Dell','Acer','Asus','Ibm','Lenovo','Lg','Toshiba','Msi','Sony'
-]
-export const PlacaModelPCLAP=[
+export const MarcasPCLAP = [
+  "Antrix",
+  "Hp",
+  "Dell",
+  "Acer",
+  "Asus",
+  "Ibm",
+  "Lenovo",
+  "Lg",
+  "Toshiba",
+  "Msi",
+  "Sony",
+];
+export const PlacaModelPCLAP = [
   "ASUS",
   "MSI",
   "Gigabyte",
@@ -255,11 +267,9 @@ export const PlacaModelPCLAP=[
   "Apple",
   "Microsoft",
   "Razer",
-  "Alienware"
-]
-export const ModeloProcesador=[
-  'AMD','INTEL'
-]
+  "Alienware",
+];
+export const ModeloProcesador = ["AMD", "INTEL"];
 export const marcasMemoriaRAM = [
   "Kingston",
   "Corsair",
@@ -277,8 +287,34 @@ export const marcasMemoriaRAM = [
   "Mushkin",
   "Ballistix",
 ];
-export const Tipo_Doc=['Dni','Pasaporte','Ce']
-export const TypeUser =['WorkGroup','Dominio']
-export const Nivel_Red=['User','Admin','User-Ts','Invitado','Teletrabajo']
-export const Type_Email=['POP','IMAP','WEB']
-export const Estado_User=['Retirado','Activo','En Proceso']
+export const Tipo_Doc = ["Dni", "Pasaporte", "Ce"];
+export const TypeUser = ["WorkGroup", "Dominio"];
+export const Nivel_Red = [
+  "User",
+  "Admin",
+  "User-Ts",
+  "Invitado",
+  "Teletrabajo",
+];
+export const Type_Email = ["POP", "IMAP", "WEB"];
+export const Estado_User = ["Retirado", "Activo", "En Proceso"];
+
+export const FormUser = [
+  "nombre",
+  "apellido",
+  "genero",
+  "tipo_doc",
+  "estado",
+  "doc",
+  "cargo",
+  'tipo_usuario',
+  'nivel_red',
+  'usuario',
+  'contraseña',
+  'anydesk_contra',
+  'anydesk_id',
+  'email_tip',
+  'email_dirrecion',
+  'email_contraseña',
+
+];

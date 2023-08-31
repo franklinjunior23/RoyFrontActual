@@ -33,10 +33,17 @@ export const GetUserById =async(id)=>{
   const resp = await axiosInstance.get(`Users/${id}`)
   return resp.data
 }
-export const UpdateUserById=async(id)=>{
-  const resp = await axiosInstance.put(`Users/${id}`)
+export const UpdateUserById=async(id,dat)=>{
+  const resp = await axiosInstance.put(`Users/${id}`,dat)
   return resp.data
 }
+export const DeleteUserById=async(id)=>{
+  console.log(id)
+  const resp = await axiosInstance.delete(`Users/${id}`)
+  return resp.data
+}
+
+
 export const GetDispUser = async()=>{
   const resp = await axiosInstance.get('Dispositivos/PCLAP');
   return resp.data

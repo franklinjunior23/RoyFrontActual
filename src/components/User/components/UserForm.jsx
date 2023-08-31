@@ -2,6 +2,7 @@ import { IconMan, IconWoman } from "@tabler/icons-react";
 import { useForm } from "react-hook-form";
 import {
   Estado_User,
+  FormUser,
   Nivel_Red,
   Tipo_Doc,
   TypeUser,
@@ -12,16 +13,19 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import axiosInstance from "../../../services/ConfigApi";
-import { GetUserById } from "../../../services/ApiGets";
+import { GetUserById, UpdateUserById } from "../../../services/ApiGets";
+import { useEffect } from "react";
 
-const ContentInput = ({ label, name, type, register,defaultValue  }) => {
+const ContentInput = ({ label, name, type, register, defaultValue}) => {
+  
   return (
     <div>
-      <label className=" text-sm mb-1">{label}</label>
+      <label className=" text-sm mb-1 text-black/80">{label}</label>
       <input
         type={type == undefined ? "text" : type}
         className="w-full border rounded-md py-2 indent-2 truncate  text-sm"
-        {...register(name,{defaultValue})}
+        {...register(name)}
+        
       />
     </div>
   );
@@ -51,18 +55,30 @@ const ContentSelect = ({ label, name, register, data, errors }) => {
 };
 
 function UserForm() {
+ 
+  const { idUsuario } = useParams();
+  if (idUsuario) {
+    var {data:DataUser} = useQuery({
+      queryKey: ["UserFind"],
+      queryFn: () => GetUserById(idUsuario),
+    });
+   
+  }
   const {
     register,
+    setValue,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const {idUsuario}=useParams()
-  console.log(idUsuario)
-  if(idUsuario!==undefined){
-    const Qury = useQuery({ queryKey:['UserFind'] ,queryFn:()=>GetUserById(idUsuario)})
-    console.log(Qury.data)
-  }
+  useEffect(() => {
+    if(DataUser){
+      FormUser.forEach(param => {
+        setValue(param, DataUser?.resp[param]);
+      });
+    }
+    
+  }, [DataUser]);
   const VisGenero = watch("genero");
   const Sexos = ["Masculino", "Femenino"];
   const columns = [
@@ -78,7 +94,7 @@ function UserForm() {
   const { nombreE, sucursalN } = useParams();
 
   const navi = useNavigate();
-  const createUser = useMutation({
+  const {isLoading,mutate} = useMutation({
     mutationFn: async (datos) => {
       const resp = await axiosInstance.post(
         `Users/${nombreE}/${sucursalN}`,
@@ -92,28 +108,37 @@ function UserForm() {
         return toast.success("Usuario Creado");
       }
       navi(-1);
-      return  toast.error("error");
+      return toast.error("error");
     },
   });
 
+  const {mutate:UpdateUser}=useMutation({
+    mutationFn:UpdateUserById,
+    onSuccess:(dat)=>{
+      navi(-1)
+      return toast.success('Usuario Actualizado Correctamente')
+    }
+  })
+
   const HandleSub = (data) => {
-    console.log(data)
-   // createUser.mutate(data);
+    console.log(data);
+    if(!DataUser)return mutate(data);
+    return UpdateUser(DataUser?.resp.id,data)
   };
   return (
     <main className="mt-8">
       <h2 className="text-center text-lg pb-2 border-b">
-        Creacion de Nuevo Usuario
+       {idUsuario?'Editando User':'Creacion de Nuevo Usuario'} 
       </h2>
       <section className="mt-10">
         <form onSubmit={handleSubmit(HandleSub)}>
-          <section className="grid grid-cols-2 gap-2">
+          <h3 className="text-black/70 font-bold">Datos Personales</h3>
+          <section className="grid grid-cols-2 gap-8">
             <div>
               <ContentInput
                 label={"Nombre"}
                 name={"nombre"}
                 register={register}
-                defaultValue={11}
               />
               <ContentInput
                 label={"Apellido"}
@@ -260,7 +285,7 @@ function UserForm() {
             </div>
           </section>
           <section className="grid grid-cols-2 py-5 text-white gap-1">
-            <button className="bg-black py-2">Crear</button>
+            <button className="bg-black py-2" disabled={isLoading}>{DataUser ?'actualizando':'crear' }</button>
             <button className="bg-black/70 py-2">Cancelar</button>
           </section>
         </form>
