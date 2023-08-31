@@ -18,7 +18,7 @@ function ImpresForm({ register, setValue, control }) {
       <section className="grid grid-cols-2 gap-2 md:gap-3 mt-2">
         <div className="grid">
           <label htmlFor="" className="text-sm">Tipo Con.</label>
-          <input type="text" {...register('Tipo_con')} className="border py-2 w-full indent-2" />
+          <input type="text" {...register('tipo_con')} className="border py-2 w-full indent-2" />
         </div>
         <div className="grid">
           <label htmlFor="" className="text-sm">IP</label>

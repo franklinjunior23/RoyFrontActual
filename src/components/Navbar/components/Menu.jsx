@@ -12,7 +12,7 @@ function Menu() {
        <i className="fi fi-rr-apps text-2xl " />
      </section>
      {
-         ActiveMenu && ( <ListMenu/>)
+         ActiveMenu && ( <ListMenu handle={setActiveMenu}/>)
      }
     
    </>

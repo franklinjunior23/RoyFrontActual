@@ -46,7 +46,7 @@ function ItemDisp({ value }) {
   return (
     <section
       key={value.id}
-      className="border rounded-lg shadow-md flex justify-between px-5 py-4  lg:py-6 flex-col md:flex-row relative"
+      className="border rounded-lg shadow-md flex justify-between px-5 py-4  lg:py-6 flex-col md:flex-row relative "
     >
       <div>
         <h2 className="text-sm font-medium mb-4 truncate lg:w-20">
