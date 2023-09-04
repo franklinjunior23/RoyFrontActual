@@ -43,9 +43,10 @@ function ItemDisp({ value }) {
         
     }
   })
+
   return (
     <section
-      key={value.id}
+      key={value?.id}
       className="border rounded-lg shadow-md flex justify-between px-5 py-4  lg:py-6 flex-col md:flex-row relative "
     >
       <div>
@@ -56,7 +57,7 @@ function ItemDisp({ value }) {
         <span className="pt-2">{value?.marca}</span>
       </div>
       <div className="m-auto md:m-0 mb-3">
-        <Link to={value.nombre}>
+        <Link to={`${value?.id}`}>
           <SwitchIconDisp data={value?.tipo} size={70} />
         </Link>
         <h4
