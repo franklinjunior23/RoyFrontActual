@@ -50,7 +50,6 @@ const { data, isLoading } = useQuery(["UserData", id], () => GetUserById(id));
   const TypeDisp = watch("tipo_disp");
   //const HandleSub = () => {};
 
-  // eslint-disable-next-line react/prop-types
   const ContentInput = ({ label, name }) => {
     return (
       <section className="grid w-full mb-1">
@@ -63,10 +62,15 @@ const { data, isLoading } = useQuery(["UserData", id], () => GetUserById(id));
       </section>
     );
   };
+
+  const HandleForm = ()=>{
+    if(!data)return 
+  }
   return (
     <main className="mt-10 mb-5">
       <main>
-        <form onSubmit={handleSubmit}>
+        adww
+        <form onSubmit={handleSubmit(HandleForm)}>
           <section className="grid grid-cols-2 gap-3">
             <main className="">
               <ContentInput label={"Nombre"} name={"nombre"} />

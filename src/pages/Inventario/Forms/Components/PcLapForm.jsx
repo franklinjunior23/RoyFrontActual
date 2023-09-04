@@ -21,7 +21,7 @@ function PcLapForm({ register, setValue, control }) {
         <div className="grid my-3">
           <label>Tipo</label>
           <select
-            {...register("tipo_")}
+            {...register("tipo_Disp")}
             className="border  py-2 w-full indent-2"
           >
             <option value="Laptop">Laptop</option>
@@ -185,28 +185,26 @@ function PcLapForm({ register, setValue, control }) {
                       className="w-full border py-2 indent-2"
                     >
                       <option value="def">Seleccionar</option>
-                      <option value="DDR3">DDR3</option>
-                      <option value="DDR4">DDR4</option>
+                      <option value="SSD">SSD</option>
+                      <option value="HDD">HDD</option>
+                      <option value="M.2">M.2</option>
+                      <option value="NVM">NVM</option>
                     </select>
                     
-                    <select
+                    <input
                       {...register(`Almacenamiento.${index}.marca`, {
                         require: true,
                       })}
-                      defaultValue={field.marca}
-                      placeholder="DDR3 | DDR4"
+                      defaultValue={field.gb}
+                      placeholder="marca"
                       className="w-full border py-2 indent-2"
-                    >
-                      <option value="def">Seleccionar</option>
-                      <option value="DDR3">DDR3</option>
-                      <option value="DDR4">DDR4</option>
-                    </select>
+                    />
                     <input
                       {...register(`Almacenamiento.${index}.gb`, {
                         require: true,
                       })}
                       defaultValue={field.gb}
-                      placeholder="MHz"
+                      placeholder="GB"
                       className="w-full border py-2 indent-2"
                     />
                     <button
@@ -223,7 +221,7 @@ function PcLapForm({ register, setValue, control }) {
                   className="border w-full py-3 mt-5 rounded-md bg-slate-500/50 text-white"
                   onClick={() => AppendAlmacenamiento({})}
                 >
-                  Agregar RAM
+                  Agregar Almacenamiento
                 </button>
               </div>
             </article>

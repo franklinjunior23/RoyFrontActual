@@ -16,8 +16,7 @@ import axiosInstance from "../../../services/ConfigApi";
 import { GetUserById, UpdateUserById } from "../../../services/ApiGets";
 import { useEffect } from "react";
 
-const ContentInput = ({ label, name, type, register, defaultValue}) => {
-  
+const ContentInput = ({ label, name, type, register, defaultValue }) => {
   return (
     <div>
       <label className=" text-sm mb-1 text-black/80">{label}</label>
@@ -25,7 +24,6 @@ const ContentInput = ({ label, name, type, register, defaultValue}) => {
         type={type == undefined ? "text" : type}
         className="w-full border rounded-md py-2 indent-2 truncate  text-sm"
         {...register(name)}
-        
       />
     </div>
   );
@@ -55,14 +53,12 @@ const ContentSelect = ({ label, name, register, data, errors }) => {
 };
 
 function UserForm() {
- 
   const { idUsuario } = useParams();
   if (idUsuario) {
-    var {data:DataUser} = useQuery({
+    var { data: DataUser } = useQuery({
       queryKey: ["UserFind"],
       queryFn: () => GetUserById(idUsuario),
     });
-   
   }
   const {
     register,
@@ -72,12 +68,11 @@ function UserForm() {
     formState: { errors },
   } = useForm();
   useEffect(() => {
-    if(DataUser){
-      FormUser.forEach(param => {
+    if (DataUser) {
+      FormUser.forEach((param) => {
         setValue(param, DataUser?.resp[param]);
       });
     }
-    
   }, [DataUser]);
   const VisGenero = watch("genero");
   const Sexos = ["Masculino", "Femenino"];
@@ -94,7 +89,7 @@ function UserForm() {
   const { nombreE, sucursalN } = useParams();
 
   const navi = useNavigate();
-  const {isLoading,mutate} = useMutation({
+  const { isLoading, mutate } = useMutation({
     mutationFn: async (datos) => {
       const resp = await axiosInstance.post(
         `Users/${nombreE}/${sucursalN}`,
@@ -112,23 +107,26 @@ function UserForm() {
     },
   });
 
-  const {mutate:UpdateUser}=useMutation({
-    mutationFn:UpdateUserById,
-    onSuccess:(dat)=>{
-      navi(-1)
-      return toast.success('Usuario Actualizado Correctamente')
-    }
-  })
+  const { mutate: UpdateUser } = useMutation({
+    mutationFn: async (data) => {
+      const resp = await axiosInstance.put(`Users/${DataUser?.resp.id}`, data);
+      return resp.data;
+    },
+    onSuccess: () => {
+      navi(-1);
+      return toast.success('Usuario Actualizado')
+    },
+  });
 
   const HandleSub = (data) => {
-    console.log(data);
-    if(!DataUser)return mutate(data);
-    return UpdateUser(DataUser?.resp.id,data)
+    if (!DataUser) return mutate(data);
+    console.log("llego a actualizar");
+    return UpdateUser(data);
   };
   return (
     <main className="mt-8">
       <h2 className="text-center text-lg pb-2 border-b">
-       {idUsuario?'Editando User':'Creacion de Nuevo Usuario'} 
+        {idUsuario ? "Editando User" : "Creacion de Nuevo Usuario"}
       </h2>
       <section className="mt-10">
         <form onSubmit={handleSubmit(HandleSub)}>
@@ -285,7 +283,9 @@ function UserForm() {
             </div>
           </section>
           <section className="grid grid-cols-2 py-5 text-white gap-1">
-            <button className="bg-black py-2" disabled={isLoading}>{DataUser ?'actualizando':'crear' }</button>
+            <button className="bg-black py-2" disabled={isLoading}>
+              {DataUser ? "actualizando" : "crear"}
+            </button>
             <button className="bg-black/70 py-2">Cancelar</button>
           </section>
         </form>
