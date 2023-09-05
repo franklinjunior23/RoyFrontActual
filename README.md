@@ -32,3 +32,7 @@ DatPc?.map((valu, index) => (
                           {value.nombre}
                         </option>
                       ))}
+
+
+
+Recordar - que no poner '/'

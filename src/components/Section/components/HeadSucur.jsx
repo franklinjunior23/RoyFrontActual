@@ -13,7 +13,7 @@ function HeadSucur() {
       <div>
         <h4 className="text-base">Sucursales : </h4>
       </div>
-      <div className="bg-red-300 relative">
+      <div className=" relative">
         <button
           className="bg-black px-3 py-2 text-white rounded-lg text-base"
           type="button"
