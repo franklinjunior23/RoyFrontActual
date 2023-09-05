@@ -6,7 +6,7 @@ import {
 } from "../../../../assets/DataDefault";
 import InputsOptions from "./InputsOptions";
 
-function PcLapForm({ register, setValue, control }) {
+function PcLapForm({ register, setValue, control,watch,getValues }) {
   const { fields, append, remove } = useFieldArray({
     control,
     name: "Ram_modulos", // nombre del campo en el formulario
@@ -39,13 +39,15 @@ function PcLapForm({ register, setValue, control }) {
               register={register}
               setValue={setValue}
               options={MarcasPCLAP}
+              watch={watch}
+              getValues={getValues}
             />
           </div>
           <div className="grid">
             <label>Modelo</label>
             <input
               type="text"
-              {...register("serie")}
+              {...register("modelo")}
               className="border py-2 w-full indent-2"
             />
           </div>
@@ -77,6 +79,7 @@ function PcLapForm({ register, setValue, control }) {
                   register={register}
                   setValue={setValue}
                   options={MarcasPCLAP}
+                  getValues={getValues}
                 />
               </div>
               <div className="grid">
@@ -99,6 +102,7 @@ function PcLapForm({ register, setValue, control }) {
                   register={register}
                   setValue={setValue}
                   options={ModeloProcesador}
+                  getValues={getValues}
                 />
               </div>
               <div className="grid">

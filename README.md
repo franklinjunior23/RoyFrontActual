@@ -36,3 +36,18 @@ DatPc?.map((valu, index) => (
 
 
 Recordar - que no poner '/'
+
+
+FormDisp.forEach((param) => {
+      if (data?.data && data?.data[param] !== null && data?.data[param] !== undefined) {
+        console.log(data?.data[param] + "  parametro :" + param);
+        setValue(param, data.data[param]);
+      } else if (
+        data?.DetalleDispositivos &&
+        data.DetalleDispositivos[0] &&
+        data.DetalleDispositivos[0][param] !== null 
+      ) {
+        console.log("aca arriba");
+        setValue(param, data.DetalleDispositivos[0][param]);
+      }
+    });

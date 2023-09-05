@@ -10,6 +10,7 @@ import CategoryInvent from "../pages/Inventario/Sections/CategoryInvent";
 import ItemSection from "../components/Section/ItemSection";
 import UserForm from "../components/User/components/UserForm";
 import IdDispositivo from "../pages/Inventario/IdDispositivo";
+import CreateDisp from "../pages/Inventario/Forms/CreateDisp";
 
 function SoporteRoutes() {
   return (
@@ -20,18 +21,17 @@ function SoporteRoutes() {
           <Route path=":sucursalN" element={<CategoryS />}>
             <Route path="Usuarios" element={<UserPage />} />
             <Route path="Usuarios/Create" element={<UserForm />} />
-           <Route path="Usuarios/:idUsuario" element={<UserForm/>} />  
+            <Route path="Usuarios/:idUsuario" element={<UserForm />} />
             <Route path="Inventario" element={<PageInventario />}>
-              <Route path=":CategoryInventario" element={<CategoryInvent />} >
-               <Route path=":idDisp" element={<IdDispositivo/>} />
+              <Route path=":CategoryInventario" element={<CategoryInvent />}>
+                <Route path=":idDisp" element={<CreateDisp />} />
               </Route>
             </Route>
-           {/*<Route path="*" element={<Navigate to={-1} />} />*/}
+            {/*<Route path="*" element={<Navigate to={-1} />} />*/}
           </Route>
         </Route>
-        <Route path="Empresas" element={<ItemSection />}/>
-          
-       
+        <Route path="Empresas" element={<ItemSection />} />
+
         <Route path="Usuarios" element={<h1>usersss</h1>} />
         <Route path="Inventario" element={<h1>inventario</h1>} />
         <Route path="Reportes" element={<h1>Reportes</h1>} />

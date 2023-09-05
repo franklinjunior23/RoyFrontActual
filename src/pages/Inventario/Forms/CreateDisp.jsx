@@ -1,14 +1,15 @@
 import { useForm } from "react-hook-form";
-import { CategoryInventaio } from "../../../assets/DataDefault";
+import { CategoryInventaio, FormDisp } from "../../../assets/DataDefault";
 import PcLapForm from "./Components/PcLapForm";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../../services/ConfigApi";
 import RedFrom from "./Components/RedFrom";
 import ImpresForm from "./Components/ImpresForm";
+import { useEffect } from "react";
 
-function ActionType({ type, register, watch, setValue, control }) {
+function ActionType({ type, register, watch, setValue, control ,getValues }) {
   if (!type || type === "Defa") {
     return null;
   }
@@ -18,6 +19,7 @@ function ActionType({ type, register, watch, setValue, control }) {
       <PcLapForm
         register={register}
         watch={watch}
+        getValues={getValues}
         setValue={setValue}
         control={control}
       />
@@ -44,10 +46,33 @@ function ActionType({ type, register, watch, setValue, control }) {
 function CreateDisp() {
   const { nombreE, sucursalN } = useParams();
 
-  const { handleSubmit, register, watch, setValue, control } = useForm();
+  const {setValue,getValues, handleSubmit, register, watch,  control,  } = useForm();
   const typeDisp = watch("tipo");
   const navi = useNavigate();
-
+  const {idDisp}=useParams();
+  if(idDisp){
+    var {data}=useQuery({
+      queryKey:['DispById'],
+      queryFn:async()=>{
+        const resp = await axiosInstance.get(`Dispositivos/${idDisp}`);
+        return resp.data
+      }
+    })
+    console.log(data)
+  }
+  useEffect(() => {
+   if(data){
+    FormDisp.forEach((param) => {
+      
+      if (data?.data && data?.data[param] !== null || undefined) {
+        setValue(param, data.data[param]);
+        if(data?.data[param] == undefined){
+          setValue(param, data?.data.DetalleDispositivos[0][param]);
+        }
+      } 
+    });
+   }
+  }, [data,setValue]);
   const mutation = useMutation({
     mutationFn: async (data) => {
       const resp = await axiosInstance.post(
@@ -99,6 +124,7 @@ function CreateDisp() {
             watch={watch}
             setValue={setValue}
             control={control}
+            getValues ={getValues}
           />
         )}
         <article className="grid grid-cols-2 mt-5 gap-2">

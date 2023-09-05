@@ -120,7 +120,6 @@ function UserForm() {
 
   const HandleSub = (data) => {
     if (!DataUser) return mutate(data);
-    console.log("llego a actualizar");
     return UpdateUser(data);
   };
   return (
