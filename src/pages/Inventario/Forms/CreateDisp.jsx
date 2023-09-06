@@ -68,6 +68,10 @@ function CreateDisp() {
         setValue(param, data.data[param]);
         if(data?.data[param] == undefined){
           setValue(param, data?.data.DetalleDispositivos[0][param]);
+          if(param =="Almacenamiento" || param =="Ram_Modulos" ){
+            setValue('Almacenamiento',data?.data.DetalleDispositivos[0]['Almacenamiento_detalle'])
+            setValue('Ram_Modulos',data?.data.DetalleDispositivos[0]['Ram_Modulos'])
+          }
         }
       } 
     });
@@ -86,9 +90,22 @@ function CreateDisp() {
       navi(-1);
     },
   });
-  const HandleSubt = async (data) => {
-   
-   await mutation.mutate(data);
+  const {mutate:UpdateDisp,isLoading}=useMutation({
+    mutationFn:async(datas)=>{
+      const resp = await axiosInstance.put(`Dispositivos/${data?.data?.id}`,datas);
+      return resp.data;
+    },
+    onSuccess:(dat)=>{
+      console.log(dat)
+      toast.success('Dispositivo Actualizado')
+    }
+  })
+  const HandleSubt = async (datos) => {
+   if(!data){
+    return  mutation.mutate(datos);
+   }
+   console.log(datos)
+   UpdateDisp(datos)
   };
 
   return (
@@ -100,7 +117,7 @@ function CreateDisp() {
             <input
               type="text"
               {...register("nombre")}
-              className="w-full py-2 border"
+              className="w-full py-2 border indent-2"
             />
           </section>
           <section className="grid">
@@ -132,7 +149,7 @@ function CreateDisp() {
             type="submit"
             className="bg-black/90 rounded-md py-3 text-white"
           >
-            Crear
+            {data? 'Actualizar' : 'Crear'}
           </button>
           <button
             type="button"

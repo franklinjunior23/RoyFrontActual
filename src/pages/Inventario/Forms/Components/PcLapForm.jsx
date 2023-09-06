@@ -9,7 +9,7 @@ import InputsOptions from "./InputsOptions";
 function PcLapForm({ register, setValue, control,watch,getValues }) {
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "Ram_modulos", // nombre del campo en el formulario
+    name: "Ram_Modulos", // nombre del campo en el formulario
   });
   const { fields:fieldAlmacenamiento, append:AppendAlmacenamiento, remove:RemoveAlmacenamiento } = useFieldArray({
     control,
@@ -34,6 +34,7 @@ function PcLapForm({ register, setValue, control,watch,getValues }) {
         <article className="grid grid-cols-2 gap-2">
           <div className="grid">
             <label>Marca</label>
+            <input className="hidden" type="text" {...register('marca')} />
             <InputsOptions
               name={"marca"}
               register={register}
@@ -74,6 +75,7 @@ function PcLapForm({ register, setValue, control,watch,getValues }) {
             <article className="grid grid-cols-2 gap-2">
               <div className="grid">
                 <label>Marca</label>
+                <input className="hidden" type="text" {...register('Placa_modelo')} />
                 <InputsOptions
                   name={"Placa_modelo"}
                   register={register}
@@ -97,6 +99,7 @@ function PcLapForm({ register, setValue, control,watch,getValues }) {
             <article className="grid grid-cols-2 gap-2">
               <div className="grid">
                 <label>Marca</label>
+                <input className="hidden" type="text" {...register('Procesador_marca')} />
                 <InputsOptions
                   name={"Procesador_marca"}
                   register={register}
@@ -126,14 +129,16 @@ function PcLapForm({ register, setValue, control,watch,getValues }) {
                     key={field.id}
                     className=" w-full grid grid-cols-4 gap-2 mb-3"
                   >
+                    
                     <InputsOptions
-                      name={`Ram_modulos.${index}.marca`}
+                      name={`Ram_Modulos.${index}.marca`}
                       register={register}
                       setValue={setValue}
                       options={marcasMemoriaRAM}
+                      getValues={getValues}
                     />
                     <select
-                      {...register(`Ram_modulos.${index}.tipo`, {
+                      {...register(`Ram_Modulos.${index}.tipo`, {
                         require: true,
                       })}
                       defaultValue={field.tipo}
@@ -145,7 +150,7 @@ function PcLapForm({ register, setValue, control,watch,getValues }) {
                       <option value="DDR4">DDR4</option>
                     </select>
                     <input
-                      {...register(`Ram_modulos.${index}.mhz`, {
+                      {...register(`Ram_Modulos.${index}.mhz`, {
                         require: true,
                       })}
                       defaultValue={field.mhz}

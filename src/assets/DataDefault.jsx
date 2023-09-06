@@ -320,5 +320,5 @@ export const FormUser = [
 ];
 
 export const FormDisp =[
-  'nombre','tipo','marca','modelo','serie','tipo_con','estado','tipo_Disp','Config_mac','Config_ip','Config_user','Config_contra','Placa_modelo','Placa_detalle','Procesador_marca','Procesador_modelo','Ram_cantidad','Ram_Modulos','Almacenamiento_canti','Almacenamiento_detalle','Tarjet_Video'
+  'nombre','tipo','marca','modelo','serie','tipo_con','estado','tipo_Disp','Config_mac','Config_ip','Config_user','Config_contra','Placa_modelo','Placa_detalle','Procesador_marca','Procesador_modelo','Ram_Modulos','Almacenamiento','Tarjet_Video'
 ]
