@@ -28,9 +28,11 @@ const SwitchIconDisp = ({ data, size }) => {
 
 function ItemDisp({ value }) {
   const [ActiveModalOptions, setActiveModalOptions] = useState(false);
+  
   const handleActive = () => {
     setActiveModalOptions(!ActiveModalOptions);
   };
+
   const queryClient = useQueryClient()
   const {mutate:DeleteDisp} = useMutation({
     mutationFn:DeleteDisposito,
@@ -40,7 +42,6 @@ function ItemDisp({ value }) {
             return queryClient.invalidateQueries({queryKey:['GetDisp']})
         } 
          toast.error('Hubo un error , intentelo nuevamente')
-        
     }
   })
 

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { CategoryInventaio, FormDisp } from "../../../assets/DataDefault";
 import PcLapForm from "./Components/PcLapForm";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../../services/ConfigApi";
@@ -9,7 +9,7 @@ import RedFrom from "./Components/RedFrom";
 import ImpresForm from "./Components/ImpresForm";
 import { useEffect } from "react";
 
-function ActionType({ type, register, watch, setValue, control ,getValues }) {
+function ActionType({ type, register, watch, setValue, control, getValues }) {
   if (!type || type === "Defa") {
     return null;
   }
@@ -35,77 +35,93 @@ function ActionType({ type, register, watch, setValue, control ,getValues }) {
       />
     );
   if (type === "Impresora")
-   return (
-    <ImpresForm register={register}
-    watch={watch}
-    setValue={setValue}
-    control={control} />
-  );
+    return (
+      <ImpresForm
+        register={register}
+        watch={watch}
+        setValue={setValue}
+        control={control}
+      />
+    );
 }
 
 function CreateDisp() {
-  const { nombreE, sucursalN } = useParams();
+  const { nombreE, sucursalN, idDisp } = useParams();
 
-  const {setValue,getValues, handleSubmit, register, watch,  control,  } = useForm();
+  const { setValue, getValues, handleSubmit, register, watch, control } =
+    useForm();
+
   const typeDisp = watch("tipo");
+
   const navi = useNavigate();
-  const {idDisp}=useParams();
-  if(idDisp){
-    var {data}=useQuery({
-      queryKey:['DispById'],
-      queryFn:async()=>{
+  const queryClien = useQueryClient();
+  if (idDisp) {
+    var { data } = useQuery({
+      queryKey: ["DispById"],
+      queryFn: async () => {
         const resp = await axiosInstance.get(`Dispositivos/${idDisp}`);
-        return resp.data
-      }
-    })
-    console.log(data)
+        return resp.data;
+      },
+    });
   }
   useEffect(() => {
-   if(data){
-    FormDisp.forEach((param) => {
-      
-      if (data?.data && data?.data[param] !== null || undefined) {
-        setValue(param, data.data[param]);
-        if(data?.data[param] == undefined){
-          setValue(param, data?.data.DetalleDispositivos[0][param]);
-          if(param =="Almacenamiento" || param =="Ram_Modulos" ){
-            setValue('Almacenamiento',data?.data.DetalleDispositivos[0]['Almacenamiento_detalle'])
-            setValue('Ram_Modulos',data?.data.DetalleDispositivos[0]['Ram_Modulos'])
+    if (data) {
+      FormDisp.forEach((param) => {
+        if ((data?.data && data?.data[param] !== null) || undefined) {
+          setValue(param, data.data[param]);
+          if (data?.data[param] == undefined) {
+            setValue(param, data?.data.DetalleDispositivos[0][param]);
+            if (param == "Almacenamiento" || param == "Ram_Modulos") {
+              setValue(
+                "Almacenamiento",
+                data?.data.DetalleDispositivos[0]["Almacenamiento_detalle"]
+              );
+              setValue(
+                "Ram_Modulos",
+                data?.data.DetalleDispositivos[0]["Ram_Modulos"]
+              );
+            }
           }
         }
-      } 
-    });
-   }
-  }, [data,setValue]);
-  const mutation = useMutation({
+      });
+    }
+  }, [data]);
+
+  const { mutate: MutateCreate } = useMutation({
     mutationFn: async (data) => {
       const resp = await axiosInstance.post(
         `Dispositivos/${nombreE}/${sucursalN}`,
         data
       );
+      console.log("hola");
       return resp.data;
     },
     onSuccess: () => {
+      queryClien.invalidateQueries({ queryKey: ['GetDisp'] });
       toast.success("Dispositivo creado");
       navi(-1);
     },
   });
-  const {mutate:UpdateDisp,isLoading}=useMutation({
-    mutationFn:async(datas)=>{
-      const resp = await axiosInstance.put(`Dispositivos/${data?.data?.id}`,datas);
+  const { mutate: UpdateDisp } = useMutation({
+    mutationFn: async (datas) => {
+      const resp = await axiosInstance.put(
+        `Dispositivos/${data?.data?.id}`,
+        datas
+      );
+
       return resp.data;
     },
-    onSuccess:(dat)=>{
-      console.log(dat)
-      toast.success('Dispositivo Actualizado')
-    }
-  })
+    onSuccess: () => {
+     
+      toast.success("Dispositivo Actualizado");
+      navi(-1);
+      return queryClien.invalidateQueries({queryKey:['GetDisp']})
+    },
+  });
   const HandleSubt = async (datos) => {
-   if(!data){
-    return  mutation.mutate(datos);
-   }
-   console.log(datos)
-   UpdateDisp(datos)
+    if(!data)  return MutateCreate(datos);
+  
+  return UpdateDisp(datos);
   };
 
   return (
@@ -141,7 +157,7 @@ function CreateDisp() {
             watch={watch}
             setValue={setValue}
             control={control}
-            getValues ={getValues}
+            getValues={getValues}
           />
         )}
         <article className="grid grid-cols-2 mt-5 gap-2">
@@ -149,7 +165,7 @@ function CreateDisp() {
             type="submit"
             className="bg-black/90 rounded-md py-3 text-white"
           >
-            {data? 'Actualizar' : 'Crear'}
+            {data ? "Actualizar" : "Crear"}
           </button>
           <button
             type="button"
