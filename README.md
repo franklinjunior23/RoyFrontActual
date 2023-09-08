@@ -51,3 +51,14 @@ FormDisp.forEach((param) => {
         setValue(param, data.DetalleDispositivos[0][param]);
       }
     });
+
+
+----
+estados de los dispositivos 
+
+
+Activo
+
+Inaperativa
+
+----

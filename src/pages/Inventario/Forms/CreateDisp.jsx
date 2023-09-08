@@ -1,14 +1,21 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { CategoryInventaio, FormDisp } from "../../../assets/DataDefault";
 import PcLapForm from "./Components/PcLapForm";
-import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  QueryClient,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../../services/ConfigApi";
 import RedFrom from "./Components/RedFrom";
 import ImpresForm from "./Components/ImpresForm";
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
+import Select from "react-select";
+import ReactSelect from "react-select";
+import { DevTool } from "@hookform/devtools";
 function ActionType({ type, register, watch, setValue, control, getValues }) {
   if (!type || type === "Defa") {
     return null;
@@ -70,34 +77,33 @@ function CreateDisp() {
         if ((data?.data && data?.data[param] !== null) || undefined) {
           setValue(param, data.data[param]);
           if (data?.data[param] == undefined) {
-            setValue(param, data?.data.DetalleDispositivos[0][param]);
+            setValue(param, data?.data?.DetalleDispositivos[0][param]);
             if (param == "Almacenamiento" || param == "Ram_Modulos") {
               setValue(
                 "Almacenamiento",
-                data?.data.DetalleDispositivos[0]["Almacenamiento_detalle"]
+                data?.data?.DetalleDispositivos[0]["Almacenamiento_detalle"]
               );
               setValue(
                 "Ram_Modulos",
-                data?.data.DetalleDispositivos[0]["Ram_Modulos"]
+                data?.data?.DetalleDispositivos[0]["Ram_Modulos"]
               );
             }
           }
         }
       });
     }
-  }, [data]);
-
+  }, [data,setValue]);
+ 
   const { mutate: MutateCreate } = useMutation({
     mutationFn: async (data) => {
       const resp = await axiosInstance.post(
         `Dispositivos/${nombreE}/${sucursalN}`,
         data
       );
-      console.log("hola");
       return resp.data;
     },
     onSuccess: () => {
-      queryClien.invalidateQueries({ queryKey: ['GetDisp'] });
+      queryClien.invalidateQueries({ queryKey: ["GetDisp"] });
       toast.success("Dispositivo creado");
       navi(-1);
     },
@@ -112,17 +118,16 @@ function CreateDisp() {
       return resp.data;
     },
     onSuccess: () => {
-     
       toast.success("Dispositivo Actualizado");
       navi(-1);
-      return queryClien.invalidateQueries({queryKey:['GetDisp']})
+      return queryClien.invalidateQueries({ queryKey: ["GetDisp"] });
     },
   });
   const HandleSubt = async (datos) => {
-    if(!data)  return MutateCreate(datos);
-  
-  return UpdateDisp(datos);
+    if (!data) return MutateCreate(datos);
+    return UpdateDisp(datos);
   };
+  const estado = watch("estado");
 
   return (
     <main className="mt-8 pb-8">
@@ -150,6 +155,35 @@ function CreateDisp() {
             </select>
           </section>
         </article>
+        <div className="grid">
+          <label>Estado </label>
+          {estado}
+          <Controller
+            control={control}
+            name="estado"
+            render={({ field: { onChange, onBlur, value, name, ref } }) => (
+              <ReactSelect
+              name={name}
+              ref={ref}
+              onChange={(e) => {
+                onChange(e?.value);
+              }}
+              onBlur={onBlur}
+              value={value?.value}
+              closeMenuOnSelect={true}
+              placeholder={"Estado Del Dispositivo ..."}
+              getOptionLabel={(e) => e.value}
+              getOptionValue={(e) => e.value}
+                options={[
+                  { value: "Activo", label: "Activo" },
+                  { value: "Inaperativa", label: "Inaperativa" },
+                ]}
+                isClearable
+              />
+              
+            )}
+          />
+        </div>
         {typeDisp !== "Defa" && (
           <ActionType
             type={typeDisp}
@@ -175,6 +209,7 @@ function CreateDisp() {
             Cancelar
           </button>
         </article>
+        <DevTool control={control} /> {/* set up the dev tool */}
       </form>
     </main>
   );

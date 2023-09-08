@@ -44,7 +44,6 @@ function ItemDisp({ value }) {
          toast.error('Hubo un error , intentelo nuevamente')
     }
   })
-
   return (
     <section
       key={value?.id}
@@ -64,6 +63,7 @@ function ItemDisp({ value }) {
         <h4
           className={`bg-green-400 text-sm px-3 text-white font-semibold my-1 rounded-md capitalize `}
         >
+          {value?.estado}
           activo
         </h4>
       </div>
@@ -81,7 +81,7 @@ function ItemDisp({ value }) {
                 <ul className="flex flex-col">
                     <button className="px-4 py-1 text-sm">Editar</button>
                     <button className="px-4 py-1 text-sm">Actualizar</button>
-                    <button className="px-4 py-1 text-sm" onClick={()=>DeleteDisp(value.id)}>Eliminar</button>
+                    <button className="px-4 py-1 text-sm" onClick={()=>DeleteDisp(value?.id)}>Eliminar</button>
 
                 </ul>
             </aside>
