@@ -26,24 +26,25 @@ const SwitchIconDisp = ({ data, size }) => {
   }
 };
 
+// eslint-disable-next-line react/prop-types
 function ItemDisp({ value }) {
   const [ActiveModalOptions, setActiveModalOptions] = useState(false);
-  
+
   const handleActive = () => {
     setActiveModalOptions(!ActiveModalOptions);
   };
 
-  const queryClient = useQueryClient()
-  const {mutate:DeleteDisp} = useMutation({
-    mutationFn:DeleteDisposito,
-    onSuccess:(data)=>{
-        if(data.search) {
-            toast.success('Dispositivo Eliminado')
-            return queryClient.invalidateQueries({queryKey:['GetDisp']})
-        } 
-         toast.error('Hubo un error , intentelo nuevamente')
-    }
-  })
+  const queryClient = useQueryClient();
+  const { mutate: DeleteDisp } = useMutation({
+    mutationFn: DeleteDisposito,
+    onSuccess: (data) => {
+      if (data.search) {
+        toast.success("Dispositivo Eliminado");
+        return queryClient.invalidateQueries({ queryKey: ["GetDisp"] });
+      }
+      toast.error("Hubo un error , intentelo nuevamente");
+    },
+  });
   return (
     <section
       key={value?.id}
@@ -61,10 +62,16 @@ function ItemDisp({ value }) {
           <SwitchIconDisp data={value?.tipo} size={70} />
         </Link>
         <h4
-          className={`bg-green-400 text-sm px-3 text-white font-semibold my-1 rounded-md capitalize `}
+          className={`${
+            value?.estado === "Activo"
+              ? "bg-green-400"
+              : value?.estado == "Inaperativa"
+              ? "bg-blue-600"
+              : "bg-red-600"
+          } 
+           text-sm py-0.5 px-3 text-white font-semibold my-1 rounded-md capitalize `}
         >
           {value?.estado}
-          activo
         </h4>
       </div>
 
@@ -75,18 +82,20 @@ function ItemDisp({ value }) {
         <IconDotsVertical height={25} width={25} />
       </aside>
 
-      {
-        ActiveModalOptions && (
-            <aside className="absolute bottom-3 right-10 bg-white shadow-lg rounded-md">
-                <ul className="flex flex-col">
-                    <button className="px-4 py-1 text-sm">Editar</button>
-                    <button className="px-4 py-1 text-sm">Actualizar</button>
-                    <button className="px-4 py-1 text-sm" onClick={()=>DeleteDisp(value?.id)}>Eliminar</button>
-
-                </ul>
-            </aside>
-        )
-      }
+      {ActiveModalOptions && (
+        <aside className="absolute bottom-3 right-10 bg-white shadow-lg rounded-md">
+          <ul className="flex flex-col">
+            <button className="px-4 py-1 text-sm">Editar</button>
+            <button className="px-4 py-1 text-sm">Actualizar</button>
+            <button
+              className="px-4 py-1 text-sm"
+              onClick={() => DeleteDisp(value?.id)}
+            >
+              Eliminar
+            </button>
+          </ul>
+        </aside>
+      )}
     </section>
   );
 }

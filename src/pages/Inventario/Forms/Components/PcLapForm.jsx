@@ -5,6 +5,7 @@ import {
   marcasMemoriaRAM,
 } from "../../../../assets/DataDefault";
 import InputsOptions from "./InputsOptions";
+import { useQuery } from "@tanstack/react-query";
 
 function PcLapForm({ register, setValue, control,watch,getValues }) {
   const { fields, append, remove } = useFieldArray({
@@ -15,6 +16,12 @@ function PcLapForm({ register, setValue, control,watch,getValues }) {
     control,
     name: "Almacenamiento", // nombre del campo en el formulario
   });
+  const {data}=useQuery({
+    queryKey:['Client_Disp'],
+    queryFn:async()=>{
+      
+    }
+  })
   return (
     <>
       <section>

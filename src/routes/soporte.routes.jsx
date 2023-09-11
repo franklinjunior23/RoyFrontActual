@@ -11,6 +11,7 @@ import ItemSection from "../components/Section/ItemSection";
 import UserForm from "../components/User/components/UserForm";
 import IdDispositivo from "../pages/Inventario/IdDispositivo";
 import CreateDisp from "../pages/Inventario/Forms/CreateDisp";
+import GeneralSect from "../pages/Inventario/Sections/GeneralSect";
 
 function SoporteRoutes() {
   return (
@@ -22,10 +23,8 @@ function SoporteRoutes() {
             <Route path="Usuarios" element={<UserPage />} />
             <Route path="Usuarios/Create" element={<UserForm />} />
             <Route path="Usuarios/:idUsuario" element={<UserForm />} />
-            <Route path="Inventario" element={<PageInventario />}>
-              <Route path=":CategoryInventario" element={<CategoryInvent />}>
-                <Route path=":idDisp" element={<CreateDisp />} />
-              </Route>
+            <Route path="Inventario" element={<GeneralSect />}>
+              <Route path=":idDisp" element={<CreateDisp />} />
             </Route>
             {/*<Route path="*" element={<Navigate to={-1} />} />*/}
           </Route>

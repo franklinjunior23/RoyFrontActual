@@ -1,4 +1,4 @@
-import { Controller, useForm } from "react-hook-form";
+import {  useForm } from "react-hook-form";
 import { CategoryInventaio, FormDisp } from "../../../assets/DataDefault";
 import PcLapForm from "./Components/PcLapForm";
 import {
@@ -12,10 +12,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../../services/ConfigApi";
 import RedFrom from "./Components/RedFrom";
 import ImpresForm from "./Components/ImpresForm";
-import { useEffect, useState } from "react";
-import Select from "react-select";
-import ReactSelect from "react-select";
-import { DevTool } from "@hookform/devtools";
+import { useEffect } from "react";
+
 function ActionType({ type, register, watch, setValue, control, getValues }) {
   if (!type || type === "Defa") {
     return null;
@@ -127,8 +125,6 @@ function CreateDisp() {
     if (!data) return MutateCreate(datos);
     return UpdateDisp(datos);
   };
-  const estado = watch("estado");
-
   return (
     <main className="mt-8 pb-8">
       <form onSubmit={handleSubmit(HandleSubt)}>
@@ -157,32 +153,11 @@ function CreateDisp() {
         </article>
         <div className="grid">
           <label>Estado </label>
-          {estado}
-          <Controller
-            control={control}
-            name="estado"
-            render={({ field: { onChange, onBlur, value, name, ref } }) => (
-              <ReactSelect
-              name={name}
-              ref={ref}
-              onChange={(e) => {
-                onChange(e?.value);
-              }}
-              onBlur={onBlur}
-              value={value?.value}
-              closeMenuOnSelect={true}
-              placeholder={"Estado Del Dispositivo ..."}
-              getOptionLabel={(e) => e.value}
-              getOptionValue={(e) => e.value}
-                options={[
-                  { value: "Activo", label: "Activo" },
-                  { value: "Inaperativa", label: "Inaperativa" },
-                ]}
-                isClearable
-              />
-              
-            )}
-          />
+          <select {...register('estado')} className="border py-2 rounded-md indent-1">
+            <option value="Activo">Activo</option>
+            <option value="Inaperativa">Inaperativa</option>
+            <option value="Malograda">Malograda</option>
+          </select>
         </div>
         {typeDisp !== "Defa" && (
           <ActionType
@@ -209,7 +184,7 @@ function CreateDisp() {
             Cancelar
           </button>
         </article>
-        <DevTool control={control} /> {/* set up the dev tool */}
+       
       </form>
     </main>
   );

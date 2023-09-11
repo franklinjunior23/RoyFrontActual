@@ -62,3 +62,8 @@ export const DeleteDisposito = async (id)=>{
   const resp = await axiosInstance.delete(`Dispositivos/${id}`)
   return resp.data
 }
+
+export const GetUserNullDispositivo=async(data)=>{
+  const resp = await axiosInstance.get('Users/Disp',data);
+  return resp.data
+}

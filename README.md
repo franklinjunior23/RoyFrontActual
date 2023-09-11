@@ -56,9 +56,34 @@ FormDisp.forEach((param) => {
 ----
 estados de los dispositivos 
 
-
 Activo
-
 Inaperativa
-
+Malograda
 ----
+
+
+          <Controller
+            control={control}
+            name="estado"
+            render={({ field: { onChange, onBlur, value, name, ref } }) => (
+              <ReactSelect
+              name={name}
+              ref={ref}
+              onChange={(e) => {
+                onChange(e?.value);
+              }}
+              onBlur={onBlur}
+              value={value?.value}
+              closeMenuOnSelect={true}
+              placeholder={"Estado Del Dispositivo ..."}
+              getOptionLabel={(e) => e.value}
+              getOptionValue={(e) => e.value}
+                options={[
+                  { value: "Activo", label: "Activo" },
+                  { value: "Inaperativa", label: "Inaperativa" },
+                ]}
+                isClearable
+              />
+              
+            )}
+          />
