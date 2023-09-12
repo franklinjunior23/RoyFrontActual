@@ -23,8 +23,10 @@ function GeneralSect() {
   if (idDisp) return <Outlet />;
   return (
     <>
+    
       <HeadCategory data={"Dispositivo"} />
       <main className="mt-5">
+        
         <section className="grid grid-cols-2 md:grid-cols-3  gap-5 ">
           {data?.map((value) => (
             <ItemDisp value={value} key={value.id} />

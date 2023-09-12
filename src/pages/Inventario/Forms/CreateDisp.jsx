@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { CategoryInventaio, FormDisp } from "../../../assets/DataDefault";
 import PcLapForm from "./Components/PcLapForm";
+import { DevTool } from "@hookform/devtools";
 import {
   QueryClient,
   useMutation,
@@ -14,42 +15,6 @@ import RedFrom from "./Components/RedFrom";
 import ImpresForm from "./Components/ImpresForm";
 import { useEffect } from "react";
 
-function ActionType({ type, register, watch, setValue, control, getValues }) {
-  if (!type || type === "Defa") {
-    return null;
-  }
-
-  if (type === "Pc" || type === "Laptop" || type === "Servidores")
-    return (
-      <PcLapForm
-        register={register}
-        watch={watch}
-        getValues={getValues}
-        setValue={setValue}
-        control={control}
-      />
-    );
-
-  if (type === "Red")
-    return (
-      <RedFrom
-        register={register}
-        watch={watch}
-        setValue={setValue}
-        control={control}
-      />
-    );
-  if (type === "Impresora")
-    return (
-      <ImpresForm
-        register={register}
-        watch={watch}
-        setValue={setValue}
-        control={control}
-      />
-    );
-}
-
 function CreateDisp() {
   const { nombreE, sucursalN, idDisp } = useParams();
 
@@ -57,10 +22,11 @@ function CreateDisp() {
     useForm();
 
   const typeDisp = watch("tipo");
+  console.log(typeDisp)
 
   const navi = useNavigate();
   const queryClien = useQueryClient();
-  if (idDisp !== undefined) {
+  if (idDisp !== undefined && idDisp !== "create") {
     var { data } = useQuery({
       queryKey: ["DispById"],
       queryFn: async () => {
@@ -139,11 +105,9 @@ function CreateDisp() {
           </section>
           <section className="grid">
             <label>Tipo</label>
-            <select {...register("tipo")} className="border py-2 indent-2 px-2">
-              <option defaultValue="Defa">Seleccionar</option>
-              {CategoryInventaio.filter(
-                (value) => value.name !== "General"
-              ).map((value) => (
+            <select {...register("tipo",{defaultValue:"Defa"})} className="border py-2 indent-2 px-2">
+              <option value="Defa">Seleccionar</option>
+              {CategoryInventaio.map((value) => (
                 <option value={value.name} key={value.name}>
                   {value.name}
                 </option>
@@ -152,7 +116,7 @@ function CreateDisp() {
           </section>
         </article>
         <div className="grid">
-          <label>Estado </label>
+          <label>Estado {typeDisp} </label>
           <select
             {...register("estado")}
             className="border py-2 rounded-md indent-1"
@@ -162,16 +126,40 @@ function CreateDisp() {
             <option value="Malograda">Malograda</option>
           </select>
         </div>
-        {typeDisp !== "Defa" && (
-          <ActionType
-            type={typeDisp}
-            register={register}
-            watch={watch}
-            setValue={setValue}
-            control={control}
-            getValues={getValues}
-          />
-        )}
+        {typeDisp !== "Seleccionar" && (
+  <>
+    {typeDisp === "Pc" ||
+      typeDisp === "Laptop" ||
+      typeDisp === "Servidores" ? (
+      <PcLapForm
+        register={register}
+        watch={watch}
+        getValues={getValues}
+        setValue={setValue}
+        control={control}
+      />
+    ) : null}
+
+    {typeDisp === "Red" ? (
+      <RedFrom
+        register={register}
+        watch={watch}
+        setValue={setValue}
+        control={control}
+      />
+    ) : null}
+
+    {typeDisp === "Impresora" ? (
+      <ImpresForm
+        register={register}
+        watch={watch}
+        setValue={setValue}
+        control={control}
+      />
+    ) : null}
+  </>
+)}
+
         <article className="grid grid-cols-2 mt-5 gap-2">
           <button
             type="submit"
@@ -182,12 +170,13 @@ function CreateDisp() {
           <button
             type="button"
             className="bg-black/40 rounded-md py-3 text-white"
-            onClick={() => console.log("cancelaste")}
+            onClick={() => navi(-1)}
           >
             Cancelar
           </button>
         </article>
       </form>
+      <DevTool control={control} /> {/* set up the dev tool */}
     </main>
   );
 }

@@ -232,7 +232,6 @@ export const DataCategory = [
 export const TipyAsign = [{ name: "PC" }, { name: "LAPTOP" }];
 
 export const CategoryInventaio = [
-  { name: "General" },
   { name: "Pc" },
   { name: "Laptop" },
   { name: "Servidores" },

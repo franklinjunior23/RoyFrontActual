@@ -38,6 +38,7 @@ function ItemDisp({ value }) {
   const { mutate: DeleteDisp } = useMutation({
     mutationFn: DeleteDisposito,
     onSuccess: (data) => {
+      console.log(data)
       if (data.search) {
         toast.success("Dispositivo Eliminado");
         return queryClient.invalidateQueries({ queryKey: ["GetDisp"] });
@@ -45,6 +46,7 @@ function ItemDisp({ value }) {
       toast.error("Hubo un error , intentelo nuevamente");
     },
   });
+
   return (
     <section
       key={value?.id}

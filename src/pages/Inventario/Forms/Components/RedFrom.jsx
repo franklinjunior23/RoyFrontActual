@@ -5,7 +5,8 @@ function RedFrom({ register, setValue, control }) {
         <div className="grid">
           <label htmlFor="">Tipo de Dispositivo</label>
           <select  className="border py-2" {...register('tipo_equipo')}>
-            <option value="">S</option>
+            <option value="Impresora Inyeccion">Impresora Inyeccion</option>
+            <option value="Impresora Inyeccion">Impresora Inyeccion</option>
           </select>
         </div>
         <div className="grid">
@@ -16,7 +17,9 @@ function RedFrom({ register, setValue, control }) {
       <div className="grid mt-2">
         <label htmlFor="">Conexion</label>
         <select {...register('tipo_con')} className="border py-2">
-          <option value="">Ethernet</option>
+          <option value="Ethernet">Ethernet</option>
+          <option value="Ethernet">Ethernet</option>
+
         </select>
       </div>
 

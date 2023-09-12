@@ -23,7 +23,7 @@ function CategoryInvent() {
       return <RedSect/>;
     case "Impresora":
       return <ImpresoraSect/>;
-    case "Create":
+    case "create":
       return <CreateDisp />;
   }
 }
