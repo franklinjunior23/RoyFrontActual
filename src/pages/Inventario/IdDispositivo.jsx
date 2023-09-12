@@ -6,11 +6,12 @@ import { useForm } from "react-hook-form";
 function IdDispositivo() {
   const { idDisp } = useParams();
   const { data } = useQuery({
+    queryKey: ["DispositivoByID"],
     queryFn: async () => {
       const resp = await axiosInstance.get(`Dispositivos/${idDisp}`);
       return resp.data.data;
     },
-    queryKey: ["DispositivoByID"],
+    
   });
 
   const { register, handleSubmit, setValue } = useForm();

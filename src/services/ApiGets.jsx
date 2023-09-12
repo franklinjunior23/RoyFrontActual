@@ -1,4 +1,3 @@
-
 import axiosInstance from "./ConfigApi";
 
 export const GetEmpresas = async () => {
@@ -25,45 +24,55 @@ export const GetUserByEmpresaAndSucursal = async (empresa, sucursal) => {
   const resp = await axiosInstance.get(`Users/${empresa}/${sucursal}`);
   return resp.data;
 };
-export const CreateUserByempresaAndSucursal = async (empresa,sucursal,datos) => {
+export const CreateUserByempresaAndSucursal = async (
+  empresa,
+  sucursal,
+  datos
+) => {
   const resp = await axiosInstance.post(`Users/${empresa}/${sucursal}`, datos);
   return resp.data;
 };
-export const GetUserById =async(id)=>{
-  const resp = await axiosInstance.get(`Users/${id}`)
-  return resp.data
-}
-export const UpdateUserById=async(id,dat)=>{
-  const resp = await axiosInstance.put(`Users/${id}`,dat)
-  return resp.data
-}
-export const DeleteUserById=async(id)=>{
-  console.log(id)
-  const resp = await axiosInstance.delete(`Users/${id}`)
-  return resp.data
-}
+export const GetUserById = async (id) => {
+  const resp = await axiosInstance.get(`Users/${id}`);
+  return resp.data;
+};
+export const UpdateUserById = async (id, dat) => {
+  const resp = await axiosInstance.put(`Users/${id}`, dat);
+  return resp.data;
+};
+export const DeleteUserById = async (id) => {
+  console.log(id);
+  const resp = await axiosInstance.delete(`Users/${id}`);
+  return resp.data;
+};
 
+export const GetDispUser = async () => {
+  const resp = await axiosInstance.get("Dispositivos/PCLAP");
+  return resp.data;
+};
 
-export const GetDispUser = async()=>{
-  const resp = await axiosInstance.get('Dispositivos/PCLAP');
-  return resp.data
-}
+export const CreateDispR = async (data, empresa, sucursal) => {
+  const resp = await axiosInstance.post(
+    `Dispositivos/${empresa}/${sucursal}`,
+    data
+  );
+  return resp.data;
+};
 
-export const CreateDispR = async(data,empresa,sucursal)=>{
-  const resp = await axiosInstance.post(`Dispositivos/${empresa}/${sucursal}`,data);
-  return resp.data
-}
+export const GetDispositos = async (data) => {
+  const resp = await axiosInstance.get("Dispositivos/", data);
+  return resp.data;
+};
+export const DeleteDisposito = async (id) => {
+  const resp = await axiosInstance.delete(`Dispositivos/${id}`);
+  return resp.data;
+};
 
-export const GetDispositos = async()=>{
-  const resp= await axiosInstance.get('Dispositivos/');
-  return resp.data
-}
-export const DeleteDisposito = async (id)=>{
-  const resp = await axiosInstance.delete(`Dispositivos/${id}`)
-  return resp.data
-}
-
-export const GetUserNullDispositivo=async(data)=>{
-  const resp = await axiosInstance.get('Users/Disp',data);
-  return resp.data
-}
+export const GetUserNullDispositivo = async ({ empresa, sucursal }) => {
+  console.log(empresa,sucursal)
+  const { data } = await axiosInstance.get(
+    `Users/Disp?empresa=${empresa}&sucursal=${sucursal}`
+    
+  );
+  return data;
+};

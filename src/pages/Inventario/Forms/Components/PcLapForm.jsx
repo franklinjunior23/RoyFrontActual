@@ -7,7 +7,13 @@ import {
 import InputsOptions from "./InputsOptions";
 import { useQuery } from "@tanstack/react-query";
 
+import { useParams } from "react-router-dom";
+import { GetUserNullDispositivo } from "../../../../services/ApiGets";
+import axiosInstance from "../../../../services/ConfigApi";
+
 function PcLapForm({ register, setValue, control,watch,getValues }) {
+  const {nombreE,sucursalN} = useParams()
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "Ram_Modulos", // nombre del campo en el formulario
@@ -16,12 +22,13 @@ function PcLapForm({ register, setValue, control,watch,getValues }) {
     control,
     name: "Almacenamiento", // nombre del campo en el formulario
   });
-  const {data}=useQuery({
-    queryKey:['Client_Disp'],
-    queryFn:async()=>{
-      
-    }
+  const {data:DataUsers}=useQuery(['Client_Disp'],async()=>{
+    const { data } = await axiosInstance.get(
+      `Users/Disp?empresa=${nombreE}&sucursal=${sucursalN}`
+    );
+    return data;
   })
+
   return (
     <>
       <section>

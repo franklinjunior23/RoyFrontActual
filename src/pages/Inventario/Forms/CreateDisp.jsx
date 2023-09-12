@@ -1,4 +1,4 @@
-import {  useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { CategoryInventaio, FormDisp } from "../../../assets/DataDefault";
 import PcLapForm from "./Components/PcLapForm";
 import {
@@ -60,7 +60,7 @@ function CreateDisp() {
 
   const navi = useNavigate();
   const queryClien = useQueryClient();
-  if (idDisp) {
+  if (idDisp !== undefined) {
     var { data } = useQuery({
       queryKey: ["DispById"],
       queryFn: async () => {
@@ -90,8 +90,8 @@ function CreateDisp() {
         }
       });
     }
-  }, [data,setValue]);
- 
+  }, [data, setValue]);
+
   const { mutate: MutateCreate } = useMutation({
     mutationFn: async (data) => {
       const resp = await axiosInstance.post(
@@ -153,7 +153,10 @@ function CreateDisp() {
         </article>
         <div className="grid">
           <label>Estado </label>
-          <select {...register('estado')} className="border py-2 rounded-md indent-1">
+          <select
+            {...register("estado")}
+            className="border py-2 rounded-md indent-1"
+          >
             <option value="Activo">Activo</option>
             <option value="Inaperativa">Inaperativa</option>
             <option value="Malograda">Malograda</option>
@@ -184,7 +187,6 @@ function CreateDisp() {
             Cancelar
           </button>
         </article>
-       
       </form>
     </main>
   );
