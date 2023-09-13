@@ -19,7 +19,6 @@ function RedFrom({ register, setValue, control }) {
         <select {...register('tipo_con')} className="border py-2">
           <option value="Ethernet">Ethernet</option>
           <option value="Ethernet">Ethernet</option>
-
         </select>
       </div>
 

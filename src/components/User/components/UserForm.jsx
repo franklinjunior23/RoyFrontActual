@@ -53,13 +53,15 @@ const ContentSelect = ({ label, name, register, data, errors }) => {
 };
 
 function UserForm() {
-  const { idUsuario } = useParams();
+  const navi = useNavigate();
+  const { nombreE, sucursalN, idUsuario } = useParams();
   if (idUsuario) {
     var { data: DataUser } = useQuery({
       queryKey: ["UserFind"],
       queryFn: () => GetUserById(idUsuario),
     });
   }
+
   const {
     register,
     setValue,
@@ -73,7 +75,9 @@ function UserForm() {
         setValue(param, DataUser?.resp[param]);
       });
     }
-  }, [DataUser]);
+  }, [DataUser, setValue]);
+  console.log(DataUser);
+
   const VisGenero = watch("genero");
   const Sexos = ["Masculino", "Femenino"];
   const columns = [
@@ -86,9 +90,7 @@ function UserForm() {
       displayName: "Cell 2",
     },
   ];
-  const { nombreE, sucursalN } = useParams();
 
-  const navi = useNavigate();
   const { isLoading, mutate } = useMutation({
     mutationFn: async (datos) => {
       const resp = await axiosInstance.post(
@@ -114,7 +116,7 @@ function UserForm() {
     },
     onSuccess: () => {
       navi(-1);
-      return toast.success('Usuario Actualizado')
+      return toast.success("Usuario Actualizado");
     },
   });
 
@@ -256,31 +258,51 @@ function UserForm() {
               </div>
             </section>
           </div>
-          <section className="mt-2">
-            <h3 className="text-black/70 pb-2 border-b my-5 font-bold">
-              Email
-            </h3>
-            <ContentSelect
-              label={`Tipo Email`}
-              name={"email_tip"}
-              register={register}
-              data={Type_Email}
-              errors={errors}
-            />
-
-            <div className="grid grid-cols-2 gap-2">
-              <ContentInput
-                label={`Email`}
-                name={"email_dirrecion"}
+          <div className="grid  lg:grid-cols-2 mt-7 gap-8">
+            <section className="">
+              <h3 className="text-black/70 pb-2 border-b  font-bold">
+                Email
+              </h3>
+              <ContentSelect
+                label={`Tipo Email`}
+                name={"email_tip"}
                 register={register}
+                data={Type_Email}
+                errors={errors}
               />
-              <ContentInput
-                label={`Contraseña`}
-                name={"email_contraseña"}
-                register={register}
-              />
-            </div>
-          </section>
+            
+              <div className="grid grid-cols-2 gap-2">
+                <ContentInput
+                  label={`Email`}
+                  name={"email_dirrecion"}
+                  register={register}
+                />
+                <ContentInput
+                  label={`Contraseña`}
+                  name={"email_contraseña"}
+                  register={register}
+                />
+              </div>
+            </section>
+            <section>
+              {DataUser?.resp?.Dispositivo && (
+                <>
+                  <section className=" grid place-content-center py-5 px-3 border text-center">
+                    <span>Dispositivo</span>
+                    <span className="font-bold px-3 bg-slate-500">{DataUser?.resp?.Dispositivo.tipo}</span>
+                    <div> 
+                    <input
+                      type="text"
+                      readOnly
+                      value={DataUser?.resp?.Dispositivo.nombre}
+                    />
+                    </div>
+                    
+                  </section>
+                </>
+              )}
+            </section>
+          </div>
           <section className="grid grid-cols-2 py-5 text-white gap-1">
             <button className="bg-black py-2" disabled={isLoading}>
               {DataUser ? "actualizando" : "crear"}

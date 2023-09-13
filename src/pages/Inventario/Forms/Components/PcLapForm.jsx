@@ -31,7 +31,7 @@ function PcLapForm({ register, setValue, control, watch, getValues }) {
     );
     return data;
   });
-  console.log(DataUsers);
+
   const DataUserConnect = watch("FormUser", false);
   return (
     <>
@@ -286,8 +286,9 @@ function PcLapForm({ register, setValue, control, watch, getValues }) {
                     {...register("IdUser")}
                     className="py-2 border indent-2"
                   >
+                     <option value="null" defaultChecked>marcar</option>
                     {DataUsers?.map((value) => (
-                      <option value={value?.id} disabled={value?.Dispositivo} key={value?.id}>
+                      <option value={value?.id}  key={value?.id}>
                         {value?.nombre} {value?.apellido}
                       </option>
                     ))}
