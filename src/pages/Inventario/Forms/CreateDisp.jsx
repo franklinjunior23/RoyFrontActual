@@ -22,7 +22,6 @@ function CreateDisp() {
     useForm();
 
   const typeDisp = watch("tipo");
-  console.log(typeDisp)
 
   const navi = useNavigate();
   const queryClien = useQueryClient();
@@ -34,9 +33,12 @@ function CreateDisp() {
         return resp.data;
       },
     });
+    console.log(data);
   }
   useEffect(() => {
     if (data) {
+      setValue('FormUser',data?.data?.User !== null ? true : false);
+      setValue('IdUser',data?.data?.User?.nombre)
       FormDisp.forEach((param) => {
         if ((data?.data && data?.data[param] !== null) || undefined) {
           setValue(param, data.data[param]);
@@ -105,7 +107,10 @@ function CreateDisp() {
           </section>
           <section className="grid">
             <label>Tipo</label>
-            <select {...register("tipo",{defaultValue:"Defa"})} className="border py-2 indent-2 px-2">
+            <select
+              {...register("tipo", { defaultValue: "Defa" })}
+              className="border py-2 indent-2 px-2"
+            >
               <option value="Defa">Seleccionar</option>
               {CategoryInventaio.map((value) => (
                 <option value={value.name} key={value.name}>
@@ -127,38 +132,38 @@ function CreateDisp() {
           </select>
         </div>
         {typeDisp !== "Seleccionar" && (
-  <>
-    {typeDisp === "Pc" ||
-      typeDisp === "Laptop" ||
-      typeDisp === "Servidores" ? (
-      <PcLapForm
-        register={register}
-        watch={watch}
-        getValues={getValues}
-        setValue={setValue}
-        control={control}
-      />
-    ) : null}
+          <>
+            {typeDisp === "Pc" ||
+            typeDisp === "Laptop" ||
+            typeDisp === "Servidores" ? (
+              <PcLapForm
+                register={register}
+                watch={watch}
+                getValues={getValues}
+                setValue={setValue}
+                control={control}
+              />
+            ) : null}
 
-    {typeDisp === "Red" ? (
-      <RedFrom
-        register={register}
-        watch={watch}
-        setValue={setValue}
-        control={control}
-      />
-    ) : null}
+            {typeDisp === "Red" ? (
+              <RedFrom
+                register={register}
+                watch={watch}
+                setValue={setValue}
+                control={control}
+              />
+            ) : null}
 
-    {typeDisp === "Impresora" ? (
-      <ImpresForm
-        register={register}
-        watch={watch}
-        setValue={setValue}
-        control={control}
-      />
-    ) : null}
-  </>
-)}
+            {typeDisp === "Impresora" ? (
+              <ImpresForm
+                register={register}
+                watch={watch}
+                setValue={setValue}
+                control={control}
+              />
+            ) : null}
+          </>
+        )}
 
         <article className="grid grid-cols-2 mt-5 gap-2">
           <button

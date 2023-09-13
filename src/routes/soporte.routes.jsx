@@ -24,7 +24,6 @@ function SoporteRoutes() {
             <Route path="Usuarios/create" element={<UserForm />} />
             <Route path="Usuarios/:idUsuario" element={<UserForm />} />
             <Route path="Inventario" element={<GeneralSect />}>
-              
               <Route path=":idDisp" element={<CreateDisp />} />
             </Route>
             {/*<Route path="*" element={<Navigate to={-1} />} />*/}

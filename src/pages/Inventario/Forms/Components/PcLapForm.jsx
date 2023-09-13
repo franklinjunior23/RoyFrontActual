@@ -286,10 +286,8 @@ function PcLapForm({ register, setValue, control, watch, getValues }) {
                     {...register("IdUser")}
                     className="py-2 border indent-2"
                   >
-                    {DataUsers?.filter(
-                      (value) => value.Dispositivo == null
-                    ).map((value) => (
-                      <option value={value?.id} key={value?.id}>
+                    {DataUsers?.map((value) => (
+                      <option value={value?.id} disabled={value?.Dispositivo} key={value?.id}>
                         {value?.nombre} {value?.apellido}
                       </option>
                     ))}
