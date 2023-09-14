@@ -260,9 +260,7 @@ function UserForm() {
           </div>
           <div className="grid  lg:grid-cols-2 mt-7 gap-8">
             <section className="">
-              <h3 className="text-black/70 pb-2 border-b  font-bold">
-                Email
-              </h3>
+              <h3 className="text-black/70 pb-2 border-b  font-bold">Email</h3>
               <ContentSelect
                 label={`Tipo Email`}
                 name={"email_tip"}
@@ -270,7 +268,7 @@ function UserForm() {
                 data={Type_Email}
                 errors={errors}
               />
-            
+
               <div className="grid grid-cols-2 gap-2">
                 <ContentInput
                   label={`Email`}
@@ -289,15 +287,17 @@ function UserForm() {
                 <>
                   <section className=" grid place-content-center py-5 px-3 border text-center">
                     <span>Dispositivo</span>
-                    <span className="font-bold px-3 bg-slate-500">{DataUser?.resp?.Dispositivo.tipo}</span>
-                    <div> 
-                    <input
-                      type="text"
-                      readOnly
-                      value={DataUser?.resp?.Dispositivo.nombre}
-                    />
+                    <span className="font-bold px-3 ">
+                      {DataUser?.resp?.Dispositivo.tipo}
+                    </span>
+                    <div>
+                      <span></span>
+                      <input
+                        type="text"
+                        readOnly
+                        value={DataUser?.resp?.Dispositivo.nombre}
+                      />
                     </div>
-                    
                   </section>
                 </>
               )}
