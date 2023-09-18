@@ -17,7 +17,7 @@ function ListUsers() {
   return (
     <main className="mt-8 ">
      
-        <main className="grid gap-y-2 md:grid-cols-2 md:gap-x-5">
+        <main className="grid gap-y-3  md:grid-cols-2 md:gap-x-5">
           {
             data.map((dato) => (
               <ItemUsers dato={dato} key={dato.id} />

@@ -18,6 +18,7 @@ function SoporteRoutes() {
     <Routes>
       <Route element={<DashboardPage />}>
         <Route index path="/" element={<Home />} />
+       
         <Route path=":nombreE" element={<EmpresaDet />}>
           <Route path=":sucursalN" element={<CategoryS />}>
             <Route path="Usuarios" element={<UserPage />} />

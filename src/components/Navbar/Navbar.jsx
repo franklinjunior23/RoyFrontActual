@@ -6,7 +6,7 @@ import MenuUser from "./components/MenuUser";
 function Navbar() {
   const { LogedAuth } = UseContextLoged();
   return (
-    <nav className="max-w-screen-xl m-auto py-4 lg:py-2 px-6 flex justify-between items-center">
+    <nav className="max-w-[1400px] py-6 m-auto  lg:py-2  flex justify-between items-center">
       <LogoNav/>
       
        <Menu/>

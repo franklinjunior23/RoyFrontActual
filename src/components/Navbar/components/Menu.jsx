@@ -1,21 +1,26 @@
 import { useState } from "react";
 import ListMenu from "./ListMenu";
+import { IconAlignLeft, IconX } from "@tabler/icons-react";
 
 function Menu() {
-    const [ActiveMenu, setActiveMenu] = useState(false);
-    const handleActive=()=>{
-        setActiveMenu(!ActiveMenu)
-    }
+  const [ActiveMenu, setActiveMenu] = useState(false);
+  const handleActive = () => {
+    setActiveMenu(!ActiveMenu);
+  };
   return (
-   <>
-     <section className="lg:hidden cursor-pointer relative" onClick={handleActive}>
-       <i className="fi fi-rr-apps text-2xl " />
-     </section>
-     {
-         ActiveMenu && ( <ListMenu handle={setActiveMenu}/>)
-     }
-    
-   </>
+    <>
+      <section
+        className="lg:hidden cursor-pointer relative dark:text-white"
+        onClick={handleActive}
+      >
+        {ActiveMenu ? (
+          <IconX width={35} height={35} strokeWidth={1.5} />
+        ) : (
+          <IconAlignLeft width={35} height={35} strokeWidth={1.5} />
+        )}
+      </section>
+      {ActiveMenu && <ListMenu handle={setActiveMenu} />}
+    </>
   );
 }
 

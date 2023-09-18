@@ -1,10 +1,29 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
+/* CustomScrollbar.css */
+@media (min-width: 1024px) {
+  /* Estilos para tamaños de pantalla 'lg' o más grandes */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 10px; /* Ancho del scrollbar en pantallas grandes */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color del thumb en pantallas grandes */
+    border-radius: 5px; /* Bordes redondeados para el thumb en pantallas grandes */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color del fondo del scrollbar en pantallas grandes */
+  }
+}
+
 @layer{
   /* Resto de tus estilos */
-  @import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
 @import "~@flaticon/flaticon-uicons/css/all/all";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap');
 

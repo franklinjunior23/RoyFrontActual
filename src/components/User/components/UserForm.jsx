@@ -76,7 +76,6 @@ function UserForm() {
       });
     }
   }, [DataUser, setValue]);
-  console.log(DataUser);
 
   const VisGenero = watch("genero");
   const Sexos = ["Masculino", "Femenino"];
@@ -132,7 +131,7 @@ function UserForm() {
       <section className="mt-10">
         <form onSubmit={handleSubmit(HandleSub)}>
           <h3 className="text-black/70 font-bold">Datos Personales</h3>
-          <section className="grid grid-cols-2 gap-8">
+          <section className="grid grid-cols-2 gap-2 lg:gap-8">
             <div>
               <ContentInput
                 label={"Nombre"}
@@ -283,7 +282,7 @@ function UserForm() {
               </div>
             </section>
             <section>
-              {DataUser?.resp?.Dispositivo && (
+              {DataUser?.resp?.Dispositivo ? (
                 <>
                   <section className=" grid place-content-center py-5 px-3 border text-center">
                     <span>Dispositivo</span>
@@ -291,15 +290,14 @@ function UserForm() {
                       {DataUser?.resp?.Dispositivo.tipo}
                     </span>
                     <div>
-                      <span></span>
-                      <input
-                        type="text"
-                        readOnly
-                        value={DataUser?.resp?.Dispositivo.nombre}
-                      />
+                      <span>Nombre Disp :  </span>
+                      <span>{DataUser?.resp?.Dispositivo.nombre}</span>
+                     
                     </div>
                   </section>
                 </>
+              ):(
+                <h3 className="text-center">No cuenta con un Dispositivo</h3>
               )}
             </section>
           </div>

@@ -33,12 +33,11 @@ function CreateDisp() {
         return resp.data;
       },
     });
-    console.log(data);
   }
   useEffect(() => {
     if (data) {
-      setValue('FormUser',data?.data?.User !== null ? true : false);
-      setValue('IdUser',data?.data?.User?.nombre)
+      setValue("IdUser", data?.data?.User?.id);
+      setValue("FormUser", data?.data?.User !== null ? true : false);
       FormDisp.forEach((param) => {
         if ((data?.data && data?.data[param] !== null) || undefined) {
           setValue(param, data.data[param]);
@@ -90,7 +89,8 @@ function CreateDisp() {
     },
   });
   const HandleSubt = async (datos) => {
-    if (!data) return MutateCreate(datos);
+
+    if (data ==undefined) return MutateCreate(datos);
     return UpdateDisp(datos);
   };
   return (
@@ -142,6 +142,7 @@ function CreateDisp() {
                 getValues={getValues}
                 setValue={setValue}
                 control={control}
+                data={data?.data}
               />
             ) : null}
 

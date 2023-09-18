@@ -38,7 +38,7 @@ function ItemDisp({ value }) {
   const { mutate: DeleteDisp } = useMutation({
     mutationFn: DeleteDisposito,
     onSuccess: (data) => {
-      console.log(data)
+      console.log(data);
       if (data.search) {
         toast.success("Dispositivo Eliminado");
         return queryClient.invalidateQueries({ queryKey: ["GetDisp"] });
@@ -46,7 +46,6 @@ function ItemDisp({ value }) {
       toast.error("Hubo un error , intentelo nuevamente");
     },
   });
-
   return (
     <section
       key={value?.id}
@@ -58,6 +57,16 @@ function ItemDisp({ value }) {
         </h2>
         <hr />
         <span className="pt-2">{value?.marca}</span>
+        {(value?.tipo === "Pc" || value?.tipo === "Laptop") && (
+          <>
+          {value?.IdUser && (
+            <h4 className=" text-sm py-0.5 rounded-md bg-slate-500 text-white font-medium mt-3.5 text-center">
+            En uso
+          </h4>
+          ) }
+          
+          </>
+        )}
       </div>
       <div className="m-auto md:m-0 mb-3">
         <Link to={`${value?.id}`}>

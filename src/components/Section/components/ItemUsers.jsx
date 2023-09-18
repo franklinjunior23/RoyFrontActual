@@ -45,7 +45,7 @@ function ItemUsers({ dato }) {
     );
   };
   return (
-    <section className="border rounded-md px-5 relative shadow-md">
+    <section className=" rounded-md px-5 relative shadow-md">
       <div className="flex justify-between items-center">
         <Link to={`${id}`} className="flex items-center py-6 gap-2">
           <IconUser size={40} strokeWidth={2.5} color="black" />

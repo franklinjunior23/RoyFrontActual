@@ -7,12 +7,15 @@ import {
 import InputsOptions from "./InputsOptions";
 import { useQuery } from "@tanstack/react-query";
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axiosInstance from "../../../../services/ConfigApi";
 
-function PcLapForm({ register, setValue, control, watch, getValues }) {
+function PcLapForm({ register, setValue, control, watch, getValues,data }) {
   const { nombreE, sucursalN } = useParams();
-
+ if(data){
+  var {IdUser,...datos} = data;
+ 
+ } 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "Ram_Modulos", // nombre del campo en el formulario
@@ -31,7 +34,7 @@ function PcLapForm({ register, setValue, control, watch, getValues }) {
     );
     return data;
   });
-
+ 
   const DataUserConnect = watch("FormUser", false);
   return (
     <>
@@ -276,6 +279,7 @@ function PcLapForm({ register, setValue, control, watch, getValues }) {
                   render={({ field }) => <input type="checkbox" {...field} />}
                 />
               </label>
+              <input type="text" hidden {...register('IdUser')} />
             </div>
             {DataUserConnect && (
               <div>
@@ -286,10 +290,10 @@ function PcLapForm({ register, setValue, control, watch, getValues }) {
                     {...register("IdUser")}
                     className="py-2 border indent-2"
                   >
-                     <option value="null" defaultChecked>marcar</option>
+                     <option value="null" >marcar</option>
                     {DataUsers?.map((value) => (
-                      <option value={value?.id}  key={value?.id}>
-                        {value?.nombre} {value?.apellido}
+                      <option value={value?.id} disabled={value?.Dispositivo?.IdUser} className={value?.Dispositivo?.IdUser && 'font-'}   key={value?.id}>
+                        {value?.nombre}  {value?.apellido}  
                       </option>
                     ))}
                   </select>
@@ -297,6 +301,11 @@ function PcLapForm({ register, setValue, control, watch, getValues }) {
               </div>
             )}
           </article>
+        </section>
+        <section>
+          {IdUser && (
+            <Link to={`/Dashboard/${nombreE}/${sucursalN}/Usuarios/${IdUser}`}>hola</Link>
+          )}
         </section>
       </section>
     </>

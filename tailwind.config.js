@@ -7,15 +7,19 @@ export default {
     './components/**/*.{js,ts,jsx,tsx}',
     
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       backgroundColor: {
+       
         Invent: '#E1C59C',
-        
+        DarkFondo:"#292929",
+        DarkComponent:"#484848"
       },
       colors:{
         Chiqui:'rgba(0, 0, 0, 0.40)',
-        Slet:'#6070FF' // Define el color personalizado y asigna un nombre
+        Slet:'#6070FF', // Define el color personalizado y asigna un nombre
+        Title:"#3b4fff",
       },
       fontFamily:{
         Mont: ['Montserrat', 'sans-serif'],

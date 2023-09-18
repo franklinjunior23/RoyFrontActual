@@ -31,8 +31,8 @@ function Login() {
     }
   }, [navi, LogedAuth]);
   return (
-    <main className=" w-screen h-screen flex justify-center items-center truncate">
-      <article className="py-5 lg:py- px-14 lg:px-6 bg-white w-[100%] lg:w-[620px] lg:shadow-2xl rounded-xl">
+    <main className=" w-screen h-screen flex justify-center items-center truncate dark:bg-DarkFondo dark:text-white">
+      <article className="py-5 lg:py- px-14 lg:px-6 bg-white w-[100%] dark:bg-[#484848] lg:w-[620px] lg:shadow-2xl rounded-xl">
         <section className="lg:hidden">
           <picture className="m-auto">
             <img
@@ -48,11 +48,11 @@ function Login() {
           </h2>
         </section>
         <section className="lg:flex justify-center items-center gap-4 lg:gap-8">
-          <picture className="hidden lg:block ">
+          <picture className="hidden lg:block  ">
             <img
               src="https://www.intiscorp.com.pe/wp-content/uploads/2022/10/1-1-1.png"
               alt=""
-              className="lg:w-[160px] lg:m-auto"
+              className="lg:w-[160px]  lg:m-auto"
             />
           </picture>
           <div className=" md:w-[40%] md:m-auto lg:w-[50%] ">
