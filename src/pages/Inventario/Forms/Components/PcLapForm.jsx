@@ -292,7 +292,7 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                 <section className="mt-10 grid place-content-center">
                   {IdUser && (
                     <Link
-                      to={`/Dashboard/${nombreE}/${sucursalN}/Usuarios/${IdUser}`}
+                      to={`/Dashboard/Home/${nombreE}/${sucursalN}/Usuarios/${IdUser}`}
                       className="dark:text-white text-center border py-2 px-5 rounded-md"
                     >
                       Ver Personal Registrado

@@ -4,19 +4,26 @@ import { NavLink } from "react-router-dom";
 
 function ItemNav({ datos }) {
   const { name, url, icon } = datos;
-  const [ActiveNav, setActiveNav] = useState(false);
+  const [activeNav, setActiveNav] = useState(false);
+
+  const handleNavLinkClick = (isActive) => {
+    if (isActive) {
+      setActiveNav(true);
+    } else {
+      setActiveNav(false);
+    }
+  };
+
   return (
     <div
-      className={`hover:border-l-4 ${ActiveNav && 'border-l-4'}  transition-all ease-in-out  hover:duration-300 border-orange-300 py-2 my-2 pl-2 flex gap-5 ${console} `}
+      className={`  transition-all ease-in-out hover:duration-300  pl-2 flex gap-5`}
     >
-      <div className=" hover:bg-orange-300 h-full w-[5px] rounded-lg" />
-
       <NavLink
         to={url}
-        className={({ isActive }) => { 
-          'hover:border-l-4 bg-black text-3xl'
-          isActive ==true?setActiveNav(true) :setActiveNav(false);
-          return "flex gap-2 text-lg items-center";
+        className={({ isActive }) => {
+          return ` ${
+            isActive && "bg-[#DEDEDE] dark:bg-NavLinks dark:text-white "
+          }  py-3 w-full flex gap-2 rounded-lg hover:bg-[#DEDEDE] dark:hover:bg-NavLinks px-5 text-lg items-center`;
         }}
       >
         {icon} {name}
@@ -24,7 +31,9 @@ function ItemNav({ datos }) {
     </div>
   );
 }
+
 export default ItemNav;
+
 ItemNav.propTypes = {
   datos: PropTypes.shape({
     name: PropTypes.string.isRequired,

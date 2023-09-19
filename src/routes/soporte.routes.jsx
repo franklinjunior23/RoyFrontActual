@@ -12,25 +12,40 @@ import UserForm from "../components/User/components/UserForm";
 import IdDispositivo from "../pages/Inventario/IdDispositivo";
 import CreateDisp from "../pages/Inventario/Forms/CreateDisp";
 import GeneralSect from "../pages/Inventario/Sections/GeneralSect";
+import EmpresaPage from "../pages/empresa/EmpresaPage";
 
 function SoporteRoutes() {
   return (
     <Routes>
       <Route element={<DashboardPage />}>
-        <Route index path="/" element={<Home />} />
-       
-        <Route path=":nombreE" element={<EmpresaDet />}>
-          <Route path=":sucursalN" element={<CategoryS />}>
-            <Route path="Usuarios" element={<UserPage />} />
-            <Route path="Usuarios/create" element={<UserForm />} />
-            <Route path="Usuarios/:idUsuario" element={<UserForm />} />
-            <Route path="Inventario" element={<GeneralSect />}>
-              <Route path=":idDisp" element={<CreateDisp />} />
+        <Route index path="/" element={<Navigate to={"Home"} />} />
+        <Route path="Home" element={<Home />}>
+          <Route path=":nombreE" element={<EmpresaDet />}>
+            <Route path=":sucursalN" element={<CategoryS />}>
+              <Route path="Usuarios" element={<UserPage />} />
+              <Route path="Usuarios/create" element={<UserForm />} />
+              <Route path="Usuarios/:idUsuario" element={<UserForm />} />
+              <Route path="Inventario" element={<GeneralSect />}>
+                <Route path=":idDisp" element={<CreateDisp />} />
+              </Route>
+              {/*<Route path="*" element={<Navigate to={-1} />} />*/}
             </Route>
-            {/*<Route path="*" element={<Navigate to={-1} />} />*/}
           </Route>
         </Route>
-        <Route path="Empresas" element={<ItemSection />} />
+
+        <Route path="Empresas" element={<EmpresaPage />}>
+          <Route path=":nombreE" element={<EmpresaDet />}>
+            <Route path=":sucursalN" element={<CategoryS />}>
+              <Route path="Usuarios" element={<UserPage />} />
+              <Route path="Usuarios/create" element={<UserForm />} />
+              <Route path="Usuarios/:idUsuario" element={<UserForm />} />
+              <Route path="Inventario" element={<GeneralSect />}>
+                <Route path=":idDisp" element={<CreateDisp />} />
+              </Route>
+              {/*<Route path="*" element={<Navigate to={-1} />} />*/}
+            </Route>
+          </Route>
+        </Route>
 
         <Route path="Usuarios" element={<h1>usersss</h1>} />
         <Route path="Inventario" element={<h1>inventario</h1>} />

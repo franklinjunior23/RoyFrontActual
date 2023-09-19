@@ -209,7 +209,7 @@ export const IconEmpresa = () => {
   );
 };
 export const NavData = [
-  { name: "Home", url: "", icon: <IconHome /> },
+  { name: "Home", url: "Home", icon: <IconHome /> },
   { name: "Empresas", url: "Empresas", icon: <IconHome /> },
   { name: "Usuarios", url: "Usuarios", icon: <IconEmpresas black={true} /> },
   { name: "Inventario", url: "Inventario", icon: <IconUsers /> },

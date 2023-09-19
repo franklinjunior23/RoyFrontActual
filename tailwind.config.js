@@ -16,7 +16,9 @@ export default {
         DarkFondo:"#292929",
         DarkComponent:"#484848",
         Component:"#443E47",
-        ChilComponn:"#282833"
+        ChilComponn:"#282833",
+        NavLinks:"#787878",
+        
       },
       colors:{
         Chiqui:'rgba(0, 0, 0, 0.40)',
