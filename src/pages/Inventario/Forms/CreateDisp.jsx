@@ -96,41 +96,43 @@ function CreateDisp() {
   return (
     <main className="mt-8 pb-8">
       <form onSubmit={handleSubmit(HandleSubt)}>
-        <article className="grid grid-cols-2 gap-3">
-          <section className="grid">
-            <label>Nombre</label>
-            <input
-              type="text"
-              {...register("nombre")}
-              className="w-full py-2 border indent-2"
-            />
-          </section>
-          <section className="grid">
-            <label>Tipo</label>
-            <select
-              {...register("tipo", { defaultValue: "Defa" })}
-              className="border py-2 indent-2 px-2"
-            >
-              <option value="Defa">Seleccionar</option>
-              {CategoryInventaio.map((value) => (
-                <option value={value.name} key={value.name}>
-                  {value.name}
-                </option>
-              ))}
-            </select>
-          </section>
-        </article>
-        <div className="grid">
-          <label>Estado {typeDisp} </label>
-          <select
-            {...register("estado")}
-            className="border py-2 rounded-md indent-1"
-          >
-            <option value="Activo">Activo</option>
-            <option value="Inaperativa">Inaperativa</option>
-            <option value="Malograda">Malograda</option>
-          </select>
-        </div>
+       <main className="grid grid-cols-2 gap-x-8">
+         <article className="grid gap-3">
+           <section className="grid">
+             <label className="dark:text-white">Nombre</label>
+             <input
+               type="text"
+               {...register("nombre")}
+               className="w-full py-2 dark:border-none border  outline-none dark:text-white indent-2 dark:bg-DarkComponent rounded-md"
+             />
+           </section>
+           <section className="grid">
+             <label className="dark:text-white">Tipo</label>
+             <select
+               {...register("tipo", { defaultValue: "Defa" })}
+               className="rounded-md dark:border-none border   py-2 indent-2 px-2  dark:text-white dark:bg-DarkComponent outline-none"
+             >
+               <option value="Defa">Seleccionar</option>
+               {CategoryInventaio.map((value) => (
+                 <option value={value.name} key={value.name}>
+                   {value.name}
+                 </option>
+               ))}
+             </select>
+           </section>
+         </article>
+         <div className="grid mt-2">
+           <label className="dark:text-white">Estado {typeDisp} </label>
+           <select
+             {...register("estado")}
+             className="dark:bg-DarkComponent border dark:border-none dark:text-white outline-none py-2 rounded-md indent-2 "
+           >
+             <option value="Activo">Activo</option>
+             <option value="Inaperativa">Inaperativa</option>
+             <option value="Malograda">Malograda</option>
+           </select>
+         </div>
+       </main>
         {typeDisp !== "Seleccionar" && (
           <>
             {typeDisp === "Pc" ||

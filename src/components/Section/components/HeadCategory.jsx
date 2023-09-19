@@ -10,7 +10,7 @@ function HeadCategory({data,type}) {
     setUserActiveMen(!UserActiveMen);
   }
   return (
-    <header className="flex justify-between items-center gap-2 pt-5 relative">
+    <header className="flex justify-between items-center gap-2 pt-5 relative dark:text-white">
       <h2 className="text-lg">{data}</h2>
       <button className="bg-black py-2 text-center text-white px-4 rounded-lg" onClick={()=>navi('create')}>
         Crear {data}

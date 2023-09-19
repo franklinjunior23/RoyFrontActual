@@ -4,7 +4,7 @@ import ListCategoy from "../../components/Section/components/ListCategoy"
 function CategoryS() {
   return (
     <section>
-       <div className="mb-4 md:mb-6">
+       <div className="mb-4 md:mb-6 ">
          <ListCategoy/>
        </div>
         <Outlet/>

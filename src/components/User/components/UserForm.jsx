@@ -19,10 +19,10 @@ import { useEffect } from "react";
 const ContentInput = ({ label, name, type, register, defaultValue }) => {
   return (
     <div>
-      <label className=" text-sm mb-1 text-black/80">{label}</label>
+      <label className=" text-sm mb-1 text-black/80 dark:text-white">{label}</label>
       <input
         type={type == undefined ? "text" : type}
-        className="w-full border rounded-md py-2 indent-2 truncate  text-sm"
+        className="w-full border rounded-md py-2 indent-2 truncate  text-sm  dark:bg-DarkComponent dark:text-white dark:outline-none dark:border-none"
         {...register(name)}
       />
     </div>
@@ -31,12 +31,12 @@ const ContentInput = ({ label, name, type, register, defaultValue }) => {
 const ContentSelect = ({ label, name, register, data, errors }) => {
   return (
     <div className="grid">
-      <label className="text-sm mb-1">{label}</label>
+      <label className="text-sm mb-1 dark:text-white">{label}</label>
       <select
         {...register(`${name}`, {
           validate: (value) => value !== "Def" || "Selecciona una opción",
         })}
-        className="w-full border rounded-md py-2 indent-2 truncate text-sm"
+        className="w-full border rounded-md py-2 indent-2 truncate text-sm dark:bg-DarkComponent dark:text-white dark:outline-none dark:border-none"
       >
         <option value="Def">Seleccionar</option>
         {data?.map((value, index) => (
@@ -125,12 +125,10 @@ function UserForm() {
   };
   return (
     <main className="mt-8">
-      <h2 className="text-center text-lg pb-2 border-b">
-        {idUsuario ? "Editando User" : "Creacion de Nuevo Usuario"}
-      </h2>
+      
       <section className="mt-10">
         <form onSubmit={handleSubmit(HandleSub)}>
-          <h3 className="text-black/70 font-bold">Datos Personales</h3>
+          <h3 className="text-black/70 font-bold dark:text-white">Datos Personales</h3>
           <section className="grid grid-cols-2 gap-2 lg:gap-8">
             <div>
               <ContentInput
@@ -144,7 +142,7 @@ function UserForm() {
                 register={register}
               />
             </div>
-            <div className="self-end">
+            <div className="self-end dark:text-white">
               {VisGenero === "Masculino" ? (
                 <IconMan
                   height={62}
@@ -200,7 +198,7 @@ function UserForm() {
                 />
               </div>
               <div>
-                <h3 className="text-black/70 pb-2 border-b my-5 font-bold">
+                <h3 className="text-black/70 pb-2 border-b my-5 font-bold dark:text-white">
                   Estado Del Usuario
                 </h3>
                 <ContentSelect
@@ -216,7 +214,7 @@ function UserForm() {
           <section></section>
           <div className="lg:grid grid-cols-2 gap-8">
             <section className="mt-2">
-              <h3 className="text-black/70 pb-2 border-b my-5 font-bold">
+              <h3 className="text-black/70 pb-2 border-b my-5 font-bold dark:text-white">
                 Red
               </h3>
               <ContentSelect
@@ -240,7 +238,7 @@ function UserForm() {
               </div>
             </section>
             <section className="mt-2">
-              <h3 className="text-black/70 pb-2 border-b my-5 font-bold">
+              <h3 className="text-black/70 pb-2 border-b my-5 font-bold dark:text-white">
                 Anydesk
               </h3>
               <div className="grid grid-cols-2 gap-2">
@@ -259,7 +257,7 @@ function UserForm() {
           </div>
           <div className="grid  lg:grid-cols-2 mt-7 gap-8">
             <section className="">
-              <h3 className="text-black/70 pb-2 border-b  font-bold">Email</h3>
+              <h3 className="text-black/70 pb-2 border-b  font-bold dark:text-white">Email</h3>
               <ContentSelect
                 label={`Tipo Email`}
                 name={"email_tip"}
@@ -284,8 +282,8 @@ function UserForm() {
             <section>
               {DataUser?.resp?.Dispositivo ? (
                 <>
-                  <section className=" grid place-content-center py-5 px-3 border text-center">
-                    <span>Dispositivo</span>
+                  <section className=" grid place-content-center py-5 px-3 border text-center dark:text-white">
+                    <span >Dispositivo</span>
                     <span className="font-bold px-3 ">
                       {DataUser?.resp?.Dispositivo.tipo}
                     </span>
@@ -297,7 +295,7 @@ function UserForm() {
                   </section>
                 </>
               ):(
-                <h3 className="text-center">No cuenta con un Dispositivo</h3>
+                <h3 className="text-center dark:text-white font-semibold">No cuenta con un Dispositivo</h3>
               )}
             </section>
           </div>

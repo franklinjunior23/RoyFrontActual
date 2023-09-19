@@ -9,13 +9,13 @@ import { useQuery } from "@tanstack/react-query";
 
 import { Link, useParams } from "react-router-dom";
 import axiosInstance from "../../../../services/ConfigApi";
+import ItemInput from "./ItemInput";
 
-function PcLapForm({ register, setValue, control, watch, getValues,data }) {
+function PcLapForm({ register, setValue, control, watch, getValues, data }) {
   const { nombreE, sucursalN } = useParams();
- if(data){
-  var {IdUser,...datos} = data;
- 
- } 
+  if (data) {
+    var { IdUser, ...datos } = data;
+  }
   const { fields, append, remove } = useFieldArray({
     control,
     name: "Ram_Modulos", // nombre del campo en el formulario
@@ -34,16 +34,16 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
     );
     return data;
   });
- 
+
   const DataUserConnect = watch("FormUser", false);
   return (
     <>
       <section>
         <div className="grid my-3">
-          <label>Tipo</label>
+          <label className="dark:text-white">Tipo</label>
           <select
             {...register("tipo_Disp")}
-            className="border  py-2 w-full indent-2"
+            className="rounded-md dark:bg-DarkComponent dark:border-none border dark:text-white py-2 w-full indent-2"
           >
             <option value="Laptop">Laptop</option>
             <option value="PC-Compatible">PC-Compatible</option>
@@ -52,9 +52,9 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
             <option value="Servidor Torre">Servidor Torre</option>
           </select>
         </div>
-        <article className="grid grid-cols-2 gap-2">
+        <article className="grid grid-cols-2 gap-2 gap-x-8">
           <div className="grid">
-            <label>Marca</label>
+            <label className="dark:text-white">Marca</label>
             <input className="hidden" type="text" {...register("marca")} />
             <InputsOptions
               name={"marca"}
@@ -66,36 +66,27 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
             />
           </div>
           <div className="grid">
-            <label>Modelo</label>
-            <input
-              type="text"
-              {...register("modelo")}
-              className="border py-2 w-full indent-2"
-            />
+            <label className="dark:text-white">Modelo</label>
+            <ItemInput register={register} name={"modelo"} />
           </div>
           <div className="grid">
-            <label>Dirrec. Mac</label>
-            <input
-              type="number"
-              {...register("Config_mac")}
-              className="border py-2 w-full indent-2"
-            />
+            <label className="dark:text-white">Dirrec. Mac</label>
+            <ItemInput register={register} name={"Config_mac"} />
           </div>
           <div className="grid">
-            <label>Ip Equipo</label>
-            <input
-              type="number"
-              {...register("Config_ip")}
-              className="border py-2 w-full indent-2"
-            />
+            <label className="dark:text-white">Ip Equipo</label>
+            <ItemInput register={register} name={"Config_ip"} />
           </div>
         </article>
         <div className="lg:grid grid-cols-2 gap-5">
           <div>
-            <h3 className="py-3 text-xl font-semibold">Placa</h3>
+            <h3 className="py-3 text-xl font-semibold dark:text-white">
+              Placa
+            </h3>
             <article className="grid grid-cols-2 gap-2">
               <div className="grid">
-                <label>Marca</label>
+                <label className="dark:text-white">Marca</label>
+
                 <input
                   className="hidden"
                   type="text"
@@ -110,20 +101,18 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
                 />
               </div>
               <div className="grid">
-                <label>Modelo</label>
-                <input
-                  type="text"
-                  {...register("Placa_detalle")}
-                  className="border py-2 w-full indent-2"
-                />
+                <label className="dark:text-white">Modelo</label>
+                <ItemInput register={register} name={"Placa_detalle"} />
               </div>
             </article>
           </div>
           <div>
-            <h3 className="py-3 text-xl font-semibold">Procesador</h3>
+            <h3 className="py-3 text-xl font-semibold dark:text-white">
+              Procesador
+            </h3>
             <article className="grid grid-cols-2 gap-2">
               <div className="grid">
-                <label>Marca</label>
+                <label className="dark:text-white">Marca</label>
                 <input
                   className="hidden"
                   type="text"
@@ -138,19 +127,15 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
                 />
               </div>
               <div className="grid">
-                <label>Modelo</label>
-                <input
-                  type="text"
-                  {...register("Procesador_modelo")}
-                  className="border py-2 w-full indent-2"
-                />
+                <label className="dark:text-white">Modelo</label>
+                <ItemInput register={register} name={"Procesador_modelo"} />
               </div>
             </article>
           </div>
         </div>
         <section className="lg:grid grid-cols-2 gap-5">
           <div>
-            <h3 className="py-3 text-xl font-semibold">Ram</h3>
+            <h3 className="py-3 text-xl font-semibold dark:text-white">Ram</h3>
             <article className="grid  gap-2">
               <div className="">
                 {fields.map((field, index) => (
@@ -171,7 +156,7 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
                       })}
                       defaultValue={field.tipo}
                       placeholder="DDR3 | DDR4"
-                      className="w-full border py-2 indent-2"
+                      className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent"
                     >
                       <option value="def">Seleccionar</option>
                       <option value="DDR3">DDR3</option>
@@ -183,7 +168,7 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
                       })}
                       defaultValue={field.mhz}
                       placeholder="MHz"
-                      className="w-full border py-2 indent-2"
+                      className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent"
                     />
                     <button
                       type="button"
@@ -196,7 +181,7 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
                 ))}
                 <button
                   type="button"
-                  className="border px-3 text-sm py-2 mt-5 rounded-md bg-slate-500/70 text-white"
+                  className="border px-3 dark:border-none font-medium text-sm py-2 mt-5 rounded-md bg-slate-500/70 text-white"
                   onClick={() => append()}
                 >
                   + Agregar
@@ -205,7 +190,9 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
             </article>
           </div>
           <div>
-            <h3 className="py-3 text-xl font-semibold">Almacenamiento</h3>
+            <h3 className="py-3 text-xl font-semibold dark:text-white">
+              Almacenamiento
+            </h3>
             <article className="grid  gap-2">
               <div className="">
                 {fieldAlmacenamiento.map((field, index) => (
@@ -219,7 +206,7 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
                       })}
                       defaultValue={field.marca}
                       placeholder="DDR3 | DDR4"
-                      className="w-full border py-2 indent-2"
+                      className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent"
                     >
                       <option value="def">Tipo</option>
                       <option value="SSD">SSD</option>
@@ -227,22 +214,19 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
                       <option value="M.2">M.2</option>
                       <option value="NVM">NVM</option>
                     </select>
-
-                    <input
-                      {...register(`Almacenamiento.${index}.marca`, {
-                        require: true,
-                      })}
+                    <ItemInput
+                      register={register}
+                      name={`Almacenamiento.${index}.marca`}
+                      require={true}
                       defaultValue={field.gb}
                       placeholder="marca"
-                      className="w-full border py-2 indent-2"
                     />
-                    <input
-                      {...register(`Almacenamiento.${index}.gb`, {
-                        require: true,
-                      })}
+                    <ItemInput
+                      register={register}
+                      name={`Almacenamiento.${index}.gb`}
+                      require={true}
                       defaultValue={field.gb}
                       placeholder="GB"
-                      className="w-full border py-2 indent-2"
                     />
                     <button
                       type="button"
@@ -256,7 +240,7 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
 
                 <button
                   type="button"
-                  className="border text-sm px-3 ml-auto mx-0  py-2 mt-5 rounded-md bg-slate-500/70 text-white"
+                  className="border dark:border-none font-medium text-sm px-3 ml-auto mx-0  py-2 mt-5 rounded-md bg-slate-500/70 text-white"
                   onClick={() => AppendAlmacenamiento({})}
                 >
                   + Agregar
@@ -266,11 +250,11 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
           </div>
         </section>
         <section className="mt-4">
-          <article>
-            <label className="font-medium text-base">
+          <article className="border grid place-content-center py-4 dark:border-none dark:bg-DarkComponent rounded-md">
+            <label className="font-medium text-lg dark:text-white ">
               Desea Asignarle Directamente a un usuario?
             </label>
-            <div>
+            <div className="self-center">
               <label>
                 <Controller
                   name="FormUser"
@@ -279,33 +263,45 @@ function PcLapForm({ register, setValue, control, watch, getValues,data }) {
                   render={({ field }) => <input type="checkbox" {...field} />}
                 />
               </label>
-              <input type="text" hidden {...register('IdUser')} />
+              <input type="text" hidden {...register("IdUser")} />
             </div>
             {DataUserConnect && (
               <div>
                 {/* Formulario adicional que se muestra si se marca el checkbox */}
                 <div className="grid">
-                  <label>Nombre Usuario</label>
+                  <label className="dark:text-white mb-3">Nombre Usuario</label>
                   <select
                     {...register("IdUser")}
-                    className="py-2 border indent-2"
+                    className="py-2 border indent-2 dark:border-none dark:bg-Component dark:text-white"
                   >
-                     <option value="null" >marcar</option>
+                    <option value="null">marcar</option>
                     {DataUsers?.map((value) => (
-                      <option value={value?.id} disabled={value?.Dispositivo?.IdUser} className={value?.Dispositivo?.IdUser && 'font-'}   key={value?.id}>
-                        {value?.nombre}  {value?.apellido}  
+                      <option
+                        value={value?.id}
+                        disabled={value?.Dispositivo?.IdUser}
+                        className={
+                          value?.Dispositivo?.IdUser && "dark:text-slate-400"
+                        }
+                        key={value?.id}
+                      >
+                        {value?.nombre} {value?.apellido}
                       </option>
                     ))}
                   </select>
                 </div>
+                <section className="mt-10 grid place-content-center">
+                  {IdUser && (
+                    <Link
+                      to={`/Dashboard/${nombreE}/${sucursalN}/Usuarios/${IdUser}`}
+                      className="dark:text-white text-center border py-2 px-5 rounded-md"
+                    >
+                      Ver Personal Registrado
+                    </Link>
+                  )}
+                </section>
               </div>
             )}
           </article>
-        </section>
-        <section>
-          {IdUser && (
-            <Link to={`/Dashboard/${nombreE}/${sucursalN}/Usuarios/${IdUser}`}>hola</Link>
-          )}
         </section>
       </section>
     </>

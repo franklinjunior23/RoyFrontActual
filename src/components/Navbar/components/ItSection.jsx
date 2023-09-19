@@ -15,7 +15,7 @@ function ItSection({ dato }) {
         <IconSearch/>
       </button>
       <button
-        className="px-3 py-3  lg:py-2 lg:px-4 bg-black rounded-lg text-white text-xs lg:text-base"
+        className="px-4 py-3  lg:py-2 lg:px-4 bg-black bg-black/80 dark:font-semibold rounded-lg text-white text-xs lg:text-base"
         onClick={handleActive}
       >
         Crear Empresa

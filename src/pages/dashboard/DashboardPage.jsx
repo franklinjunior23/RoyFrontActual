@@ -8,7 +8,7 @@ function DashboardPage() {
   return (
     <main className=" bg-white dark:bg-DarkFondo px-5 min-h-screen">
       <Navbar />
-      <article className=" my-3 lg:flex gap-10 max-w-[1400px] m-auto">
+      <article className=" lg:my-3 lg:flex gap-10 max-w-[1400px] m-auto">
         <section className="hidden  max-w-[26vw]   px-10 lg:grid  dark:bg-DarkComponent rounded-3xl  ">
           <header className="">
             <div className="relative mt-20 ">

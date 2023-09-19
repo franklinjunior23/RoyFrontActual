@@ -14,7 +14,9 @@ export default {
        
         Invent: '#E1C59C',
         DarkFondo:"#292929",
-        DarkComponent:"#484848"
+        DarkComponent:"#484848",
+        Component:"#443E47",
+        ChilComponn:"#282833"
       },
       colors:{
         Chiqui:'rgba(0, 0, 0, 0.40)',

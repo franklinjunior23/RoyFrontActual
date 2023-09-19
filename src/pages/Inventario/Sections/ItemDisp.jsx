@@ -14,7 +14,7 @@ import { toast } from "sonner";
 const SwitchIconDisp = ({ data, size }) => {
   switch (data) {
     case "Pc":
-      return <IconDevicesPc width={size} height={size} />;
+      return <IconDevicesPc width={size} height={size} strokeWidth={1.5} />;
     case "Laptop":
       return <IconDeviceLaptop width={size} height={size} />;
     case "Servidores":
@@ -49,33 +49,35 @@ function ItemDisp({ value }) {
   return (
     <section
       key={value?.id}
-      className="border rounded-lg shadow-md flex justify-between px-5 py-4  lg:py-6 flex-col md:flex-row relative "
+      className="border dark:border-none rounded-lg shadow-md flex justify-between px-5 py-4  lg:py-6 flex-col md:flex-row relative dark:bg-DarkComponent "
     >
-      <div>
-        <h2 className="text-sm font-medium mb-4 truncate lg:w-20">
+      <div className="dark:text-white ">
+        <h2 className="text-sm font-medium pb-4 border-b truncate lg:w-24 text-center lg:text-left">
           {value?.nombre}
         </h2>
-        <hr />
-        <span className="pt-2">{value?.marca}</span>
+
+        <p className="mt-2">{value?.marca}</p>
         {(value?.tipo === "Pc" || value?.tipo === "Laptop") && (
           <>
-          {value?.IdUser && (
-            <h4 className=" text-sm py-0.5 rounded-md bg-slate-500 text-white font-medium mt-3.5 text-center">
-            En uso
-          </h4>
-          ) }
-          
+            {value?.IdUser && (
+              <h4 className=" text-sm py-0.5 rounded-md bg-slate-500 text-white font-medium mt-3.5 text-center">
+                En uso
+              </h4>
+            )}
           </>
         )}
       </div>
       <div className="m-auto md:m-0 mb-3">
-        <Link to={`${value?.id}`}>
+        <Link
+          to={`${value?.id}`}
+          className="dark:text-white grid place-content-center "
+        >
           <SwitchIconDisp data={value?.tipo} size={70} />
         </Link>
         <h4
           className={`${
             value?.estado === "Activo"
-              ? "bg-green-400"
+              ? "bg-green-500"
               : value?.estado == "Inaperativa"
               ? "bg-blue-600"
               : "bg-red-600"
@@ -87,7 +89,7 @@ function ItemDisp({ value }) {
       </div>
 
       <aside
-        className="absolute bottom-2 right-2 lg:top-2 cursor-pointer"
+        className="absolute bottom-2 right-2 lg:top-2 cursor-pointer dark:text-white "
         onClick={handleActive}
       >
         <IconDotsVertical height={25} width={25} />

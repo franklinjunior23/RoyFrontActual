@@ -9,9 +9,9 @@ function HeadSucur() {
   }
  
   return (
-    <div className="mt-6 lg:mt-12 lg:mb-4 flex justify-between items-center mb-4">
+    <div className="mt-6 lg:mt-12 lg:mb-4 flex justify-between items-center mb-4 dark:text-white">
       <div>
-        <h4 className="text-base">Sucursales : </h4>
+        <h4 className="text-base">Sucursales :</h4>
       </div>
       <div className=" relative">
         <button

@@ -17,6 +17,7 @@ function GeneralSect() {
   });
   if (isLoading) return <h2>Cargando ....</h2>;
   if (isError) return <h2>Hubo un error , recargue la pagina ....</h2>;
+
   if (data.length == 0)
     return (
       <>
@@ -30,12 +31,14 @@ function GeneralSect() {
         )}
       </>
     );
+
   if (idDisp) return <Outlet />;
+
   return (
     <>
       <HeadCategory data={"Dispositivo"} />
 
-      <main className="mt-5">
+      <main className="mt-5 pb-5">
         <section className="grid grid-cols-2 md:grid-cols-3  gap-5 ">
           {data?.map((value) => (
             <ItemDisp value={value} key={value.id} />

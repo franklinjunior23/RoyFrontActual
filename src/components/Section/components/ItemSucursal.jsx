@@ -14,7 +14,7 @@ function ItemSucursal({ value }) {
 
 
   return (
-    <section className="relative bg-slate-800 rounded-md text-white py-10 px-6 text-center">
+    <section className="relative bg-slate-800 rounded-md text-white dark:bg-Component py-10 px-6 text-center">
       <Link to={nombre} className="capitalize">
         {nombre}
       </Link>
