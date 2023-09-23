@@ -2,7 +2,9 @@ import { Outlet, useParams } from "react-router-dom";
 import ItemSection from "../../components/Section/ItemSection";
 
 function EmpresaPage() {
-  const { nombreE, sucursalN } = useParams();
+  // eslint-disable-next-line no-undef
+  const { nombreE, sucursalN  } = useParams();
+
   return (
     <>
       <ItemSection />

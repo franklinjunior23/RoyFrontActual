@@ -1,4 +1,6 @@
-export const IconHome = () => {
+import { IconTicket,IconHome } from "@tabler/icons-react";
+
+export const IconHomea = () => {
   return (
     <div>
       <svg
@@ -209,9 +211,9 @@ export const IconEmpresa = () => {
   );
 };
 export const NavData = [
-  { name: "Home", url: "Home", icon: <IconHome /> },
-  { name: "Empresas", url: "Empresas", icon: <IconHome /> },
-  { name: "Usuarios", url: "Usuarios", icon: <IconEmpresas black={true} /> },
+  { name: "Home", url: "Home", icon: <IconHome   width={27} height={27}/> },
+  { name: "Empresas", url: "Empresas", icon: <IconHomea /> },
+  { name: "Ticket", url: "Ticket", icon:<IconTicket width={27} height={27} />  },
   { name: "Inventario", url: "Inventario", icon: <IconUsers /> },
   { name: "Reportes", url: "Reportes", icon: <IconInvent /> },
   { name: "Configuracion", url: "Configuracion", icon: <IconConfig /> },

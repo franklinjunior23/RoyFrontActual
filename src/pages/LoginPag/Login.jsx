@@ -4,7 +4,7 @@ import axiosInstance from "../../services/ConfigApi";
 import { UseContextLoged } from "../../context/AuhtLoged";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { toast  } from "sonner";
+import { toast } from "sonner";
 
 function Login() {
   const {
@@ -21,9 +21,8 @@ function Login() {
 
       return toast.success(`Bienvenido ${data.user.nombre}`);
     }
-    
-      return toast.error("Coloque sus datos correctos");
-    
+
+    return toast.error("Coloque sus datos correctos");
   }
   useEffect(() => {
     if (LogedAuth) {
@@ -31,31 +30,32 @@ function Login() {
     }
   }, [navi, LogedAuth]);
   return (
-    <main className=" w-screen h-screen flex justify-center items-center truncate dark:bg-DarkFondo dark:text-white">
-      <article className="py-5 lg:py- px-14 lg:px-6 bg-white w-[100%] dark:bg-[#484848] lg:w-[620px] lg:shadow-2xl rounded-xl">
-        <section className="lg:hidden">
-          <picture className="m-auto">
-            <img
-              src="https://www.intiscorp.com.pe/wp-content/uploads/2022/10/1-1-1.png"
-              alt=""
-              className="w-[150px] block m-auto"
-            />
-          </picture>
-        </section>
+    <main className=" overflow-x-hidden h-screen grid place-content-center dark:bg-DarkFondo   dark:text-white  ">
+      <article className="    lg:py-4 px-14 lg:px-6 bg-white  dark:bg-[#484848] lg:w-[620px] lg:shadow-2xl rounded-xl ">
         <section>
           <h2 className="text-center font-medium mt-8 lg:mt-2 tracking-wide text-3xl uppercase ">
             INTISCORP
           </h2>
         </section>
-        <section className="lg:flex justify-center items-center gap-4 lg:gap-8">
+        <section className="lg:hidden self-center mt-5">
+          <picture className="m-auto flex justify-center ">
+            <img
+              src="https://www.intiscorp.com.pe/wp-content/uploads/2022/10/1-1-1.png"
+              alt=""
+              className="w-[150px]   "
+            />
+          </picture>
+        </section>
+
+        <section className="lg:flex justify-center items-center gap-4 lg:gap-20">
           <picture className="hidden lg:block  ">
             <img
               src="https://www.intiscorp.com.pe/wp-content/uploads/2022/10/1-1-1.png"
               alt=""
-              className="lg:w-[160px]  lg:m-auto"
+              className="lg:w-[300px] block mx-4 lg:h-full   lg:m-auto"
             />
           </picture>
-          <div className=" md:w-[40%] md:m-auto lg:w-[50%] ">
+          <div className="  md:m-auto w-full ">
             <form onSubmit={handleSubmit(LoginUsuario)}>
               <main className="grid gap-3 mt-12 lg:mt-2">
                 <section className="grid">
@@ -71,7 +71,7 @@ function Login() {
                       },
                     })}
                     id=""
-                    className="focus:outline-none py-3 border indent-3 rounded-lg mt-1 text-sm"
+                    className="focus:outline-none text-lg py-2 border indent-3 rounded-lg mt-1  dark:bg-white/40 dark:border-none"
                   />
                   {errors.usuario && (
                     <span className="text-xs text-red-500">
@@ -84,7 +84,7 @@ function Login() {
                     Contraseña
                   </label>
                   <input
-                    type="text"
+                    type="password"
                     {...register("contraseña", {
                       required: {
                         value: true,
@@ -92,7 +92,7 @@ function Login() {
                       },
                     })}
                     id=""
-                    className="focus:outline-none py-3 border indent-3 rounded-lg mt-1 text-sm"
+                    className="focus:outline-none py-2 border indent-3 rounded-lg mt-1 text-lg dark:bg-white/40 dark:border-none "
                   />
                   {errors.contraseña && (
                     <span className="text-xs text-red-500">
@@ -100,8 +100,8 @@ function Login() {
                     </span>
                   )}
                 </section>
-                <section className="mt-10 md:mt-3 lg:mb-4 py-3  bg-black rounded-xl text-white">
-                  <button className="text-center w-full">
+                <section className=" ">
+                  <button className="text-center w-full bg-black rounded-xl mt-6 lg:mt-10 md:mt-3 lg:mb-4 py-3 tex-white  ">
                     Iniciar Sesion
                   </button>
                 </section>

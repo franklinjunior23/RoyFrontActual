@@ -13,6 +13,7 @@ import IdDispositivo from "../pages/Inventario/IdDispositivo";
 import CreateDisp from "../pages/Inventario/Forms/CreateDisp";
 import GeneralSect from "../pages/Inventario/Sections/GeneralSect";
 import EmpresaPage from "../pages/empresa/EmpresaPage";
+import PageTickets from "../pages/Tickets/PageTickets";
 
 function SoporteRoutes() {
   return (
@@ -50,6 +51,7 @@ function SoporteRoutes() {
         <Route path="Usuarios" element={<h1>usersss</h1>} />
         <Route path="Inventario" element={<h1>inventario</h1>} />
         <Route path="Reportes" element={<h1>Reportes</h1>} />
+        <Route path="Ticket" element={<PageTickets/>} />
 
         <Route path="Configuracion" element={<h1>Configuracion</h1>} />
       </Route>

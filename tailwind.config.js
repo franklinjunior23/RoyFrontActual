@@ -11,8 +11,6 @@ export default {
   theme: {
     extend: {
       backgroundColor: {
-       
-        Invent: '#E1C59C',
         DarkFondo:"#292929",
         DarkComponent:"#484848",
         Component:"#443E47",
