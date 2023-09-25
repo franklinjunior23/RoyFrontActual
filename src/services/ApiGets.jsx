@@ -76,3 +76,8 @@ export const GetUserNullDispositivo = async ({ empresa, sucursal }) => {
   );
   return data;
 };
+
+export const GetsTicketsInfo=async()=>{
+  const {data}=await axiosInstance.get('Tickets')
+  return data
+}

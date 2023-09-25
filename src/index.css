@@ -18,6 +18,7 @@
 
   .custom-scrollbar::-webkit-scrollbar-track {
     background-color: #f1f1f1; /* Color del fondo del scrollbar en pantallas grandes */
+    border-radius: 5px; /* Bordes redondeados para el fondo del scrollbar en pantallas grandes */
   }
 }
 

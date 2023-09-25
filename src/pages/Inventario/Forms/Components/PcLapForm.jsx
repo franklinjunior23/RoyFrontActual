@@ -250,7 +250,7 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
           </div>
         </section>
         <section className="mt-4">
-          <article className="border grid place-content-center py-4 dark:border-none dark:bg-DarkComponent rounded-md">
+          <article className="border grid place-content-center py-4 px-6 md:px-0 dark:border-none dark:bg-DarkComponent rounded-md">
             <label className="font-medium text-lg dark:text-white ">
               Desea Asignarle Directamente a un usuario?
             </label>

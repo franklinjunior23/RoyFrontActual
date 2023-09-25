@@ -1,4 +1,4 @@
-import { IconTicket,IconHome } from "@tabler/icons-react";
+import { IconTicket,IconHome, IconBook } from "@tabler/icons-react";
 
 export const IconHomea = () => {
   return (
@@ -214,7 +214,7 @@ export const NavData = [
   { name: "Home", url: "Home", icon: <IconHome   width={27} height={27}/> },
   { name: "Empresas", url: "Empresas", icon: <IconHomea /> },
   { name: "Ticket", url: "Ticket", icon:<IconTicket width={27} height={27} />  },
-  { name: "Inventario", url: "Inventario", icon: <IconUsers /> },
+  { name: "Base de Conoc.", url: "BaseConocimiento", icon: <IconBook width={27} height={27} /> },
   { name: "Reportes", url: "Reportes", icon: <IconInvent /> },
   { name: "Configuracion", url: "Configuracion", icon: <IconConfig /> },
 ];
@@ -323,3 +323,20 @@ export const FormUser = [
 export const FormDisp =[
   'nombre','tipo','marca','modelo','serie','tipo_con','estado','tipo_Disp','Config_mac','Config_ip','Config_user','Config_contra','Placa_modelo','Placa_detalle','Procesador_marca','Procesador_modelo','Ram_Modulos','Almacenamiento','Tarjet_Video','estado'
 ]
+
+export const EstatusTicket =['Abierto','En progreso','Cerrado','Cancelado']
+
+export function DecideColorEstatusTicket (Estado){
+  switch (Estado) {
+    case "Abierto":
+      return "bg-[#8FC8CC]";
+    case "En progreso":
+      return "bg-[#6E3278]";
+    case "Cerrado":
+      return "bg-[#F3794E]";
+    case "Cancelado":
+      return "bg-[#FF8484]";
+    default:
+      return "bg-[#8FC8CC]";
+  }
+}

@@ -30,10 +30,10 @@ function Login() {
     }
   }, [navi, LogedAuth]);
   return (
-    <main className=" overflow-x-hidden h-screen grid place-content-center dark:bg-DarkFondo   dark:text-white  ">
-      <article className="    lg:py-4 px-14 lg:px-6 bg-white  dark:bg-[#484848] lg:w-[620px] lg:shadow-2xl rounded-xl ">
+    <main className=" overflow-x-hidden h-screen grid place-content-center dark:bg-DarkFondo  dark:text-white  ">
+      <article className=" py-4   lg:py-4 px-14 lg:px-6 bg-white  dark:bg-[#484848] lg:w-[620px] lg:shadow-2xl rounded-xl ">
         <section>
-          <h2 className="text-center font-medium mt-8 lg:mt-2 tracking-wide text-3xl uppercase ">
+          <h2 className="text-center font-medium mt-2 md:mt-8 lg:mt-2 tracking-wide text-3xl uppercase ">
             INTISCORP
           </h2>
         </section>
@@ -101,7 +101,7 @@ function Login() {
                   )}
                 </section>
                 <section className=" ">
-                  <button className="text-center w-full bg-black rounded-xl mt-6 lg:mt-10 md:mt-3 lg:mb-4 py-3 tex-white  ">
+                  <button className="text-center w-full bg-black rounded-xl mt-2 lg:mt-5 text-white md:mt-3 lg:mb-4 py-3 tex-white  ">
                     Iniciar Sesion
                   </button>
                 </section>
