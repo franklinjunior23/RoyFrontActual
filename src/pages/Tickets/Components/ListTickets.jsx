@@ -9,9 +9,12 @@ function ListTickets({ data }) {
       <section className="h-[400px]  mt-2 md:h-[260px] overflow-x-hidden lg:pr-5 overflow-y-auto  w-full  p-2 custom-scrollbar">
         {
           // eslint-disable-next-line react/prop-types
+          data?.length == 0 ?( <span className="">No hay nada</span>) : 
           data?.map((ticket) => (
             <ItemTicket key={ticket.id} ticket={ticket} />
           ))
+          // eslint-disable-next-line react/prop-types
+          
         }
       </section>
     </main>
