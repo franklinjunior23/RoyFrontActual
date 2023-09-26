@@ -15,6 +15,8 @@ import GeneralSect from "../pages/Inventario/Sections/GeneralSect";
 import EmpresaPage from "../pages/empresa/EmpresaPage";
 import PageTickets from "../pages/Tickets/PageTickets";
 import CreateTicket from "../pages/Tickets/CreateTicket";
+import PageBC from "../pages/BaseConoc/PageBC";
+import PageIdBC from "../pages/BaseConoc/PageIdBC";
 
 function SoporteRoutes() {
   return (
@@ -52,10 +54,14 @@ function SoporteRoutes() {
         <Route path="Usuarios" element={<h1>usersss</h1>} />
         <Route path="Inventario" element={<h1>inventario</h1>} />
         <Route path="Reportes" element={<h1>Reportes</h1>} />
+
         <Route path="Ticket" element={<PageTickets/>} />
         <Route path="Ticket/create" element={<CreateTicket/>} />
         <Route path="Ticket/:id" element={<h1>Ticket por Id</h1>} />
-        <Route path="BaseConocimiento" element={<h1>Reportes</h1>} />
+
+        <Route path="BaseConocimiento" element={<PageBC/>} >
+          <Route path=":id" element={<PageIdBC/>} />
+        </Route>
         
         
         <Route path="Configuracion" element={<h1>Configuracion</h1>} />

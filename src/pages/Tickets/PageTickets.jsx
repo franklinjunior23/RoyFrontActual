@@ -16,7 +16,6 @@ function PageTickets() {
     queryFn: GetsTicketsInfo,
   } )
   if(isLoading) return <h2>Cargando ...</h2>
-  console.log(isError )
   if(isError) return <h2>Error</h2>
   return (
     <>

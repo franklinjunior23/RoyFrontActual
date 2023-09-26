@@ -81,3 +81,9 @@ export const GetsTicketsInfo=async()=>{
   const {data}=await axiosInstance.get('Tickets')
   return data
 }
+
+export const GetsBaseConocimiento = async()=>{ 
+   
+  const {data}=await axiosInstance.get('BaseConocimiento')
+  return data;
+}

@@ -2,7 +2,7 @@ import ItemTicket from "./ItemTicket";
 
 function ListTickets({ data }) {
   return (
-    <main className=" rounded-md px-4 py-4 dark:bg-Component  w-full  ">
+    <main className="rounded-md px-4 pb-3   w-full  ">
       <h1 className="dark:text-white font-semibold text-xl">
         Lista de Tickets
       </h1>
