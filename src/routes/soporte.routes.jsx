@@ -60,7 +60,9 @@ function SoporteRoutes() {
         <Route path="Ticket/:id" element={<h1>Ticket por Id</h1>} />
 
         <Route path="BaseConocimiento" element={<PageBC/>} >
+        <Route path="create" element={<h1>estas creando</h1>} />
           <Route path=":id" element={<PageIdBC/>} />
+
         </Route>
         
         

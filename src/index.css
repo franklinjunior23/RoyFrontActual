@@ -5,7 +5,7 @@
 
 
 /* CustomScrollbar.css */
-@media (min-width: 1024px) {
+@media (min-width: 700px) {
   /* Estilos para tamaños de pantalla 'lg' o más grandes */
   .custom-scrollbar::-webkit-scrollbar {
     width: 10px; /* Ancho del scrollbar en pantallas grandes */

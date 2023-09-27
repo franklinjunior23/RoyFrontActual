@@ -5,44 +5,46 @@ import { Outlet, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { GetsBaseConocimiento } from "../../services/ApiGets";
 import ReactQuill from "react-quill";
+import { SearchUser } from "../../store/SearchUser";
+import { useEffect } from "react";
 
 function PageBC() {
   const [Search, setSearch] = useState("");
-  const [WriteUser, setWriteUser] = useState('<h1><span class="ql-size-huge">PUTAAA</span></h1>');
-  const {data,isLoading,isError} = useQuery({
-    queryFn:GetsBaseConocimiento,
-    queryKey:['BaseConocimiento']
-  })
-  const modules={
-    toolbar: [
-      [{ header: [1, 2,3,4, false] }],
-      [{ size: ["small", false, "large", "huge"] }],
-      ["bold", "italic", "underline", "strike"],
-      ["blockquote", "code-block"],
-      [{ script: "sub" }, { script: "super" }],
-      [{ indent: "-1" }, { indent: "+1" }],
-    
-      [{ color: [] }, { background: [] }],
-      [{ font: [] }],
-      [{ align: [] }],
-     
-    ],
-  }
-console.log(data)
-  const {id}=useParams();
-  if(isLoading) return <div>Cargando...</div>
-  if(isError) return <div>Error</div>
+
+  const { data, isLoading, isError } = useQuery({
+    queryFn: GetsBaseConocimiento,
+    queryKey: ["BaseConocimiento"],
+  });
+  const AddBase = SearchUser((state) => state.AddBaseConocimiento);
+  const { id } = useParams();
+  if (isLoading) return <div>Cargando...</div>;
+  if (isError) return <div>Error</div>;
+  const { cantidad } = data?.details;
+  if (data) AddBase(data.data);
+
+  console.log(data);
   return (
     <main>
       <Header setValue={setSearch} Value={Search} />
-      <article className="flex flex-col md:flex-row justify-between gap-4 mt-5 h-[400px]">
+      <article className="flex w-full flex-col md:flex-none md:grid md:grid-cols-[280px_1fr]  gap-2 mt-5 md:h-[400px]">
         <ListBC List={data.data} />
-        <section className="bg-white w-full px-2 h-full ">
-            <Outlet/>
-       
+        <section className=" w-full px-2 mt-5 md:mt-0 ">
+          <Outlet />
         </section>
       </article>
-      <h3 className="dark:text-white">{WriteUser} {Search}</h3>
+      <article className="md:mt-5 grid grid-cols-2">
+        <section className="  rounded-md px-3 py-4 mt-5 md:mt-0 bg-DarkComponent text-white text-center">
+          <h4
+            className="text-xl font-semibold mb-3"
+            data-te-toggle="tooltip"
+            data-te-ripple-color="light"
+            title="Cantidad de docs..."
+          >
+            Cantidad
+          </h4>
+          <span className="text-xl font-semibold ">{cantidad}</span>
+        </section>
+      </article>
     </main>
   );
 }

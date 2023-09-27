@@ -21,6 +21,7 @@ function ItemNav({ datos }) {
       <NavLink
         to={url}
         className={({ isActive }) => {
+          
           return ` ${
             isActive && "bg-[#DEDEDE] dark:bg-NavLinks dark:text-white "
           }  py-3 w-full flex gap-2 rounded-lg hover:bg-[#DEDEDE] dark:hover:bg-NavLinks px-5 text-lg items-center`;
