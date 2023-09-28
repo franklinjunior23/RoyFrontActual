@@ -4,30 +4,32 @@ import { useParams } from "react-router-dom";
 import { SearchUser } from "../../store/SearchUser";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import QuillComponent from "../../components/ReactQuill/QuillComponent";
 
 function PageIdBC() {
   const [DatsId, setDatsId] = useState(null);
   const { id } = useParams();
   const [WriteUser, setWriteUser] = useState("");
+
   const {
     register,
     setValue,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  console.log(errors);
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, false] }],
       [{ size: ["small", false, "large", "huge"] }],
       ["bold", "italic", "underline", "strike"],
-      ["blockquote", "code-block"],
-      [{ script: "sub" }, { script: "super" }],
+      ["blockquote"],
+      [{ align: [] }],
       [{ indent: "-1" }, { indent: "+1" }],
-
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["clean"],
       [{ color: [] }, { background: [] }],
       [{ font: [] }],
-      [{ align: [] }],
+
     ],
   };
   const Base = SearchUser((state) => state.BaseConocimiento);
@@ -40,16 +42,9 @@ function PageIdBC() {
     }
   }, [Base, id,DatsId,setValue]);
 
-  console.log(DatsId);
   return (
     <div className="w-full h-full  grid ">
-      <ReactQuill
-        className="block overflow-y-auto h-full rounded-md bg-white custom-scrollbar"
-        theme="snow"
-        modules={modules}
-        value={WriteUser}
-        onChange={setWriteUser}
-      />
+      <QuillComponent WriteUser={WriteUser} setWriteUser={setWriteUser} />
       <section className="">
         <form
           onSubmit={handleSubmit((data) => {
