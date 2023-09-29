@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { formatDateToPeruvian } from "../../../utils/FechaConvert";
 
-function ListItem({ id, Titulo, Autor ,createdAt }) {
+function ListItem({ id, Titulo, Autor ,createdAt,Categoria }) {
   const fecha = formatDateToPeruvian(createdAt);
   return (
     <NavLink
@@ -14,8 +14,11 @@ function ListItem({ id, Titulo, Autor ,createdAt }) {
       }
     >
       <h3 className="mb-3">{Titulo}</h3>
-      <div className="flex justify-between">
-        <span className="bg-black rounded-md text-blue-500 font-bold text-xs py-1 px-3  capitalize" >{Autor}</span>
+      <div className="flex justify-between items-end">
+       <div>
+         <span className="bg-black rounded-md text-blue-500 font-bold text-xs py-1 px-3  capitalize" >{Autor}</span>
+         <span className="text-xs px-3">{Categoria}</span>
+       </div>
         <span className="text-xs font-bold">{fecha}</span>
       </div>
     </NavLink>

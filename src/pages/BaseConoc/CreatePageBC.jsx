@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 function CreatePageBC() {
   const [peruDateTime, setPeruDateTime] = useState("");
-const navi = useNavigate()
+  const navi = useNavigate();
   useEffect(() => {
     const fetchPeruDateTime = () => {
       const peruDateTime = DateTime.now().setZone("America/Lima");
@@ -34,7 +34,7 @@ const navi = useNavigate()
           name={name}
           required={required}
           className={
-            "focus:outline-none indent-2 py-1 bg-DarkComponent text-white rounded-md"
+            "focus:outline-none indent-2 py-1 bg-black/40 dark:bg-DarkComponent text-white rounded-md"
           }
         />
       </div>
@@ -46,16 +46,16 @@ const navi = useNavigate()
       return data;
     },
     onSuccess: (datos) => {
-     if(datos.data?.create){
-        navi(-1)
-        queryClient.invalidateQueries(['BaseConocimiento'])
-        return toast.success(datos.data.message)
-     }else{
-        return toast.error(datos.data.message)
-     }
+      if (datos.data?.create) {
+        navi(-1);
+        queryClient.invalidateQueries(["BaseConocimiento"]);
+        return toast.success(datos.data.message);
+      } else {
+        return toast.error(datos.data.message);
+      }
     },
     onError: (error) => {
-      return toast.error(error.message)
+      return toast.error(error.message);
     },
   });
 
