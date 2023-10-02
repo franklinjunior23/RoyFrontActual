@@ -7,6 +7,7 @@ import { GetsBaseConocimiento } from "../../services/ApiGets";
 import { SearchUser } from "../../store/SearchUser";
 import { useEffect } from "react";
 
+
 function PageBC() {
   const [search, setSearch] = useState("");
   const { data, isLoading, isError } = useQuery({
@@ -21,6 +22,7 @@ function PageBC() {
     }
   }, [data, AddBase]);
 
+ 
   return (
     <main>
       <Header setValue={setSearch} Value={search} />
@@ -28,27 +30,26 @@ function PageBC() {
       {isLoading && <div>Cargando...</div>}
       {isError && <div>Error</div>}
 
-      <div className="flex w-full flex-col md:flex-none md:grid md:grid-cols-[280px_1fr] gap-2 mt-5 md:h-[400px]">
+      <div className="flex w-full flex-col md:flex-none md:grid md:grid-cols-[280px_1fr] md:grid-row-2 gap-2 mt-5 md:h-[600px]">
         <ListBC List={data?.data} search={search} />
-        <section className="w-full px-2 mt-5 md:mt-0 ">
+        <section className="w-full px-2  md:mt-0 order-[2] md:row-span-2">
           <Outlet />
         </section>
-      </div>
-
-      <div className="md:mt-10 grid grid-cols-2">
-        <section className="rounded-md px-3 py-4 mt-5 md:mt-0 bg-DarkComponent text-white text-center">
-          <h4
-            className="text-xl font-semibold mb-3"
-            data-te-toggle="tooltip"
-            data-te-ripple-color="light"
-            title="Cantidad de docs..."
-          >
-            Cantidad
-          </h4>
-          <span className="text-xl font-semibold ">
-            {data?.details.cantidad}
-          </span>
-        </section>
+        <div className="md:mt-10 order-3">
+          <section className="rounded-md px-3 py-4 mt-5 md:mt-0 dark:bg-DarkComponent border dark:border-none  text-center dark:text-white">
+            <h4
+              className="text-xl dark:text-white  text-black font-semibold mb-3"
+              data-te-toggle="tooltip"
+              data-te-ripple-color="light"
+              title="Cantidad de docs..."
+            >
+              Cantidad
+            </h4>
+            <span className="text-xl font-semibold ">
+              {data?.details.cantidad}
+            </span>
+          </section>
+        </div>
       </div>
     </main>
   );

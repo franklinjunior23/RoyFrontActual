@@ -7,6 +7,12 @@
 /* CustomScrollbar.css */
 @media (min-width: 700px) {
   /* Estilos para tamaños de pantalla 'lg' o más grandes */
+  .custom-scrollbar {
+    /* Añade scroll-snap-type para controlar el comportamiento del scroll */
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth; /* Hace que el scroll sea suave */
+  }
+
   .custom-scrollbar::-webkit-scrollbar {
     width: 10px; /* Ancho del scrollbar en pantallas grandes */
   }

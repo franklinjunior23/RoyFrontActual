@@ -219,6 +219,10 @@ export const NavData = [
   { name: "Configuracion", url: "Configuracion", icon: <IconConfig /> },
 ];
 
+export const NavAdmin =[
+  {name:'Home', url: 'Home', icon: <IconHome width={27} height={27}/> },
+]
+
 export const ColorConteners = [
   { name: "#8FC8CC" },
   { name: "#6E3278" },
@@ -329,14 +333,14 @@ export const EstatusTicket =['Abierto','En progreso','Cerrado','Cancelado']
 export function DecideColorEstatusTicket (Estado){
   switch (Estado) {
     case "Abierto":
-      return "bg-[#8FC8CC]";
+      return "bg-[#0fae02] text-white rounded-md";
     case "En progreso":
-      return "bg-[#6E3278]";
+      return "bg-[#6932f5] text-white rounded-md";
     case "Cerrado":
-      return "bg-[#F3794E]";
+      return "bg-[#bf4343] text-white rounded-md";
     case "Cancelado":
-      return "bg-[#FF8484]";
+      return "bg-[#FF8484] text-white rounded-md";
     default:
-      return "bg-[#8FC8CC]";
+      return "bg-[#8FC8CC] text-white rounded-md";
   }
 }

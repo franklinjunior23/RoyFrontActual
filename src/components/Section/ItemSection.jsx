@@ -6,7 +6,7 @@ function ItemSection() {
   
 
   return (
-    <section className="py-4 mt-8">
+    <section className="py-4 mt-5 md:mt-0">
       <header className=" flex  lg:hidden justify-between items-center mb-6">
         <div>
           <h3 className="text-Slet font-bold text-xl">Empresas</h3>

@@ -6,7 +6,7 @@ function CreateTicket() {
   return (
     <>
     <ViewRute dato={ViewClass} />
-
+    
     </>
   )
 }

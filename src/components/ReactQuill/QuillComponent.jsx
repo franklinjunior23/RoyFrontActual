@@ -1,6 +1,6 @@
 import ReactQuill from "react-quill";
 
-function QuillComponent({ WriteUser, setWriteUser }) {
+function QuillComponent({ WriteUser, setWriteUser ,className}) {
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, false] }],
@@ -13,13 +13,14 @@ function QuillComponent({ WriteUser, setWriteUser }) {
       [{ color: [] }, { background: [] }],
       [{ font: [] }],
       [{ align: [] }],
+      
     ],
   };
 
   return (
     <>
       <ReactQuill
-        className="max-w-[650px] overflow-y-auto  rounded-md bg-white h-[300px] custom-scrollbar"
+        className={`max-w-[650px] overflow-y-auto  rounded-md bg-white h-[400px] custom-scrollbar ${className}`}
         theme="snow"
         modules={modules}
         value={WriteUser}

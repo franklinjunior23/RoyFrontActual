@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 // eslint-disable-next-line no-undef
-export const {VITE_API_DOMIN,VITE_TOKE_USER,VITE_API_VERSION} = import.meta.env;
+export const {VITE_API_DOMIN,VITE_TOKE_USER,VITE_API_VERSION,VITE_VERSION_APLICATION } = import.meta.env;
 
 
 const axiosInstance = axios.create({

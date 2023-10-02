@@ -87,3 +87,8 @@ export const GetsBaseConocimiento = async()=>{
   const {data}=await axiosInstance.get('BaseConocimiento')
   return data;
 }
+
+export const GetsInfoDash=async()=>{
+  const {data}=await axiosInstance.get('informes/Home')
+  return data;
+}

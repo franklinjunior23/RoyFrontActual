@@ -31,10 +31,10 @@ function DashboardPage() {
             </div>
           </header>
         </section>
-        
-        <section className=" lg:ml-10 w-full lg:w-3/4 lg:h-[750px] lg:pr-10 lg:overflow-y-auto custom-scrollbar">
+        <section className=" lg:ml-10 w-full lg:w-3/4 lg:h-[750px] lg:pr-10 lg:overflow-y-auto  lg:overflow-x-visible custom-scrollbar">
           <Outlet />
         </section>
+        
       </article>
     </main>
   );

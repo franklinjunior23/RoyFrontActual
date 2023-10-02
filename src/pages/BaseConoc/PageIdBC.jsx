@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import QuillComponent from "../../components/ReactQuill/QuillComponent";
 import InputComponent from "./Components/InputComponent";
 import SwitchTogle from "../../components/assets/SwitchTogle";
+import axiosInstance from "../../services/ConfigApi";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 function PageIdBC() {
   const [DatsId, setDatsId] = useState(null);
@@ -38,32 +41,59 @@ function PageIdBC() {
       setValue("Autor", DatsId?.Autor);
       setValue("Categoria", DatsId?.Categoria);
       setWriteUser(DatsId?.Contenido);
-      setWriteUser("UpdateDat", false);
     }
   }, [Base, id, DatsId, setValue]);
-
+  const ClientQuery = useQueryClient()
+  const { mutate } = useMutation({
+    mutationFn: async (datos) => {
+      const { data } = await axiosInstance.put(
+        `BaseConocimiento/${DatsId?.id}`,
+        datos
+      );
+      return data;
+    },
+    onSuccess: (data) => {
+      ClientQuery.invalidateQueries(['BaseConocimiento']);
+      if(data?.update)return toast.success(data?.message);
+      return  toast.error(data?.message);
+    },
+    onError:(data)=>{
+      return toast.error(data?.message);
+    }
+  });
   return (
-    <div className="w-full h-full  grid ">
+    <div className="w-full h-full  ">
       <section className="">
         <form
           onSubmit={handleSubmit((data) => {
-            console.log(data);
+            mutate({...data,Contenido:WriteUser});
           })}
         >
           <div className="grid grid-cols-2 gap-5">
             <DivContentInput label={"Categoria"} name={"Categoria"} />
             <DivContentInput label={"Autor"} name={"Autor"} />
           </div>
-          <div className="flex justify-between items-end">
-            <div className="grid">
+          <div className="flex justify-between items-center py-3">
+            <div className="flex gap-4">
               <label className="dark:text-white">Actualizar</label>
               <SwitchTogle register={register} name={"UpdateDat"} />
             </div>
-            {ViewSwitch && <button type="submit" className="bg-black text-white py-1 px-3 rounded-md ">Actualizar</button>}
+            {ViewSwitch && (
+              <button
+                type="submit"
+                className="bg-black text-white py-1 px-3 rounded-md "
+              >
+                Actualizar
+              </button>
+            )}
           </div>
         </form>
       </section>
-      <QuillComponent WriteUser={WriteUser} setWriteUser={setWriteUser} />
+      <QuillComponent
+        WriteUser={WriteUser}
+        className={"mt-5"}
+        setWriteUser={setWriteUser}
+      />
     </div>
   );
 }
