@@ -21,6 +21,7 @@ eso son los tipos de modales
 
 {TypeDisp === "PC" &&
 DatPc?.map((valu, index) => (
+
 <option value={valu.nombre} key={index}>
 {valu.nombre}
 </option>
@@ -33,34 +34,31 @@ DatPc?.map((valu, index) => (
                         </option>
                       ))}
 
-
-
 Recordar - que no poner '/'
 
-
 FormDisp.forEach((param) => {
-      if (data?.data && data?.data[param] !== null && data?.data[param] !== undefined) {
-        console.log(data?.data[param] + "  parametro :" + param);
-        setValue(param, data.data[param]);
-      } else if (
-        data?.DetalleDispositivos &&
-        data.DetalleDispositivos[0] &&
-        data.DetalleDispositivos[0][param] !== null 
-      ) {
-        console.log("aca arriba");
-        setValue(param, data.DetalleDispositivos[0][param]);
-      }
-    });
+if (data?.data && data?.data[param] !== null && data?.data[param] !== undefined) {
+console.log(data?.data[param] + " parametro :" + param);
+setValue(param, data.data[param]);
+} else if (
+data?.DetalleDispositivos &&
+data.DetalleDispositivos[0] &&
+data.DetalleDispositivos[0][param] !== null
+) {
+console.log("aca arriba");
+setValue(param, data.DetalleDispositivos[0][param]);
+}
+});
 
+---
 
-----
-estados de los dispositivos 
+estados de los dispositivos
 
 Activo
 Inaperativa
 Malograda
-----
 
+---
 
           <Controller
             control={control}
@@ -84,7 +82,17 @@ Malograda
                 ]}
                 isClearable
               />
-              
+
             )}
           />
 
+Version
+0.9 //
+En la versión 0.9 de nuestro proyecto, se introdujo la sección Home, que muestra una lista de empresas. Para lograr esto, se elaboraron los items necesarios para mostrar la información de cada empresa, como su nombre, descripción y logotipo. También se agregaron funciones para crear nuevas empresas y para que los usuarios inicien sesión en la aplicación.
+
+Además, se trabajó en la funcionalidad de la sección Home para que los usuarios puedan ver la información de cada empresa y navegar a la página de detalles de cada una. También se agregó la capacidad de filtrar la lista de empresas por nombre y por categoría.
+
+En resumen, la versión 0.9 de nuestro proyecto incluye la sección Home, que muestra una lista de empresas con información detallada y la capacidad de filtrar y navegar a la página de detalles de cada una. También se agregaron funciones para crear nuevas empresas y para que los usuarios inicien sesión en la aplicación.
+
+
+1.1
