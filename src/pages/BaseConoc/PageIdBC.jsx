@@ -13,9 +13,11 @@ import { toast } from "sonner";
 
 function PageIdBC() {
   const [DatsId, setDatsId] = useState(null);
+
   const { id } = useParams();
   const [WriteUser, setWriteUser] = useState("");
 
+ 
   const { register, setValue, handleSubmit, watch } = useForm();
 
   function DivContentInput({ label, name, isRequired }) {
@@ -43,7 +45,7 @@ function PageIdBC() {
       setWriteUser(DatsId?.Contenido);
     }
   }, [Base, id, DatsId, setValue]);
-  const ClientQuery = useQueryClient()
+  const ClientQuery = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: async (datos) => {
       const { data } = await axiosInstance.put(
@@ -53,20 +55,21 @@ function PageIdBC() {
       return data;
     },
     onSuccess: (data) => {
-      ClientQuery.invalidateQueries(['BaseConocimiento']);
-      if(data?.update)return toast.success(data?.message);
-      return  toast.error(data?.message);
-    },
-    onError:(data)=>{
+      ClientQuery.invalidateQueries(["BaseConocimiento"]);
+      if (data?.update) return toast.success(data?.message);
+    
       return toast.error(data?.message);
-    }
+    },
+    onError: (data) => {
+      return toast.error(data?.message);
+    },
   });
   return (
     <div className="w-full h-full  ">
       <section className="">
         <form
           onSubmit={handleSubmit((data) => {
-            mutate({...data,Contenido:WriteUser});
+            mutate({ ...data, Contenido: WriteUser });
           })}
         >
           <div className="grid grid-cols-2 gap-5">
@@ -76,7 +79,11 @@ function PageIdBC() {
           <div className="flex justify-between items-center py-3">
             <div className="flex gap-4">
               <label className="dark:text-white">Actualizar</label>
-              <SwitchTogle register={register} name={"UpdateDat"} />
+              <SwitchTogle
+                register={register}
+                name={"UpdateDat"}
+                
+              />
             </div>
             {ViewSwitch && (
               <button

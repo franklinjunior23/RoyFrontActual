@@ -28,6 +28,7 @@
     "react-select": "^5.7.4",
     "sonner": "^0.6.2",
     "swiper": "^10.1.0",
+    "vaul": "^0.7.0",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
