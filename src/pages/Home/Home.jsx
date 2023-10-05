@@ -48,7 +48,8 @@ function Home() {
           </header>
           <ItemSection />
           <article className="grid mt-2 md:grid-cols-2 gap-6 ">
-            {isLoading && <h2>Cargando .....</h2>}
+            {isLoading && <h2 className="dark:text-white">Cargando .....</h2>}
+            {isError && <h2 className="dark:text-white">Error al cargar los datos</h2>}
             <ListTickets TicketsData={data?.Ticket} />
             <ListDetail DetailData={data?.Dispositivo} />
           </article>

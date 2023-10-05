@@ -44,7 +44,9 @@ function Listsection({ datos, color }) {
         <span>
           <IconEmpresa />
         </span>
-        <h4 className="mt-4 text-white font-extrabold text-xl">{nombre}</h4>
+        <h4
+         className="mt-4 text-white font-extrabold text-xl"
+          >{nombre}</h4>
       </Link>
       <div className="absolute right-4 top-8 z-20 px-4" onClick={HandleActiveMod}>
         <IconEdit />

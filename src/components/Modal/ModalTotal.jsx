@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Drawer } from "vaul";
+import { IconX } from "@tabler/icons-react";
 
 function ModalTotal({ title, className, icon, Content ,titleModal,data,setData }) {
   const [ActiveModal, setActiveModal] = useState(false);
@@ -28,7 +29,7 @@ function ModalTotal({ title, className, icon, Content ,titleModal,data,setData }
   return (
     <>
       <section className="w-full ">
-        <button className={`${className} hidden lg:block`} onClick={handleActive}>
+        <button className={`${className} hidden lg:flex`} onClick={handleActive}>
           {title} {icon}
         </button>
         <div className="lg:hidden">
@@ -60,8 +61,10 @@ function ModalTotal({ title, className, icon, Content ,titleModal,data,setData }
             ActiveModal ? "block" : "hidden"
           } grid place-content-center`}
         >
-          <article className="dark:bg-DarkComponent py-5 px-5 rounded-lg w-[800px] bg-white shadow-lg ">
-            <h3 className="text-center uppercase text-2xl py-2 mb-3 dark:text-white">{titleModal}</h3>
+         
+          <article className="dark:bg-DarkComponent py-8 px-5 rounded-lg w-[850px] bg-white shadow-lg relative">
+          <div className="absolute top-4 right-4"> <IconX className="text-white cursor-pointer" size={30} onClick={handleActive}/> </div>
+            <h3 className="text-center uppercase text-2xl  mb-8 dark:text-white">{titleModal}</h3>
             {Content}
           </article>
         </main>

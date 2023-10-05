@@ -89,6 +89,22 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.CustomScroll{
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth; /* Hace que el scroll sea suave */
+}
+.CustomScroll::-webkit-scrollbar {
+  width: 10px; /* Ancho del scrollbar en pantallas grandes */
+}
+.CustomScroll::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color del thumb en pantallas grandes */
+  border-radius: 5px; /* Bordes redondeados para el thumb en pantallas grandes */
+}
+
+.CustomScroll::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Color del fondo del scrollbar en pantallas grandes */
+  border-radius: 5px; /* Bordes redondeados para el fondo del scrollbar en pantallas grandes */
+}
 
 @layer{
   /* Resto de tus estilos */
