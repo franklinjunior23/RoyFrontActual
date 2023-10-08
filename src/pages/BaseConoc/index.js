@@ -1,0 +1,9 @@
+export { default as ContentUpload } from './Components/ContentUpload';
+export { default as Filts } from './Components/Filts';
+export { default as Header } from './Components/Header';
+export { default as InputComponent } from './Components/InputComponent';
+export { default as ListBC } from './Components/ListBC';
+export { default as CreatePageBC } from './CreatePageBC';
+export { default as PageBC } from './PageBC';
+export { default as PageDetalle } from './PageDetalle';
+export { default as PageIdBC } from './PageIdBC';

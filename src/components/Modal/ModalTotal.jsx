@@ -3,39 +3,23 @@ import PropTypes from "prop-types";
 import { Drawer } from "vaul";
 import { IconX } from "@tabler/icons-react";
 
-function ModalTotal({ title, className, icon, Content ,titleModal,data,setData }) {
+function ModalTotal({ title, className, icon, Content ,titleModal }) {
   const [ActiveModal, setActiveModal] = useState(false);
 
   function handleActive() {
     setActiveModal(!ActiveModal);
   }
-  useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (event.key === "Escape") {
-        // Aquí puedes agregar la lógica que deseas ejecutar
-        // cuando se presiona la tecla "Escape".
-        setActiveModal(false);
-      }
-    };
-
-    // Agrega el event listener cuando el componente se monta.
-    document.addEventListener("keydown", handleKeyPress);
-
-    // Remueve el event listener cuando el componente se desmonta.
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [ActiveModal, setActiveModal]);
+ 
   return (
     <>
       <section className="w-full ">
-        <button className={`${className} hidden lg:flex`} onClick={handleActive}>
+        <button className={`${className} hidden lg:flex`} type="button" onClick={handleActive}>
           {title} {icon}
         </button>
         <div className="lg:hidden">
           <Drawer.Root shouldScaleBackground>
             <Drawer.Trigger asChild>
-              <button className={`${className}`}>{title} {icon}</button>
+              <button className={`${className}`} type="button" >{title} {icon}</button>
             </Drawer.Trigger>
             <Drawer.Portal>
               <Drawer.Overlay className="fixed inset-0 bg-black/40" />
@@ -59,11 +43,11 @@ function ModalTotal({ title, className, icon, Content ,titleModal,data,setData }
         <main
           className={`hidden lg:grid  fixed w-full h-screen  bg-black/40 top-0 left-0 z-40 ${
             ActiveModal ? "block" : "hidden"
-          } grid place-content-center`}
+          } grid place-content-center `}
         >
          
-          <article className="dark:bg-DarkComponent py-8 px-5 rounded-lg w-[850px] bg-white shadow-lg relative">
-          <div className="absolute top-4 right-4"> <IconX className="text-white cursor-pointer" size={30} onClick={handleActive}/> </div>
+          <article className="dark:bg-DarkComponent py-8 px-10 rounded-lg w-[850px] bg-white shadow-lg relative">
+          <div className="absolute top-4 right-4"> <IconX className="dark:text-white cursor-pointer " size={30} onClick={handleActive}/> </div>
             <h3 className="text-center uppercase text-2xl  mb-8 dark:text-white">{titleModal}</h3>
             {Content}
           </article>

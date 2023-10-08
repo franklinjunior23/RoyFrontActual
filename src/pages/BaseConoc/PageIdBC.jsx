@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ReactQuill from "react-quill";
-import { useParams } from "react-router-dom";
+
+import { useNavigate, useParams } from "react-router-dom";
 import { SearchUser } from "../../store/SearchUser";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -10,14 +10,14 @@ import SwitchTogle from "../../components/assets/SwitchTogle";
 import axiosInstance from "../../services/ConfigApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import PropTypes from "prop-types";
 
 function PageIdBC() {
-  const [DatsId, setDatsId] = useState(null);
-
+  const [DatsId, setDatsId] = useState([]);
+  const navi = useNavigate();
   const { id } = useParams();
   const [WriteUser, setWriteUser] = useState("");
 
- 
   const { register, setValue, handleSubmit, watch } = useForm();
 
   function DivContentInput({ label, name, isRequired }) {
@@ -35,6 +35,12 @@ function PageIdBC() {
       </div>
     );
   }
+
+  DivContentInput.propTypes = {
+    label: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    isRequired: PropTypes.bool,
+  };
   const ViewSwitch = watch("UpdateDat");
   const Base = SearchUser((state) => state.BaseConocimiento);
   useEffect(() => {
@@ -57,13 +63,15 @@ function PageIdBC() {
     onSuccess: (data) => {
       ClientQuery.invalidateQueries(["BaseConocimiento"]);
       if (data?.update) return toast.success(data?.message);
-    
+
       return toast.error(data?.message);
     },
     onError: (data) => {
       return toast.error(data?.message);
     },
   });
+  if (!DatsId) return navi(-1);
+
   return (
     <div className="w-full h-full  ">
       <section className="">
@@ -77,23 +85,27 @@ function PageIdBC() {
             <DivContentInput label={"Autor"} name={"Autor"} />
           </div>
           <div className="flex justify-between items-center py-3">
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-center">
               <label className="dark:text-white">Actualizar</label>
-              <SwitchTogle
-                register={register}
-                name={"UpdateDat"}
-                
-              />
+              <SwitchTogle register={register} name={"UpdateDat"} />
+              <div>
+                <button
+                  className="bg-black text-white py-1 px-3 rounded-md"
+                  onClick={() => navi("detalle")}
+                >
+                  Ver Detalles
+                </button>
+              </div>
             </div>
-            {ViewSwitch && (
-              <button
-                type="submit"
-                className="bg-black text-white py-1 px-3 rounded-md "
-              >
-                Actualizar
-              </button>
-            )}
           </div>
+          {ViewSwitch && (
+            <button
+              type="submit"
+              className="bg-black text-white py-1 px-3 rounded-md "
+            >
+              Actualizar
+            </button>
+          )}
         </form>
       </section>
       <QuillComponent

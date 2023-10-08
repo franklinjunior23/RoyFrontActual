@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import ModalSection from "./ModalSection";
 import { IconEmpresa } from "../../../assets/DataDefault";
-
+import PropTypes from "prop-types";
 // eslint-disable-next-line react/prop-types
 function Listsection({ datos, color }) {
   const { nombre } = datos;
@@ -59,3 +59,11 @@ function Listsection({ datos, color }) {
 }
 
 export default Listsection;
+
+ Listsection.propTypes = {
+    datos: PropTypes.shape({
+      nombre: PropTypes.string.isRequired,
+      // add any other required props here
+    }).isRequired,
+    color: PropTypes.string.isRequired,
+  };

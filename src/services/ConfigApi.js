@@ -3,7 +3,7 @@ import axios from "axios";
 
 // eslint-disable-next-line no-undef
 export const {VITE_API_DOMIN,VITE_TOKE_USER,VITE_API_VERSION,VITE_VERSION_APLICATION } = import.meta.env;
-
+export const UrlDomain = VITE_API_DOMIN;
 
 const axiosInstance = axios.create({
   baseURL: VITE_API_DOMIN+VITE_API_VERSION,

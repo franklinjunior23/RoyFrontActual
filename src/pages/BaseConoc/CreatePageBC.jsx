@@ -11,10 +11,13 @@ import PropTypes from "prop-types";
 import { IconFileDescription } from "@tabler/icons-react";
 import ModalTotal from "../../components/Modal/ModalTotal";
 import ContentUpload from "./Components/ContentUpload";
+import { DataImageUser } from "../../store/UploadImages";
+
 
 function CreatePageBC() {
   const [peruDateTime, setPeruDateTime] = useState("");
   const [ImageData, setImageData] = useState(null);
+  const { BaseConocimiento, DeleteBaseCon } = DataImageUser();
 
   const navi = useNavigate();
   useEffect(() => {
@@ -55,12 +58,27 @@ function CreatePageBC() {
 
   const { mutate, isLoading } = useMutation({
     mutationFn: (dats) => {
-      const data = axiosInstance.post("BaseConocimiento", dats);
+      const formData = new FormData();
+      formData.append("Titulo", dats.Titulo);
+      formData.append("Categoria", dats.Categoria);
+      formData.append("Contenido", WriteUser);
+      for (const file of BaseConocimiento) {
+        formData.append("image", file);
+      }
+      const data = axiosInstance.post(
+        "BaseConocimiento",
+        formData ,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       return data;
     },
+
     onSuccess: (datos) => {
       if (datos.data?.create) {
         navi(-1);
+        DeleteBaseCon();
         queryClient.invalidateQueries(["BaseConocimiento"]);
         return toast.success(datos.data.message);
       } else {
@@ -73,6 +91,10 @@ function CreatePageBC() {
   });
 
   async function FormCreateBC(dats) {
+    const formData = new FormData();
+    for (let i = 0; i < BaseConocimiento.length; i++) {
+      formData.append("image", BaseConocimiento[i]);
+    }
     mutate({ ...dats, Contenido: WriteUser });
   }
   return (
@@ -92,6 +114,17 @@ function CreatePageBC() {
             <div className="flex justify-between">
               <span>
                 <span className="dark:text-white">{peruDateTime}</span>
+                <ModalTotal
+                  className={
+                    "text-white bg-black px-3 py-1.5 flex gap-2 rounded-md"
+                  }
+                  title={` Agregar Archivo `}
+                  icon={<IconFileDescription />}
+                  Content={<ContentUpload />}
+                  titleModal={"Agregar Archivos"}
+                  data={ImageData}
+                  SetData={setImageData}
+                />
               </span>
             </div>
             <div className="flex justify-end items-end">
@@ -109,15 +142,6 @@ function CreatePageBC() {
       <section>
         <QuillComponent WriteUser={WriteUser} setWriteUser={setWriteUser} />
       </section>
-      <ModalTotal
-        className={"text-white bg-black px-3 py-1.5 flex gap-2 rounded-md"}
-        title={` Agregar Archivo `}
-        icon={<IconFileDescription />}
-        Content={<ContentUpload />}
-        titleModal={"Agregar Archivos"}
-        data={ImageData}
-        SetData={setImageData}
-      />
     </main>
   );
 }
