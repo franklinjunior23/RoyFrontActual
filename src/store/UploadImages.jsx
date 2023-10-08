@@ -27,4 +27,8 @@ export const DataImageUser = create((set) => ({
         (_, i) => i !== index
       ),
     })),
+    DeleteBaseUd: () =>
+    set(() => ({
+      BaseIdConocimiento: [],
+    })),
 }));

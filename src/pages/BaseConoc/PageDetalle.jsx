@@ -19,7 +19,7 @@ function PageDetalle() {
   const [WriteUser, setWriteUser] = useState("");
   const { id } = useParams();
   const navi = useNavigate();
-  const { AddApi, BaseIdConocimiento } = DataImageUser();
+  const { AddApi, BaseIdConocimiento ,DeleteBaseUd} = DataImageUser();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["BaseConocimiento", id],
     queryFn: async () => {
@@ -27,16 +27,21 @@ function PageDetalle() {
       return data;
     },
   });
-  const { register, handleSubmit, setValue ,watch} = useForm();
+  const { register, handleSubmit, setValue, watch } = useForm();
   const ViewSwitch = watch("UpdateCheck");
   useEffect(() => {
     if (data) {
       setWriteUser(data?.data.Contenido);
-      AddApi([...data?.data?.Archivos]);
       setValue("Categoria", data?.data?.Categoria);
+      if (data?.data?.Archivos?.length > 0) {
+       return AddApi([...data?.data?.Archivos]);
+      }else{
+        DeleteBaseUd()
+      }
+
       
     }
-  }, [data, AddApi, setValue]);
+  }, [data, AddApi, setValue,DeleteBaseUd]);
 
   if (data?.search === false) {
     toast.error(data.message);
@@ -55,12 +60,12 @@ function PageDetalle() {
     );
 
   const {
-    data: { Autor, Titulo ,...datos },
+    data: { Autor, Titulo, ...datos },
   } = data;
 
-function HandleSubt(data) {
-  console.log({...data,Contenido:WriteUser})
-}
+  function HandleSubt(data) {
+    console.log({ ...data, Contenido: WriteUser });
+  }
 
   return (
     <>
@@ -89,7 +94,9 @@ function HandleSubt(data) {
                   </span>
                 </div>
               </header>
-              <h3 className="dark:text-white">Titulo : <span className="font-bold capitalize">{Titulo}</span></h3>
+              <h3 className="dark:text-white">
+                Titulo : <span className="font-bold capitalize">{Titulo}</span>
+              </h3>
               <QuillComponent
                 WriteUser={WriteUser}
                 setWriteUser={setWriteUser}
@@ -108,30 +115,41 @@ function HandleSubt(data) {
             <section>
               <h3 className="dark:text-white">Archivos</h3>
               <header className="grid grid-cols-2 h-[400px] overflow-x-hidden overflow-y-auto  custom-scrollbar gap-3  ">
-                {BaseIdConocimiento.length=== 0 ? <h3 className="text-center text-white">No hay archivos subidos</h3>  : BaseIdConocimiento?.map((item, index) => (
-                  <div key={index} className="grid grid-cols-[85%_1fr] bg-DarkComponent rounded-lg  overflow-hidden  h-[160px] box-content">
-                    <img
-                      src={`${UrlDomain}/BdConocimiento/${item?.filename}`}
-                      alt={"no se encontró la imagen"}
-                      className=" block w-full h-[170px] "
-                      height={170}
-                      onClick={() => {console.log("aa") }}
-                     
-                     
-                    />
-                    <div className="  h-full grid place-content-center px-1">
-                      <IconTrash
-                        onClick={() =>
-                          AddApi(BaseIdConocimiento.filter((_, i) => i !== index))
-                        }
-                        className="text-red-500"
+                {BaseIdConocimiento.length === 0 || null ? (
+                  <h3 className="text-center text-white">
+                    No hay archivos subidos
+                  </h3>
+                ) : (
+                  BaseIdConocimiento?.map((item, index) => (
+                    <div
+                      key={index}
+                      className="grid grid-cols-[85%_1fr] bg-DarkComponent rounded-lg  overflow-hidden  h-[160px] box-content"
+                    >
+                      <img
+                        src={`${UrlDomain}/BdConocimiento/${item?.filename}`}
+                        alt={"no se encontró la imagen"}
+                        className=" block w-full h-[170px] "
+                        height={170}
+                        onClick={() => {
+                          console.log("aa");
+                        }}
                       />
+                      <div className="  h-full grid place-content-center px-1">
+                        <IconTrash
+                          onClick={() =>
+                            AddApi(
+                              BaseIdConocimiento.filter((_, i) => i !== index)
+                            )
+                          }
+                          className="text-red-500"
+                        />
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))
+                )}
               </header>
               <div className="mt-4">
-              <ModalTotal
+                <ModalTotal
                   className={
                     "text-white bg-black px-3 py-1.5 flex gap-2 rounded-md"
                   }
@@ -139,18 +157,23 @@ function HandleSubt(data) {
                   icon={<IconFileDescription />}
                   Content={<ContentUpload />}
                   titleModal={"Agregar Archivos"}
-
                 />
-               <div className="flex  mt-4 justify-between items-end">
-                <div className="flex gap-4">
-                  <label className="dark:text-white">Actualizar</label>
-                   <SwitchTogle register={register} name={"UpdateCheck"} />
+                <div className="flex  mt-4 justify-between items-end">
+                  <div className="flex gap-4">
+                    <label className="dark:text-white">Actualizar</label>
+                    <SwitchTogle register={register} name={"UpdateCheck"} />
+                  </div>
+                  <div>
+                    {ViewSwitch && (
+                      <button
+                        type="submit"
+                        className="bg-black text-white py-1 px-3 rounded-md "
+                      >
+                        Actualizar
+                      </button>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  {ViewSwitch && (  <button  type="submit" className="bg-black text-white py-1 px-3 rounded-md ">Actualizar</button>)}
-                  
-                </div>
-               </div>
               </div>
             </section>
           </section>
