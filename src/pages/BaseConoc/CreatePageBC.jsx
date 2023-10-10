@@ -17,7 +17,7 @@ import { DataImageUser } from "../../store/UploadImages";
 function CreatePageBC() {
   const [peruDateTime, setPeruDateTime] = useState("");
   const [ImageData, setImageData] = useState(null);
-  const { BaseConocimiento, DeleteBaseCon } = DataImageUser();
+  const { BaseConocimiento, DeleteBaseCon,DeleteImageScreen } = DataImageUser();
 
   const navi = useNavigate();
   useEffect(() => {
@@ -79,6 +79,7 @@ function CreatePageBC() {
       if (datos.data?.create) {
         navi(-1);
         DeleteBaseCon();
+        DeleteImageScreen();
         queryClient.invalidateQueries(["BaseConocimiento"]);
         return toast.success(datos.data.message);
       } else {

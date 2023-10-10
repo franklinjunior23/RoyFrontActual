@@ -7,19 +7,48 @@ import InputComponent from "./Components/InputComponent";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
-import { IconStar, IconTrash } from "@tabler/icons-react";
-import Star from "./Components/Star";
 import { DataImageUser } from "../../store/UploadImages";
 import ModalTotal from "../../components/Modal/ModalTotal";
 import { IconFileDescription } from "@tabler/icons-react";
 import ContentUpload from "./Components/ContentUpload";
 import SwitchTogle from "../../components/assets/SwitchTogle";
 
+function ModalImage({  Src }) {
+  const [ActiveModal, setActiveModal] = useState(false);
+  function HandleModalImage() {
+    setActiveModal(!ActiveModal);
+  }
+  return (
+    <>
+      <img
+        src={Src}
+        alt={"no se encontró la imagen"}
+        className=" block w-full h-[170px] object-cover cursor-pointer"
+        height={170}
+        onClick={HandleModalImage}
+      />
+      {ActiveModal && (
+        <main
+          className="fixed top-0 left-0 w-screen h-screen overflow-hidden grid place-content-center bg-black/40  z-10"
+          onClick={() => setActiveModal(false)}
+        >
+          <section className="bg-DarkComponent p-6 rounded-lg max-w-[960px] max-h-[800px]">
+            <img src={Src} alt="" className=" object-cover block w-full h-full " />
+          </section>
+        </main>
+      )}
+    </>
+  );
+}
+
 function PageDetalle() {
   const [WriteUser, setWriteUser] = useState("");
+
+
+
   const { id } = useParams();
   const navi = useNavigate();
-  const { AddApi, BaseIdConocimiento ,DeleteBaseUd} = DataImageUser();
+  const { AddApi, BaseIdConocimiento, DeleteBaseUd } = DataImageUser();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["BaseConocimiento", id],
     queryFn: async () => {
@@ -34,14 +63,12 @@ function PageDetalle() {
       setWriteUser(data?.data.Contenido);
       setValue("Categoria", data?.data?.Categoria);
       if (data?.data?.Archivos?.length > 0) {
-       return AddApi([...data?.data?.Archivos]);
-      }else{
-        DeleteBaseUd()
+        return AddApi([...data?.data?.Archivos]);
+      } else {
+        DeleteBaseUd();
       }
-
-      
     }
-  }, [data, AddApi, setValue,DeleteBaseUd]);
+  }, [data, AddApi, setValue, DeleteBaseUd]);
 
   if (data?.search === false) {
     toast.error(data.message);
@@ -123,27 +150,13 @@ function PageDetalle() {
                   BaseIdConocimiento?.map((item, index) => (
                     <div
                       key={index}
-                      className="grid grid-cols-[85%_1fr] bg-DarkComponent rounded-lg  overflow-hidden  h-[160px] box-content"
+                      className=" bg-DarkComponent rounded-lg  overflow-hidden  h-[160px] object-cover"
                     >
-                      <img
-                        src={`${UrlDomain}/BdConocimiento/${item?.filename}`}
-                        alt={"no se encontró la imagen"}
-                        className=" block w-full h-[170px] "
-                        height={170}
-                        onClick={() => {
-                          console.log("aa");
-                        }}
+                      <ModalImage
+                       
+                        Src={`${UrlDomain}/BdConocimiento/${item?.filename}`}
+                        
                       />
-                      <div className="  h-full grid place-content-center px-1">
-                        <IconTrash
-                          onClick={() =>
-                            AddApi(
-                              BaseIdConocimiento.filter((_, i) => i !== index)
-                            )
-                          }
-                          className="text-red-500"
-                        />
-                      </div>
                     </div>
                   ))
                 )}

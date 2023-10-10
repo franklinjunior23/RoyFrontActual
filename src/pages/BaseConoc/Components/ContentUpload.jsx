@@ -1,14 +1,19 @@
 import { useState } from "react";
 import {
   IconCloudDownload,
-  IconFileDescription,
-  IconX,
 } from "@tabler/icons-react";
 import { DataImageUser } from "../../../store/UploadImages";
 
 function ContentUpload() {
   const [dragging, setDragging] = useState(false);
-  const { AddBaseConocimiento, DeleteUnic,BaseConocimiento } = DataImageUser();
+  const {
+    AddBaseConocimiento,
+    DeleteUnic,
+    BaseConocimiento,
+    AddImageScreen,
+    ImageScreen,
+    DeleteUnicImage,
+  } = DataImageUser();
   const handleDragEnter = (e) => {
     e.preventDefault();
     setDragging(true);
@@ -19,6 +24,24 @@ function ContentUpload() {
     setDragging(false);
   };
 
+  const manejarPegado = (e) => {
+    // Verificar si el evento de pegado contiene datos de imagen
+    if (e.clipboardData && e.clipboardData.items) {
+      const nuevasImagenes = [];
+      const items = e.clipboardData.items;
+
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf("image") !== -1) {
+          var imagenPegada = items[i].getAsFile();
+          nuevasImagenes.push(URL.createObjectURL(imagenPegada));
+        }
+      }
+
+      // Agregar las nuevas imágenes al estado
+      AddBaseConocimiento(imagenPegada);
+      AddImageScreen(nuevasImagenes);
+    }
+  };
   const handleDragOver = (e) => {
     e.preventDefault();
   };
@@ -36,12 +59,10 @@ function ContentUpload() {
   function Add(e) {
     const files = e.target.files;
     for (let i = 0; i < files.length; i++) {
-     
       AddBaseConocimiento(files[i]);
     }
   }
 
-  console.log(BaseConocimiento)
 
   return (
     <main className="grid gap-8 lg:grid-cols-2 lg:items-center">
@@ -54,6 +75,7 @@ function ContentUpload() {
           onDragLeave={handleDragLeave}
           onDragOver={handleDragOver}
           onDrop={handleDrop}
+          onPaste={manejarPegado}
         >
           <IconCloudDownload
             size={70}
@@ -88,19 +110,35 @@ function ContentUpload() {
               No hay archivos subidos
             </h3>
           ) : (
-            BaseConocimiento?.map((item, index) => (
+            ImageScreen?.map((item, index) => (
               <div
-                className="flex justify-between items-center bg-black/40 dark:text-white py-2 rounded-md px-2"
+                className=" items-center bg-black/40 dark:text-white py-2 rounded-md px-2"
                 key={index}
               >
-                <div className="grid grid-cols-[40px_80%_40px] items-center gap-2 	">
-                  <IconFileDescription size={40} /> <h3 className="break-normal text-ellipsis overflow-hidden w-[70%] md:w-[60%] ">{item.name ?? item.filename}</h3>
+                <div>
+                  <img
+                    src={item}
+                    alt={`Imagen Pegada ${index}`}
+                    style={{ objectFit: "cover" }}
+                    className="w-full block h-[130px] "
+                    
+                    height={100}
+                  />
+                  <button
+                  className="bg-red-500/80 text-white rounded-md px-2 py-1 mt-2 text-sm"
+                    onClick={() => {
+                      DeleteUnic(index);
+                      DeleteUnicImage(index);
+                    }}
+                  >
+                    Eliminar
+                  </button>
                 </div>
-                <IconX size={30} className="cursor-pointer" onClick={() => DeleteUnic(index)} />
+                <div className="grid grid-cols-[40px_80%_40px] items-center gap-2 	"></div>
+                
               </div>
             ))
           )}
-         
         </div>
       </section>
     </main>

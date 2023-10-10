@@ -3,9 +3,24 @@ import { create } from "zustand";
 export const DataImageUser = create((set) => ({
   BaseConocimiento: [],
   BaseIdConocimiento: [],
+  ImageScreen: [],
   AddBaseConocimiento: (value) =>
     set(() => ({
       BaseConocimiento: [value, ...DataImageUser.getState().BaseConocimiento],
+    })),
+  AddImageScreen: (value) =>
+    set(() => ({
+      ImageScreen: [value, ...DataImageUser.getState().ImageScreen],
+    })),
+  DeleteImageScreen: () =>
+    set(() => ({
+      ImageScreen: [],
+    })),
+  DeleteUnicImage: (index) =>
+    set(() => ({
+      ImageScreen: DataImageUser.getState().ImageScreen.filter(
+        (_, i) => i !== index
+      ),
     })),
   DeleteBaseCon: () =>
     set(() => ({
@@ -27,7 +42,7 @@ export const DataImageUser = create((set) => ({
         (_, i) => i !== index
       ),
     })),
-    DeleteBaseUd: () =>
+  DeleteBaseUd: () =>
     set(() => ({
       BaseIdConocimiento: [],
     })),
