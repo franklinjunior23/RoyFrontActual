@@ -6,8 +6,8 @@ import {
 function ListTickets({ TicketsData }) {
   const DataTicket = TicketsData?.TicketData;
   return (
-    <main className="w-full">
-      <div className="">
+    <main className="w-[270px] md:w-full">
+      <div className="w-[270px] md:w-full overflow-hidden ">
         <h4 className="text-Slet text-2xl font-bold capitalize flex justify-between pr-5 items-end">
           Lista de Tickets
           <span className="text-end">{TicketsData?.TicketCount}</span>
@@ -16,7 +16,7 @@ function ListTickets({ TicketsData }) {
           Crear Nuevo Ticket
         </button>
       </div>
-      <section className="md:h-[280px] h-[340px] w-full overflow-y-auto custom-scrollbar py-3 md:pr-3 gap-3  mt-2  grid">
+      <section className="md:h-[280px] h-[340px] overflow-y-auto custom-scrollbar py-3 md:pr-3 gap-3  mt-2  grid">
         {DataTicket?.length === 0 ? (
           <h2 className="dark:text-white text-center py-5">Ticks no disponibles</h2>
         ) : (

@@ -13,7 +13,9 @@ import { IconFileDescription } from "@tabler/icons-react";
 import ContentUpload from "./Components/ContentUpload";
 import SwitchTogle from "../../components/assets/SwitchTogle";
 
-function ModalImage({  Src }) {
+import LoadingSkeleton from "./Components/Skeleton";
+
+function ModalImage({ Src }) {
   const [ActiveModal, setActiveModal] = useState(false);
   function HandleModalImage() {
     setActiveModal(!ActiveModal);
@@ -33,7 +35,11 @@ function ModalImage({  Src }) {
           onClick={() => setActiveModal(false)}
         >
           <section className="bg-DarkComponent p-6 rounded-lg max-w-[960px] max-h-[800px]">
-            <img src={Src} alt="" className=" object-cover block w-full h-full " />
+            <img
+              src={Src}
+              alt=""
+              className=" object-cover block w-full h-full "
+            />
           </section>
         </main>
       )}
@@ -43,8 +49,6 @@ function ModalImage({  Src }) {
 
 function PageDetalle() {
   const [WriteUser, setWriteUser] = useState("");
-
-
 
   const { id } = useParams();
   const navi = useNavigate();
@@ -100,17 +104,20 @@ function PageDetalle() {
       <form onSubmit={handleSubmit(HandleSubt)}>
         <main className="md:grid md:grid-cols-[550px_1fr] gap-3 overflow-x-hidden">
           <section className="h-full flex flex-col justify-end ">
-            <div className="  ">
+            <div className="">
               <header className="grid grid-cols-2 gap-4 mb-5">
-                <div>
+                <div className="flex flex-col">
                   <label className="dark:text-white">Categoria</label>
-                  <InputComponent
-                    register={register}
-                    className={
-                      "bg-DarkComponent py-1 px-2 indent-1 text-white focus:outline-none rounded-md"
-                    }
-                    name={"Categoria"}
-                  />
+                  <div className="relative">
+                
+                    <InputComponent
+                      register={register}
+                      className={
+                        "bg-DarkComponent py-1 px-2 indent-1 text-white focus:outline-none rounded-md"
+                      }
+                      name={"Categoria"}
+                    />
+                  </div>
                 </div>
                 <div className="grid">
                   <label className="dark:text-white">Autor</label>
@@ -153,9 +160,7 @@ function PageDetalle() {
                       className=" bg-DarkComponent rounded-lg  overflow-hidden  h-[160px] object-cover"
                     >
                       <ModalImage
-                       
                         Src={`${UrlDomain}/BdConocimiento/${item?.filename}`}
-                        
                       />
                     </div>
                   ))
