@@ -1,5 +1,6 @@
 import { IconClipboardText, IconSearch, IconX } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function Header({ setValue, Value }) {
   const navi = useNavigate()
@@ -32,3 +33,8 @@ function Header({ setValue, Value }) {
   );
 }
 export default Header;
+
+Header.propTypes = {
+  setValue: PropTypes.func,
+  Value: PropTypes.string,
+};

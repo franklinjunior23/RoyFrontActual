@@ -1,18 +1,18 @@
 import ReactQuill from "react-quill";
 
-function QuillComponent({ WriteUser, setWriteUser ,className}) {
+function QuillComponent({ WriteUser, setWriteUser ,className,IsReadOnly}) {
   const modules = {
     toolbar: [
-      [{ header: [1, 2, 3, 4, false] }],
-      [{ size: ["small", false, "large", "huge"] }],
+      [{ header: [ 2, false] }],
       ["bold", "italic", "underline", "strike"],
+      [{ align: [] }],
       ["blockquote", "code-block"],
-      [{ script: "sub" }, { script: "super" }],
       [{ indent: "-1" }, { indent: "+1" }],
       [{ list: "ordered" }, { list: "bullet" }],
       [{ color: [] }, { background: [] }],
-      [{ font: [] }],
-      [{ align: [] }],
+      ["link"],
+      ["clean"],
+
       
     ],
   };
@@ -20,7 +20,10 @@ function QuillComponent({ WriteUser, setWriteUser ,className}) {
   return (
     <>
       <ReactQuill
-        className={`max-w-[650px] overflow-y-auto  rounded-md bg-white h-[400px] custom-scrollbar ${className}`}
+        className={` dark:text-white border-black h-full CustomScroll  ${className}`}
+        placeholder="Escribe tu conocimiento"
+        readOnly={IsReadOnly ?? false}
+        scrollingContainer={"true"}
         theme="snow"
         modules={modules}
         value={WriteUser}
