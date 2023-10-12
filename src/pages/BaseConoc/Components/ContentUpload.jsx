@@ -1,7 +1,5 @@
 import { useState } from "react";
-import {
-  IconCloudDownload,
-} from "@tabler/icons-react";
+import { IconCloudDownload } from "@tabler/icons-react";
 import { DataImageUser } from "../../../store/UploadImages";
 
 function ContentUpload() {
@@ -63,34 +61,24 @@ function ContentUpload() {
     }
   }
 
-
   return (
-    <main className="grid gap-8 lg:grid-cols-2 lg:items-center">
+    <main className="grid gap-8 lg:grid px-4  lg:items-center mt-8 md:mt-0">
       <section>
         <div
-          className={`w-full lg:max-w-[450px] lg:py-8 border-black/70 border-4 dark:border-white/40 py-3 border-dashed rounded-md grid place-content-center text-center ${
-            dragging ? "bg-gray-200" : ""
-          }`}
+          className={`w-full  m-auto lg:py-4 bg-DarkComponent 
+           py-3 border-dashed rounded-md  text-center text-white ${
+             dragging ? "bg-gray-200" : ""
+           }`}
           onDragEnter={handleDragEnter}
           onDragLeave={handleDragLeave}
           onDragOver={handleDragOver}
           onDrop={handleDrop}
           onPaste={manejarPegado}
         >
-          <IconCloudDownload
-            size={70}
-            className="dark:text-white text-black mx-auto my-2"
-          />
-          <p className="dark:text-white text-black ">
+          <IconCloudDownload size={70} className="text-white  mx-auto mb-2" />
+          <p className="text-white  text-sm">
             Arrastra y suelta tus archivos aquí
           </p>
-          <p className="dark:text-white text-black ">o</p>
-          <label
-            htmlFor="file-input"
-            className="dark:text-white cursor-pointer  dark:bg-black bg-DarkComponent text-white rounded-md py-2"
-          >
-            Selecciona un archivo
-          </label>
           <input
             id="file-input"
             type="file"
@@ -102,17 +90,22 @@ function ContentUpload() {
           />
         </div>
       </section>
-      <section>
-        <h3 className="dark:text-white">Archivos Subidos : </h3>
-        <div className="h-[250px] lg:h-[300px] py-2 pr-4  flex flex-col gap-2 overflow-y-auto CustomScroll">
+      <section className=" w-full  md:p">
+        <div className="h-[250px] lg:h-[300px] py-2 pr-4 grid grid-cols-2  gap-2 overflow-y-auto CustomScroll">
           {BaseConocimiento?.length === 0 ? (
-            <h3 className="dark:text-white text-center py-5">
-              No hay archivos subidos
-            </h3>
+           
+              <img
+                src="/Images/EmptyImage.webp"
+                alt=""
+                className=" ml-24 object-cover "
+                width={300}
+                height={300}
+              />
+          
           ) : (
             ImageScreen?.map((item, index) => (
               <div
-                className=" items-center bg-black/40 dark:text-white py-2 rounded-md px-2"
+                className=" items-center h-[190px] bg-DarkComponent dark:text-white py-2 rounded-md px-2"
                 key={index}
               >
                 <div>
@@ -121,11 +114,9 @@ function ContentUpload() {
                     alt={`Imagen Pegada ${index}`}
                     style={{ objectFit: "cover" }}
                     className="w-full block h-[130px] "
-                    
-                    height={100}
                   />
                   <button
-                  className="bg-red-500/80 text-white rounded-md px-2 py-1 mt-2 text-sm"
+                    className="bg-red-500/80 text-white rounded-md px-2 py-1 mt-2 text-sm"
                     onClick={() => {
                       DeleteUnic(index);
                       DeleteUnicImage(index);
@@ -135,7 +126,6 @@ function ContentUpload() {
                   </button>
                 </div>
                 <div className="grid grid-cols-[40px_80%_40px] items-center gap-2 	"></div>
-                
               </div>
             ))
           )}

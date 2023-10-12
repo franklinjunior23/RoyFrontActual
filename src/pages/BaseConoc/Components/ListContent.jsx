@@ -28,16 +28,16 @@ function ListContent() {
   if (isLoading) return <LoadingPage />;
   if (isError) return <Page404 />;
 
-  console.log(data);
+  
   return (
     <main className="mt-8">
-      <section className="flex gap-3 dark:text-white font-semibold">
-        <span className="dark:bg-DarkComponent px-3 py-1 rounded-md">
+      <section className="flex gap-3 dark:text-white">
+        <span className="bg-DarkComponent px-3 py-1 rounded-md text-white">
           Total : {data.details.cantidad}{" "}
         </span>
-        <span className="dark:bg-DarkComponent px-3 py-1 rounded-md ">
+        {/* <span className="bg-DarkComponent text-white px-3 py-1 rounded-md ">
           Creados hoy : {data.details.create}
-        </span>
+        </span> */}
       </section>
       <section className=" grid mt-5 md:h-[500px] h-[400px] custom-scrollbar overflow-y-auto grid-cols-2 grid-rows-none md:flex md:flex-wrap gap-5 md:gap-x-4  md:gap-y-6 justify-center lg:justify-normal pb-5">
         {data.data.map((item, index) => (
@@ -65,11 +65,11 @@ const Item = ({ Titulo, Categoria, createdAt, id }) => {
       <NavLink
         to={id}
         className={
-          "md:w-[300px] md:h-[135px] h-full dark:bg-DarkComponent rounded-xl overflow-hidden md:flex shadow-[1px_1px_10px_-4px] grid cursor-pointer"
+          "md:w-[300px] md:h-[135px] h-full dark:bg-DarkComponent rounded-xl overflow-hidden md:flex shadow-[1px_3px_10px_-6px] grid cursor-pointer"
         }
       >
         <div className="w-full  p-4 flex flex-col justify-between capitalize pointer-events-none">
-          <h2 className=" break-all  md:hyphens-auto md:text-clip  font-bold  dark:text-white  ">
+          <h2 className=" break-all  md:hyphens-auto md:text-clip  font-semibold dark:text-white  ">
             {Titulo}
           </h2>
           <div className="w-full grid gap-1">

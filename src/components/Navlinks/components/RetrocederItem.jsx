@@ -1,9 +1,8 @@
 import { IconCaretLeft } from "@tabler/icons-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function RetrocederItem() {
-  const { pathname } = useLocation();
   const navi = useNavigate();
 
 
@@ -14,6 +13,7 @@ function RetrocederItem() {
       </div>
       <div>
         <button
+        type="button"
           className="pl-2 pr-4 text-white text-base rounded-md lg:text-lg bg-black py-1 flex items-center gap-1"
           onClick={() => navi(-1)}
         >

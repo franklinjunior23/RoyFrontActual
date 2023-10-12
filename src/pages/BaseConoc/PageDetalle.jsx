@@ -15,7 +15,7 @@ import SwitchTogle from "../../components/assets/SwitchTogle";
 
 import LoadingSkeleton from "./Components/Skeleton";
 
-function ModalImage({ Src }) {
+export function ModalImage({ Src }) {
   const [ActiveModal, setActiveModal] = useState(false);
   function HandleModalImage() {
     setActiveModal(!ActiveModal);

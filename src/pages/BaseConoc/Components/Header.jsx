@@ -1,9 +1,9 @@
 import { IconClipboardText, IconSearch, IconX } from "@tabler/icons-react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function Header({ setValue, Value }) {
-  const navi = useNavigate()
+
   return (
     <header className="grid ">
       <div>
@@ -25,9 +25,9 @@ function Header({ setValue, Value }) {
            <IconSearch  />
          </div>
         </div>
-        <button onClick={()=>navi(`${-1,'Create'}`)} className="bg-black mt-4 md:mt-0 px-2  py-2 lg:py-0  text-white rounded-md flex items-center gap-1">
+        <Link to={"Create"}   className="bg-black mt-4 md:mt-0 px-2  py-2 lg:py-0  text-white rounded-md flex items-center gap-1">
           Crear <IconClipboardText />
-        </button>
+        </Link>
       </nav>
     </header>
   );

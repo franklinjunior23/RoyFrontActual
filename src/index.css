@@ -33,28 +33,50 @@
   width: 50px;
   height: 22px;
 }
+
+/**
+ * 
+ * 
+ * This CSS file contains custom styles for the Quill text editor in a React application.
+ * 
+ * The styles include:
+ * - Removing the border from the toolbar and container
+ * - Setting the background color of the toolbar and container to white
+ * - Adding a border radius of 7px to the toolbar
+ * - Setting the background color of the formats button on hover to #aaaaaa
+ * - Adding a border radius of 3px to the formats button on hover
+ * - Setting the color of the formats button on hover to white
+ * - Adding a scrollbar to the editor with a width of 10px and a background color of #f1f1f1
+ * - Adding a thumb to the scrollbar with a background color of #888 and border radius of 5px
+ * - Adding a track to the scrollbar with a background color of #f1f1f1 and border radius of 5px
+ */
+/* Custom Css Qrill to react */
+
+
 .ql-toolbar{
-  border: none !important;
   background-color: white !important;
    border-radius:7px ; 
-
-
+   border: 1px solid gray !important;
 }
 .ql-container{
   background-color: white !important;
   margin-top: 12px !important;
   border: none !important;
+  border-radius: 8px;
+
+  
 }
 .ql-formats>button:hover{
     background-color: #aaaaaa !important;
     border-radius: 3px;
     color:white;
     transition: all ease-in 0.2s;
-   
   }
 
 .ql-editor{
 
+
+ 
 }
 .ql-editor::-webkit-scrollbar {
   width: 10px; /* Ancho del scrollbar en pantallas grandes */
@@ -68,6 +90,9 @@
   background-color: #f1f1f1; /* Color del fondo del scrollbar en pantallas grandes */
   border-radius: 5px; /* Bordes redondeados para el fondo del scrollbar en pantallas grandes */
 }
+
+
+/* Fin the custom Qrill to react */
 
 /* Hide default HTML checkbox */
 .switch input {
