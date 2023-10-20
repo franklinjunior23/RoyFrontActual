@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function SwitchTogle({name,register}) {
   return (
     <>
@@ -9,3 +11,8 @@ function SwitchTogle({name,register}) {
   );
 }
 export default SwitchTogle;
+
+SwitchTogle.propTypes = {
+  name: PropTypes.string.isRequired,
+  register: PropTypes.func.isRequired,
+};

@@ -4,20 +4,14 @@ import Home from "../pages/Home/Home";
 import EmpresaDet from "../pages/empresa/EmpresaDet";
 import CategoryS from "../pages/empresa/CategoryS";
 import UserPage from "../components/Section/UserPage";
-import PageUsusuario from "../components/User/PageUsusuario";
-import PageInventario from "../pages/Inventario/PageInventario";
-import CategoryInvent from "../pages/Inventario/Sections/CategoryInvent";
-import ItemSection from "../components/Section/ItemSection";
 import UserForm from "../components/User/components/UserForm";
-import IdDispositivo from "../pages/Inventario/IdDispositivo";
 import CreateDisp from "../pages/Inventario/Forms/CreateDisp";
 import GeneralSect from "../pages/Inventario/Sections/GeneralSect";
 import EmpresaPage from "../pages/empresa/EmpresaPage";
 import PageTickets from "../pages/Tickets/PageTickets";
 import CreateTicket from "../pages/Tickets/CreateTicket";
-import PageBC from "../pages/BaseConoc/PageBC";
-import PageIdBC from "../pages/BaseConoc/PageIdBC";
-import CreatePageBC from "../pages/BaseConoc/CreatePageBC";
+import { PageDetalle,PageBC ,PageIdBC,CreatePageBC, PageBaseConocimiento} from "../pages/BaseConoc";
+import PageCreate from "../pages/BaseConoc/PageCreate";
 
 function SoporteRoutes() {
   return (
@@ -56,10 +50,12 @@ function SoporteRoutes() {
         <Route path="Ticket" element={<PageTickets />} />
         <Route path="Ticket/create" element={<CreateTicket />} />
         <Route path="Ticket/:id" element={<h1>Ticket por Id</h1>} />
-        <Route path="BaseConocimiento" element={<PageBC />}>
-          <Route path="create" element={<CreatePageBC />} />
-          <Route path=":id" element={<PageIdBC />} />
-        </Route>
+        <Route path="BaseConocimiento" element={<PageBaseConocimiento />} />
+        <Route path="BaseConocimiento/create" element={<PageCreate/>} />
+        <Route path="BaseConocimiento/:id" element={<PageIdBC />} />
+        <Route path="BaseConocimiento/:id/detalle" element={<PageDetalle/>} />
+
+
         <Route path="Configuracion" element={<h1>Configuracion</h1>} />
       </Route>
     </Routes>

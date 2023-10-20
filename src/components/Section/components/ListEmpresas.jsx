@@ -32,8 +32,10 @@ function ListEmpresas() {
         setSpaceBetween(20); // Cambia a lo que quieras para dispositivos con ancho entre 260px y 350px
       } else if (windowWidth <= 474) {
         setSpaceBetween(100); // Cambia a lo que quieras para dispositivos con ancho entre 350px y 474px
-      } else {
-        setSpaceBetween(200); // Valor por defecto para pantallas más grandes
+      } else if (windowWidth <= 1600) {
+        setSpaceBetween(260); // Valor por defecto para pantallas más grandes
+      }else{
+        setSpaceBetween(120);
       }
     };
 

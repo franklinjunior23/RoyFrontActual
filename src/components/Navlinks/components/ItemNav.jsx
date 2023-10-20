@@ -1,22 +1,14 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+
 import { NavLink } from "react-router-dom";
 
 function ItemNav({ datos }) {
   const { name, url, icon } = datos;
-  const [activeNav, setActiveNav] = useState(false);
 
-  const handleNavLinkClick = (isActive) => {
-    if (isActive) {
-      setActiveNav(true);
-    } else {
-      setActiveNav(false);
-    }
-  };
 
   return (
     <div
-      className={`  transition-all ease-in-out hover:duration-300  pl-2 flex gap-5`}
+      className={`transition-all ease-in-out hover:duration-300  flex gap-5`}
     >
       <NavLink
         to={url}

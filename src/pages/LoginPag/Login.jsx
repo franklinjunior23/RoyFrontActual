@@ -125,11 +125,7 @@ function Login() {
                       id=""
                       className="focus:outline-none indent-2  bg-transparent"
                     />
-                    {errors.contraseña && (
-                      <span className="text-xs text-red-500 ">
-                        {errors.contraseña.message}
-                      </span>
-                    )}
+                    
                     {showPassword ? (
                        <span onClick={handlePasswordVisibility} className="mr-2 cursor-pointer">
                        <IconEyeOff />
@@ -141,9 +137,14 @@ function Login() {
                       </span>
                     )}
                   </div>
+                  {errors.contraseña && (
+                      <span className="text-xs text-red-500 ">
+                        {errors.contraseña.message}
+                      </span>
+                    )}
                 </section>
                 <section className=" ">
-                  <button className="text-center w-full bg-black rounded-xl mt-2 lg:mt-5 text-white md:mt-3 lg:mb-4 py-3 tex-white  ">
+                  <button className="text-center w-full bg-black rounded-xl mt-2 lg:mt-4 text-white md:mt-3 lg:mb-4 py-3 tex-white  ">
                     Iniciar Sesion
                   </button>
                 </section>

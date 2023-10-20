@@ -1,26 +1,31 @@
 import ReactQuill from "react-quill";
+import PropTypes from "prop-types";
 
-function QuillComponent({ WriteUser, setWriteUser ,className}) {
+
+function QuillComponent({ WriteUser, setWriteUser, className, IsReadOnly }) {
   const modules = {
     toolbar: [
-      [{ header: [1, 2, 3, 4, false] }],
-      [{ size: ["small", false, "large", "huge"] }],
-      ["bold", "italic", "underline", "strike"],
+      [{ header: [2, false] }],
+      ["bold", "italic", "underline"],
+      [{ align: [] }],
       ["blockquote", "code-block"],
-      [{ script: "sub" }, { script: "super" }],
       [{ indent: "-1" }, { indent: "+1" }],
       [{ list: "ordered" }, { list: "bullet" }],
       [{ color: [] }, { background: [] }],
-      [{ font: [] }],
-      [{ align: [] }],
-      
+      ["link"],
+      ["clean"],
     ],
   };
-
   return (
     <>
       <ReactQuill
-        className={`max-w-[650px] overflow-y-auto  rounded-md bg-white h-[400px] custom-scrollbar ${className}`}
+        className={`  text-black border-black h-full CustomScroll  max-w-full   ${className}`}
+        placeholder="Escribe tu conocimiento"
+        readOnly={IsReadOnly ?? false}
+        scrollingContainer={"true"}
+        scrollingContainerStyle={"overflow-y: scroll"}
+        preserveWhitespace={true}
+
         theme="snow"
         modules={modules}
         value={WriteUser}
@@ -30,3 +35,10 @@ function QuillComponent({ WriteUser, setWriteUser ,className}) {
   );
 }
 export default QuillComponent;
+
+QuillComponent.propTypes = {
+  WriteUser: PropTypes.string,
+  setWriteUser: PropTypes.func,
+  className: PropTypes.string,
+  IsReadOnly: PropTypes.bool,
+};

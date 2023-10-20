@@ -86,6 +86,32 @@ Malograda
             )}
           />
 
+ {/* <div className="f  flex justify-between items-center bg-black/40 text-white py-2 rounded-md px-2">
+            <div className="flex items-center gap-2">
+              <IconFileDescription size={36} /> <h3>Nombre del archivo</h3>
+            </div>
+            <IconX />
+          </div>
+          <div className="f  flex justify-between items-center bg-black/40 dark:text-white py-2 rounded-md px-2">
+            <div className="flex items-center gap-2">
+              <IconPhoto size={36} /> <h3>Nombre del archivo</h3>
+            </div>
+            <IconX />
+          </div>
+          <div className="f  flex justify-between items-center bg-black/40 dark:text-white py-2 rounded-md px-2">
+            <div className="flex items-center gap-2">
+              <IconPhoto size={36} /> <h3>Nombre del archivo</h3>
+            </div>
+            <IconX />
+          </div>
+          <div className="f  flex justify-between items-center bg-black/40 dark:text-white py-2 rounded-md px-2">
+            <div className="flex items-center gap-2">
+              <IconPhoto size={36} /> <h3>Nombre del archivo</h3>
+            </div>
+            <IconX />
+          </div> */}
+
+
 Version
 0.9 //
 En la versión 0.9 de nuestro proyecto, se introdujo la sección Home, que muestra una lista de empresas. Para lograr esto, se elaboraron los items necesarios para mostrar la información de cada empresa, como su nombre, descripción y logotipo. También se agregaron funciones para crear nuevas empresas y para que los usuarios inicien sesión en la aplicación.
@@ -96,3 +122,4 @@ En resumen, la versión 0.9 de nuestro proyecto incluye la sección Home, que mu
 
 
 1.1
+Se agrego una simple agregar un archivo a la base de conocimiento en la cual se podia registrar una accion 

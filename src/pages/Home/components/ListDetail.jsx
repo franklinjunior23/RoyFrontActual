@@ -3,15 +3,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import InfoVersion from "./InfoVersion";
 
 function ListDetail({ DetailData }) {
-
   return (
     <main className="max-w-full">
       <section>
         <h4 className="text-Slet text-2xl font-bold capitalize">Estadistica</h4>
       </section>
-      <section className="w-[320px]  lg:w-full cursor-pointer">
+      <section className="w-[325px] m-auto  md:m-0 lg:w-full cursor-pointer">
         <Swiper
-          spaceBetween={10}
+          spaceBetween={25}
           breakpoints={{
             // Cuando el ancho de la pantalla sea menor o igual a 640px, mostrar 1 elemento
             260: {
@@ -39,7 +38,7 @@ function ListDetail({ DetailData }) {
           </SwiperSlide>
         </Swiper>
       </section>
-      <InfoVersion/>
+      <InfoVersion />
     </main>
   );
 }
