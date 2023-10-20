@@ -58,12 +58,12 @@ function PageCreate() {
     if (ExistTitleEquals(datos.Titulo, DataBaseConocimiento)) {
       toast.error("El titulo tiene que ser diferente a los demas articulos", {
         duration: 5000,
-        action:{
-          label:"Cerrar",
-          onClick:()=>{
+        action: {
+          label: "Cerrar",
+          onClick: () => {
             toast.dismiss();
-          }
-        }
+          },
+        },
       });
       return;
     }

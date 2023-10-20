@@ -59,7 +59,7 @@ const LoadingPage = () => {
   );
 };
 
-const Item = ({ Titulo, Categoria, createdAt, id }) => {
+export const Item = ({ Titulo, Categoria, createdAt, id }) => {
   return (
     <div className="">
       <NavLink

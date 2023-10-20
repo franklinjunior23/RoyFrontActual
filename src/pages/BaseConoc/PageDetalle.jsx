@@ -20,8 +20,11 @@ export function ModalImage({ Src }) {
   function HandleModalImage() {
     setActiveModal(!ActiveModal);
   }
+
+  
   return (
     <>
+    
       <img
         src={Src}
         alt={"no se encontró la imagen"}

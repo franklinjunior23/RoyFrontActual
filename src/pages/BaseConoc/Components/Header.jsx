@@ -7,8 +7,8 @@ function Header({ setValue, Value }) {
   return (
     <header className="grid ">
       <div>
-        <h2 className="dark:text-white text-xl pb-2 border-b mb-5">
-          Base de Conocimiento /
+        <h2 className="dark:text-white  pb-2  mb-5">
+          Base de Conocimiento / Listas
         </h2>
       </div>
       <nav className="md:justify-self-end md:flex md:gap-2 flex-col md:flex-row md:mt-2">
