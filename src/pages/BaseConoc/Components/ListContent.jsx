@@ -39,7 +39,7 @@ function ListContent() {
         </span> */}
       </section>
       <section
-        className="grid mt-5 md:h-[500px] bg-slate-300 h-[400px]  custom-scrollbar overflow-y-auto grid-cols-2  
+        className="grid mt-5 md:h-[500px]  h-[400px]  custom-scrollbar overflow-y-auto grid-cols-2  
         md:flex md:flex-wrap gap-5 justify-center lg:justify-normal md:grid-rows-3  pb-5"
       >
         {data.data.map((item, index) => (
