@@ -28,7 +28,6 @@ function ListContent() {
   if (isLoading) return <LoadingPage />;
   if (isError) return <Page404 />;
 
-  
   return (
     <main className="mt-8">
       <section className="flex gap-3 dark:text-white">
@@ -39,7 +38,10 @@ function ListContent() {
           Creados hoy : {data.details.create}
         </span> */}
       </section>
-      <section className=" grid mt-5 md:h-[500px] h-[400px] custom-scrollbar overflow-y-auto grid-cols-2 grid-rows-none md:flex md:flex-wrap gap-5 md:gap-x-4  md:gap-y-6 justify-center lg:justify-normal pb-5">
+      <section
+        className="grid mt-5 md:h-[500px] bg-slate-300 h-[400px]  custom-scrollbar overflow-y-auto grid-cols-2  
+        md:flex md:flex-wrap gap-5 justify-center lg:justify-normal md:grid-rows-3  pb-5"
+      >
         {data.data.map((item, index) => (
           <Item {...item} key={index} />
         ))}
@@ -61,7 +63,7 @@ const LoadingPage = () => {
 
 export const Item = ({ Titulo, Categoria, createdAt, id }) => {
   return (
-    <div className="">
+    <div className="lg:h-6">
       <NavLink
         to={id}
         className={
