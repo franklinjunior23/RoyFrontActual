@@ -70,7 +70,6 @@ function PageCreate() {
     mutate(datos);
     console.log(datos);
   }
-
   function onCancel() {
     navi(-1, { replace: true });
   }
@@ -79,7 +78,7 @@ function PageCreate() {
     <>
       <HeadPage site={"Create"} />
       <form onSubmit={handleSubmit(HandleCreate)}>
-        <main className="md:grid md:grid-cols-2 overflow-hidden gap-4">
+        <main className="md:grid  overflow-hidden ">
           <section className="h-[650px] overflow-hidden   grid">
             <main>
               <main className="grid gap-3 mb-3">
@@ -104,7 +103,7 @@ function PageCreate() {
                   {formattedDateTime}
                 </span>
               </div>
-              <div className="h-[350px] lg:w-[410px] md:w-[320px] w-[320px] m-auto lg:m-0 ">
+              <div className="h-[350px]  lg:w-full md:w-full w-[320px] m-auto lg:m-0 ">
                 <QuillComponent
                   WriteUser={WriteUser}
                   setWriteUser={setWriteUser}
@@ -114,7 +113,7 @@ function PageCreate() {
           </section>
           <section>
             <ContentUpload />
-            <div className="grid grid-cols-2 gap-3 mt-6">
+            <div className="grid grid-cols-2 gap-3 mt-5">
               <button
                 className="bg-black/80 text-white py-2 rounded-md"
                 type="submit"

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function Header({ setValue, Value }) {
-
   return (
     <header className="grid ">
       <div>
@@ -20,12 +19,22 @@ function Header({ setValue, Value }) {
             value={Value}
             onChange={(e) => setValue(e.target.value)}
           />
-         <div className="flex items-center gap-1 dark:text-white">
-           {Value !== "" && <IconX  strokeWidth={2} size={20} onClick={()=>setValue('')} className="cursor-pointer" />}
-           <IconSearch  />
-         </div>
+          <div className="flex items-center gap-1 dark:text-white">
+            {Value !== "" && (
+              <IconX
+                strokeWidth={2}
+                size={20}
+                onClick={() => setValue("")}
+                className="cursor-pointer"
+              />
+            )}
+            <IconSearch />
+          </div>
         </div>
-        <Link to={"Create"}   className="bg-black mt-4 md:mt-0 px-2  py-2 lg:py-0  text-white rounded-md flex items-center gap-1">
+        <Link
+          to={"Create"}
+          className="bg-black mt-4 md:mt-0 px-2  w-[100px] justify-center  py-2 lg:py-0  text-white rounded-md flex items-center gap-1"
+        >
           Crear <IconClipboardText />
         </Link>
       </nav>

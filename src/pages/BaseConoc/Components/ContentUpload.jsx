@@ -62,7 +62,7 @@ function ContentUpload() {
   }
 
   return (
-    <main className="grid gap-8 lg:grid px-4  lg:items-center mt-8 md:mt-0">
+    <main className="grid gap-8 lg:grid lg:grid-cols-2 px-4  lg:items-center mt-8 md:mt-0">
       <section>
         <div
           className={`w-full  m-auto lg:py-4 bg-DarkComponent 
