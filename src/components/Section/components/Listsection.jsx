@@ -4,7 +4,7 @@ import ModalSection from "./ModalSection";
 import { IconEmpresa } from "../../../assets/DataDefault";
 import PropTypes from "prop-types";
 // eslint-disable-next-line react/prop-types
-function Listsection({ datos, color }) {
+function Listsection({ datos, color,LinkDate }) {
   const { nombre } = datos;
   const IconEdit = () => {
     return (
@@ -40,7 +40,7 @@ function Listsection({ datos, color }) {
       className={`px-7 py-9 h-[250px] w-[250px] rounded-3xl relative `} 
       style={{ background:color }}
     >
-      <Link to={nombre}>
+      <Link to={LinkDate ? `/Dashboard/Home/${nombre}` :nombre}>
         <span>
           <IconEmpresa />
         </span>
@@ -48,7 +48,7 @@ function Listsection({ datos, color }) {
          className="mt-4 text-white font-extrabold text-xl"
           >{nombre}</h4>
       </Link>
-      <div className="absolute right-4 top-8 z-20 px-4" onClick={HandleActiveMod}>
+      <div className="absolute right-4 top-8 z-20 px-4 cursor-pointer" onClick={HandleActiveMod}>
         <IconEdit />
       </div>
       {
@@ -66,4 +66,5 @@ export default Listsection;
       // add any other required props here
     }).isRequired,
     color: PropTypes.string.isRequired,
+    LinkDate: PropTypes.bool,
   };

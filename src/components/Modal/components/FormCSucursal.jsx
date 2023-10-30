@@ -8,7 +8,7 @@ function FormCSucursal({handle}) {
     const {handleSubmit ,register} =useForm()
     const {nombreE} = useParams()
     const queryClient = useQueryClient()
-    const QueryConsulta = queryClient.getQueryData(['Empresas'])?.filter(item => item.nombre ==nombreE)
+    const QueryConsulta = queryClient.getQueryData(['Empresas']).data?.filter(item => item.nombre ==nombreE)
     const filteredIds = QueryConsulta[0]?.id
     const MutateCreate = useMutation({
         mutationFn:CreateSucursalByEmpresa,
