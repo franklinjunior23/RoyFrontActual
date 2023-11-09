@@ -5,6 +5,8 @@ import ListTickets from "./Components/ListTickets";
 import { useQuery } from "@tanstack/react-query";
 import { GetsTicketsInfo } from "../../services/ApiGets";
 import { IconTicket } from "@tabler/icons-react";
+import TicketItem from "../Home/components/TicketItem";
+import ChartBar from "../../components/Charts/ChartBar";
 
 function PageTickets() {
   const [TicketSearch, setTicketSearch] = useState("");
@@ -29,7 +31,6 @@ function PageTickets() {
           color={"text-blue-600"}
           data={data.Details?.cantidad}
         />
-
         <ContentInfo
           title={"Ticket Abiertos"}
           className={"md:flex gap-8  items-center"}
@@ -42,6 +43,18 @@ function PageTickets() {
           color={"text-red-500"}
           data={data.Details?.cerrado}
         />
+      </main>
+      <main className="grid  md:grid-cols-2 mt-7">
+        <section className="h-[300px] overflow-y-auto custom-scrollbar pr-4 grid gap-4 py-4 md:py-1">
+          {
+            data?.tickets.map((ticket,index) => (
+              <TicketItem index={index}  key={ticket.id} {...ticket} />
+            ))
+          }
+        </section>
+        <section>
+        
+        </section>
       </main>
       {/* <main className="mt-10 pb-10">
         <section className="md:grid md:grid-cols-[300px_1fr] md:gap-7 md:item ">
