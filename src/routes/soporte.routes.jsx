@@ -10,7 +10,7 @@ import GeneralSect from "../pages/Inventario/Sections/GeneralSect";
 import EmpresaPage from "../pages/empresa/EmpresaPage";
 import PageTickets from "../pages/Tickets/PageTickets";
 import CreateTicket from "../pages/Tickets/CreateTicket";
-import { PageDetalle,PageBC ,PageIdBC,CreatePageBC, PageBaseConocimiento} from "../pages/BaseConoc";
+import { PageDetalle ,PageIdBC, PageBaseConocimiento} from "../pages/BaseConoc";
 import PageCreate from "../pages/BaseConoc/PageCreate";
 
 function SoporteRoutes() {
