@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { Drawer } from "vaul";
 import { IconX } from "@tabler/icons-react";
@@ -63,4 +63,27 @@ ModalTotal.propTypes = {
   className: PropTypes.string.isRequired,
   icon: PropTypes.element.isRequired,
   Content: PropTypes.element.isRequired,
+  titleModal: PropTypes.string.isRequired,
 };
+
+function ButtonForm(FunctionEvente) {
+  return (
+    <>
+      <button
+        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+        type="submit"
+        
+        onClick={FunctionEvente}
+      >
+        Enviar
+      </button>
+      <button
+      className="bg-blue-500/400 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+      type="submit"
+      onClick={FunctionEvente}
+      >
+        Cancelar
+      </button>
+    </>
+  );
+}

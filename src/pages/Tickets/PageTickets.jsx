@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Header from "./Components/Header";
-import InfoTicket from "./Components/InfoTicket";
-import ListTickets from "./Components/ListTickets";
 import { useQuery } from "@tanstack/react-query";
 import { GetsTicketsInfo } from "../../services/ApiGets";
 import { IconTicket } from "@tabler/icons-react";
 import TicketItem from "../Home/components/TicketItem";
-import ChartBar from "../../components/Charts/ChartBar";
+import { Drawer } from "vaul";
+import ModalTotal from "../../components/Modal/ModalTotal";
+
 
 function PageTickets() {
   const [TicketSearch, setTicketSearch] = useState("");
@@ -45,15 +45,22 @@ function PageTickets() {
         />
       </main>
       <main className="grid  md:grid-cols-2 mt-7">
-        <section className="h-[300px] overflow-y-auto custom-scrollbar pr-4 grid gap-4 py-4 md:py-1">
-          {
-            data?.tickets.map((ticket,index) => (
-              <TicketItem index={index}  key={ticket.id} {...ticket} />
-            ))
-          }
-        </section>
+        <article>
+          <h2 className="dark:text-white text-lg">Tickets Generados</h2>
+          <section className="h-[300px] overflow-y-auto custom-scrollbar pr-4 grid  gap-3 py-4 md:py-1">
+            {
+              data?.tickets.map((ticket,index) => (
+                <TicketItem index={index}  key={ticket.id} {...ticket} />
+              ))
+            }
+          </section>
+        </article>
         <section>
         
+        </section>
+        <section>
+       
+       
         </section>
       </main>
       {/* <main className="mt-10 pb-10">
