@@ -1,13 +1,31 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import QuillComponent from "../../../components/ReactQuill/QuillComponent";
-import { useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { filtrarDatos } from "../../../utils/FiltUsersDisp";
+import axiosInstance from "../../../services/ConfigApi";
 
 function FormCreate() {
   const queryClient = useQueryClient();
   const { Empresas: DataEmpresas } = queryClient.getQueryData(["TicketSearch"]);
-  const { handleSubmit, register, watch } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    watch,
+  } = useForm();
   const [QuillContent, setQuillContent] = useState("");
+
+  const { mutate } = useMutation({
+    mutationFn: async(datos)=>{
+      const {data} = await axiosInstance.post("tickets",datos)
+      return data
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries("TicketSearch");
+      console.log(data)
+    },
+  });
   const CategoryTicket = [
     { label: "Primer Nivel", value: "Primer_Nivel" },
     { label: "Segundo Nivel", value: "Segundo_Nivel" },
@@ -23,11 +41,15 @@ function FormCreate() {
     { label: "Usuario", value: "Users" },
   ];
 
-  function HandleCreateTicket(data) {
-    console.log({ ...data, Descripcion: QuillContent });
-  }
   const EmpresaGet = watch("Empresa");
-  console.log(DataEmpresas);
+  const SucursalGet = watch("Sucursal");
+  const TypeService = watch("TipoD");
+
+  function HandleCreateTicket(data) {
+    mutate({ ...data, Descripcion: QuillContent })
+   
+  }
+
   return (
     <main className="overflow-y-auto md:overflow-auto h-[500px] md:h-full py-5">
       <form onSubmit={handleSubmit(HandleCreateTicket)}>
@@ -39,6 +61,7 @@ function FormCreate() {
               label={"Asunto del Problema"}
               placeholder={"Titulo del ticket ..."}
               className={"col-span-2"}
+              errors={errors}
             />
             <SelectForm
               label={"Categoria"}
@@ -61,7 +84,7 @@ function FormCreate() {
               placeholder={"Escribe la descripcion del problema"}
             />
           </article>
-          <article className="mt-8 md:mt-0 grid grid-cols-2 gap-4">
+          <article className="mt-8 md:mt-0 grid grid-cols-2 gap-4 grid-rows-4">
             <SelectForm
               label={"Empresa"}
               name={"Empresa"}
@@ -84,6 +107,20 @@ function FormCreate() {
               placeholder={"Seleccione"}
               options={TypeTicket}
             />
+            {TypeService && (
+              <GetDispositivoSelect
+                label={"Dispositivo"}
+                placeholder={"Seleccionar Dispositivo"}
+                name={"IdItemTick"}
+                register={register}
+                options={DataEmpresas}
+                watchEs={EmpresaGet}
+                EmpresaGet={EmpresaGet}
+                SucursalGet={SucursalGet}
+                TypeService={TypeService}
+                DataEmpresas={DataEmpresas}
+              />
+            )}
             <footer>
               <button type="submit">Comprobar</button>
             </footer>
@@ -97,7 +134,15 @@ function FormCreate() {
 export default FormCreate;
 
 // Compare this snippet from src/pages/Tickets/Components/ContentInfo.jsx:
-function InputForm({ register, name, label, type, placeholder, className }) {
+function InputForm({
+  register,
+  name,
+  label,
+  type,
+  placeholder,
+  className,
+  errors,
+}) {
   return (
     <section className={`flex flex-col gap-2 ${className}`}>
       <label htmlFor={name} className="dark:text-white">
@@ -107,9 +152,19 @@ function InputForm({ register, name, label, type, placeholder, className }) {
         type={type ?? "text"}
         id={name}
         placeholder={placeholder}
-        className="bg-transparent border-black dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/20 dark:border-white/60"
-        {...register(name)}
+        className="bg-transparent text-sm border-black dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/20 dark:border-white/60"
+        {...register(`${name}`, {
+          required: {
+            value: true,
+            message: "Campo requerido",
+          },
+        })}
       />
+      {errors && errors[name] && (
+        <span className="text-red-400 text-xs">
+          {errors[name].message ?? "Error desconocido"}
+        </span>
+      )}
     </section>
   );
 }
@@ -130,7 +185,7 @@ function SelectForm({
       <select
         id={name}
         placeholder={placeholder}
-        className="bg-transparent border-black dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/20 dark:border-white/60"
+        className="bg-transparent text-sm border-black dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/20 dark:border-white/60"
         {...register(name)}
       >
         <option selected>{placeholder}</option>
@@ -165,7 +220,7 @@ function SelectSucursal({
       <select
         id={name}
         placeholder={placeholder}
-        className="bg-transparent border-black dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/20 dark:border-white/60"
+        className="bg-transparent border-black text-sm dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/20 dark:border-white/60"
         {...register(name)}
       >
         <option selected>{placeholder}</option>
@@ -200,6 +255,10 @@ function GetDispositivoSelect({
   className,
   options,
   watchEs,
+  EmpresaGet,
+  SucursalGet,
+  TypeService,
+  DataEmpresas,
 }) {
   return (
     <section className={`flex flex-col gap-2 ${className}`}>
@@ -209,25 +268,25 @@ function GetDispositivoSelect({
       <select
         id={name}
         placeholder={placeholder}
-        className="bg-transparent border-black dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/20 dark:border-white/60"
+        className="bg-transparent border-black text-sm dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/20 dark:border-white/60"
         {...register(name)}
       >
         <option selected>{placeholder}</option>
-        {options
-          ?.find((empresa) => empresa.nombre === watchEs)
-          ?.Sucursales.map((sucursal) => (
+        {filtrarDatos(EmpresaGet, SucursalGet, TypeService, DataEmpresas)?.map(
+          (item) => (
             <option
-              key={sucursal.id}
-              value={sucursal.nombre}
+              key={item.id}
+              value={item.id}
               className="md:text-black bg-transparent"
             >
-              {sucursal.nombre}
+              {item.nombre} {item.apellido ?? ""}
             </option>
-          )) ?? (
+          )
+        ) ?? (
           <option key={1111}>
-            {options?.find((empresa) => empresa.nombre === watchEs)?.Sucursales
-              .length === 0
-              ? "No Tiene Sucursales Creadas"
+            {filtrarDatos(EmpresaGet, SucursalGet, TypeService, DataEmpresas)
+              ?.length === 0
+              ? "No Tiene Dispositivos Creadas"
               : "Selecciona una Empresa"}
           </option>
         )}

@@ -48,7 +48,7 @@ function ModalTotal({ title, className, icon, Content ,titleModal }) {
          
           <article className="dark:bg-DarkComponent py-8 px-10 rounded-lg w-[850px] bg-white shadow-lg relative">
           <div className="absolute top-4 right-4"> <IconX className="dark:text-white cursor-pointer " size={30} onClick={handleActive}/> </div>
-            <h3 className="text-center uppercase text-2xl  mb-8 dark:text-white">{titleModal}</h3>
+            <h3 className="text-center uppercase text-2xl  mb-2 dark:text-white">{titleModal}</h3>
             {Content}
           </article>
         </main>

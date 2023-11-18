@@ -5,9 +5,9 @@ import ModalTotal from "../../../components/Modal/ModalTotal";
 import FormCreate from "./FormCreate";
 
 function Header({ Name, setName }) {
-const navi = useNavigate()
-const fechaHoraLima = DateTime.now().setZone('America/Lima');
-const fechaFormateada = fechaHoraLima.toFormat('dd/MM/yyyy');
+  const navi = useNavigate();
+  const fechaHoraLima = DateTime.now().setZone("America/Lima");
+  const fechaFormateada = fechaHoraLima.toFormat("dd/MM/yyyy");
   return (
     <>
       <h2 className="dark:text-white text-lg pb-2 border-b mb-5">Ticket /</h2>
@@ -24,15 +24,21 @@ const fechaFormateada = fechaHoraLima.toFormat('dd/MM/yyyy');
             <IconSearch />
           </div>
           <div>
-          <ModalTotal title="Crear" titleModal="Create Ticket" icon={<IconTicket/>}className="text-white mt-2 flex gap-2 bg-black md:py-2 py-2 rounded-lg  px-3 " Content={<FormCreate/>} />
-           
+            <ModalTotal
+              title="Crear"
+              titleModal="Create Ticket"
+              icon={<IconTicket />}
+              className="text-white mt-2 flex gap-2 bg-black md:py-2 py-2 rounded-lg  px-3 "
+              Content={<FormCreate />}
+            />
           </div>
         </nav>
       </header>
       <div className="flex justify-end mt-4">
-        <h4 className=" text-black dark:text-white black px-4 border dark:border rounded-md  tracking-wider">{fechaFormateada}</h4>
+        <h4 className=" text-black dark:text-white black px-4 border dark:border rounded-md  tracking-wider">
+          {fechaFormateada}
+        </h4>
       </div>
-      
     </>
   );
 }
