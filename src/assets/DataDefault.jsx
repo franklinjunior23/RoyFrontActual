@@ -344,3 +344,10 @@ export function DecideColorEstatusTicket (Estado){
       return "bg-[#8FC8CC] text-white rounded-md";
   }
 }
+
+export const EstadoTicket = [
+  { name: "Abierto", color: "#0fae02" },
+  { name: "En progreso", color: "#6932f5" },
+  { name: "Cerrado", color: "#bf4343" },
+  { name: "Cancelado", color: "#FF8484" },
+];

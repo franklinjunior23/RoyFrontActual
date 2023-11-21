@@ -184,7 +184,7 @@ function CreateDisp() {
           </button>
         </article>
       </form>
-      <DevTool control={control} /> {/* set up the dev tool */}
+      
     </main>
   );
 }

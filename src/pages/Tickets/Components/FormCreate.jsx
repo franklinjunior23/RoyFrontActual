@@ -4,8 +4,9 @@ import QuillComponent from "../../../components/ReactQuill/QuillComponent";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { filtrarDatos } from "../../../utils/FiltUsersDisp";
 import axiosInstance from "../../../services/ConfigApi";
+import { toast } from "sonner";
 
-function FormCreate() {
+function FormCreate({ functionClose }) {
   const queryClient = useQueryClient();
   const { Empresas: DataEmpresas } = queryClient.getQueryData(["TicketSearch"]);
   const {
@@ -17,19 +18,24 @@ function FormCreate() {
   const [QuillContent, setQuillContent] = useState("");
 
   const { mutate } = useMutation({
-    mutationFn: async(datos)=>{
-      const {data} = await axiosInstance.post("tickets",datos)
-      return data
+    mutationFn: async (datos) => {
+      const { data } = await axiosInstance.post("tickets", datos);
+      return data;
     },
     onSuccess: (data) => {
+      if (!data?.create) return toast.error(data.message);
       queryClient.invalidateQueries("TicketSearch");
-      console.log(data)
+      toast.success(data.message);
+      return functionClose;
     },
+    onError: (error) => {
+      return toast.error(`Sucedio un Error : ${error.message}`);
+    }
   });
   const CategoryTicket = [
-    { label: "Primer Nivel", value: "Primer_Nivel" },
-    { label: "Segundo Nivel", value: "Segundo_Nivel" },
-    { label: "Tercer Nivel", value: "Tercer_Nivel" },
+    { label: "Primer Nivel", value: "Primer Nivel" },
+    { label: "Segundo Nivel", value: "Segundo Nivel" },
+    { label: "Tercer Nivel", value: "Tercer Nivel" },
   ];
   const PriorityTicket = [
     { label: "Baja", value: "Baja" },
@@ -46,8 +52,7 @@ function FormCreate() {
   const TypeService = watch("TipoD");
 
   function HandleCreateTicket(data) {
-    mutate({ ...data, Descripcion: QuillContent })
-   
+    mutate({ ...data, Descripcion: QuillContent });
   }
 
   return (
@@ -64,8 +69,8 @@ function FormCreate() {
               errors={errors}
             />
             <SelectForm
-              label={"Categoria"}
-              name={"Categoria"}
+              label={"Nivel"}
+              name={"Nivel"}
               register={register}
               placeholder={"Seleccionar Categoria"}
               options={CategoryTicket}

@@ -29,7 +29,7 @@ function Header({ Name, setName }) {
               titleModal="Create Ticket"
               icon={<IconTicket />}
               className="text-white mt-2 flex gap-2 bg-black md:py-2 py-2 rounded-lg  px-3 "
-              Content={<FormCreate />}
+              Content={<FormCreate  />}
             />
           </div>
         </nav>
