@@ -11,8 +11,17 @@ import axiosInstance from "../../../services/ConfigApi";
 import { useForm, Controller } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { formatTimeToPeruvian } from "../../../utils/FechaConvert";
 
-function TicketItem({ id, Titulo, Estado, Hora, index, updatedAt }) {
+function TicketItem({
+  id,
+  Titulo,
+  Estado,
+  Hora,
+  index,
+  updatedAt,
+  UserUpdateId,
+}) {
   const [selectedEstado, setSelectedEstado] = useState(Estado);
 
   const { control, setValue } = useForm();
@@ -44,7 +53,7 @@ function TicketItem({ id, Titulo, Estado, Hora, index, updatedAt }) {
   const handleSelectChange = (event) => {
     const newEstado = event.target.value;
     if (Estado === "Cerrado" || Estado === "Cancelado") {
-      console.log("llego");
+      setSelectedEstado(Estado);
       return toast.error(
         "No se puede cambiar el estado de un ticket cerrado o cancelado"
       );
@@ -65,11 +74,13 @@ function TicketItem({ id, Titulo, Estado, Hora, index, updatedAt }) {
           <h3 className="font-medium text-xl py-1  break-words ">
             <TruncateText maxLength={27} text={Titulo ?? "Ticket sin nombre"} />
           </h3>
-          <span className="text-md flex gap-2">
+          <span className="text-md flex gap-2 tracking-wide">
             <IconClock /> {Hora}
+            {Estado === "Cerrado" && `- ${formatTimeToPeruvian(updatedAt)}`}
+            {Estado === "En progreso" && <span className="bg-black text-white px-3 rounded-md">{UserUpdateId}</span>}
           </span>
         </Link>
-        <footer className="self-center justify-self-center w-full mt-3  ">
+        <footer className="self-center justify-self-center w-full mt-3 ">
           <form>
             <Controller
               name="Estado"
@@ -83,6 +94,7 @@ function TicketItem({ id, Titulo, Estado, Hora, index, updatedAt }) {
                   className={`w-full px-2 text-md font-semibold focus:outline-none  ${DecideColorEstatusTicket(
                     Estado
                   )}`}
+                  disabled={Estado === "Cerrado" || Estado === "Cancelado"}
                   defaultValue={Estado}
                   onChange={(e) => {
                     field.onChange(e);
@@ -94,7 +106,7 @@ function TicketItem({ id, Titulo, Estado, Hora, index, updatedAt }) {
                       value={value.name}
                       key={value.name}
                       className={`bg-${value.name.toLowerCase()}-300 py-2`}
-                      selected={Estado === value.name}
+                    
                     >
                       {value.name}
                     </option>

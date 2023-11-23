@@ -30,7 +30,7 @@ function ListContent() {
 
   return (
     <main className="mt-8">
-      <section className="flex gap-3 dark:text-white">
+      <section className="flex gap-3 dark:text-white mb-4">
         <span className="bg-DarkComponent px-3 py-1 rounded-md text-white">
           Total : {data.details.cantidad}{" "}
         </span>
@@ -39,12 +39,13 @@ function ListContent() {
         </span> */}
       </section>
       <section
-        className="grid mt-5 md:h-[500px]  h-[400px]  custom-scrollbar overflow-y-auto grid-cols-2  
-        md:flex md:flex-wrap gap-5 justify-center lg:justify-normal md:grid-rows-3  pb-5"
+        className="flex w-full  overflow-y-auto custom custom-scrollbar  gap-x-3 gap-y-4 flex-wrap h-[500px]"
       >
-        {data.data.map((item, index) => (
-          <Item {...item} key={index} />
-        ))}
+     
+         {data.data.map((item, index) => (
+           <Item {...item} key={index} />
+         ))}
+     
       </section>
     </main>
   );
@@ -63,27 +64,25 @@ const LoadingPage = () => {
 
 export const Item = ({ Titulo, Categoria, createdAt, id }) => {
   return (
-    <div className="lg:h-6">
+    <div className="">
       <NavLink
-        to={id}
-        className={
-          "md:w-[300px] md:h-[135px] h-full dark:bg-DarkComponent rounded-xl overflow-hidden md:flex shadow-[1px_3px_10px_-6px] grid cursor-pointer"
-        }
+        to={{ pathname: `/Dashboard/BaseConocimiento/${id}` }}
+        className="md:w-[300px] md:h-[135px] dark:bg-DarkComponent rounded-xl overflow-hidden md:flex shadow-[1px_3px_10px_-6px] grid cursor-pointer"
       >
-        <div className="w-full  p-4 flex flex-col justify-between capitalize pointer-events-none">
-          <h2 className=" break-all  md:hyphens-auto md:text-clip  font-semibold dark:text-white  ">
+        <div className="w-full p-4 flex flex-col justify-between capitalize pointer-events-none min-w-0">
+          <h2 className="break-all md:hyphens-auto md:text-clip font-semibold dark:text-white">
             {Titulo}
           </h2>
           <div className="w-full grid gap-1">
-            <span className=" dark:text-white text-xs">
+            <span className="dark:text-white text-sm">
               {formatDateToPeruvian(createdAt)}
             </span>
-            <span className="bg-Slet/70 px-2  font-medium text-center text-white break-all rounded-md truncate">
+            <span className="bg-Slet/70 px-2 font-medium text-center text-white break-all rounded-md truncate">
               {Categoria}
             </span>
           </div>
         </div>
-        <div className="md:w-[54%] bg-slate-500 ">
+        <div className="md:w-[54%] bg-slate-500">
           <img
             src="/Images/BoockBaseCon.png"
             className="w-full h-full object-cover"

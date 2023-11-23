@@ -6,7 +6,8 @@ import { filtrarDatos } from "../../../utils/FiltUsersDisp";
 import axiosInstance from "../../../services/ConfigApi";
 import { toast } from "sonner";
 
-function FormCreate({ functionClose }) {
+function FormCreate({ handleActive}) {
+  
   const queryClient = useQueryClient();
   const { Empresas: DataEmpresas } = queryClient.getQueryData(["TicketSearch"]);
   const {
@@ -17,7 +18,7 @@ function FormCreate({ functionClose }) {
   } = useForm();
   const [QuillContent, setQuillContent] = useState("");
 
-  const { mutate } = useMutation({
+  const { mutate,isLoading } = useMutation({
     mutationFn: async (datos) => {
       const { data } = await axiosInstance.post("tickets", datos);
       return data;
@@ -26,11 +27,11 @@ function FormCreate({ functionClose }) {
       if (!data?.create) return toast.error(data.message);
       queryClient.invalidateQueries("TicketSearch");
       toast.success(data.message);
-      return functionClose;
+    return handleActive();
     },
     onError: (error) => {
       return toast.error(`Sucedio un Error : ${error.message}`);
-    }
+    },
   });
   const CategoryTicket = [
     { label: "Primer Nivel", value: "Primer Nivel" },
@@ -58,8 +59,8 @@ function FormCreate({ functionClose }) {
   return (
     <main className="overflow-y-auto md:overflow-auto h-[500px] md:h-full py-5">
       <form onSubmit={handleSubmit(HandleCreateTicket)}>
-        <main className="md:grid grid-cols-2 gap-8">
-          <article className="md:grid grid-cols-2 flex flex-col gap-3 md:gap-y-2 md:gap-x-4">
+        <main className="md:grid grid-cols-2 gap-8 ">
+          <article className=" overflow-hidden flex flex-col">
             <InputForm
               register={register}
               name={"Titulo"}
@@ -68,66 +69,83 @@ function FormCreate({ functionClose }) {
               className={"col-span-2"}
               errors={errors}
             />
-            <SelectForm
-              label={"Nivel"}
-              name={"Nivel"}
-              register={register}
-              placeholder={"Seleccionar Categoria"}
-              options={CategoryTicket}
-            />
-            <SelectForm
-              label={"Prioridad "}
-              name={"Prioridad"}
-              register={register}
-              placeholder={"Seleccionar Prioridad"}
-              options={PriorityTicket}
-            />
+
             <QuillComponent
               WriteUser={QuillContent}
               setWriteUser={setQuillContent}
-              className={"md:h-[200px] col-span-2 mt-5 h-[300px] pb-10"}
+              className={"md:h-[220px] col-span-2 mt-5 h-[300px] pb-10"}
               placeholder={"Escribe la descripcion del problema"}
             />
           </article>
-          <article className="mt-8 md:mt-0 grid grid-cols-2 gap-4 grid-rows-4">
-            <SelectForm
-              label={"Empresa"}
-              name={"Empresa"}
-              register={register}
-              placeholder={"Seleccionar Empresa"}
-              options={DataEmpresas}
-            />
-            <SelectSucursal
-              label={"Sucursal"}
-              placeholder={"Seleccionar Sucursal"}
-              name={"Sucursal"}
-              register={register}
-              options={DataEmpresas}
-              watchEs={EmpresaGet}
-            />
-            <SelectForm
-              label={"Tipo"}
-              name={"TipoD"}
-              register={register}
-              placeholder={"Seleccione"}
-              options={TypeTicket}
-            />
-            {TypeService && (
-              <GetDispositivoSelect
-                label={"Dispositivo"}
-                placeholder={"Seleccionar Dispositivo"}
-                name={"IdItemTick"}
+          <article className="mt-8 md:mt-0 grid justify-between">
+            <section className="grid grid-cols-2 gap-4 grid-rows-4">
+              <SelectForm
+                label={"Nivel"}
+                name={"Nivel"}
+                register={register}
+                placeholder={"Seleccionar Categoria"}
+                options={CategoryTicket}
+              />
+              <SelectForm
+                label={"Prioridad "}
+                name={"Prioridad"}
+                register={register}
+                placeholder={"Seleccionar Prioridad"}
+                options={PriorityTicket}
+              />
+              <SelectForm
+                label={"Empresa"}
+                name={"Empresa"}
+                register={register}
+                placeholder={"Seleccionar Empresa"}
+                options={DataEmpresas}
+              />
+              <SelectSucursal
+                label={"Sucursal"}
+                placeholder={"Seleccionar Sucursal"}
+                name={"Sucursal"}
                 register={register}
                 options={DataEmpresas}
                 watchEs={EmpresaGet}
-                EmpresaGet={EmpresaGet}
-                SucursalGet={SucursalGet}
-                TypeService={TypeService}
-                DataEmpresas={DataEmpresas}
               />
-            )}
-            <footer>
-              <button type="submit">Comprobar</button>
+              <SelectForm
+                label={"Tipo"}
+                name={"TipoD"}
+                register={register}
+                placeholder={"Seleccione"}
+                options={TypeTicket}
+              />
+              {TypeService && (
+                <GetDispositivoSelect
+                  label={"Dispositivo"}
+                  placeholder={"Seleccionar Dispositivo"}
+                  name={"IdItemTick"}
+                  register={register}
+                  options={DataEmpresas}
+                  watchEs={EmpresaGet}
+                  EmpresaGet={EmpresaGet}
+                  SucursalGet={SucursalGet}
+                  TypeService={TypeService}
+                  DataEmpresas={DataEmpresas}
+                />
+              )}
+            </section>
+            <footer className="w-full grid grid-cols-2 gap-1">
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="bg-slate-400 bg-black/30 rounded-md dark:text-white dark:bg-black/70  py-2"
+              >
+                {isLoading ? "Creando..." : "Crear"}
+                
+              </button>
+              <button
+                type="button"
+                className=" bg-black/10 rounded-md dark:text-white dark:bg-black/20 py-2"
+                onClick={handleActive}
+              >
+                Cancelar
+              </button>
             </footer>
           </article>
         </main>
@@ -157,7 +175,7 @@ function InputForm({
         type={type ?? "text"}
         id={name}
         placeholder={placeholder}
-        className="bg-transparent text-sm border-black dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/20 dark:border-white/60"
+        className="bg-transparent text-sm border-black dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/10 dark:border-white/20"
         {...register(`${name}`, {
           required: {
             value: true,
@@ -166,7 +184,7 @@ function InputForm({
         })}
       />
       {errors && errors[name] && (
-        <span className="text-red-400 text-xs">
+        <span className="text-red-400 text-xs ">
           {errors[name].message ?? "Error desconocido"}
         </span>
       )}
@@ -190,7 +208,7 @@ function SelectForm({
       <select
         id={name}
         placeholder={placeholder}
-        className="bg-transparent text-sm border-black dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/20 dark:border-white/60"
+        className="bg-transparent text-sm border-black dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/10 dark:border-white/20"
         {...register(name)}
       >
         <option selected>{placeholder}</option>
@@ -225,7 +243,7 @@ function SelectSucursal({
       <select
         id={name}
         placeholder={placeholder}
-        className="bg-transparent border-black text-sm dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/20 dark:border-white/60"
+        className="bg-transparent border-black text-sm dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/10 dark:border-white/20"
         {...register(name)}
       >
         <option selected>{placeholder}</option>
@@ -273,7 +291,7 @@ function GetDispositivoSelect({
       <select
         id={name}
         placeholder={placeholder}
-        className="bg-transparent border-black text-sm dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/20 dark:border-white/60"
+        className="bg-transparent border-black text-sm dark:text-white focus:outline-none border rounded-md px-1 indent-1 py-2 border-black/10 dark:border-white/20"
         {...register(name)}
       >
         <option selected>{placeholder}</option>

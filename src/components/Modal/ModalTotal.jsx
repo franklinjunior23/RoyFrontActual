@@ -3,12 +3,8 @@ import PropTypes from "prop-types";
 import { Drawer } from "vaul";
 import { IconX } from "@tabler/icons-react";
 
-function ModalTotal({ title, className, icon, Content, titleModal }) {
-  const [ActiveModal, setActiveModal] = useState(false);
-
-  function handleActive() {
-    setActiveModal(!ActiveModal);
-  }
+function ModalTotal({ title, className, icon, Content, titleModal, handleActive, ActiveModal }) {
+ 
 
   return (
     <>
@@ -78,6 +74,9 @@ ModalTotal.propTypes = {
   icon: PropTypes.element.isRequired,
   Content: PropTypes.element.isRequired,
   titleModal: PropTypes.string.isRequired,
+  handleActive: PropTypes.func.isRequired,
+  ActiveModal: PropTypes.bool.isRequired,
+  
 };
 
 function ButtonForm(FunctionEvente) {

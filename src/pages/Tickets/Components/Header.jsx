@@ -3,9 +3,15 @@ import { DateTime } from "luxon";
 import { useNavigate } from "react-router-dom";
 import ModalTotal from "../../../components/Modal/ModalTotal";
 import FormCreate from "./FormCreate";
+import { useState } from "react";
 
 function Header({ Name, setName }) {
   const navi = useNavigate();
+  const [ActiveModal, setActiveModal] = useState(false);
+
+  function handleActive() {
+    setActiveModal(!ActiveModal);
+  }
   const fechaHoraLima = DateTime.now().setZone("America/Lima");
   const fechaFormateada = fechaHoraLima.toFormat("dd/MM/yyyy");
   return (
@@ -25,11 +31,13 @@ function Header({ Name, setName }) {
           </div>
           <div>
             <ModalTotal
+              ActiveModal={ActiveModal}
+              handleActive={handleActive}
               title="Crear"
               titleModal="Create Ticket"
               icon={<IconTicket />}
               className="text-white mt-2 flex gap-2 bg-black md:py-2 py-2 rounded-lg  px-3 "
-              Content={<FormCreate  />}
+              Content={<FormCreate handleActive={handleActive} />}
             />
           </div>
         </nav>
