@@ -12,6 +12,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { formatTimeToPeruvian } from "../../../utils/FechaConvert";
+import { UseContextLoged } from "../../../context/AuhtLoged";
 
 function TicketItem({
   id,
@@ -22,6 +23,20 @@ function TicketItem({
   updatedAt,
   UserUpdateId,
 }) {
+  const {
+    LogedAuth: { nombre: NameUserLoged },
+  } = UseContextLoged();
+  const shouldDisable = () => {
+    
+    if(Estado === "En progreso" && NameUserLoged !== UserUpdateId){
+      return true
+    }
+    if(Estado === "Cerrado" || Estado === "Cancelado"){
+      return true
+    }
+  }
+
+// .
   const [selectedEstado, setSelectedEstado] = useState(Estado);
 
   const { control, setValue } = useForm();
@@ -66,19 +81,25 @@ function TicketItem({
   };
   return (
     <article className="w-full bg-white dark:bg-DarkComponent shadow-lg dark:text-white md:h-[120px] py-4 px-5 rounded-xl relative">
-      <section className="grid md:grid-cols-[1fr_100px] justify-between h-full">
+      <section className="md: w-full grid md:grid-cols-[1fr_100px] justify-between h-full">
         <Link
           to={`/Dashboard/Ticket/${id}`}
-          className="flex flex-col h-full justify-between"
+          className="flex flex-col h-full  justify-between"
         >
-          <h3 className="font-medium text-xl py-1  break-words ">
+          <h3 className="font-medium text-xl py-1 w-full break-words ">
             <TruncateText maxLength={27} text={Titulo ?? "Ticket sin nombre"} />
           </h3>
-          <span className="text-md flex gap-2 tracking-wide">
-            <IconClock /> {Hora}
-            {Estado === "Cerrado" && `- ${formatTimeToPeruvian(updatedAt)}`}
-            {Estado === "En progreso" && <span className="bg-black text-white px-3 rounded-md">{UserUpdateId}</span>}
-          </span>
+          <div className="flex w-full gap-2 flex-col md:flex-row">
+            <span className="text-sm  flex gap-1 items-center tracking-wide font-bold  ">
+              <IconClock size={24} /> {Hora}
+              {Estado === "Cerrado" && `  -  ${formatTimeToPeruvian(updatedAt)}`}
+            </span>
+            {Estado === "En progreso" | Estado === "Cerrado" && (
+              <span className=" ml-2 bg-black text-white px-3 rounded-md text-center">
+                {UserUpdateId}
+              </span>
+            )}
+          </div>
         </Link>
         <footer className="self-center justify-self-center w-full mt-3 ">
           <form>
@@ -86,15 +107,13 @@ function TicketItem({
               name="Estado"
               control={control}
               defaultValue={Estado}
-              disabled={
-                selectedEstado === "Cerrado" || selectedEstado === "Cancelado"
-              }
+              disabled={shouldDisable}
               render={({ field }) => (
                 <select
                   className={`w-full px-2 text-md font-semibold focus:outline-none  ${DecideColorEstatusTicket(
                     Estado
                   )}`}
-                  disabled={Estado === "Cerrado" || Estado === "Cancelado"}
+                  disabled={shouldDisable()}
                   defaultValue={Estado}
                   onChange={(e) => {
                     field.onChange(e);
@@ -105,8 +124,7 @@ function TicketItem({
                     <option
                       value={value.name}
                       key={value.name}
-                      className={`bg-${value.name.toLowerCase()}-300 py-2`}
-                    
+                      className={`bg-${value.name.toLowerCase()}-300 py-2 text-center`}
                     >
                       {value.name}
                     </option>

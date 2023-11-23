@@ -38,7 +38,7 @@ function ListDetail({ DetailData }) {
           </SwiperSlide>
         </Swiper>
       </section>
-      <InfoVersion />
+     
     </main>
   );
 }
