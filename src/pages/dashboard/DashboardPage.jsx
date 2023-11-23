@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import { UseContextLoged } from "../../context/AuhtLoged";
 import Navlinks from "../../components/Navlinks/Navlinks";
+import { IconInfoCircle } from "@tabler/icons-react";
 
 function DashboardPage() {
   const { RoleUser, LogedAuth } = UseContextLoged();
@@ -36,6 +37,13 @@ function DashboardPage() {
         <section className=" lg:ml-10 w-full lg:w-3/4 lg:h-[700px] xl:h-[735px]  lg:pr-10 lg:overflow-y-auto  lg:overflow-x-visible custom-scrollbar">
           <Outlet />
         </section>
+      </article>
+      <article className=" bottom-10 left-10 fixed w-16 h-16">
+        <img
+          className=" rounded-full bg-black relative  object-cover object-center"
+          src="/Images/image_FranxUser.png"
+        />
+        <span className="absolute -bottom-3 -right-1"><IconInfoCircle color="blue"/></span>
       </article>
     </main>
   );
