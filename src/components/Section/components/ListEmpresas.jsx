@@ -9,7 +9,7 @@ import Listsection from "./Listsection";
 import { ColorConteners } from "../../../assets/DataDefault";
 import { useEffect, useState } from "react";
 
-function ListEmpresas() {
+function ListEmpresas({LinkDate}) {
   const [spaceBetween, setSpaceBetween] = useState(140);
   const {
     isLoading,
@@ -52,7 +52,7 @@ function ListEmpresas() {
   }, [spaceBetween,setSpaceBetween]);
   if (isLoading) return <h2 className="text-center">Cargando ...</h2>;
   if (isError) return <h2 className="text-center">Ha sucedido un error</h2>;
-  if (DataEmpresas?.length === 0)
+  if (DataEmpresas.data?.length === 0)
     return <h2 className="mt-10 text-center">No Existe Ninguna Empresa</h2>;
 
 
@@ -92,10 +92,11 @@ function ListEmpresas() {
         }}
       >
         <section className="">
-          {DataEmpresas.map((value, index) => (
+          {DataEmpresas.data?.map((value, index) => (
             <SwiperSlide key={index} className="m">
               <Listsection
                 datos={value}
+                LinkDate={LinkDate}
                 color={ColorConteners[index % ColorConteners.length].name}
               />
             </SwiperSlide>

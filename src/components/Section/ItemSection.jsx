@@ -2,7 +2,7 @@
 import ItSection from "../Navbar/components/ItSection";
 import ListEmpresas from "./components/ListEmpresas";
 
-function ItemSection() {
+function ItemSection({LinkDate}) {
   
 
   return (
@@ -13,7 +13,7 @@ function ItemSection() {
         </div>
         <ItSection />
       </header>
-      <ListEmpresas/>
+      <ListEmpresas LinkDate={LinkDate}/>
     </section>
   );
 }

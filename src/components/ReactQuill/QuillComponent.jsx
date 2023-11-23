@@ -2,7 +2,7 @@ import ReactQuill from "react-quill";
 import PropTypes from "prop-types";
 
 
-function QuillComponent({ WriteUser, setWriteUser, className, IsReadOnly }) {
+function QuillComponent({ WriteUser, setWriteUser, className, IsReadOnly,placeholder }) {
   const modules = {
     toolbar: [
       [{ header: [2, false] }],
@@ -20,7 +20,7 @@ function QuillComponent({ WriteUser, setWriteUser, className, IsReadOnly }) {
     <>
       <ReactQuill
         className={`  text-black border-black h-full CustomScroll  max-w-full   ${className}`}
-        placeholder="Escribe tu conocimiento"
+        placeholder={ placeholder ?? "Escribe aqui"}
         readOnly={IsReadOnly ?? false}
         scrollingContainer={"true"}
         scrollingContainerStyle={"overflow-y: scroll"}
@@ -41,4 +41,5 @@ QuillComponent.propTypes = {
   setWriteUser: PropTypes.func,
   className: PropTypes.string,
   IsReadOnly: PropTypes.bool,
+  placeholder: PropTypes.string,
 };

@@ -1,13 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { DeleteEmpresa } from "../../../services/ApiGets";
+import { toast } from "sonner";
 
 function ModalSection({ datos }) {
   const { id } = datos;
   const querycliente = useQueryClient();
-  const {mutate,isLoading} = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: DeleteEmpresa,
     onSuccess: () => {
-      querycliente.invalidateQueries('Empresas')
+      querycliente.invalidateQueries("Empresas");
+      return toast.success("Empresa eliminada con exito");
     },
   });
 
@@ -19,10 +21,9 @@ function ModalSection({ datos }) {
     console.log(id);
   };
 
-  if(isLoading) return <p>cargando ..</p>
+  if (isLoading) return <p>cargando ..</p>;
   return (
     <div className="absolute w-[70%]  bottom-20 bg-white right-6 shadow-lg rounded-md">
-     
       <li className="py-3 text-center" onClick={() => EditEmpresa(id)}>
         Editar
       </li>

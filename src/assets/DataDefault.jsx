@@ -1,4 +1,4 @@
-import { IconTicket,IconHome, IconBook } from "@tabler/icons-react";
+import { IconTicket,IconHome, IconBook, IconBuildingWarehouse, IconLayoutDashboard } from "@tabler/icons-react";
 
 export const IconHomea = () => {
   return (
@@ -211,8 +211,8 @@ export const IconEmpresa = () => {
   );
 };
 export const NavData = [
-  { name: "Home", url: "Home", icon: <IconHome   width={27} height={27}/> },
-  { name: "Empresas", url: "Empresas", icon: <IconHomea /> },
+  { name: "Home", url: "Home", icon: <IconLayoutDashboard   width={27} height={27}/> },
+  { name: "Empresas", url: "Empresas", icon: <IconBuildingWarehouse /> },
   { name: "Ticket", url: "Ticket", icon:<IconTicket width={27} height={27} />  },
   { name: "Base de Conoc.", url: "BaseConocimiento", icon: <IconBook width={27} height={27} /> },
   { name: "Reportes", url: "Reportes", icon: <IconInvent /> },
@@ -220,7 +220,7 @@ export const NavData = [
 ];
 
 export const NavAdmin =[
-  {name:'Home', url: 'Home', icon: <IconHome width={27} height={27}/> },
+  {name:'Home', url: 'Home', icon: <IconLayoutDashboard width={27} height={27}/> },
 ]
 
 export const ColorConteners = [
@@ -344,3 +344,10 @@ export function DecideColorEstatusTicket (Estado){
       return "bg-[#8FC8CC] text-white rounded-md";
   }
 }
+
+export const EstadoTicket = [
+  { name: "Abierto", color: "#0fae02" },
+  { name: "En progreso", color: "#6932f5" },
+  { name: "Cerrado", color: "#bf4343" },
+  { name: "Cancelado", color: "#FF8484" },
+];
