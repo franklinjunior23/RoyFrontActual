@@ -2,14 +2,14 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import { UseContextLoged } from "../../context/AuhtLoged";
 import Navlinks from "../../components/Navlinks/Navlinks";
-import { IconInfoCircle } from "@tabler/icons-react";
+import InfoComponent from "./InfoComponent";
 
 function DashboardPage() {
   const { RoleUser, LogedAuth } = UseContextLoged();
   return (
     <main className=" bg-white dark:bg-DarkFondo px-5 min-h-screen">
       <Navbar />
-      <article className=" lg:mt-2 lg:flex gap-10 max-w-[1400px] m-auto">
+      <article className=" lg:mt-2 lg:flex gap-10 max-w-[1400px] m-auto relative">
         <section className="hidden max-w-[26vw] pl-10  px-10 lg:grid  dark:bg-DarkComponent rounded-[35px] bg-gray-500/10  ">
           <header className="">
             <div className="relative mt-20 ">
@@ -34,17 +34,13 @@ function DashboardPage() {
             </div>
           </header>
         </section>
-        <section className=" lg:ml-10 w-full lg:w-3/4 lg:h-[700px] xl:h-[735px]  lg:pr-10 lg:overflow-y-auto  lg:overflow-x-visible custom-scrollbar">
+        <section className=" lg:ml-10 w-full lg:w-3/4 lg:h-[700px] xl:h-[735px]  lg:pr-10 lg:overflow-y-auto  lg:overflow-x-visible custom-scrollbar relative ">
           <Outlet />
         </section>
       </article>
-      <article className=" bottom-10 left-10 fixed w-16 h-16">
-        <img
-          className=" rounded-full bg-black relative  object-cover object-center"
-          src="/Images/image_FranxUser.png"
-        />
-        <span className="absolute -bottom-3 -right-1"><IconInfoCircle color="blue"/></span>
-      </article>
+
+      {/* Icon Hover Info Aplication Web*/}
+      <InfoComponent/>
     </main>
   );
 }

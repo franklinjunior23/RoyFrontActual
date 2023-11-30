@@ -123,3 +123,14 @@ En resumen, la versión 0.9 de nuestro proyecto incluye la sección Home, que mu
 
 1.1
 Se agrego una simple agregar un archivo a la base de conocimiento en la cual se podia registrar una accion 
+
+
+
+<input class="border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500"/>
+
+
+LISTAS DE ERRORES : 
+
+
+
+NTFD-23 : ERROR EN LA DESCRIPCION DE LA NOTIFICACION

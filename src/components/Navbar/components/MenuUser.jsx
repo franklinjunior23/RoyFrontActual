@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import ModMenUser from "./ModMenUser";
 import {
-  IconBell,
   IconBrightnessUp,
   IconMoonFilled,
   IconUser,
 } from "@tabler/icons-react";
+import Notify from "../../Notify/Notify";
 
 /* eslint-disable react/prop-types */
 function MenuUser({ User }) {
@@ -47,15 +47,29 @@ function MenuUser({ User }) {
       </section>
       <section className="  rounded-lg px-2 border  lg:px-3 py-1">
         {ThemeActual == "light" ? (
-          <IconMoonFilled onClick={HandleTheme}  className=" cursor-pointer
-          " width={25} height={30} />
+          <IconMoonFilled
+            onClick={HandleTheme}
+            className=" cursor-pointer
+          "
+            width={25}
+            height={30}
+          />
         ) : (
-          <IconBrightnessUp onClick={HandleTheme} className=" cursor-pointer
-          "  color="white" width={30} height={30}/>
+          <IconBrightnessUp
+            onClick={HandleTheme}
+            className=" cursor-pointer
+          "
+            color="white"
+            width={30}
+            height={30}
+          />
         )}
       </section>
-      <section className="border  rounded-lg px-2 py-1 h-full flex items-center cursor-pointer text-black dark:text-white">
-        <IconBell width={25} height={30} strokeWidth={1.5} />
+      <section
+        className="border relative  rounded-lg px-2 py-1 h-full flex items-center cursor-pointer text-black dark:text-white"
+       
+      >
+        <Notify />
       </section>
     </div>
   );
