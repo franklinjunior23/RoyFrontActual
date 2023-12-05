@@ -4,7 +4,7 @@ function ListTickets({ data }) {
   return (
     <main className="rounded-md px-4 pb-3   w-full  ">
       <h1 className="dark:text-white font-semibold text-xl">
-        Lista de Tickets
+        Lista de Tickets  
       </h1>
       <section className="h-[400px]  mt-2 md:h-[260px] overflow-x-hidden lg:pr-5 overflow-y-auto  w-full  md:p-2 custom-scrollbar">
         {

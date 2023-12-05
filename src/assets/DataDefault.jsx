@@ -302,7 +302,7 @@ export const Nivel_Red = [
   "Teletrabajo",
 ];
 export const Type_Email = ["POP", "IMAP", "WEB"];
-export const Estado_User = ["Retirado", "Activo", "En Proceso"];
+export const Estado_User = ["Activo", "Retirado", "En Proceso"];
 
 export const FormUser = [
   "nombre",

@@ -89,16 +89,16 @@ function TicketItem({
           <h3 className="font-medium text-xl py-1 w-full break-words ">
             <TruncateText maxLength={27} text={Titulo ?? "Ticket sin nombre"} />
           </h3>
-          <div className="flex w-full gap-2 flex-col md:flex-row">
-            <span className="text-sm  flex gap-1 items-center tracking-wide font-bold  ">
+          <div className="flex w-full gap-2 flex-col md:flex-row md:items-end">
+            <span className="text-sm  flex gap-1 items-center tracking-wider font-bold  ">
               <IconClock size={24} /> {Hora}
-              {Estado === "Cerrado" && `  -  ${formatTimeToPeruvian(updatedAt)}`}
+              {Estado === "Cerrado" && ` -  ${formatTimeToPeruvian(updatedAt)}`}
             </span>
-            {Estado === "En progreso" | Estado === "Cerrado" && (
-              <span className=" ml-2 bg-black text-white px-3 rounded-md text-center">
-                {UserUpdateId}
+            {Estado === "En progreso" | Estado === "Cerrado" ? (
+              <span className=" ml-2 bg-black text-white px-3 text-sm rounded-md text-center">
+                {UserUpdateId ?? ''}
               </span>
-            )}
+            ):''}
           </div>
         </Link>
         <footer className="self-center justify-self-center w-full mt-3 ">
