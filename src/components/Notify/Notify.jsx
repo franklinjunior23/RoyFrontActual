@@ -20,6 +20,7 @@ function Notify() {
   }
 
   function handleReciviedDats(datos) {
+    console.log(datos)
     if (datos?.error === true) {
       setErrorLogout(true);
       setMessageRecent(datos);
