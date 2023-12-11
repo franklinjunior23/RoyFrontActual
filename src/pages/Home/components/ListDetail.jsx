@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import InfoVersion from "./InfoVersion";
+import PropTypes from "prop-types";
 
 function ListDetail({ DetailData }) {
   return (
@@ -38,18 +37,29 @@ function ListDetail({ DetailData }) {
           </SwiperSlide>
         </Swiper>
       </section>
-     
     </main>
   );
 }
 function ItemList({ name, Value }) {
   return (
-    <div className="dark:bg-DarkComponent my-4 shadow-lg w-[130px] grid justify-center text-ellipsis h-[130px]  md:w-[135px] md:h-[160px] rounded-xl p-5 text-center">
-      <div className="grid gap-6">
+    <section className="dark:bg-DarkComponent my-4 shadow-lg w-[130px] grid justify-center text-ellipsis h-[130px]  md:w-[135px] md:h-[160px] rounded-xl p-5 text-center">
+      <header className="grid gap-6">
         <h4 className=" text-Slet font-extrabold text-xl">{name}</h4>
-        <span className="dark:text-white font-bold text-xl ">{Value}</span>
-      </div>
-    </div>
+        <span className="dark:text-white font-extrabold tracking-wide	 text-3xl ">{Value}</span>
+      </header>
+    </section>
   );
 }
 export default ListDetail;
+
+
+ItemList.propTypes = {
+  name: PropTypes.string,
+  Value: PropTypes.number,
+};
+
+
+
+ListDetail.propTypes = {
+  DetailData: PropTypes.object,
+};

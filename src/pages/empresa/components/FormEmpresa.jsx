@@ -4,17 +4,19 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { CreateEmpresa } from "../../../services/ApiGets";
 import { toast } from "sonner";
+import ListTickEmpresa from "./ListTickEmpresa";
 
 function FormEmpresa() {
   const [CreateEmpresa, setCreateEmpresa] = useState(false);
+
   function Close() {
     setCreateEmpresa(false);
   }
   return (
     <>
-      <header className="mt-4">
+      <header className="mt-4 flex gap-2 justify-end">
         <button
-          className={`flex text-white  px-3 gap-2 py-2 ml-auto rounded-md text-base ${
+          className={`flex text-white  px-3 gap-2 py-2  rounded-md text-base ${
             CreateEmpresa ? "bg-black/40" : "bg-black"
           }`}
           disabled={CreateEmpresa}
@@ -23,10 +25,14 @@ function FormEmpresa() {
           <IconPlus />
           Crear Empresa
         </button>
+       <ListTickEmpresa/>
       </header>
       <article className="mt-4">
         {CreateEmpresa && <FormCreateEmpresa FunctionClose={Close} />}
       </article>
+
+     
+
     </>
   );
 }
@@ -73,8 +79,11 @@ const FormCreateEmpresa = ({ FunctionClose }) => {
         </div>
       </main>
       <div className="grid grid-cols-2 mt-5 md:mt-2  gap-2 ">
-        <button className="bg-black/80 rounded-md py-1 text-white" disabled={isLoading}>
-         {isLoading ? 'Creando...' : 'Confirmar'}
+        <button
+          className="bg-black/80 rounded-md py-1 text-white"
+          disabled={isLoading}
+        >
+          {isLoading ? "Creando..." : "Confirmar"}
         </button>
         <button
           className="bg-black/40 rounded-md py-1 text-white"

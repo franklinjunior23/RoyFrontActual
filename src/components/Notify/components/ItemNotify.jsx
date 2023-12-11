@@ -59,7 +59,7 @@ function ItemNotify({ Description, UserCreate, Hora, isRead, idNotify ,colorSele
 
   return (
     <article
-      className={`grid grid-cols-[80px_3.5px_1fr] ${
+      className={`grid grid-cols-[80px_4.5px_1fr] ${
         isReadNotify ? "bg-white" : "bg-slate-100"
       }  text-black gap-3 hover:bg-slate-100 group/notify  rounded-md p-2 mb-2`}
       style={{ height: ViewMoreText ? "auto" : "110px" }}
@@ -79,7 +79,6 @@ function ItemNotify({ Description, UserCreate, Hora, isRead, idNotify ,colorSele
             />
           ) : (
             <>
-              {" "}
               {Description} <ButtonViewDescription />
             </>
           )}
@@ -96,7 +95,7 @@ ItemNotify.propTypes = {
   UserCreate: PropTypes.string,
   Hora: PropTypes.string,
   isRead: PropTypes.bool,
-  idNotify: PropTypes.number,
+  idNotify: PropTypes.string,
   colorSeleccionado: PropTypes.string,
 };
 

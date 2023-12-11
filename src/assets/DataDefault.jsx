@@ -1,4 +1,11 @@
-import { IconTicket,IconHome, IconBook, IconBuildingWarehouse, IconLayoutDashboard } from "@tabler/icons-react";
+import {
+  IconTicket,
+  IconBook,
+  IconBuildingWarehouse,
+  IconLayoutDashboard,
+  IconSettings,
+  IconFileText,
+} from "@tabler/icons-react";
 
 export const IconHomea = () => {
   return (
@@ -211,17 +218,33 @@ export const IconEmpresa = () => {
   );
 };
 export const NavData = [
-  { name: "Home", url: "Home", icon: <IconLayoutDashboard   width={27} height={27}/> },
+  {
+    name: "Home",
+    url: "Home",
+    icon: <IconLayoutDashboard width={27} height={27} />,
+  },
   { name: "Empresas", url: "Empresas", icon: <IconBuildingWarehouse /> },
-  { name: "Ticket", url: "Ticket", icon:<IconTicket width={27} height={27} />  },
-  { name: "Base de Conoc.", url: "BaseConocimiento", icon: <IconBook width={27} height={27} /> },
-  { name: "Reportes", url: "Reportes", icon: <IconInvent /> },
-  { name: "Configuracion", url: "Configuracion", icon: <IconConfig /> },
+  {
+    name: "Ticket",
+    url: "Ticket",
+    icon: <IconTicket width={27} height={27} />,
+  },
+  {
+    name: "Base de Conoc.",
+    url: "BaseConocimiento",
+    icon: <IconBook width={27} height={27} />,
+  },
+  { name: "Reportes", url: "Reportes", icon: <IconFileText /> },
+  { name: "Configuracion", url: "Configuracion", icon: <IconSettings /> },
 ];
 
-export const NavAdmin =[
-  {name:'Home', url: 'Home', icon: <IconLayoutDashboard width={27} height={27}/> },
-]
+export const NavAdmin = [
+  {
+    name: "Home",
+    url: "Home",
+    icon: <IconLayoutDashboard width={27} height={27} />,
+  },
+];
 
 export const ColorConteners = [
   { name: "#8FC8CC" },
@@ -312,25 +335,43 @@ export const FormUser = [
   "estado",
   "doc",
   "cargo",
-  'tipo_usuario',
-  'nivel_red',
-  'usuario',
-  'contraseña',
-  'anydesk_contra',
-  'anydesk_id',
-  'email_tip',
-  'email_dirrecion',
-  'email_contraseña',
-
+  "tipo_usuario",
+  "nivel_red",
+  "usuario",
+  "contraseña",
+  "anydesk_contra",
+  "anydesk_id",
+  "email_tip",
+  "email_dirrecion",
+  "email_contraseña",
 ];
 
-export const FormDisp =[
-  'nombre','tipo','marca','modelo','serie','tipo_con','estado','tipo_Disp','Config_mac','Config_ip','Config_user','Config_contra','Placa_modelo','Placa_detalle','Procesador_marca','Procesador_modelo','Ram_Modulos','Almacenamiento','Tarjet_Video','estado'
-]
+export const FormDisp = [
+  "nombre",
+  "tipo",
+  "marca",
+  "modelo",
+  "serie",
+  "tipo_con",
+  "estado",
+  "tipo_Disp",
+  "Config_mac",
+  "Config_ip",
+  "Config_user",
+  "Config_contra",
+  "Placa_modelo",
+  "Placa_detalle",
+  "Procesador_marca",
+  "Procesador_modelo",
+  "Ram_Modulos",
+  "Almacenamiento",
+  "Tarjet_Video",
+  "estado",
+];
 
-export const EstatusTicket =['Abierto','En progreso','Cerrado','Cancelado']
+export const EstatusTicket = ["Abierto", "En progreso", "Cerrado", "Cancelado"];
 
-export function DecideColorEstatusTicket (Estado){
+export function DecideColorEstatusTicket(Estado) {
   switch (Estado) {
     case "Abierto":
       return "bg-[#0fae02] text-white rounded-md";

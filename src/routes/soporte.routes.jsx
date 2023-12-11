@@ -12,6 +12,7 @@ import PageTickets from "../pages/Tickets/PageTickets";
 import CreateTicket from "../pages/Tickets/CreateTicket";
 import { PageDetalle ,PageIdBC, PageBaseConocimiento} from "../pages/BaseConoc";
 import PageCreate from "../pages/BaseConoc/PageCreate";
+import SettingPage from "@Pages/Setting/SettingPage";
 
 function SoporteRoutes() {
   return (
@@ -55,7 +56,7 @@ function SoporteRoutes() {
         <Route path="BaseConocimiento/:id/detalle" element={<PageDetalle/>} />
 
 
-        <Route path="Configuracion" element={<h1>Configuracion</h1>} />
+        <Route path="Configuracion" element={<SettingPage/>} />
       </Route>
     </Routes>
   );

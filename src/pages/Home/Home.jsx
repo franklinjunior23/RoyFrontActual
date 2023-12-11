@@ -6,6 +6,7 @@ import ListTickets from "./components/ListTickets";
 import ListDetail from "./components/ListDetail";
 import { useQuery } from "@tanstack/react-query";
 import { GetsInfoDash } from "../../services/ApiGets";
+import ListUserActive from "./components/ListUserActive";
 
 function formatDate(date) {
   const options = {
@@ -48,10 +49,18 @@ function Home() {
           </header>
           <ItemSection />
           <article className="grid mt-2 md:grid-cols-2 gap-6 ">
-            {isLoading && <h2 className="dark:text-white">Cargando .....</h2>}
-            {isError && <h2 className="dark:text-white">Error al cargar los datos</h2>}
+            {isLoading && (
+              <>
+                <h2 className="dark:text-white">Cargando .....</h2>
+                <h2 className="dark:text-white">Cargando .....</h2>
+              </>
+            )}
+            {isError && (
+              <h2 className="dark:text-white">Error al cargar los datos</h2>
+            )}
             <ListTickets TicketsData={data?.Ticket} />
             <ListDetail DetailData={data?.Dispositivo} />
+            {/* <ListUserActive /> */}
           </article>
         </main>
       )}

@@ -8,9 +8,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Listsection from "./Listsection";
 import { ColorConteners } from "../../../assets/DataDefault";
 import { useEffect, useState } from "react";
+import { DataListDashboard } from "../../../store/Dashboard/DataDash";
 
 function ListEmpresas({LinkDate}) {
   const [spaceBetween, setSpaceBetween] = useState(140);
+  const {AddDataList} = DataListDashboard();
   const {
     isLoading,
     data: DataEmpresas,
@@ -38,7 +40,9 @@ function ListEmpresas({LinkDate}) {
         setSpaceBetween(120);
       }
     };
-
+    if(DataEmpresas){
+      AddDataList(DataEmpresas)
+    }
     // Agregar el oyente de evento de redimensionamiento para actualizar spaceBetween
     window.addEventListener('resize', handleResize);
 
@@ -49,9 +53,10 @@ function ListEmpresas({LinkDate}) {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [spaceBetween,setSpaceBetween]);
+  }, [spaceBetween,DataEmpresas,AddDataList]);
   if (isLoading) return <h2 className="text-center">Cargando ...</h2>;
   if (isError) return <h2 className="text-center">Ha sucedido un error</h2>;
+
   if (DataEmpresas.data?.length === 0)
     return <h2 className="mt-10 text-center">No Existe Ninguna Empresa</h2>;
 

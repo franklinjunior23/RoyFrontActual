@@ -42,6 +42,7 @@ function EmpresaPage() {
             <IconSearch className="dark:text-white" />
           </header>
           <FormEmpresa />
+         
         </section>
       </main>
     </>
