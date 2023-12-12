@@ -34,6 +34,29 @@
   height: 22px;
 }
 
+@media (min-width: 700px) {
+  /* Estilos para tamaños de pantalla 'lg' o más grandes */
+  .custom-scrollNav {
+    /* Añade scroll-snap-type para controlar el comportamiento del scroll */
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth; /* Hace que el scroll sea suave */
+  }
+
+  .custom-scrollNav::-webkit-scrollbar {
+    width: 1px; /* Ancho del scrollbar en pantallas grandes */
+  }
+
+  .custom-scrollNav::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color del thumb en pantallas grandes */
+    border-radius: 5px; /* Bordes redondeados para el thumb en pantallas grandes */
+  }
+
+  .custom-scrollNav::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color del fondo del scrollbar en pantallas grandes */
+    border-radius: 5px; /* Bordes redondeados para el fondo del scrollbar en pantallas grandes */
+  }
+}
+
 /**
  * 
  * 

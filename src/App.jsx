@@ -12,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Dashboard/*" element={<RolesOpcion/>} />
+          <Route path="/Dispositivo/:id" element={<h1>hola Dispositivo</h1>} />
           <Route path="*" element={<h2>Error 404</h2>}
            />
         </Routes>

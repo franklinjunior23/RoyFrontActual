@@ -1,23 +1,23 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import DashboardPage from "../pages/dashboard/DashboardPage";
-import Home from "../pages/Home/Home";
-import EmpresaDet from "../pages/empresa/EmpresaDet";
-import CategoryS from "../pages/empresa/CategoryS";
-import UserPage from "../components/Section/UserPage";
-import UserForm from "../components/User/components/UserForm";
-import CreateDisp from "../pages/Inventario/Forms/CreateDisp";
-import GeneralSect from "../pages/Inventario/Sections/GeneralSect";
-import EmpresaPage from "../pages/empresa/EmpresaPage";
-import PageTickets from "../pages/Tickets/PageTickets";
-import CreateTicket from "../pages/Tickets/CreateTicket";
-import { PageDetalle ,PageIdBC, PageBaseConocimiento} from "../pages/BaseConoc";
-import PageCreate from "../pages/BaseConoc/PageCreate";
+import DashboardPage from "@Pages/Layaots/dashboard/DashboardPage";
+import Home from "@Pages/Home/Home";
+import EmpresaDet from "@Pages/empresa/EmpresaDet";
+import CategoryS from "@Pages/empresa/CategoryS";
+import UserPage from "@Components/Section/UserPage";
+import UserForm from "@Components/User/components/UserForm";
+import CreateDisp from "@Pages/Inventario/Forms/CreateDisp";
+import GeneralSect from "@Pages/Inventario/Sections/GeneralSect";
+import EmpresaPage from "@Pages/empresa/EmpresaPage";
+import PageTickets from "@Pages/Tickets/PageTickets";
+import { PageDetalle, PageIdBC, PageBaseConocimiento } from "@Pages/BaseConoc";
+import PageCreate from "@Pages/BaseConoc/PageCreate";
 import SettingPage from "@Pages/Setting/SettingPage";
+import NavLinksSoporte from "@Components/Navlinks/NavLinksSoporte";
 
 function SoporteRoutes() {
   return (
     <Routes>
-      <Route element={<DashboardPage />}>
+      <Route element={<DashboardPage NavUser={NavLinksSoporte} />}>
         <Route index path="/" element={<Navigate to={"Home"} />} />
         <Route path="Home" element={<Home />}>
           <Route path=":nombreE" element={<EmpresaDet />}>
@@ -51,12 +51,11 @@ function SoporteRoutes() {
         <Route path="Ticket" element={<PageTickets />} />
         <Route path="Ticket/:id" element={<h1>Ticket por Id</h1>} />
         <Route path="BaseConocimiento" element={<PageBaseConocimiento />} />
-        <Route path="BaseConocimiento/create" element={<PageCreate/>} />
+        <Route path="BaseConocimiento/create" element={<PageCreate />} />
         <Route path="BaseConocimiento/:id" element={<PageIdBC />} />
-        <Route path="BaseConocimiento/:id/detalle" element={<PageDetalle/>} />
+        <Route path="BaseConocimiento/:id/detalle" element={<PageDetalle />} />
 
-
-        <Route path="Configuracion" element={<SettingPage/>} />
+        <Route path="Configuracion" element={<SettingPage />} />
       </Route>
     </Routes>
   );

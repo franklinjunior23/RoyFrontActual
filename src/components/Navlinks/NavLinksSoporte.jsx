@@ -1,7 +1,7 @@
-import { NavData } from "../../assets/DataDefault"
+import { NavData } from "@/assets/DataDefault"
 import ItemNav from "./components/ItemNav"
 
-function Navlinks() {
+function NavLinksSoporte() {
   return (
    <section className="grid gap-4  mt-5 dark:text-white ">
     {
@@ -12,4 +12,4 @@ function Navlinks() {
    </section>
   )
 }
-export default Navlinks
+export default NavLinksSoporte

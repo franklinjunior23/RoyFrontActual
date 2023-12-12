@@ -5,6 +5,8 @@ import {
   IconLayoutDashboard,
   IconSettings,
   IconFileText,
+  IconUsersGroup,
+  IconAffiliate,
 } from "@tabler/icons-react";
 
 export const IconHomea = () => {
@@ -238,13 +240,38 @@ export const NavData = [
   { name: "Configuracion", url: "Configuracion", icon: <IconSettings /> },
 ];
 
-export const NavAdmin = [
+export const LinksAdministratorData = [
   {
     name: "Home",
     url: "Home",
     icon: <IconLayoutDashboard width={27} height={27} />,
   },
+  { name: "Empresas", url: "Empresas", icon: <IconBuildingWarehouse /> },
+  {
+    name: "Ticket",
+    url: "Ticket",
+    icon: <IconTicket width={27} height={27} />,
+  },
+  {
+    name: "Base de Conoc.",
+    url: "BaseConocimiento",
+    icon: <IconBook width={27} height={27} />,
+  },
+  {
+    name: "Usuarios",
+    url: "Users",
+    icon: <IconUsersGroup width={27} height={27} />,
+  },
+  {
+    name: "Dispositivos",
+    url: "Dispositivos",
+    icon: <IconAffiliate width={27} height={27} />,
+  },
+  { name: "Reportes", url: "Reportes", icon: <IconFileText /> },
+  { name: "Configuracion", url: "Configuracion", icon: <IconSettings /> },
 ];
+
+
 
 export const ColorConteners = [
   { name: "#8FC8CC" },
@@ -266,6 +293,7 @@ export const CategoryInventaio = [
   { name: "Servidores" },
   { name: "Red" },
   { name: "Impresora" },
+  { name: "Camara" },
 ];
 
 export const MarcasPCLAP = [
