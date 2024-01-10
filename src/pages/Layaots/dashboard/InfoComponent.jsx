@@ -33,7 +33,7 @@ function InfoComponent() {
       Icon: IconCloudLock,
       Component: () => (
         <header className="grid grid-rows-2">
-          <a href="https://github.com/franklinjunior23/AppAgentInti/archive/refs/tags/v1.0.1.zip">
+          <a href="https://github.com/franklinjunior23/AppAgentInti/releases/latest">
             <IconDownload size={25} className="mx-auto" />
           </a>
 

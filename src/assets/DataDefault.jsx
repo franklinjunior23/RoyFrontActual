@@ -298,6 +298,7 @@ export const CategoryInventaio = [
 export const MarcasPCLAP = [
   "Compatible",
   "Generico",
+  "Gigabyte",
   "Antrix",
   "Hp",
   "Dell",
@@ -333,17 +334,16 @@ export const PlacaModelPCLAP = [
   "Zotac",
   "Biostar",
   "ECS",
-  "NZXT"
+  "NZXT",
 ];
-export const Tipos_PCLAP =[
+export const Tipos_PCLAP = [
   "Laptop",
   "All in One",
   "Pc Compatible",
   "Pc Workstation",
   "Servidor Descktop",
-  "Servidor Torre"
-
-]
+  "Servidor Torre",
+];
 export const ModeloProcesador = ["AMD", "INTEL"];
 export const marcasMemoriaRAM = [
   "Generico",
@@ -416,7 +416,7 @@ export const FormDisp = [
   "Tarjet_Video",
   "estado",
   "codigo_dispositivo",
-  "Agent"
+  "Agent",
 ];
 
 export const EstatusTicket = ["Abierto", "En progreso", "Cerrado", "Cancelado"];

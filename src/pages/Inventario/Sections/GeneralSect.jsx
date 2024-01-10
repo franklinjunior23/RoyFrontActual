@@ -70,7 +70,7 @@ function GeneralSect() {
         );
         return (
           <span className="text-xs">
-            {TimeFromPeruvian(DataId?.DetalleDispositivos[0].updatedAt)}
+            {TimeFromPeruvian(DataId?.DetalleDispositivos[0]?.updatedAt ?? 'No hay Componentes')}
           </span>
         );
       },
