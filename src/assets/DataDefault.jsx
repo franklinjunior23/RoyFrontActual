@@ -269,9 +269,8 @@ export const LinksAdministratorData = [
   },
   { name: "Reportes", url: "Reportes", icon: <IconFileText /> },
   { name: "Configuracion", url: "Configuracion", icon: <IconSettings /> },
+  { name: "Configuracion", url: "Configuracion", icon: <IconSettings /> },
 ];
-
-
 
 export const ColorConteners = [
   { name: "#8FC8CC" },
@@ -297,6 +296,8 @@ export const CategoryInventaio = [
 ];
 
 export const MarcasPCLAP = [
+  "Compatible",
+  "Generico",
   "Antrix",
   "Hp",
   "Dell",
@@ -310,6 +311,8 @@ export const MarcasPCLAP = [
   "Sony",
 ];
 export const PlacaModelPCLAP = [
+  "Generico",
+  "Micro-Star",
   "ASUS",
   "MSI",
   "Gigabyte",
@@ -324,9 +327,26 @@ export const PlacaModelPCLAP = [
   "Microsoft",
   "Razer",
   "Alienware",
+  "Advantech",
+  "Intel",
+  "Sapphire Technology",
+  "Zotac",
+  "Biostar",
+  "ECS",
+  "NZXT"
 ];
+export const Tipos_PCLAP =[
+  "Laptop",
+  "All in One",
+  "Pc Compatible",
+  "Pc Workstation",
+  "Servidor Descktop",
+  "Servidor Torre"
+
+]
 export const ModeloProcesador = ["AMD", "INTEL"];
 export const marcasMemoriaRAM = [
+  "Generico",
   "Kingston",
   "Corsair",
   "G.Skill",
@@ -395,6 +415,8 @@ export const FormDisp = [
   "Almacenamiento",
   "Tarjet_Video",
   "estado",
+  "codigo_dispositivo",
+  "Agent"
 ];
 
 export const EstatusTicket = ["Abierto", "En progreso", "Cerrado", "Cancelado"];

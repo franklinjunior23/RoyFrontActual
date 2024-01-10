@@ -20,7 +20,6 @@ function Notify() {
   }
 
   function handleReciviedDats(datos) {
-    console.log(datos)
     if (datos?.error === true) {
       setErrorLogout(true);
       setMessageRecent(datos);
@@ -107,7 +106,9 @@ function Notify() {
 
   return (
     <>
-      <span className="absolute -bottom-2 rounded-full text-sm -right-2 bg-red-500 font-semibold px-2 text-white">{categorizedNotifications.activeCount}</span>
+      <span className="absolute -bottom-2 rounded-full text-sm -right-2 bg-red-500 font-semibold px-2 text-white">
+        {categorizedNotifications.activeCount}
+      </span>
       <IconBell
         width={25}
         height={30}

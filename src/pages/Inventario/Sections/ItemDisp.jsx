@@ -1,30 +1,16 @@
 import {
-  IconAccessPoint,
-  IconDeviceLaptop,
-  IconDevicesPc,
+
   IconDotsVertical,
-  IconPrinter,
+
 } from "@tabler/icons-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { DeleteDisposito } from "../../../services/ApiGets";
 import { toast } from "sonner";
+import { SwitchIconDisp } from "@Helpers/DispositivoIcon/SwitchDispositivo";
 
-const SwitchIconDisp = ({ data, size }) => {
-  switch (data) {
-    case "Pc":
-      return <IconDevicesPc width={size} height={size} strokeWidth={1.5} />;
-    case "Laptop":
-      return <IconDeviceLaptop width={size} height={size} />;
-    case "Servidores":
-      return <IconDevicesPc width={size} height={size} />;
-    case "Red":
-      return <IconAccessPoint width={size} height={size} />;
-    case "Impresora":
-      return <IconPrinter width={size} height={size} />;
-  }
-};
+
 
 // eslint-disable-next-line react/prop-types
 function ItemDisp({ value }) {

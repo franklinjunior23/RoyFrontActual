@@ -1,18 +1,14 @@
 import { Outlet, useParams } from "react-router-dom";
-import RetrocederItem from "../../components/Navlinks/components/RetrocederItem";
-import { ColorConteners, IconEmpresa } from "../../assets/DataDefault";
+import RetrocederItem from "@Components/Navlinks/components/RetrocederItem";
+import { ColorConteners, IconEmpresa } from "@Data/DataDefault";
 
-import ListSucursales from "../../components/Section/components/ListSucursales";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { CreateSucursalByEmpresa } from "../../services/ApiGets";
-import { useState } from "react";
-import ModalCreate from "../../components/Modal/ModalCreate";
-import HeadSucur from "../../components/Section/components/HeadSucur";
+import ListSucursales from "@Components/Section/components/ListSucursales";
+
+import HeadSucur from "@Components/Section/components/HeadSucur";
 
 function EmpresaDet() {
   const { nombreE, sucursalN } = useParams();
   const aleatorio = Math.floor(Math.random() * ColorConteners.length);
-  const QueryClitn = useQueryClient();
 
   /* const CreateSuc = useMutation({
     mutationFn: CreateSucursalByEmpresa,

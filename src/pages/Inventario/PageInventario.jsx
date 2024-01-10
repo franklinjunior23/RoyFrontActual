@@ -1,6 +1,6 @@
 import { Outlet, useParams } from "react-router-dom";
-import SectionInventario from "../../components/Section/components/SectionInventario";
-import HeadInventario from "../../components/User/components/HeadInventario";
+import SectionInventario from "@Components/Section/components/SectionInventario";
+import HeadInventario from "@Components/User/components/HeadInventario";
 
 function PageInventario() {
   const { CategoryInventario } = useParams();

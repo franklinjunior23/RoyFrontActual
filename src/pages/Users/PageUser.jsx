@@ -1,6 +1,14 @@
+import Filters from "./components/Filters"
+import Header from "./components/Header"
+import ListItems from "./components/ListItems"
+
 function PageUser() {
   return (
-    <div>PageUser</div>
+    <main>
+      <Header/>
+      <Filters/>
+      <ListItems/>
+    </main>
   )
 }
 
