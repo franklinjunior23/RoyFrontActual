@@ -14,6 +14,9 @@ import PageCreate from "@Pages/BaseConoc/PageCreate";
 import SettingPage from "@Pages/Setting/SettingPage";
 import NavLinksSoporte from "@Components/Navlinks/NavLinksSoporte";
 
+//Page User the Inventario of Empresa and Sucursal
+import PageUser from "@Pages/Inventario/Users";
+
 function SoporteRoutes() {
   return (
     <Routes>
@@ -24,7 +27,7 @@ function SoporteRoutes() {
             <Route path=":sucursalN" element={<CategoryS />}>
               <Route path="Usuarios" element={<UserPage />} />
               <Route path="Usuarios/create" element={<UserForm />} />
-              <Route path="Usuarios/:idUsuario" element={<UserForm />} />
+              <Route path="Usuarios/:idUsuario" element={<PageUser />} />
               <Route path="Inventario" element={<GeneralSect />}>
                 <Route path=":idDisp" element={<CreateDisp />} />
               </Route>

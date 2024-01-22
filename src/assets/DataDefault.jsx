@@ -364,7 +364,13 @@ export const marcasMemoriaRAM = [
   "Ballistix",
 ];
 export const Tipo_Doc = ["Dni", "Pasaporte", "Ce"];
+export const TYPE_DOC = [
+  { value: "Dni", default: true },
+  { value: "Pasaporte" },
+  { value: "Ce" },
+];
 export const TypeUser = ["WorkGroup", "Dominio"];
+export const TYPER_USERS = [{ value: "WorkGroup" }, { value: "Dominio" }];
 export const Nivel_Red = [
   "User",
   "Admin",
@@ -372,8 +378,25 @@ export const Nivel_Red = [
   "Invitado",
   "Teletrabajo",
 ];
+export const LEVEL_RED=[
+  {value:"User"},
+  {value:"Admin"},
+  {value:'User-Ts'},
+  {value:'Invitado'},
+  {value:'Teletrabajo'}
+]
+export const TYPE_EMAILS = [
+  { value: "POP" },
+  { value: "IMAP" },
+  { value: "WEB" },
+];
 export const Type_Email = ["POP", "IMAP", "WEB"];
 export const Estado_User = ["Activo", "Retirado", "En Proceso"];
+export const ESTATUS_USER = [
+  { value: "Activo" },
+  { value: "Retirado" },
+  { value: "En Proceso" },
+];
 
 export const FormUser = [
   "nombre",

@@ -27,6 +27,9 @@ export default {
       },
       fontFamily:{
         Mont: ['Montserrat', 'sans-serif'],
+      },
+      borderColor:{
+        DarkColor:'#484848'
       }
     },
   },

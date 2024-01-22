@@ -189,7 +189,7 @@ input:checked + .slider:before {
   border-radius: 5px; /* Bordes redondeados para el fondo del scrollbar en pantallas grandes */
 }
 
-@layer{
+
   /* Resto de tus estilos */
 @import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
 @import "~@flaticon/flaticon-uicons/css/all/all";
@@ -199,4 +199,9 @@ input:checked + .slider:before {
     font-family: 'Montserrat', sans-serif;
    
   }
+  @layer components{
+.form-input{
+  @apply  border-2 focus:border-blue-500/40 p-2 dark:bg-DarkComponent text-sm outline-none dark:text-white dark:border-DarkColor  rounded-md w-full ;
+}
+
 }

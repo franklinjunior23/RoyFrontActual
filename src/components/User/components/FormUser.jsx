@@ -7,17 +7,15 @@ import { TipyAsign } from "../../../assets/DataDefault";
 
 function FormUser({ id }) {
   const navi = useNavigate();
-  
-const { data, isLoading } = useQuery(["UserData", id], () => GetUserById(id));
+
+  const { data, isLoading } = useQuery(["UserData", id], () => GetUserById(id));
   const { data: DataDisp } = useQuery({
     initialData: [],
-    queryKey:['DipsData'],
+    queryKey: ["DipsData"],
     queryFn: GetDispUser,
   });
   const DatPc = DataDisp.filter((value) => value.tipo === "PC");
   const DatLap = DataDisp.filter((value) => value.tipo === "LAPTOP");
-  
-  
 
   const { handleSubmit, register, watch } = useForm({
     values: {
@@ -45,7 +43,7 @@ const { data, isLoading } = useQuery(["UserData", id], () => GetUserById(id));
 
   if (!data.where) {
     toast.error("Error Usuario no encontrado");
-    return navi(-1,{replace:true});
+    return navi(-1, { replace: true });
   }
   const TypeDisp = watch("tipo_disp");
   //const HandleSub = () => {};
@@ -63,13 +61,12 @@ const { data, isLoading } = useQuery(["UserData", id], () => GetUserById(id));
     );
   };
 
-  const HandleForm = ()=>{
-    if(!data)return 
-  }
+  const HandleForm = () => {
+    if (!data) return;
+  };
   return (
     <main className="mt-10 mb-5">
       <main>
-        adww
         <form onSubmit={handleSubmit(HandleForm)}>
           <section className="grid grid-cols-2 gap-3">
             <main className="">
@@ -111,6 +108,7 @@ const { data, isLoading } = useQuery(["UserData", id], () => GetUserById(id));
             <section className="grid grid-cols-2 gap-3">
               <ContentInput label={"Tipo Email"} name={"email_tip"} />
               <ContentInput label={"Correo"} name={"email_dirrecion"} />
+             
             </section>
             <h3 className="py-4 text-lg"> Asignacion de pc</h3>
             <section className="grid grid-cols-2 gap-3 mt-5">
@@ -137,8 +135,12 @@ const { data, isLoading } = useQuery(["UserData", id], () => GetUserById(id));
                     className="py-2 border w-full text-sm md:py-3"
                     {...register("nombre_disp")}
                   >
-                   <option value={data?.resp?.Dispositivo?.nombre} key={data?.resp?.Dispositivo?.nombre}>{data?.resp?.Dispositivo?.nombre}</option>
-                   
+                    <option
+                      value={data?.resp?.Dispositivo?.nombre}
+                      key={data?.resp?.Dispositivo?.nombre}
+                    >
+                      {data?.resp?.Dispositivo?.nombre}
+                    </option>
                   </select>
                 </div>
               </div>

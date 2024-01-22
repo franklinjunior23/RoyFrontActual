@@ -129,6 +129,17 @@ Se agrego una simple agregar un archivo a la base de conocimiento en la cual se 
 <input class="border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500"/>
 
 
+COMO HACER LOS PROPTYPES DE LOS COMPONENTES //
+
+//importar primero
+
+import PropTypes from "prop-types";
+
+Input.propTypes={
+    name:PropTypes.string
+}
+
+
 LISTAS DE ERRORES : 
 
 

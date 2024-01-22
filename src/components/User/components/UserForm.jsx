@@ -1,5 +1,5 @@
 import { IconMan, IconWoman } from "@tabler/icons-react";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import {
   Estado_User,
   FormUser,
@@ -19,11 +19,14 @@ import { useEffect } from "react";
 const ContentInput = ({ label, name, type, register, defaultValue }) => {
   return (
     <div>
-      <label className=" text-sm mb-1 text-black/80 dark:text-white">{label}</label>
+      <label className=" text-sm mb-1 text-black/80 dark:text-white">
+        {label}
+      </label>
       <input
         type={type == undefined ? "text" : type}
         className="w-full border rounded-md py-2 indent-2 truncate  text-sm  dark:bg-DarkComponent dark:text-white dark:outline-none dark:border-none"
         {...register(name)}
+       
       />
     </div>
   );
@@ -46,7 +49,7 @@ const ContentSelect = ({ label, name, register, data, errors }) => {
         ))}
       </select>
       {errors[name] && (
-        <p className="text-red-500 text-xs mt-1">{errors[name].message}</p>
+        <p className="text-red-500 text-xs mt-1">{errors[name]?.message}</p>
       )}
     </div>
   );
@@ -63,35 +66,40 @@ function UserForm() {
   }
 
   const {
+    control,
     register,
     setValue,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+  
+  const {
+    fields: FieldsEmail,
+    append: AppendEmail,
+    remove: RemoveEmail,
+  } = useFieldArray({
+    control,
+    name: "email", // nombre del campo en el formulario
+  });
+
   useEffect(() => {
     if (DataUser) {
+      setValue('email',DataUser?.resp?.email)
       FormUser.forEach((param) => {
+        setValue(param, DataUser?.resp[param]);
         setValue(param, DataUser?.resp[param]);
       });
     }
   }, [DataUser, setValue]);
 
+  
   const VisGenero = watch("genero");
   const Sexos = ["Masculino", "Femenino"];
-  const columns = [
-    {
-      id: "cell1",
-      displayName: "Cell 1",
-    },
-    {
-      id: "cell2",
-      displayName: "Cell 2",
-    },
-  ];
 
   const { isLoading, mutate } = useMutation({
     mutationFn: async (datos) => {
+      console.log(datos);
       const resp = await axiosInstance.post(
         `Users/${nombreE}/${sucursalN}`,
         datos
@@ -110,6 +118,7 @@ function UserForm() {
 
   const { mutate: UpdateUser } = useMutation({
     mutationFn: async (data) => {
+      console.log(data);
       const resp = await axiosInstance.put(`Users/${DataUser?.resp.id}`, data);
       return resp.data;
     },
@@ -123,12 +132,14 @@ function UserForm() {
     if (!DataUser) return mutate(data);
     return UpdateUser(data);
   };
+
   return (
     <main className="mt-8">
-      
       <section className="mt-10">
         <form onSubmit={handleSubmit(HandleSub)}>
-          <h3 className="text-black/70 font-bold dark:text-white">Datos Personales</h3>
+          <h3 className="text-black/70 font-bold dark:text-white">
+            Datos Personales
+          </h3>
           <section className="grid grid-cols-2 gap-2 lg:gap-8">
             <div>
               <ContentInput
@@ -257,50 +268,73 @@ function UserForm() {
           </div>
           <div className="grid  lg:grid-cols-2 mt-7 gap-8">
             <section className="">
-              <h3 className="text-black/70 pb-2 border-b  font-bold dark:text-white">Email</h3>
-              <ContentSelect
-                label={`Tipo Email`}
-                name={"email_tip"}
-                register={register}
-                data={Type_Email}
-                errors={errors}
-              />
-
-              <div className="grid grid-cols-2 gap-2">
-                <ContentInput
-                  label={`Email`}
-                  name={"email_dirrecion"}
-                  register={register}
-                />
-                <ContentInput
-                  label={`Contraseña`}
-                  name={"email_contraseña"}
-                  register={register}
-                />
-              </div>
+              <h3 className="text-black/70 pb-2 mb-3 border-b  font-bold dark:text-white">
+                Email
+              </h3>
+              <input type="text" {...register('email')}  readOnly />
+              {FieldsEmail.map((FielEm, index) => (
+                <section key={FielEm.id}>
+                  <ContentSelect
+                    label={`Tipo Email`}
+                    name={`email.${index}.Type`}
+                    register={register}
+                    data={Type_Email}
+                    errors={errors}
+                  />
+                  <div>
+                    <div className="grid grid-cols-[1fr_1fr_40px] gap-2">
+                      <ContentInput
+                        label={`Email`}
+                        name={`email.${index}.Address`}
+                        register={register}
+                      />
+                      <ContentInput
+                        label={`Contraseña`}
+                        name={`email.${index}.Password`}
+                        register={register}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => RemoveEmail(index)}
+                        className="grid place-content-center bg-red-400 h-3/4 rounded-lg text-white self-end"
+                      >
+                        -
+                      </button>
+                    </div>
+                  </div>
+                </section>
+              ))}
+              <button
+                type="button"
+                onClick={AppendEmail}
+                className="w-10 bg-slate-600 text-white rounded-md"
+              >
+                +
+              </button>
             </section>
             <section>
               {DataUser?.resp?.Dispositivo ? (
                 <>
                   <section className=" grid place-content-center py-5 px-3 border text-center dark:text-white">
-                    <span >Dispositivo</span>
+                    <span>Dispositivo</span>
                     <span className="font-bold px-3 ">
                       {DataUser?.resp?.Dispositivo.tipo}
                     </span>
                     <div>
-                      <span>Nombre Disp :  </span>
+                      <span>Nombre Disp : </span>
                       <span>{DataUser?.resp?.Dispositivo.nombre}</span>
-                     
                     </div>
                   </section>
                 </>
-              ):(
-                <h3 className="text-center dark:text-white font-semibold">No cuenta con un Dispositivo</h3>
+              ) : (
+                <h3 className="text-center dark:text-white font-semibold">
+                  No cuenta con un Dispositivo
+                </h3>
               )}
             </section>
           </div>
           <section className="grid grid-cols-2 py-5 text-white gap-1">
-            <button className="bg-black py-2" disabled={isLoading}>
+            <button  type="submit" className="bg-black py-2" disabled={isLoading}>
               {DataUser ? "actualizando" : "crear"}
             </button>
             <button className="bg-black/70 py-2">Cancelar</button>
