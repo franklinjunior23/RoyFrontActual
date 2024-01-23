@@ -9,7 +9,7 @@ function EmailField({ index, register, error, remove }) {
   return (
     <article>
       <InputSelect
-        name={`Email.${index}.type`}
+        name={`email.${index}.type`}
         label="Tipo Email"
         register={register}
         options={TYPE_EMAILS}
@@ -19,20 +19,20 @@ function EmailField({ index, register, error, remove }) {
       <RowColumn className={""}>
         <Input
           label="Correo"
-          name={`Email.${index}.correo`}
+          name={`email.${index}.correo`}
           register={register}
           error={error}
         />
         <Input
           label="Contraseña"
-          name={`Email.${index}.password`}
+          name={`email.${index}.password`}
           register={register}
           error={error}
         />
       </RowColumn>
       <button
         type="button"
-        className="bg-red-400 text-white text-xl px-2.5 font-semibold rounded-md"
+        className="bg-red-400 flex justify-between text-white text-xl px-2.5 font-semibold rounded-md"
         onClick={() => remove(index)}
       >
         -
@@ -51,7 +51,7 @@ EmailField.propTypes = {
 function FieldsEmail({ control, register, error }) {
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "Email",
+    name: "email",
   });
 
   return (

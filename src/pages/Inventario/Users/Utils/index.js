@@ -23,5 +23,5 @@ const Campos = [
   { value: "contraseña", key: "contraseña" },
   { value: "anydesk_id", key: "anydesk_id" },
   { value: "anydesk_contra", key: "anydesk_contra" },
-  { value: "Email", key: "Email" },
+  { value: "email", key: "email" },
 ];

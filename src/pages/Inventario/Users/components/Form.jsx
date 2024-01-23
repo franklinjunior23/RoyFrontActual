@@ -12,9 +12,14 @@ import clsx from "clsx";
 import FieldsEmail from "./FieldsEmail";
 import { AddDataForm } from "../Utils";
 import { useEffect } from "react";
+import RowInfoDevice from "./RowInfoDevice";
+
+import { useParams, useNavigate } from "react-router-dom";
+import { CreateUser, UpdateUser } from "../Utils/FunctionsApis";
 
 export default function Form({ data }) {
-  console.log(data);
+  const { idUsuario: UsuarioId, nombreE, sucursalN } = useParams();
+  const Navigator = useNavigate();
   const {
     handleSubmit,
     register,
@@ -22,9 +27,17 @@ export default function Form({ data }) {
     control,
     setValue,
     formState: { errors },
-  } = useForm();
-  function handleEnv(datos) {
-    console.log(datos);
+  } = useForm({
+    defaultValues: {
+      email: [data?.email ?? null],
+    },
+  });
+
+  async function handleEnv(datos) {
+    if (data?.id) {
+      return await UpdateUser(datos, Navigator, UsuarioId);
+    }
+    return await CreateUser(datos, Navigator, nombreE, sucursalN);
   }
 
   useEffect(() => {
@@ -80,11 +93,11 @@ export default function Form({ data }) {
               />
             </RowColumn>
             <InputSelect
-                name="genero"
-                label="Genero"
-                register={register}
-                options={[{value:'Masculino'},{value:'Femenino'}]}
-              />
+              name="genero"
+              label="Genero"
+              register={register}
+              options={[{ value: "Masculino" }, { value: "Femenino" }]}
+            />
             <h3 className="border-b mt-2 pb-1 mb-2 dark:text-white">Email</h3>
             <FieldsEmail register={register} control={control} error={errors} />
           </section>
@@ -136,12 +149,14 @@ export default function Form({ data }) {
               register={register}
             />
           </RowColumn>
-          {
-            data?.Dispositivo ? (<h2>Existe pc</h2>):<h3>No existe pc</h3>
-          }
-          <footer className="w-full grid grid-cols-2 mt-5">
-            <button type="submit" className="bg-black">Enviar</button>
-            <button type="button" className="bg-black">Cancelar</button>
+          {data?.Dispositivo && <RowInfoDevice data={data?.Dispositivo} />}
+          <footer className="w-full grid grid-cols-2 mt-5 gap-3 ">
+            <Button type="submit" color={"bg-black"}>
+              Enviar
+            </Button>
+            <Button type="button" variant={"secondary"} color={"bg-black"}>
+              Cancelar
+            </Button>
           </footer>
         </section>
       </RowColumn>
@@ -149,17 +164,50 @@ export default function Form({ data }) {
   );
 }
 
-function RowInfoDevice({data}){
-  const {nombre,tipo,codigo} = data
-  return (
-    <article>
+function Button({
+  children,
+  className,
+  type,
+  onClick,
+  variant,
+  rounded,
+  color,
+}) {
+  const baseStyles = "py-2 px-4 text-white font-medium ";
+  const Color = color ?? "bg-black";
+  const Rounded = rounded ?? "rounded-lg";
+  let variantStyles;
 
-    </article>
-  )
+  switch (variant) {
+    case "primary":
+      variantStyles = `${Color}`;
+      break;
+    case "secondary":
+      variantStyles = `${Color}/40`;
+      break;
+    // Agrega más variantes según sea necesario
+    default:
+      variantStyles = `${Color} text-white`;
+  }
+  return (
+    <button
+      onClick={onClick ?? null}
+      type={type ?? "button"}
+      className={clsx(baseStyles, Rounded, Color, variantStyles, className)}
+    >
+      {children}
+    </button>
+  );
 }
-RowInfoDevice.propTypes={
-  data:PropTypes.object.isRequired
-}
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  type: PropTypes.string,
+  onClick: PropTypes.func,
+  rounded: PropTypes.string,
+  variant: PropTypes.string,
+  color: PropTypes.string,
+};
 
 export function RowColumn({ children, className }) {
   return (
@@ -174,5 +222,5 @@ RowColumn.propTypes = {
 };
 
 Form.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.any,
 };

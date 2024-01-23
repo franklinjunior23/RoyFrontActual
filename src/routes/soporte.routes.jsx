@@ -26,7 +26,7 @@ function SoporteRoutes() {
           <Route path=":nombreE" element={<EmpresaDet />}>
             <Route path=":sucursalN" element={<CategoryS />}>
               <Route path="Usuarios" element={<UserPage />} />
-              <Route path="Usuarios/create" element={<UserForm />} />
+              <Route path="Usuarios/create" element={<PageUser />} />
               <Route path="Usuarios/:idUsuario" element={<PageUser />} />
               <Route path="Inventario" element={<GeneralSect />}>
                 <Route path=":idDisp" element={<CreateDisp />} />
