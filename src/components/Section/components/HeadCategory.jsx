@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import ButtomDots from "@Components/Buttons/Buttom/ButtomDots";
+import { Children, useState } from "react";
+import PageCreateArea from "@Pages/Inventario/Area/PageCreate";
 function HeadCategory({ data }) {
   const navi = useNavigate();
   const Options = [
@@ -8,10 +10,14 @@ function HeadCategory({ data }) {
       label: "Crear Usuario",
       Function: () => {
         const currentPath = window.location.pathname;
-        const newPath = currentPath.replace("/Inventario", "/Usuarios/create");
+        console.log(currentPath)
+        if(!currentPath.includes('Usuarios')){
+          const newPath = currentPath.replace("/Inventario", "/Usuarios/create");
 
-        // Ahora, puedes navegar a la nueva ruta
-        navi(newPath);
+          // Ahora, puedes navegar a la nueva ruta
+        return  navi(`${newPath}`);
+        }
+        return navi("create")
       },
     },
     {
@@ -34,19 +40,21 @@ function HeadCategory({ data }) {
     <header className="flex justify-between items-center gap-2 pt-5 relative dark:text-white">
       <h2 className="text-lg hidden md:block">{data}</h2>
       <header>
-        <header className="flex gap-2">
+        <header className="flex gap-2 items-end  text-sm">
           <button
-            className="bg-black py-2 text-center text-white px-4 rounded-lg"
+            className="bg-black py-1.5 font-light  text-white px-4 rounded-lg"
             onClick={() => navi("create")}
           >
             Crear {data}
           </button>
           <button
-            className="bg-black py-2 text-center text-white px-4 rounded-lg"
+            className="bg-black py-1.5  text-white px-4 rounded-lg"
             onClick={() => navi("create")}
           >
-            Crear Area
+            Crear Usuario
           </button>
+          <ButtonOpenMod Modal={PageCreateArea}>Crear Area</ButtonOpenMod>
+
           <ButtomDots
             TitleOption={"Acciones"}
             Options={Options}
@@ -60,4 +68,33 @@ function HeadCategory({ data }) {
 export default HeadCategory;
 HeadCategory.propTypes = {
   data: PropTypes.string.isRequired,
+};
+function ButtonOpenMod({ children, Modal }) {
+  const [StatusSide, setStatusSide] = useState(false);
+  function handleClick() {
+    setStatusSide(!StatusSide);
+  }
+  return (
+    <>
+      <div  className="relative">
+        <button
+          className="bg-black py-1.5  text-white px-4 rounded-lg"
+          onClick={handleClick}
+        >
+          {children}
+        </button>
+        {StatusSide && <Modal Handle={handleClick} TitleModal={"Creacion de Area"} />}
+      </div>
+      {StatusSide && (
+        <div
+          className="fixed w-full h-full top-0 right-0 overflow-hidden z-10 "
+          onClick={handleClick}
+        ></div>
+      )}
+    </>
+  );
+}
+ButtonOpenMod.propTypes = {
+  children: PropTypes.node,
+  Modal: PropTypes.any,
 };

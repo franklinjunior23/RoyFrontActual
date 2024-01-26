@@ -16,6 +16,7 @@ import ButtomDots from "@Components/Buttons/Buttom/ButtomDots";
 import PDF_PC from "@Components/pdf/Pc/PDF_PC";
 import { TimeFromPeruvian } from "@Helpers/FechaConvert";
 import { useState } from "react";
+import { IconEye } from "@tabler/icons-react";
 
 function GeneralSect() {
   const [TextFilter, setTextFilter] = useState("");
@@ -77,12 +78,12 @@ function GeneralSect() {
     }),
     ColumnDate.accessor((row) => row.id, {
       id: "ViewMaquina",
-      header: "Ver Dispositivo",
+      header: "Ver",
       cell: (ValueAgent) => (
-        <Link to={`${ValueAgent.getValue()}`}>
-          <span className="bg-black text-white px-2 py-1.5 rounded-lg text-xs">
-            Ver Dispositivo
-          </span>
+        <Link to={`${ValueAgent.getValue()}`} className="grid place-content-center">
+          
+           <IconEye className="bg-black p-1 rounded-md text-white " size={35}/>
+          
         </Link>
       ),
     }),

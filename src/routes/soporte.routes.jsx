@@ -13,6 +13,7 @@ import { PageDetalle, PageIdBC, PageBaseConocimiento } from "@Pages/BaseConoc";
 import PageCreate from "@Pages/BaseConoc/PageCreate";
 import SettingPage from "@Pages/Setting/SettingPage";
 import NavLinksSoporte from "@Components/Navlinks/NavLinksSoporte";
+import PageCreateArea  from "@Pages/Inventario/Area/PageCreate";
 
 //Page User the Inventario of Empresa and Sucursal
 import PageUser from "@Pages/Inventario/Users";
@@ -28,9 +29,17 @@ function SoporteRoutes() {
               <Route path="Usuarios" element={<UserPage />} />
               <Route path="Usuarios/create" element={<PageUser />} />
               <Route path="Usuarios/:idUsuario" element={<PageUser />} />
+              <Route
+                path="Usuarios/create-area"
+                element={<PageCreateArea/>}
+              />
               <Route path="Inventario" element={<GeneralSect />}>
                 <Route path=":idDisp" element={<CreateDisp />} />
               </Route>
+              <Route
+                path="Inventario/create-area"
+                element={<PageCreateArea/>}
+              />
               {/*<Route path="*" element={<Navigate to={-1} />} />*/}
             </Route>
           </Route>
@@ -40,6 +49,7 @@ function SoporteRoutes() {
             <Route path=":sucursalN" element={<CategoryS />}>
               <Route path="Usuarios" element={<UserPage />} />
               <Route path="Usuarios/create" element={<UserForm />} />
+
               <Route path="Usuarios/:idUsuario" element={<UserForm />} />
               <Route path="Inventario" element={<GeneralSect />}>
                 <Route path=":idDisp" element={<CreateDisp />} />

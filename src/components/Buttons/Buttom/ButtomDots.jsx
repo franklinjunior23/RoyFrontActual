@@ -3,7 +3,13 @@ import clsx from "clsx";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-function ButtomDots({ ClassName, TitleOption, Options, OptionDownload }) {
+function ButtomDots({
+  ClassName,
+  TitleOption,
+  Options,
+  OptionDownload,
+  TitleActive,
+}) {
   const [ActiveButton, setActiveButton] = useState(false);
   function HandleOpen() {
     setActiveButton(!ActiveButton);
@@ -18,23 +24,25 @@ function ButtomDots({ ClassName, TitleOption, Options, OptionDownload }) {
         <button
           onClick={HandleOpen}
           className={clsx(
-            "p-1.5  rounded-md hover:bg-black/20 transition-all duration-200 ",
+            "p-1.5 px-2  rounded-md  hover:bg-black/10 transition-all duration-200 ",
             ClassName
           )}
         >
-          <IconDots className="dark:text-white " />
+          <IconDots className="dark:text-white "  size={22}/>
         </button>
         {ActiveButton && (
-          <aside className="absolute right-0 top-12 rounded-md dark:bg-[#262626] bg-white text-sm  z-50 p-2 w-[160px] shadow-md dark:text-white grid gap-1">
-            <h4 className="pl-3 font-semibold py-1">
-              {TitleOption ?? "Opciones"}
-            </h4>
+          <aside className="absolute modal right-0 top-12   text-sm   w-[160px]  dark:text-white grid gap-1">
+            {TitleActive && (
+              <h4 className="pl-3 font-semibold py-1.5 text-left">
+                {TitleOption ?? "Opciones"}
+              </h4>
+            )}
             {OptionDownload && (
               <button
                 onClick={() => HandleOption}
-                className="text-left hover:bg-neutral-400/20 dark:hover:bg-white/20 pl-3 py-1.5 rounded-md"
+                className="text-left hover:bg-neutral-400/20 dark:hover:bg-white/20 pl-3 py-2 rounded-md"
               >
-                <OptionDownload/>
+                <OptionDownload />
               </button>
             )}
 
@@ -42,7 +50,7 @@ function ButtomDots({ ClassName, TitleOption, Options, OptionDownload }) {
               <button
                 key={index}
                 onClick={() => HandleOption(item.Function)}
-                className="text-left hover:bg-neutral-400/20 dark:hover:bg-white/20 pl-3 py-1.5 rounded-md"
+                className="text-left hover:bg-neutral-400/20 dark:hover:bg-white/20 pl-3 py-2 rounded-md"
               >
                 {item.label}
               </button>
@@ -63,7 +71,8 @@ ButtomDots.propTypes = {
   ClassName: PropTypes.string,
   TitleOption: PropTypes.string,
   Options: PropTypes.array.isRequired,
-  OptionDownload: PropTypes.node,
+  OptionDownload: PropTypes.any,
+  TitleActive:PropTypes.bool
 };
 
 export default ButtomDots;

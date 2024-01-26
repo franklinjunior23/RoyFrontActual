@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom"
-import ListCategoy from "../../components/Section/components/ListCategoy"
+import ListCategoy from "@Components/Section/components/ListCategoy"
 
 function CategoryS() {
   return (
