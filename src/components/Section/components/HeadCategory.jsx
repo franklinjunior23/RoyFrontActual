@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import ButtomDots from "@Components/Buttons/Buttom/ButtomDots";
-import { Children, useState } from "react";
+import { useState } from "react";
 import PageCreateArea from "@Pages/Inventario/Area/PageCreate";
 function HeadCategory({ data }) {
   const navi = useNavigate();
@@ -10,7 +10,6 @@ function HeadCategory({ data }) {
       label: "Crear Usuario",
       Function: () => {
         const currentPath = window.location.pathname;
-        console.log(currentPath)
         if(!currentPath.includes('Usuarios')){
           const newPath = currentPath.replace("/Inventario", "/Usuarios/create");
 
@@ -19,6 +18,11 @@ function HeadCategory({ data }) {
         }
         return navi("create")
       },
+      more:[
+        {
+          label: "Reporte "
+        }
+      ]
     },
     {
       label: "Crear Dispositivo",
@@ -26,12 +30,12 @@ function HeadCategory({ data }) {
         navi("create");
       },
     },
-    {
-      label: "Crear Area",
-      Function: () => {
-        navi("create");
-      },
-    },
+    // {
+    //   label: "Crear Area",
+    //   Function: () => {
+    //     navi("create");
+    //   },
+    // },
   ];
   const OptionsDownloads = () => {
     return <h2>Reporte PDF</h2>;

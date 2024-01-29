@@ -3,16 +3,22 @@ import { Input } from "@Components/Input";
 import PropTypes from "prop-types";
 import axiosInstance from "@Services/ConfigApi";
 import { toast } from "sonner";
-
+import { useParams } from "react-router-dom";
 function PageCreateArea({ Handle, TitleModal }) {
+  const { nombreE, sucursalN } = useParams();
   const { register, handleSubmit } = useForm();
   async function HandleCreate(datos) {
     try {
-      const { data } = await axiosInstance.post("Areas", {...datos,IdSucursal:});
-      console.log(data);
+      const { data } = await axiosInstance.post("Areas", {
+        ...datos,
+        CompanyName: nombreE,
+        BranchName: sucursalN,
+      });
       if (data?.data?.create)
+      Handle()
         return toast.success("Se creo Correctamente la area");
     } catch (error) {
+      Handle()
       toast.error("Sucedio un error " + error?.message);
     }
   }
@@ -28,7 +34,7 @@ function PageCreateArea({ Handle, TitleModal }) {
           register={register}
           name={"name"}
         />
-        <footer className="grid grid-cols-2 gap-2 text-sm  mt-4 mb-4">
+        <footer className="grid grid-cols-2 gap-2 text-sm  mt-4 mb-1">
           <button
             type="button"
             className="hover:bg-black/5 rounded-lg"

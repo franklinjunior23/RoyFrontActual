@@ -151,3 +151,100 @@ BDUPT100 : ERROR EN EL BACKEND AL ACTUALIZAR UN DOCUMENTO DE LA BASE DE CONOCIMI
 // ruta para escanear  =>>>
 
 intisoft/Dispositivo/:id
+
+
+
+
+
+
+
+<label className="font-medium text-lg dark:text-white ">
+                Desea Asignarle Directamente a un usuario?  
+              </label>
+              <div className="self-center">
+                <label>
+                  <Controller
+                    name="FormUser"
+                    control={control}
+                    defaultValue={false} // Valor inicial del checkbox
+                    render={({ field }) => <input type="checkbox" {...field} />}
+                  />
+                </label>
+                <input type="text" hidden {...register("IdUser")} />
+              </div>
+              <div>
+                <label className="font-medium text-lg dark:text-white ">
+                  Desea Asignarle Directamente a una Area?
+                </label>
+                <Switch register={register} name="String"/>
+                <div className="self-center">
+                  <label>
+                    <Controller
+                      name="FormArea"
+                      control={control}
+                      defaultValue={false} // Valor inicial del checkbox
+                      render={({ field }) => (
+                        <input type="checkbox" {...field} />
+                      )}
+                    />
+                  </label>
+                  <input type="text" hidden {...register("IdUser")} />
+                </div>
+              </div>
+              {watch("FormArea") && (
+                <>
+                  {Areas.length > 0 ? (
+                    <label>
+                      Areas
+                      <select>
+                        {Areas.map(({ name, id }) => (
+                          <option value={name} key={id}>
+                            {name}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  ) : (
+                    <p>No hay áreas disponibles.</p>
+                  )}
+                </>
+              )}
+
+              {DataUserConnect && (
+                <div>
+                  {/* Formulario adicional que se muestra si se marca el checkbox */}
+                  <div className="grid">
+                    <label className="dark:text-white mb-3">
+                      Nombre Usuario
+                    </label>
+                    <select
+                      {...register("IdUser")}
+                      className="py-2 border indent-2 dark:border-none dark:bg-Component dark:text-white"
+                    >
+                      <option value="null">marcar</option>
+                      {DataUsers?.map((value) => (
+                        <option
+                          value={value?.id}
+                          disabled={value?.Dispositivo?.IdUser}
+                          className={
+                            value?.Dispositivo?.IdUser && "dark:text-slate-400"
+                          }
+                          key={value?.id}
+                        >
+                          {value?.nombre} {value?.apellido}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <section className="mt-10 grid place-content-center">
+                    {IdUser && (
+                      <Link
+                        to={`/Dashboard/Home/${nombreE}/${sucursalN}/Usuarios/${IdUser}`}
+                        className="dark:text-white text-center border py-2 px-5 rounded-md"
+                      >
+                        Ver Personal Registrado
+                      </Link>
+                    )}
+                  </section>
+                </div>
+              )}

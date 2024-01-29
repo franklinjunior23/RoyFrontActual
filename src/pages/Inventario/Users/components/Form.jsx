@@ -11,14 +11,15 @@ import PropTypes from "prop-types";
 import clsx from "clsx";
 import FieldsEmail from "./FieldsEmail";
 import { AddDataForm } from "../Utils";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import RowInfoDevice from "./RowInfoDevice";
-
+import axiosInstance from "@Services/ConfigApi";
 import { useParams, useNavigate } from "react-router-dom";
 import { CreateUser, UpdateUser } from "../Utils/FunctionsApis";
 
 export default function Form({ data }) {
   const { idUsuario: UsuarioId, nombreE, sucursalN } = useParams();
+  const [Areas, setAreas] = useState(null);
   const Navigator = useNavigate();
   const {
     handleSubmit,
@@ -32,7 +33,6 @@ export default function Form({ data }) {
       email: [data?.email ?? null],
     },
   });
-
   async function handleEnv(datos) {
     if (data?.id) {
       return await UpdateUser(datos, Navigator, UsuarioId);
@@ -41,6 +41,18 @@ export default function Form({ data }) {
   }
 
   useEffect(() => {
+    async function GetsAreas() {
+      try {
+        const Response = await axiosInstance.get(
+          `Areas?Company=${nombreE}&Branch=${sucursalN}`
+        );
+       
+        return setAreas(Response?.data?.body);
+      } catch (error) {
+        alert(`Error : ${error?.message}`);
+      }
+    }
+    GetsAreas();
     if (data.length !== 0) AddDataForm({ data, setValue });
   }, [data]);
   return (
@@ -125,6 +137,13 @@ export default function Form({ data }) {
             register={register}
             className={"text-center"}
             options={ESTATUS_USER}
+          />
+          <h3 className="border-b pb-1 mb-2 mt-5 dark:text-white">Area</h3>
+          <InputSelect
+            name="IdArea"
+            register={register}
+            className={"text-center"}
+            options={Areas ?? []}
           />
           <h3 className="border-b pb-1 mb-2 mt-5 dark:text-white">Red</h3>
           <InputSelect

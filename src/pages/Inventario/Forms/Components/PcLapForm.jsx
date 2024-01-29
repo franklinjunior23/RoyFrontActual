@@ -12,9 +12,27 @@ import { Link, useParams } from "react-router-dom";
 import axiosInstance from "@Services/ConfigApi";
 import ItemInput from "./ItemInput";
 import { IconPlus, IconTrash } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import Switch from "@Components/Buttons/Buttom/Switch";
 
 function PcLapForm({ register, setValue, control, watch, getValues, data }) {
+  const [Areas, setAreas] = useState(null);
+
   const { nombreE, sucursalN } = useParams();
+  useEffect(() => {
+    async function GetsAreas() {
+      try {
+        const Response = await axiosInstance.get(
+          `Areas?Company=${nombreE}&Branch=${sucursalN}`
+        );
+        return setAreas(Response?.data?.body);
+      } catch (error) {
+        toast.error(`Error : ${error?.message}`);
+      }
+    }
+    GetsAreas();
+  }, []);
   if (data) {
     var { IdUser, ...datos } = data;
   }
@@ -47,7 +65,7 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
     return data;
   });
 
-  const DataUserConnect = watch("FormUser", false);
+  const DataUserConnect = watch("FormUser");
   return (
     <>
       <section>
@@ -286,7 +304,7 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                       <label className="text-sm dark:text-white">Tipo</label>
                       <input
                         type="text"
-                        className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none"
+                        className="w-full  border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none"
                         {...register(`Almacenamiento.${index}.estado`, {
                           require: true,
                         })}
@@ -347,7 +365,7 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                     <label className="text-sm dark:text-white">Detalle</label>
                     <input
                       type="text"
-                      className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none px-2"
+                      className="w-full border   py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none px-2"
                       {...register(`Tarjeta_Video.${index}.detalle`)}
                     />
                   </div>
@@ -355,25 +373,61 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
               ))}
             </div>
           </article>
-          <section className="mt-4">
-            <article className="border grid place-content-center py-4 px-6 md:px-0 dark:border-none dark:bg-DarkComponent rounded-md">
-              <label className="font-medium text-lg dark:text-white ">
-                Desea Asignarle Directamente a un usuario?
-              </label>
-              <div className="self-center">
-                <label>
-                  <Controller
-                    name="FormUser"
-                    control={control}
-                    defaultValue={false} // Valor inicial del checkbox
-                    render={({ field }) => <input type="checkbox" {...field} />}
-                  />
-                </label>
-                <input type="text" hidden {...register("IdUser")} />
-              </div>
-              {DataUserConnect && (
-                <div>
-                  {/* Formulario adicional que se muestra si se marca el checkbox */}
+          <input type="text" hidden {...register("IdUser")} />
+          <section className="mt-4 bg-gray-400  py-4 px-6 text-white dark:bg-gray-400/30 rounded-md">
+            <article className=" grid grid-cols-2   ">
+              <section>
+                <h4>Vincular por Usuario</h4>
+                <Controller
+                  control={control}
+                  name="FormUser"
+                  defaultValue={false}
+                  render={({ field: { name, value, onChange } }) => {
+                    return (
+                      <Switch state={value} onchange={onChange} name={name} />
+                    );
+                  }}
+                />
+              </section>
+              <section>
+                <h4>Vincular por Area</h4>
+                <Controller
+                  control={control}
+                  name="FormArea"
+                  defaultValue={false}
+                  render={({ field: { name, value, onChange } }) => {
+                    return (
+                      <Switch state={value} onchange={onChange} name={name} />
+                    );
+                  }}
+                />
+                
+              </section>
+            </article>
+            <footer className="mt-5">
+            {watch("FormArea") && (
+                <>
+                  {Areas.length > 0 ? (
+                    <label className="text-sm">
+                      Areas
+                      <select
+                      className="form-input dark:text-black text-black dark:bg-white"
+                        {...register('IdArea')}
+                      >
+                        {Areas.map(({ name, id }) => (
+                          <option value={id} key={id}>
+                            {name}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  ) : (
+                    <p>No hay áreas disponibles.</p>
+                  )}
+                </>
+              )}
+              {watch("FormUser") && (
+                <section>
                   <div className="grid">
                     <label className="dark:text-white mb-3">
                       Nombre Usuario
@@ -407,9 +461,9 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                       </Link>
                     )}
                   </section>
-                </div>
+                </section>
               )}
-            </article>
+            </footer>
           </section>
         </section>
       </section>
