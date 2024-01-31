@@ -2,11 +2,7 @@ import { useForm } from "react-hook-form";
 import { CategoryInventaio, FormDisp } from "@Data/DataDefault";
 import PcLapForm from "./Components/PcLapForm";
 
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "@Services/ConfigApi";
@@ -16,6 +12,8 @@ import { Suspense, useEffect } from "react";
 import ButtomDots from "@Components/Buttons/Buttom/ButtomDots";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import PDF_PC from "@Components/pdf/Pc/PDF_PC";
+import Input from "@Components/Input/Input/Input";
+import InputSelect from "@Components/Input/Select/Select";
 
 function CreateDisp() {
   const { nombreE, sucursalN, idDisp } = useParams();
@@ -67,8 +65,17 @@ function CreateDisp() {
   }, [data, setValue]);
 
   const Options_Dispositivo = [
-    {label: "Editar",Function: () => {console.log("Editar");},},
-    {label: "Elimar",Function: () => {console.log("Eliminar");},
+    {
+      label: "Editar",
+      Function: () => {
+        console.log("Editar");
+      },
+    },
+    {
+      label: "Elimar",
+      Function: () => {
+        console.log("Eliminar");
+      },
     },
   ];
   const Options_Downloads = () => {
@@ -127,49 +134,42 @@ function CreateDisp() {
       )}
       <Suspense key={data?.data?.id} fallback={() => <h2>Cargando ....</h2>}>
         <form onSubmit={handleSubmit(HandleSubt)}>
-          <main className="grid grid-cols-4 gap-x-3">
+          <main className="grid md:grid-cols-4 gap-x-3">
             <section className="grid">
-              <label className="dark:text-white">Nombre</label>
-              <input
-                type="text"
-                {...register("nombre")}
-                className="w-full py-2 dark:border-none border  outline-none dark:text-white indent-2 dark:bg-DarkComponent rounded-md"
+              <Input
+                register={register}
+                name={"nombre"}
+                label="Nombre"
+                placeholder={"Nombres .."}
               />
             </section>
             <section className="grid">
-              <label className="dark:text-white">Codigo </label>
-              <input
-                type="text"
-                readOnly
-                {...register("codigo_dispositivo")}
-                className="w-full py-2 dark:border-none border  outline-none dark:text-white indent-2 dark:bg-DarkComponent rounded-md"
+              <Input
+                label="Codigo"
+                register={register}
+                name="codigo_dispositivo"
               />
             </section>
             <section className="grid">
-              <label className="dark:text-white">Tipo</label>
-              <select
-                {...register("tipo", { defaultValue: "Defa" })}
-                className="rounded-md dark:border-none border   py-2 indent-2 px-2  dark:text-white dark:bg-DarkComponent outline-none"
-              >
-                <option value="Defa">Seleccionar</option>
-                {CategoryInventaio.map((value) => (
-                  <option value={value.name} key={value.name}>
-                    {value.name}
-                  </option>
-                ))}
-              </select>
+              <InputSelect
+                name="tipo"
+                label={"Tipo"}
+                register={register}
+                options={CategoryInventaio}
+              />
             </section>
 
             <div className="grid ">
-              <label className="dark:text-white">Estado</label>
-              <select
-                {...register("estado")}
-                className="dark:bg-DarkComponent border dark:border-none dark:text-white outline-none py-2 rounded-md indent-2 "
-              >
-                <option value="Activo">Activo</option>
-                <option value="Inaperativa">Inaperativa</option>
-                <option value="Malograda">Malograda</option>
-              </select>
+              <InputSelect
+                name="estado"
+                label={"Estado"}
+                register={register}
+                options={[
+                  { name: "Activo" },
+                  { name: "Inaperativa" },
+                  { name: "Malograda" },
+                ]}
+              />
             </div>
           </main>
           {typeDisp !== "Seleccionar" && (

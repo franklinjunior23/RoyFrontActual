@@ -11,7 +11,7 @@ function Input({ name, register, label, placeholder, className, type, error }) {
         {label}
       </label>
       <input
-        className={clsx(" form-input", className)}
+        className={clsx("form-input", className)}
         type={type ?? "text"}
         placeholder={placeholder ?? ""}
         {...register(`${name}`)}

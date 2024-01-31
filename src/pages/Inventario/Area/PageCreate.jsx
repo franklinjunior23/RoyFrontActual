@@ -14,12 +14,14 @@ function PageCreateArea({ Handle, TitleModal }) {
         CompanyName: nombreE,
         BranchName: sucursalN,
       });
-      if (data?.data?.create)
-      Handle()
-        return toast.success("Se creo Correctamente la area");
+      if (data?.create) {
+        toast.success("Se creo Correctamente la area");
+        return Handle();
+      }
+    
     } catch (error) {
-      Handle()
       toast.error("Sucedio un error " + error?.message);
+      return Handle();
     }
   }
   return (

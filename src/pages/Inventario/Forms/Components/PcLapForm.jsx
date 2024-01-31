@@ -1,4 +1,4 @@
-import { Controller, useFieldArray } from "react-hook-form";
+import { useFieldArray } from "react-hook-form";
 import {
   MarcasPCLAP,
   ModeloProcesador,
@@ -8,13 +8,15 @@ import {
 import InputsOptions from "./InputsOptions";
 import { useQuery } from "@tanstack/react-query";
 
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axiosInstance from "@Services/ConfigApi";
 import ItemInput from "./ItemInput";
 import { IconPlus, IconTrash } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import Switch from "@Components/Buttons/Buttom/Switch";
+import VinculeArea from "./VinculeArea";
+import InputSelect from "../../../../components/Input/Select/Select";
+import Input from "../../../../components/Input/Input/Input";
 
 function PcLapForm({ register, setValue, control, watch, getValues, data }) {
   const [Areas, setAreas] = useState(null);
@@ -65,27 +67,16 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
     return data;
   });
 
-  const DataUserConnect = watch("FormUser");
   return (
     <>
       <section>
         <div className="grid my-3">
-          <label className="dark:text-white">Tipo</label>
-          <select
-            {...register("tipo_Disp")}
-            className="rounded-md dark:bg-DarkComponent dark:border-none border dark:text-white py-2 w-full indent-2"
-          >
-            {Tipos_PCLAP.map((tipo, index) => (
-              <option value={tipo} key={index}>
-                {tipo}
-              </option>
-            ))}
-          </select>
+          <InputSelect label={"Tipo"} register={register} name="tipo_Disp"  options={Tipos_PCLAP}/>
         </div>
         <article className="grid grid-cols-4 gap-2 gap-x-3">
           <div className="grid">
-            <label className="dark:text-white">Marca</label>
-            <input className="hidden" type="text" {...register("marca")} />
+            <label className="dark:text-white text-sm">Marca</label>
+            
             <InputsOptions
               name={"marca"}
               register={register}
@@ -94,18 +85,20 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
               watch={watch}
               getValues={getValues}
             />
+            <input className="hidden" type="text" {...register("marca")} />
           </div>
           <div className="grid">
-            <label className="dark:text-white">Modelo</label>
-            <ItemInput register={register} name={"modelo"} />
+            <label className="dark:text-white text-sm">Modelo</label>
+            <Input register={register} name="modelo" />
+           
           </div>
           <div className="grid">
-            <label className="dark:text-white">Dirrec. Mac</label>
-            <ItemInput register={register} name={"Config_mac"} />
+            <label className="dark:text-white text-sm">Dirrec. Mac</label>
+            <Input register={register} name="Config_mac" />
           </div>
           <div className="grid">
-            <label className="dark:text-white">Ip Equipo</label>
-            <ItemInput register={register} name={"Config_ip"} />
+            <label className="dark:text-white text-sm">Ip Equipo</label>
+            <Input register={register} name="Config_ip" />
           </div>
         </article>
         <div className="lg:grid grid-cols-2 mt-5 gap-5">
@@ -375,95 +368,17 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
           </article>
           <input type="text" hidden {...register("IdUser")} />
           <section className="mt-4 bg-gray-400  py-4 px-6 text-white dark:bg-gray-400/30 rounded-md">
-            <article className=" grid grid-cols-2   ">
-              <section>
-                <h4>Vincular por Usuario</h4>
-                <Controller
-                  control={control}
-                  name="FormUser"
-                  defaultValue={false}
-                  render={({ field: { name, value, onChange } }) => {
-                    return (
-                      <Switch state={value} onchange={onChange} name={name} />
-                    );
-                  }}
-                />
-              </section>
-              <section>
-                <h4>Vincular por Area</h4>
-                <Controller
-                  control={control}
-                  name="FormArea"
-                  defaultValue={false}
-                  render={({ field: { name, value, onChange } }) => {
-                    return (
-                      <Switch state={value} onchange={onChange} name={name} />
-                    );
-                  }}
-                />
-                
-              </section>
-            </article>
-            <footer className="mt-5">
-            {watch("FormArea") && (
-                <>
-                  {Areas.length > 0 ? (
-                    <label className="text-sm">
-                      Areas
-                      <select
-                      className="form-input dark:text-black text-black dark:bg-white"
-                        {...register('IdArea')}
-                      >
-                        {Areas.map(({ name, id }) => (
-                          <option value={id} key={id}>
-                            {name}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  ) : (
-                    <p>No hay áreas disponibles.</p>
-                  )}
-                </>
-              )}
-              {watch("FormUser") && (
-                <section>
-                  <div className="grid">
-                    <label className="dark:text-white mb-3">
-                      Nombre Usuario
-                    </label>
-                    <select
-                      {...register("IdUser")}
-                      className="py-2 border indent-2 dark:border-none dark:bg-Component dark:text-white"
-                    >
-                      <option value="null">marcar</option>
-                      {DataUsers?.map((value) => (
-                        <option
-                          value={value?.id}
-                          disabled={value?.Dispositivo?.IdUser}
-                          className={
-                            value?.Dispositivo?.IdUser && "dark:text-slate-400"
-                          }
-                          key={value?.id}
-                        >
-                          {value?.nombre} {value?.apellido}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <section className="mt-10 grid place-content-center">
-                    {IdUser && (
-                      <Link
-                        to={`/Dashboard/Home/${nombreE}/${sucursalN}/Usuarios/${IdUser}`}
-                        className="dark:text-white text-center border py-2 px-5 rounded-md"
-                      >
-                        Ver Personal Registrado
-                      </Link>
-                    )}
-                  </section>
-                </section>
-              )}
-            </footer>
+            <VinculeArea
+              Areas={Areas}
+              dataAreas={data?.Areas}
+              IdUser={IdUser}
+              nombreE={nombreE}
+              sucursalN={sucursalN}
+              DataUsers={DataUsers}
+              control={control}
+              watch={watch}
+              register={register}
+            />
           </section>
         </section>
       </section>

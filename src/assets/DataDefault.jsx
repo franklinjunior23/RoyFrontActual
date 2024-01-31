@@ -337,12 +337,12 @@ export const PlacaModelPCLAP = [
   "NZXT",
 ];
 export const Tipos_PCLAP = [
-  "Laptop",
-  "All in One",
-  "Pc Compatible",
-  "Pc Workstation",
-  "Servidor Descktop",
-  "Servidor Torre",
+  { name: "Laptop" },
+  { name: "All in One" },
+  { name: "Pc Compatible" },
+  { name: "Pc Workstation" },
+  { name: "Servidor Descktop" },
+  { name: "Servidor Torre" },
 ];
 export const ModeloProcesador = ["AMD", "INTEL"];
 export const marcasMemoriaRAM = [
@@ -378,13 +378,13 @@ export const Nivel_Red = [
   "Invitado",
   "Teletrabajo",
 ];
-export const LEVEL_RED=[
-  {value:"User"},
-  {value:"Admin"},
-  {value:'User-Ts'},
-  {value:'Invitado'},
-  {value:'Teletrabajo'}
-]
+export const LEVEL_RED = [
+  { value: "User" },
+  { value: "Admin" },
+  { value: "User-Ts" },
+  { value: "Invitado" },
+  { value: "Teletrabajo" },
+];
 export const TYPE_EMAILS = [
   { value: "POP" },
   { value: "IMAP" },
