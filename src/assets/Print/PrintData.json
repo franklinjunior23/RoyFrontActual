@@ -1,0 +1,24 @@
+{
+  "TypePrints": [
+    { "name": "Matricial", "value": "Matricial" },
+    { "name": "Inyeccion de Tinta", "value": "Inyeccion de Tinta" },
+    { "name": "Laser", "value": "Laser" }
+  ],
+  "Brands":[
+    {"name":"Canon","value":"Canon"},
+    {"name":"HP","value":"HP"},
+    {"name":"Epson","value":"Epson"},
+    {"name":"Brother","value":"Brother"},
+    {"name":"Konica","value":"Konica"},
+    {"name":"DELL","value":"DELL"},
+    {"name":"Ricoh","value":"Ricoh"},
+    {"name":"Minolta","value":"Minolta"},
+    {"name":"Compatible","value":"Compatible"}
+  ],
+  "TypeConection":[
+    {"name":"Usb","value":"Usb"},
+    {"name":"Alambrica","value":"Alambrica"},
+    {"name":"Inalambrica","value":"Inalambrica"},
+    {"name":"Paralelo","value":"Paralelo"}
+  ]
+}

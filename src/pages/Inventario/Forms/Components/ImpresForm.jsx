@@ -1,33 +1,46 @@
+import InputSelect from "@Components/Input/Select/Select";
+import {
+  TypePrints,
+  Brands,
+  TypeConection,
+} from "@/assets/Print/PrintData.json";
+import { Input } from "@Components/Input";
 function ImpresForm({ register, setValue, control }) {
   return (
     <main className="mt-2">
       <section className="grid grid-cols-3 gap-2 md:gap-3 mt-2">
-      <div className="grid">
-          <label htmlFor=""  className="text-sm">Tipo Impr.</label>
-          <input type="text" className="border py-2 w-full indent-2"  {...register('marca')}/>
-        </div>
-        <div className="grid">
-          <label htmlFor="" className="text-sm">Marca</label>
-          <input type="text" className="border py-2 w-full indent-2"  {...register('marca')}/>
-        </div>
-        <div className="grid">
-          <label htmlFor="" className="text-sm">Modelo</label>
-          <input type="text" className="border py-2 w-full indent-2"  {...register('marca')}/>
-        </div>
+        <InputSelect
+          register={register}
+          name="tipo_Disp"
+          label="Tipo Impresora"
+          options={TypePrints}
+        />
+        <InputSelect
+          register={register}
+          name="marca"
+          label="Marca"
+          options={Brands}
+        />
+        <Input register={register} name="modelo" label="Modelo" />
       </section>
-      <section className="grid grid-cols-2 gap-2 md:gap-3 mt-2">
-        <div className="grid">
-          <label htmlFor="" className="text-sm">Tipo Con.</label>
-          <input type="text" {...register('tipo_con')} className="border py-2 w-full indent-2" />
-        </div>
-        <div className="grid">
-          <label htmlFor="" className="text-sm">IP</label>
-          <input type="text" {...register('Config_ip')} className="border py-2 w-full indent-2" />
+      <section className="grid grid-cols-2 gap-2 md:gap-3 mt-2 items-start">
+        <InputSelect
+          register={register}
+          name="tipo_con"
+          label="Tipo de Conexion"
+          options={TypeConection}
+        />
 
-        </div>
+        <section>
+          <Input register={register} name="Config_ip" label="Ip" />
+          <section className="grid grid-cols-2 gap-3">
+            <Input register={register} name="Config_user"  label="User" />
+            <Input register={register} name="Config_contra" label="Paswoord" />
+          </section>
+        </section>
       </section>
     </main>
-  )
+  );
 }
 
-export default ImpresForm
+export default ImpresForm;

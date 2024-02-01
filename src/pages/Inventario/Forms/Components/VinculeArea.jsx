@@ -3,21 +3,36 @@ import Switch from "@Components/Buttons/Buttom/Switch";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-function VinculeArea({ control, watch, Areas, register, dataAreas,DataUsers,IdUser,nombreE,sucursalN }) {
-    if(dataAreas?.length>0) return <article>
-
-       {
-        dataAreas?.map(({name,id})=>(
-           <>
-            <header>
-                <h3  className="font-semibold text-xl">{name}</h3>
-                <span className="text-xs px-2 rounded-md bg-black">Area</span> 
+function VinculeArea({
+  control,
+  watch,
+  Areas,
+  register,
+  dataAreas,
+  DataUsers,
+  IdUser,
+  nombreE,
+  sucursalN,
+}) {
+  if (dataAreas?.length > 0)
+    return (
+      <article>
+        {dataAreas?.map(({ name, id },index) => (
+          <>
+            <header key={index}>
+              <h3 className="font-semibold text-xl">{name}</h3>
+              <span className="text-xs px-2 rounded-md bg-black">Area</span>
             </header>
-            <button type="button" className=" text-sm bg-red-500 font-semibold px-2 mt-5 rounded-md">Desvincular</button>
-           </>
-        ))
-       }
-    </article>
+            <button
+              type="button"
+              className=" text-sm bg-red-500 font-semibold px-2 mt-5 rounded-md"
+            >
+              Desvincular
+            </button>
+          </>
+        ))}
+      </article>
+    );
   return (
     <>
       <article className=" grid grid-cols-2   ">
@@ -28,7 +43,14 @@ function VinculeArea({ control, watch, Areas, register, dataAreas,DataUsers,IdUs
             name="FormUser"
             defaultValue={false}
             render={({ field: { name, value, onChange } }) => {
-              return <Switch state={value} onchange={onChange} name={name} />;
+              return (
+                <Switch
+                  key={name}
+                  state={value}
+                  onchange={onChange}
+                  name={name}
+                />
+              );
             }}
           />
         </section>
@@ -39,7 +61,14 @@ function VinculeArea({ control, watch, Areas, register, dataAreas,DataUsers,IdUs
             name="FormArea"
             defaultValue={false}
             render={({ field: { name, value, onChange } }) => {
-              return <Switch state={value} onchange={onChange} name={name} />;
+              return (
+                <Switch
+                  key={name}
+                  state={value}
+                  onchange={onChange}
+                  name={name}
+                />
+              );
             }}
           />
         </section>
@@ -54,8 +83,8 @@ function VinculeArea({ control, watch, Areas, register, dataAreas,DataUsers,IdUs
                   className="form-input dark:text-black text-black dark:bg-white"
                   {...register("IdArea")}
                 >
-                  {Areas.map(({ name, id }) => (
-                    <option value={id} key={id}>
+                  {Areas.map(({ name, id },index) => (
+                    <option value={id} key={index}>
                       {name}
                     </option>
                   ))}
@@ -72,17 +101,17 @@ function VinculeArea({ control, watch, Areas, register, dataAreas,DataUsers,IdUs
               <label className="dark:text-white mb-3">Nombre Usuario</label>
               <select
                 {...register("IdUser")}
-                className="py-2 border indent-2 dark:border-none dark:bg-Component dark:text-white"
+                className="py-2 form-input border text-black dark:text-white"
               >
                 <option value="null">marcar</option>
-                {DataUsers?.map((value) => (
+                {DataUsers?.map((value,index) => (
                   <option
                     value={value?.id}
                     disabled={value?.Dispositivo?.IdUser}
                     className={
-                      value?.Dispositivo?.IdUser && "dark:text-slate-400"
+                      value?.Dispositivo?.IdUser && "dark:text-slate-400 text-red-400"
                     }
-                    key={value?.id}
+                    key={index}
                   >
                     {value?.nombre} {value?.apellido}
                   </option>

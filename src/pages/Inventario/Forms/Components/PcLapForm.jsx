@@ -15,8 +15,8 @@ import { IconPlus, IconTrash } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import VinculeArea from "./VinculeArea";
-import InputSelect from "../../../../components/Input/Select/Select";
-import Input from "../../../../components/Input/Input/Input";
+import InputSelect from "@Components/Input/Select/Select";
+import { Input } from "@Components/Input";
 
 function PcLapForm({ register, setValue, control, watch, getValues, data }) {
   const [Areas, setAreas] = useState(null);
@@ -71,12 +71,17 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
     <>
       <section>
         <div className="grid my-3">
-          <InputSelect label={"Tipo"} register={register} name="tipo_Disp"  options={Tipos_PCLAP}/>
+          <InputSelect
+            label={"Tipo"}
+            register={register}
+            name="tipo_Disp"
+            options={Tipos_PCLAP}
+          />
         </div>
         <article className="grid grid-cols-4 gap-2 gap-x-3">
           <div className="grid">
             <label className="dark:text-white text-sm">Marca</label>
-            
+
             <InputsOptions
               name={"marca"}
               register={register}
@@ -87,28 +92,19 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
             />
             <input className="hidden" type="text" {...register("marca")} />
           </div>
-          <div className="grid">
-            <label className="dark:text-white text-sm">Modelo</label>
-            <Input register={register} name="modelo" />
-           
-          </div>
-          <div className="grid">
-            <label className="dark:text-white text-sm">Dirrec. Mac</label>
-            <Input register={register} name="Config_mac" />
-          </div>
-          <div className="grid">
-            <label className="dark:text-white text-sm">Ip Equipo</label>
-            <Input register={register} name="Config_ip" />
-          </div>
+
+          <Input label="Modelo" register={register} name="modelo" />
+          <Input label="Dirrec. Mac" register={register} name="Config_mac" />
+          <Input label="Ip Equipo" register={register} name="Config_ip" />
         </article>
         <div className="lg:grid grid-cols-2 mt-5 gap-5">
           <div>
-            <h3 className="py-3 text-xl font-semibold dark:text-white">
+            <h3 className="my-1 text-xl font-semibold dark:text-white">
               Placa
             </h3>
             <article className="grid grid-cols-2 gap-2">
               <div className="grid">
-                <label className="dark:text-white">Marca</label>
+                <label className="dark:text-white text-sm">Marca</label>
 
                 <input
                   className="hidden"
@@ -123,24 +119,17 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                   getValues={getValues}
                 />
               </div>
-              <div className="grid">
-                <label className="dark:text-white">Modelo</label>
-                <ItemInput register={register} name={"Placa_detalle"} />
-              </div>
+
+              <Input label="Modelo" register={register} name="Placa_detalle" />
             </article>
           </div>
           <div>
-            <h3 className="py-3 text-xl font-semibold dark:text-white">
+            <h3 className="my-1 text-xl font-semibold dark:text-white">
               Procesador
             </h3>
             <article className="grid grid-cols-2 gap-2">
-              <div className="grid">
-                <label className="dark:text-white">Marca</label>
-                <input
-                  className="hidden"
-                  type="text"
-                  {...register("Procesador_marca")}
-                />
+              <label className="dark:text-white text-sm grid ">
+                Marca
                 <InputsOptions
                   name={"Procesador_marca"}
                   register={register}
@@ -148,11 +137,18 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                   options={ModeloProcesador}
                   getValues={getValues}
                 />
-              </div>
-              <div className="grid">
-                <label className="dark:text-white">Modelo</label>
-                <ItemInput register={register} name={"Procesador_modelo"} />
-              </div>
+                <input
+                  className="hidden"
+                  type="text"
+                  {...register("Procesador_marca")}
+                />
+              </label>
+
+              <Input
+                label="Modelo"
+                register={register}
+                name="Procesador_modelo"
+              />
             </article>
           </div>
         </div>
@@ -166,8 +162,8 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                     key={field.id}
                     className=" w-full  grid grid-cols-[1fr_1fr_1fr_1fr_1fr_30px]  gap-1.5 mb-2"
                   >
-                    <div>
-                      <label className="text-sm dark:text-white">Marca</label>
+                    <label className="text-sm dark:text-white grid g">
+                      Marca
                       <InputsOptions
                         name={`Ram_Modulos.${index}.marca`}
                         register={register}
@@ -175,53 +171,46 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                         options={marcasMemoriaRAM}
                         getValues={getValues}
                       />
-                    </div>
-                    <div>
-                      <label className="text-sm dark:text-white">Serial</label>
-                      <input
-                        type="text"
-                        className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none"
-                        {...register(`Ram_Modulos.${index}.serial`, {
-                          require: true,
-                        })}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm dark:text-white">Gb</label>
-                      <input
-                        type="text"
-                        className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none"
-                        {...register(`Ram_Modulos.${index}.gb`, {
-                          require: true,
-                        })}
-                      />
-                    </div>
-                    <div className="grid">
-                      <label className="text-sm dark:text-white">Tipo</label>
+                    </label>
+
+                    <Input
+                      label="Serial"
+                      register={register}
+                      name={`Ram_Modulos.${index}.serial`}
+                    />
+
+                    <Input
+                      label="GB"
+                      register={register}
+                      name={`Ram_Modulos.${index}.gb`}
+                    />
+
+                    <label className="text-sm dark:text-white grid justify-between gap-1">
+                      Tipo
                       <select
                         {...register(`Ram_Modulos.${index}.tipo`, {
                           require: true,
                         })}
                         defaultValue={field.tipo}
                         placeholder="DDR3 | DDR4"
-                        className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none"
+                        className=" form-input "
                       >
-                        <option value="def">Seleccionar</option>
-                        <option value="DDR3">DDR3</option>
-                        <option value="DDR4">DDR4</option>
+                        <option value="def" className="text-sm">
+                          Seleccionar
+                        </option>
+                        <option value="DDR3" className="text-sm">
+                          DDR3
+                        </option>
+                        <option value="DDR4" className="text-sm">
+                          DDR4
+                        </option>
                       </select>
-                    </div>
-                    <div>
-                      <label className="text-sm dark:text-white">Mhz</label>
-                      <input
-                        {...register(`Ram_Modulos.${index}.mhz`, {
-                          require: true,
-                        })}
-                        defaultValue={field.mhz}
-                        placeholder="MHz"
-                        className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none"
-                      />
-                    </div>
+                    </label>
+                    <Input
+                      label="Mhz"
+                      register={register}
+                      name={`Ram_Modulos.${index}.mhz`}
+                    />
 
                     <button
                       type="button"
@@ -253,15 +242,15 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                     key={field.id}
                     className=" w-full grid grid-cols-[1fr_1fr_1fr_1fr_30px] gap-2 mb-3"
                   >
-                    <div className="grid">
-                      <label className="text-sm dark:text-white">Tipo</label>
+                    <label className="text-sm dark:text-white grid gap-1.5">
+                      Tipo
                       <select
                         {...register(`Almacenamiento.${index}.tipo`, {
                           require: true,
                         })}
                         defaultValue={field.marca}
                         placeholder="DDR3 | DDR4"
-                        className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent"
+                        className="form-input"
                       >
                         <option value="SSD">SSD</option>
                         <option value="HDD">HDD</option>
@@ -271,38 +260,26 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                         <option value="Drive">Drive</option>
                         <option value="Virtual">Virtual</option>
                       </select>
-                    </div>
-                    <div className="grid">
-                      <label className="text-sm dark:text-white">Serial</label>
-                      <input
-                        type="text"
-                        className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none"
-                        {...register(`Almacenamiento.${index}.serial`, {
-                          require: true,
-                        })}
-                      />
-                    </div>
+                    </label>
 
-                    <div className="grid">
-                      <label className="text-sm dark:text-white">Gb</label>
-                      <ItemInput
-                        register={register}
-                        name={`Almacenamiento.${index}.gb`}
-                        require={true}
-                        defaultValue={field.gb}
-                        placeholder="GB"
-                      />
-                    </div>
-                    <div className="grid">
-                      <label className="text-sm dark:text-white">Tipo</label>
-                      <input
-                        type="text"
-                        className="w-full  border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none"
-                        {...register(`Almacenamiento.${index}.estado`, {
-                          require: true,
-                        })}
-                      />
-                    </div>
+                    <Input
+                      label="Serial"
+                      register={register}
+                      name={`Almacenamiento.${index}.serial`}
+                    />
+                    <Input
+                      label="Gb"
+                      placeholder="GB"
+                      register={register}
+                      name={`Almacenamiento.${index}.gb`}
+                    />
+                    <Input
+                      label="Tipo"
+                      placeholder="Tipo"
+                      register={register}
+                      name={`Almacenamiento.${index}.estado`}
+                    />
+
                     <button
                       type="button"
                       className=" bg-red-400 h-[65%] self-end grid place-content-center rounded-md text-white"
@@ -330,38 +307,26 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
             <div>
               {FieldGrafica.map((field, index) => (
                 <div key={index} className="grid grid-cols-2 gap-x-5">
-                  <div>
-                    <label className="text-sm dark:text-white">Vram</label>
-                    <input
-                      type="text"
-                      className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none px-2"
-                      {...register(`Tarjeta_Video.${index}.vram`)}
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm dark:text-white">Bus</label>
-                    <input
-                      type="text"
-                      className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none px-2"
-                      {...register(`Tarjeta_Video.${index}.bus`)}
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm dark:text-white">Modelo</label>
-                    <input
-                      type="text"
-                      className="w-full border py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none px-2"
-                      {...register(`Tarjeta_Video.${index}.modelo`)}
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm dark:text-white">Detalle</label>
-                    <input
-                      type="text"
-                      className="w-full border   py-2 indent-2 dark:border-none  rounded-md dark:text-white dark:bg-DarkComponent focus:outline-none px-2"
-                      {...register(`Tarjeta_Video.${index}.detalle`)}
-                    />
-                  </div>
+                  <Input
+                    label="Vram"
+                    register={register}
+                    name={`Tarjeta_Video.${index}.vram`}
+                  />
+                  <Input
+                    label="Bus"
+                    register={register}
+                    name={`Tarjeta_Video.${index}.bus`}
+                  />
+                  <Input
+                    label="Modelo"
+                    register={register}
+                    name={`Tarjeta_Video.${index}.modelo`}
+                  />
+                  <Input
+                    label="Detalle"
+                    register={register}
+                    name={`Tarjeta_Video.${index}.detalle`}
+                  />
                 </div>
               ))}
             </div>

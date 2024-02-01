@@ -1,0 +1,21 @@
+{
+  "TypeDevice": [
+    { "name": "Router", "value": "Router" },
+    { "name": "Switch", "value": "Switch" },
+    { "name": "Firewall", "value": "Firewall" },
+    { "name": "Modem", "value": "Modem" },
+    { "name": "Access Point", "value": "Access Point" },
+    { "name": "Print Server", "value": "Print Server" },
+    { "name": "Cámara - Analógica", "value": "Cámara - Analógica" },
+    { "name": "Cámara - IP", "value": "Cámara - IP" },
+    { "name": "DVR", "value": "DVR" },
+    { "name": "NVR", "value": "NVR" }
+  ],
+  "Brands": [
+    { "name": "Tp-link", "value": "Tp-link" },
+    { "name": "D-Link", "value": "D-Link" },
+    { "name": "Mikrotik", "value": "Mikrotik" },
+    { "name": "Cisco", "value": "Hikvision" },
+    { "name": "Dahua", "value": "ZTE" }
+  ]
+}

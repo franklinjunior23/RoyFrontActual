@@ -1,28 +1,34 @@
+import { Input, Select } from "@Components/Input";
+import { TypeDevice, Brands } from "@/assets/Redes/RedesData";
 function RedFrom({ register, setValue, control }) {
   return (
-    <section>
-      <section className="grid grid-cols-2 mt-2 gap-3">
-        <div className="grid">
-          <label htmlFor="">Tipo de Dispositivo</label>
-          <select  className="border py-2" {...register('tipo_equipo')}>
-            <option value="Impresora Inyeccion">Impresora Inyeccion</option>
-            <option value="Impresora Inyeccion">Impresora Inyeccion</option>
-          </select>
-        </div>
-        <div className="grid">
-          <label htmlFor="">Marca</label>
-          <input type="text" className="border indent-2 py-2 w-full" {...register('marca')} />
-        </div>
+    <section className="mt-2">
+      <section className="grid grid-cols-2 gap-x-3">
+        <section>
+          <Select
+            label="Tipo De Dispositivo"
+            register={register}
+            options={TypeDevice}
+          />
+          <Select
+            label="Marca de Red"
+            register={register}
+            name="marca"
+            options={Brands}
+          />
+        </section>
+        <section className="grid grid-cols-2 gap-x-3">
+          <article>
+            <Input register={register} name="Config_ip" label="Ip" />
+            <Input register={register} name="Config_mac" label="Mac" />
+          </article>
+          <article>
+            <Input register={register} name="Config_user" label="User" />
+            <Input register={register} name="Config_contra" label="Paswoord" />
+          </article>
+        </section>
       </section>
-      <div className="grid mt-2">
-        <label htmlFor="">Conexion</label>
-        <select {...register('tipo_con')} className="border py-2">
-          <option value="Ethernet">Ethernet</option>
-          <option value="Ethernet">Ethernet</option>
-        </select>
-      </div>
-
     </section>
-  )
+  );
 }
-export default RedFrom
+export default RedFrom;

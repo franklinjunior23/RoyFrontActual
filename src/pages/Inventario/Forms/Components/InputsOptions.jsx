@@ -33,11 +33,11 @@ function InputsOptions({ register, setValue, options, name, type, getValues }) {
         onClick={toggleOptions}
         // Establece el valor del campo de entrada utilizando selectedOption
         value={selectedOption}
-        className="rounded-md text-sm py-2 indent-3 w-full dark:border-none border  outline-none dark:text-white dark:bg-DarkComponent"
+        className=" form-input py-2 mt-2 "
       />
 
       {showOptions && (
-        <div className="rounded-md text-sm  custom-scrollNav dark:bg-DarkComponent  absolute w-full opciones_togle h-[200px] overflow-y-auto z-10">
+        <div className="rounded-md text-sm  custom-scrollNav dark:bg-DarkComponent  absolute w-full opciones_togle h-[200px]  overflow-y-auto z-10">
           {options.map((option) => (
             <div
               key={option}
