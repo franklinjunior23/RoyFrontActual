@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 function ItemNav({ datos }) {
   const { name, url, icon } = datos;
 
-
   return (
     <div
       className={`transition-all ease-in-out hover:duration-300  flex gap-5`}
@@ -13,13 +12,12 @@ function ItemNav({ datos }) {
       <NavLink
         to={url}
         className={({ isActive }) => {
-          
           return ` ${
-            isActive && "bg-[#DEDEDE] dark:bg-NavLinks dark:text-white "
-          }  py-3 w-full flex gap-2 rounded-lg hover:bg-[#DEDEDE] dark:hover:bg-NavLinks px-5 text-lg items-center`;
+            isActive && "bg-white/20  dark:text-white "
+          }  py-3 w-full flex gap-3 rounded-lg hover:bg-white/20  dark:hover:bg-white/20  px-4  items-center`;
         }}
       >
-        {icon} {name}
+        <span className="text-xl">{icon}</span> <h3 className="text-base">{name}</h3>
       </NavLink>
     </div>
   );

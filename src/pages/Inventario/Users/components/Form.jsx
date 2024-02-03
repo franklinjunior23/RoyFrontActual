@@ -192,7 +192,7 @@ function Button({
   rounded,
   color,
 }) {
-  const baseStyles = "py-2 px-4 text-white font-medium ";
+  const baseStyles = "py-2 px-4 text-white font-medium  ";
   const Color = color ?? "bg-black";
   const Rounded = rounded ?? "rounded-lg";
   let variantStyles;

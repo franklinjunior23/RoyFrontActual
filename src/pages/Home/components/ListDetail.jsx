@@ -16,10 +16,10 @@ function ListDetail({ DetailData }) {
               slidesPerView: 1,
             },
             350: {
-              slidesPerView: 2.3,
+              slidesPerView: 1,
             },
             474: {
-              slidesPerView: 2.2,
+              slidesPerView: 2,
             },
             1200: {
               slidesPerView: 3,
@@ -42,7 +42,7 @@ function ListDetail({ DetailData }) {
 }
 function ItemList({ name, Value }) {
   return (
-    <section className="dark:bg-DarkComponent my-4 shadow-lg w-[130px] grid justify-center text-ellipsis h-[130px]  md:w-[135px] md:h-[160px] rounded-xl p-5 text-center">
+    <section className="dark:bg-DarkComponent my-4 shadow-lg md:w-[130px] grid justify-center text-ellipsis  rounded-xl p-5 text-center">
       <header className="grid gap-6">
         <h4 className=" text-Slet font-extrabold text-xl">{name}</h4>
         <span className="dark:text-white font-extrabold tracking-wide	 text-3xl ">{Value}</span>

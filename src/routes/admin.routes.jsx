@@ -15,14 +15,14 @@ import {
   PageBaseConocimiento,
 } from "../pages/BaseConoc";
 import PageCreate from "@Pages/BaseConoc/PageCreate";
-import NavLinksAdmin from "@Components/Navlinks/NavLinksAdmin";
+
 import PageUser from "@Pages/Users/PageUser";
 
 function AdminRoutes() {
   return (
     <Routes>
       {/*<Route path="*" element={<Navigate to={-1} />} />*/}
-      <Route element={<DashboardPage NavUser={NavLinksAdmin} />}>
+      <Route element={<DashboardPage  />}>
         <Route index path="/" element={<Navigate to={"Home"} />} />
         <Route path="Home" element={<Home />}>
           <Route path=":nombreE" element={<EmpresaDet />}>

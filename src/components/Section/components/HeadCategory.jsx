@@ -10,19 +10,22 @@ function HeadCategory({ data }) {
       label: "Crear Usuario",
       Function: () => {
         const currentPath = window.location.pathname;
-        if(!currentPath.includes('Usuarios')){
-          const newPath = currentPath.replace("/Inventario", "/Usuarios/create");
+        if (!currentPath.includes("Usuarios")) {
+          const newPath = currentPath.replace(
+            "/Inventario",
+            "/Usuarios/create"
+          );
 
           // Ahora, puedes navegar a la nueva ruta
-        return  navi(`${newPath}`);
+          return navi(`${newPath}`);
         }
-        return navi("create")
+        return navi("create");
       },
-      more:[
+      more: [
         {
-          label: "Reporte "
-        }
-      ]
+          label: "Reporte ",
+        },
+      ],
     },
     {
       label: "Crear Dispositivo",
@@ -60,7 +63,7 @@ function HeadCategory({ data }) {
           <ButtonOpenMod Modal={PageCreateArea}>Crear Area</ButtonOpenMod>
 
           <ButtomDots
-            TitleOption={"Acciones"}
+            Title={"Acciones"}
             Options={Options}
             OptionDownload={OptionsDownloads}
           />
@@ -80,14 +83,16 @@ function ButtonOpenMod({ children, Modal }) {
   }
   return (
     <>
-      <div  className="relative">
+      <div className="relative">
         <button
           className="bg-black py-1.5  text-white px-4 rounded-lg"
           onClick={handleClick}
         >
           {children}
         </button>
-        {StatusSide && <Modal Handle={handleClick} TitleModal={"Creacion de Area"} />}
+        {StatusSide && (
+          <Modal Handle={handleClick} TitleModal={"Creacion de Area"} />
+        )}
       </div>
       {StatusSide && (
         <div

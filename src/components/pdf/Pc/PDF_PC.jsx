@@ -2,6 +2,7 @@ import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 import PropTypes from "prop-types";
 
 function PDF_PC({ data }) { 
+  console.log(data)
   const Day = new Date().toLocaleDateString("es-Pe");
   function ViewInformation() {
     return (

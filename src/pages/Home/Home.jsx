@@ -1,7 +1,7 @@
 import { Outlet, useParams } from "react-router-dom";
-import ItSection from "../../components/Navbar/components/ItSection";
-import ItemSection from "../../components/Section/ItemSection";
-import { UseContextLoged } from "../../context/AuhtLoged";
+import ItSection from "@Components/Navbar/components/ItSection";
+import ItemSection from "@Components/Section/ItemSection";
+import { UseContextLoged } from "@/context/AuhtLoged";
 import ListTickets from "./components/ListTickets";
 import ListDetail from "./components/ListDetail";
 import { useQuery } from "@tanstack/react-query";

@@ -12,8 +12,8 @@ import PageTickets from "@Pages/Tickets/PageTickets";
 import { PageDetalle, PageIdBC, PageBaseConocimiento } from "@Pages/BaseConoc";
 import PageCreate from "@Pages/BaseConoc/PageCreate";
 import SettingPage from "@Pages/Setting/SettingPage";
-import NavLinksSoporte from "@Components/Navlinks/NavLinksSoporte";
-import PageCreateArea  from "@Pages/Inventario/Area/PageCreate";
+
+import PageCreateArea from "@Pages/Inventario/Area/PageCreate";
 
 //Page User the Inventario of Empresa and Sucursal
 import PageUser from "@Pages/Inventario/Users";
@@ -21,7 +21,7 @@ import PageUser from "@Pages/Inventario/Users";
 function SoporteRoutes() {
   return (
     <Routes>
-      <Route element={<DashboardPage NavUser={NavLinksSoporte} />}>
+      <Route element={<DashboardPage />}>
         <Route index path="/" element={<Navigate to={"Home"} />} />
         <Route path="Home" element={<Home />}>
           <Route path=":nombreE" element={<EmpresaDet />}>
@@ -29,16 +29,13 @@ function SoporteRoutes() {
               <Route path="Usuarios" element={<UserPage />} />
               <Route path="Usuarios/create" element={<PageUser />} />
               <Route path="Usuarios/:idUsuario" element={<PageUser />} />
-              <Route
-                path="Usuarios/create-area"
-                element={<PageCreateArea/>}
-              />
+              <Route path="Usuarios/create-area" element={<PageCreateArea />} />
               <Route path="Inventario" element={<GeneralSect />}>
                 <Route path=":idDisp" element={<CreateDisp />} />
               </Route>
               <Route
                 path="Inventario/create-area"
-                element={<PageCreateArea/>}
+                element={<PageCreateArea />}
               />
               {/*<Route path="*" element={<Navigate to={-1} />} />*/}
             </Route>

@@ -1,4 +1,4 @@
-import ItemSection from "../../components/Section/ItemSection";
+import ItemSection from "@Components/Section/ItemSection";
 import ItemView from "./components/ItemView";
 import { useQuery } from "@tanstack/react-query";
 import { ColorConteners } from "../../assets/DataDefault";

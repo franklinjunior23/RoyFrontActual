@@ -17,12 +17,13 @@ import PDF_PC from "@Components/pdf/Pc/PDF_PC";
 import { TimeFromPeruvian } from "@Helpers/FechaConvert";
 import { useState } from "react";
 import { IconEye } from "@tabler/icons-react";
+import { UseContextLoged } from "@/context/AuhtLoged";
 
 function GeneralSect() {
   const [TextFilter, setTextFilter] = useState("");
   const { nombreE, sucursalN, idDisp } = useParams();
   const queryKey = ["GetDisp"];
-
+  const { RoleUser } = UseContextLoged();
   const { data, isLoading, isError } = useQuery(queryKey, async () => {
     const { data } = await axiosInstance.get(
       `Dispositivos/?empresa=${nombreE}&sucursal=${sucursalN}`
@@ -30,6 +31,13 @@ function GeneralSect() {
     return data;
   });
 
+  const SoporteOption = [
+    { label: "Editar", Function: () => console.log("Editando") },
+  ];
+  const AdminOptions = [
+    { label: "Editar", Function: () => console.log("Editando") },
+    { label: "Eliminar", Function: () => console.log("Eliminar") },
+  ];
   const ColumnDate = createColumnHelper();
   const columns = [
     { header: "#", accessorFn: (row, index) => index + 1 },
@@ -71,7 +79,9 @@ function GeneralSect() {
         );
         return (
           <span className="text-xs">
-            {TimeFromPeruvian(DataId?.DetalleDispositivos[0]?.updatedAt ?? 'No hay Componentes')}
+            {TimeFromPeruvian(
+              DataId?.DetalleDispositivos[0]?.updatedAt ?? "No hay Componentes"
+            )}
           </span>
         );
       },
@@ -80,10 +90,11 @@ function GeneralSect() {
       id: "ViewMaquina",
       header: "Ver",
       cell: (ValueAgent) => (
-        <Link to={`${ValueAgent.getValue()}`} className="grid place-content-center">
-          
-           <IconEye className="bg-black p-1 rounded-md text-white " size={35}/>
-          
+        <Link
+          to={`${ValueAgent.getValue()}`}
+          className="grid place-content-center"
+        >
+          <IconEye className="bg-black p-1 rounded-md text-white " size={35} />
         </Link>
       ),
     }),
@@ -94,6 +105,7 @@ function GeneralSect() {
         const Options_Downloads = () => {
           const DataId = data?.find((item) => item.id === IdItem.getValue());
           const DataDisp = { data: { ...DataId } };
+
           return (
             <PDFDownloadLink
               fileName={`${DataId?.nombre}&${DataId?.tipo ?? "Disp"}`}
@@ -103,20 +115,24 @@ function GeneralSect() {
             </PDFDownloadLink>
           );
         };
-        const ColumnsOption = [
-          {
-            label: "Editar",
-            Function: () => console.log(`Estas Editando ${IdItem.getValue()}`),
-          },
-        ];
 
-        return (
-          <ButtomDots
-            TitleOption={"Acciones"}
-            Options={ColumnsOption}
-            OptionDownload={Options_Downloads}
-          />
-        );
+        if (RoleUser === "Soporte") {
+          return (
+            <ButtomDots
+              Title={"Acciones"}
+              Options={SoporteOption}
+              OptionDownload={Options_Downloads}
+            />
+          );
+        } else if (RoleUser === "Administrador") {
+          return (
+            <ButtomDots
+              Title={"Acciones"}
+              Options={AdminOptions}
+              OptionDownload={Options_Downloads}
+            />
+          );
+        }
       },
     }),
   ];

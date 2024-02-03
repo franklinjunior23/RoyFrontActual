@@ -3,7 +3,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "sonner";
 function ItemInput({ Value, Message,className }) {
   return (
-    <header className={`${className} grid grid-cols-[1fr_40px] w-full bg-black/40 rounded-md` }>
+    <header className={`${className} grid grid-cols-[1fr_40px]  bg-black/40 rounded-md` }>
       <input
         type="text"
         value={Value}
