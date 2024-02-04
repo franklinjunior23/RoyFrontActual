@@ -2,13 +2,7 @@ import { IconDots } from "@tabler/icons-react";
 import clsx from "clsx";
 import { useState } from "react";
 import PropTypes from "prop-types";
-function ButtomDots({
-  ClassName,
-  Title,
-  Options,
-  OptionDownload,
-  Icon,
-}) {
+function ButtomDots({ ClassName, Title, Options, OptionDownload, Icon }) {
   const [ActiveButton, setActiveButton] = useState(false);
   function HandleOpen() {
     setActiveButton(!ActiveButton);
@@ -16,12 +10,19 @@ function ButtomDots({
 
   function HandleOption(FuntionOption, IsLoading) {
     HandleOpen();
+    console.log(FuntionOption)
     if (FuntionOption) {
+      FuntionOption();
       // Ejecutar la función solo si no está en proceso de carga (IsLoading !== true)
       if (!IsLoading) {
         FuntionOption();
       }
     }
+  }
+  function HandleDownload(Func){
+    Func();
+    HandleOpen();
+    
   }
   return (
     <>
@@ -33,7 +34,11 @@ function ButtomDots({
             ClassName
           )}
         >
-          {Icon ? Icon : <IconDots className="dark:text-white text-black " size={22} />}
+          {Icon ? (
+            Icon
+          ) : (
+            <IconDots className="dark:text-white text-black " size={22} />
+          )}
         </button>
         {ActiveButton && (
           <aside className="absolute modal right-0 top-12 z-50  text-sm   w-[160px]  dark:text-white grid gap-1">
@@ -44,7 +49,7 @@ function ButtomDots({
             )}
             {OptionDownload && (
               <button
-                onClick={() => HandleOption(OptionDownload)}
+                onClick={() => OptionDownload}
                 className="text-left hover:bg-neutral-400/20 dark:hover:bg-white/20 pl-3 py-2 rounded-md"
               >
                 <OptionDownload />
@@ -57,10 +62,7 @@ function ButtomDots({
                 onClick={() => HandleOption(item.Function, item?.IsLoading)}
                 className="text-left text-black dark:text-white hover:bg-neutral-400/20 dark:hover:bg-white/20 pl-3 py-2 rounded-md"
               >
-                {
-                  item?.IsLoading ?   "Cargando ..." : item.label
-                }
-                
+                {item?.IsLoading ? "Cargando ..." : item.label}
               </button>
             )) ?? "Colocar las Opciones"}
           </aside>

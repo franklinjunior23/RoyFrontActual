@@ -8,7 +8,7 @@ import ViewVersion from "./components/ViewVersion";
 import NavLinks from "@Components/Navlinks/NavLinks";
 
 function DashboardPage() {
-  const { RoleUser, LogedAuth } = UseContextLoged();
+  const { RoleUser, LogedAuth,LogautUser } = UseContextLoged();
   return (
     <main className="  dark:bg-DarkFondo md:p-3 px-5 min-h-[100dvh] md:h-[100dvh]">
       <div className="md:hidden">
@@ -33,17 +33,17 @@ function DashboardPage() {
               />
               <div className="pl-3">
                 <h2 className="text-lg text-white font-semibold">
-                  {LogedAuth.nombre}
+                  {LogedAuth?.nombre}
                 </h2>
                 <span className="self-end text-xs text-white">{RoleUser}</span>
               </div>
               <div>
-                <IconLogout className="text-white" />
+                <IconLogout  className="text-white cursor-pointer tooltip" data-tip="Cerrar Seccion" onClick={LogautUser} />
               </div>
             </header>
           </footer>
         </section>
-        <section className=" md:pr-10 w-full py-2    custom-scrollbar relative">
+        <section className=" md:pr-10 w-full py-2  overflow-y-auto   custom-scrollbar relative">
           <Outlet />
         </section>
       </article>

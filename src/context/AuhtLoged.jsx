@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { VITE_TOKE_USER } from "../services/ConfigApi";
-
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { VITE_TOKE_USER } from "@/services/ConfigApi";
 const ContextLoged = createContext();
 
 export const UseContextLoged = () => {
@@ -10,6 +11,7 @@ export const UseContextLoged = () => {
 };
 
 export const ContextoAuth = ({ children }) => {
+  const navi = useNavigate();
   const [LogedAuth, setLogedAuth] = useState(() => {
     const storedUser = localStorage.getItem("user_dat_camp");
     return storedUser ? JSON.parse(storedUser) : null;
@@ -25,16 +27,18 @@ export const ContextoAuth = ({ children }) => {
     localStorage.setItem("user_dat_camp", JSON.stringify(user));
     return localStorage.setItem(VITE_TOKE_USER, dato);
   }
-  function LogautUser(){
-     localStorage.removeItem('user_dat_camp')
-     localStorage.removeItem(VITE_TOKE_USER)
-     setLogedAuth(null)
+  function LogautUser() {
+    localStorage.removeItem("user_dat_camp");
+    localStorage.removeItem(VITE_TOKE_USER);
+    setLogedAuth(null);
+    toast.success("Cerrado seccion correctamente");
+    return navi("/");
   }
   // Observador del localStorage
 
   return (
     <ContextLoged.Provider
-      value={{ LogedAuth, AddToken, RoleUser, setRoleUser,LogautUser }}
+      value={{ LogedAuth, AddToken, RoleUser, setRoleUser, LogautUser }}
     >
       {children}
     </ContextLoged.Provider>

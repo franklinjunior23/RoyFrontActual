@@ -8,9 +8,9 @@ function ItemInput({ Value, Message,className }) {
         type="text"
         value={Value}
         readOnly
-        className="w-full focus:outline-none bg-transparent px-3  rounded-md"
+        className="w-full  focus:outline-none bg-transparent px-3  rounded-md"
       />
-      <button className="p-1 ">
+      <button className="p-1.5 ">
         <CopyToClipboard text={Value} onCopy={() => toast.success(Message)}>
           <IconCopy size={30} className="bg-white text-black rounded-lg p-1" />
         </CopyToClipboard>

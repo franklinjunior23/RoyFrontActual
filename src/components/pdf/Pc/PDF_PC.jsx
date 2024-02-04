@@ -1,8 +1,15 @@
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 import PropTypes from "prop-types";
 
-function PDF_PC({ data }) { 
-  console.log(data)
+function PDF_PC({ data }) {
+  if (!data)
+    return (
+      <Document>
+        <Page>
+          <Text>Error no existe la data </Text>
+        </Page>
+      </Document>
+    );
   const Day = new Date().toLocaleDateString("es-Pe");
   function ViewInformation() {
     return (
@@ -108,7 +115,6 @@ function PDF_PC({ data }) {
           border: "1px solid gray",
           paddingLeft: 10,
           paddingBottom: 20,
-        
         }}
       >
         <Text style={{ ...styles.TitleSection, textAlign: "center" }}>
@@ -118,13 +124,19 @@ function PDF_PC({ data }) {
           Cantidad : {data?.data?.DetalleDispositivos[0]?.Almacenamiento_canti}
         </Text>
         <Text style={styles.Texto}>
-          Total : {data?.data?.DetalleDispositivos[0]?.Almacenamiento_detalle.reduce(
+          Total :{" "}
+          {data?.data?.DetalleDispositivos[0]?.Almacenamiento_detalle.reduce(
             (total, item) => total + Number(item.gb),
             0
           )}
         </Text>
         <View
-          style={{ display: "flex", flexDirection: "row", flexWrap: "wrap",marginTop:10 }}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            marginTop: 10,
+          }}
         >
           {data?.data?.DetalleDispositivos[0]?.Almacenamiento_detalle.map(
             (ItemRam, index) => (
@@ -146,7 +158,6 @@ function PDF_PC({ data }) {
                 <Text>estado : {ItemRam.estado ?? "$e"} Mhz</Text>
                 <Text>Serial : {ItemRam.serial ?? "$e"}</Text>
                 <Text>Gb : {ItemRam.gb ?? "$e"} gb</Text>
-                
               </View>
             )
           )}
@@ -161,7 +172,6 @@ function PDF_PC({ data }) {
           border: "1px solid gray",
           paddingLeft: 10,
           paddingBottom: 20,
-        
         }}
       >
         <Text style={{ ...styles.TitleSection, textAlign: "center" }}>Red</Text>
@@ -172,10 +182,11 @@ function PDF_PC({ data }) {
           Mac : {data?.data?.DetalleDispositivos[0]?.Config_mac}
         </Text>
         <Text style={styles.Texto}>
-          User : {data?.data?.DetalleDispositivos[0]?.Config_user ?? 'null'}
+          User : {data?.data?.DetalleDispositivos[0]?.Config_user ?? "null"}
         </Text>
         <Text style={styles.Texto}>
-          Password : {data?.data?.DetalleDispositivos[0]?.Config_contra  ?? 'null'}
+          Password :{" "}
+          {data?.data?.DetalleDispositivos[0]?.Config_contra ?? "null"}
         </Text>
       </View>
     );
@@ -202,7 +213,12 @@ function PDF_PC({ data }) {
           gb
         </Text>
         <View
-          style={{ display: "flex", flexDirection: "row", flexWrap: "wrap",marginTop:10 }}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            marginTop: 10,
+          }}
         >
           {data?.data?.DetalleDispositivos[0]?.Ram_Modulos.map(
             (ItemRam, index) => (
@@ -292,6 +308,6 @@ function PDF_PC({ data }) {
   );
 }
 PDF_PC.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.any.isRequired,
 };
 export default PDF_PC;

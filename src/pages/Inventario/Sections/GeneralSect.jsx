@@ -18,6 +18,8 @@ import { TimeFromPeruvian } from "@Helpers/FechaConvert";
 import { useState } from "react";
 import { IconEye } from "@tabler/icons-react";
 import { UseContextLoged } from "@/context/AuhtLoged";
+import { DataFindIdDevice } from "./Utils/FindId";
+import TruncateText from "@/utils/TruncateTeaxt";
 
 function GeneralSect() {
   const [TextFilter, setTextFilter] = useState("");
@@ -49,8 +51,8 @@ function GeneralSect() {
       header: "Estado",
       cell: (info) => (
         <span
-          className={` px-4 py-0.5  font-bold rounded-lg text-xs text-white  ${
-            info.getValue() === "Activo" ? "bg-green-600 " : "bg-blue-700"
+          className={` px-4 py-0.5  font-semibold rounded-lg text-xs  border  ${
+            info.getValue() === "Activo" ? "border-green-500  text-green-400 " : "border-blue-500 text-blue-500"
           }`}
         >
           {info.getValue()}{" "}
@@ -103,13 +105,13 @@ function GeneralSect() {
       header: "",
       cell: (IdItem) => {
         const Options_Downloads = () => {
-          const DataId = data?.find((item) => item.id === IdItem.getValue());
-          const DataDisp = { data: { ...DataId } };
+          const DataDevice = DataFindIdDevice({ data, IdItem });
+          const DataDisp = { data: { ...DataDevice } };
 
           return (
             <PDFDownloadLink
-              fileName={`${DataId?.nombre}&${DataId?.tipo ?? "Disp"}`}
-              document={<PDF_PC data={DataDisp} />}
+              fileName={`${DataDevice?.codigo_dispositivo ?? "Disp"}`}
+              document={<PDF_PC key={1} data={DataDisp} />}
             >
               Reporte PDF
             </PDFDownloadLink>
@@ -173,12 +175,7 @@ function GeneralSect() {
     <>
       <HeadCategory data={"Dispositivo"} />
 
-      <main className="mt-5 pb-5">
-        {/* <section className="grid grid-cols-2 md:grid-cols-3  gap-5 ">
-          {data?.map((value) => (
-            <ItemDisp value={value} key={value.id} />
-          ))}
-        </section> */}
+      <main className="mt-3 pb-5">
         <header className="mb-5">
           <input
             type="text"
@@ -188,8 +185,8 @@ function GeneralSect() {
             onChange={(e) => setTextFilter(e.target.value)}
           />
         </header>
-        <section className="rounded-2xl border border-gray-200/60  dark:border-gray-100/10">
-          <table className=" border-collapse   md:w-full dark:bg-DarkComponent   rounded-2xl text-white">
+        <section className="rounded-2xl border  border-collapse border-gray-200/60  dark:border-gray-100/10 h-[575px] dark:bg-DarkComponent">
+          <table className=" z-10  md:w-full dark:bg-DarkComponent   rounded-2xl text-white">
             <thead>
               {Table.getHeaderGroups().map((HeaderGroup) => (
                 <tr key={HeaderGroup.id}>
@@ -211,11 +208,16 @@ function GeneralSect() {
                   className=" border-t border-gray-200 dark:border-gray-100/10 dark:text-white text-black "
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className={"p-3 text-center text-sm "}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                    <td key={cell.id} className={"py-2 px-1 text-sm text-center  border-b dark:border-gray-100/10"}>
+                      {
+                         cell.column.columnDef.cell && (
+                          <TruncateText
+                            text={flexRender(cell.column.columnDef.cell, cell.getContext())}
+                            ComponentNext={() => <></>}
+                            maxLength={5}
+                          />
+                        )
+                      }
                     </td>
                   ))}
                 </tr>

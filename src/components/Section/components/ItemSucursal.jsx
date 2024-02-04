@@ -22,7 +22,7 @@ function ItemSucursal({ value }) {
 
   return (
     <section className="relative h-[170px]  shadow-md border border-black/5 dark:border-none rounded-lg text-white dark:bg-DarkComponent pt-10 pb-5 px-3 text-center">
-      <div className="grid  h-full">
+      <div className="grid  h-full items-end">
         <Link to={`${nombre}/Usuarios`} className="capitalize h-full">
           <h3 className="md:text-xl text-base font-semibold dark:text-white text-black">
             <TruncateText
