@@ -11,9 +11,10 @@ export async function UpdateUser(datos, Navigator, UsuarioId) {
 }
 export async function CreateUser(dats, Navigator, EmpresaName, SucursalName) {
   const { data } = await axiosInstance.post(
-    `Users/${EmpresaName}/${SucursalName}`,
+    `Users?Sucursal=${SucursalName}&Empresa=${EmpresaName}`,
     dats
   );
+
   if (data?.create) {
     toast.success("Usuario creado ");
     return Navigator(-1);

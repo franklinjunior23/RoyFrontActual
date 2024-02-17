@@ -1,16 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "@Components/Navbar/Navbar";
 import { UseContextLoged } from "@Contexts/AuhtLoged";
-
-import InfoComponent from "./InfoComponent";
 import { IconLogout } from "@tabler/icons-react";
 import ViewVersion from "./components/ViewVersion";
 import NavLinks from "@Components/Navlinks/NavLinks";
 
 function DashboardPage() {
-  const { RoleUser, LogedAuth,LogautUser } = UseContextLoged();
+  const { RoleUser, LogedAuth, LogautUser } = UseContextLoged();
   return (
-    <main className="  dark:bg-DarkFondo md:p-3 px-5 min-h-[100dvh] md:h-[100dvh]">
+    <main className="  dark:bg-DarkFondo bg-white/80  md:p-3 px-5 min-h-[100dvh] md:h-[100dvh] dark:text-white">
       <div className="md:hidden">
         <Navbar />
       </div>
@@ -38,12 +36,18 @@ function DashboardPage() {
                 <span className="self-end text-xs text-white">{RoleUser}</span>
               </div>
               <div>
-                <IconLogout  className="text-white cursor-pointer tooltip" data-tip="Cerrar Seccion" onClick={LogautUser} />
+                <div className=" tooltip" data-tip="Cerrar Seccion">
+                  <IconLogout
+                    className="text-white cursor-pointer tooltip"
+                    data-tip="Cerrar Seccion"
+                    onClick={LogautUser}
+                  />
+                </div>
               </div>
             </header>
           </footer>
         </section>
-        <section className=" md:pr-10 w-full py-2  overflow-y-auto   custom-scrollbar relative">
+        <section className=" md:pr-1 w-full py-2  overflow-y-auto   custom-scrollbar relative">
           <Outlet />
         </section>
       </article>

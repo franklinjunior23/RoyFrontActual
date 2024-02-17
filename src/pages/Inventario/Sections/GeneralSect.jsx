@@ -90,7 +90,7 @@ function GeneralSect() {
     }),
     ColumnDate.accessor((row) => row.id, {
       id: "ViewMaquina",
-      header: "Ver",
+      header: "",
       cell: (ValueAgent) => (
         <Link
           to={`${ValueAgent.getValue()}`}
@@ -186,14 +186,14 @@ function GeneralSect() {
           />
         </header>
         <section className="rounded-2xl border  border-collapse border-gray-200/60  dark:border-gray-100/10 h-[575px] dark:bg-DarkComponent">
-          <table className=" z-10  md:w-full dark:bg-DarkComponent   rounded-2xl text-white">
+          <table className="table text-center    md:w-full dark:bg-DarkComponent   rounded-2xl text-white">
             <thead>
               {Table.getHeaderGroups().map((HeaderGroup) => (
                 <tr key={HeaderGroup.id}>
                   {HeaderGroup.headers.map((header) => (
                     <th
                       key={header.id}
-                      className="p-3 text-base text-gray-500 dark:text-gray-300 font-semibold"
+                      className="py-2.5 px-3 text-base text-gray-500 dark:text-gray-300 font-medium"
                     >
                       {header.column.columnDef.header}
                     </th>
@@ -205,7 +205,7 @@ function GeneralSect() {
               {Table.getRowModel()?.rows.map((row, index) => (
                 <tr
                   key={index}
-                  className=" border-t border-gray-200 dark:border-gray-100/10 dark:text-white text-black "
+                  className=" border-t border-gray-200 dark:border-gray-100/10 dark:text-white dark:hover:bg-black/20 hover:bg-black/5 text-black "
                 >
                   {row.getVisibleCells().map((cell) => (
                     <td key={cell.id} className={"py-2 px-1 text-sm text-center  border-b dark:border-gray-100/10"}>
@@ -241,7 +241,7 @@ function GeneralSect() {
             Siguiente
           </button>
         </footer>
-        <Outlet />
+       
       </main>
     </>
   );

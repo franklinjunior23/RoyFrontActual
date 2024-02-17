@@ -123,7 +123,7 @@ function CreateDisp() {
     return UpdateDisp(datos);
   };
   return (
-    <main className="mt-8 pb-8">
+    <main className=" pb-8">
       {data && (
         <header className="py-2 flex justify-end">
           <ButtomDots

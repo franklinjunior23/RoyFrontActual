@@ -7,7 +7,9 @@ export default function InputSelect({
   register,
   options,
   className,
+  watch
 }) {
+  console.log(options)
   return (
     <section className="grid gap-2 ">
       <label
@@ -41,4 +43,5 @@ InputSelect.propTypes = {
   register: PropTypes.any.isRequired,
   options: PropTypes.any.isRequired,
   className: PropTypes.string,
+  watch:PropTypes.func
 };

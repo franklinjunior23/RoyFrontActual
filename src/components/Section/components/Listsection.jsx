@@ -31,23 +31,24 @@ function Listsection({ datos, color, LinkDate }) {
       IsLoading: LoadingDelete,
     },
   ];
+  // color defaultbg-[#6d6d6d]
   return (
     <article
-      className={`px-7 py-9 h-[250px] w-[280px] rounded-3xl relative bg-[#6d6d6d]`}
+      className={`px-7 border dark:border-none py-9 h-[250px] w-[280px] rounded-3xl relative shadow-md my-3 dark:bg-white/20 `}
       // style={{ background:color }}
     >
       <Link to={LinkDate ? `/Dashboard/Home/${nombre}` : nombre}>
         <span>
-          <IconBuilding color="white" size={50} />
+          <IconBuilding className="text-base" size={50} />
         </span>
-        <h4 className="mt-4 text-white font-extrabold text-xl">{nombre}</h4>
+        <h4 className="mt-4 text-black dark:text-white font-extrabold text-xl">{nombre}</h4>
       </Link>
       <div className="absolute right-1 top-7  px-4 cursor-pointer">
         {RoleUser === "Soporte" && (
           <ButtomDots
             Title={"Acciones"}
             Options={ListSoportIt}
-            Icon={<IconDotsVertical color="white" size={30} strokeWidth={3} />}
+            Icon={<IconDotsVertical className="text-base" size={30} strokeWidth={3} />}
           />
         )}
         {RoleUser === "Administrador" && (

@@ -2,6 +2,40 @@ import { Controller } from "react-hook-form";
 import Switch from "@Components/Buttons/Buttom/Switch";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axiosInstance from "@/services/ConfigApi";
+import {toast} from "sonner";
+function ButtonDeleteArea({ id }) {
+  console.log(`Id de Area ${id}`);
+  const { idDisp } = useParams();
+  console.log(`Id Device : ${idDisp}`);
+  const QueryClient = useQueryClient();
+  const { mutate, isLoading } = useMutation({
+    mutationKey: ["DeleteAreaTheDevice"],
+    mutationFn: async () => {
+      const { data } = await axiosInstance.delete(
+        `Dispositivos/area/${idDisp}?area=${id}`
+      );
+      return data;
+    },
+    onSuccess: ({ message }) => {
+      toast.success(
+        `${message ?? "Fue Removido el dispositivo de la sucursal"}`
+      );
+      QueryClient.invalidateQueries({ queryKey: ["DispById"] });
+    },
+  });
+  return (
+    <button
+      type="button"
+      onClick={mutate}
+      className=" text-sm bg-red-500 font-semibold px-2 mt-5 rounded-md"
+    >
+      {isLoading ? "cargando ..." : "Desvincular"}
+    </button>
+  );
+}
 
 function VinculeArea({
   control,
@@ -14,25 +48,22 @@ function VinculeArea({
   nombreE,
   sucursalN,
 }) {
+  console.log(dataAreas);
   if (dataAreas?.length > 0)
     return (
       <article>
-        {dataAreas?.map(({ name, id },index) => (
+        {dataAreas?.map(({ name, id }, index) => (
           <>
             <header key={index}>
               <h3 className="font-semibold text-xl">{name}</h3>
               <span className="text-xs px-2 rounded-md bg-black">Area</span>
             </header>
-            <button
-              type="button"
-              className=" text-sm bg-red-500 font-semibold px-2 mt-5 rounded-md"
-            >
-              Desvincular
-            </button>
+            <ButtonDeleteArea id={id} />
           </>
         ))}
       </article>
     );
+
   return (
     <>
       <article className=" grid grid-cols-2   ">
@@ -83,7 +114,7 @@ function VinculeArea({
                   className="form-input dark:text-black text-black dark:bg-white"
                   {...register("IdArea")}
                 >
-                  {Areas.map(({ name, id },index) => (
+                  {Areas.map(({ name, id }, index) => (
                     <option value={id} key={index}>
                       {name}
                     </option>
@@ -104,12 +135,13 @@ function VinculeArea({
                 className="py-2 form-input border text-black dark:text-white"
               >
                 <option value="null">marcar</option>
-                {DataUsers?.map((value,index) => (
+                {DataUsers?.map((value, index) => (
                   <option
                     value={value?.id}
                     disabled={value?.Dispositivo?.IdUser}
                     className={
-                      value?.Dispositivo?.IdUser && "dark:text-slate-400 text-red-400"
+                      value?.Dispositivo?.IdUser &&
+                      "dark:text-slate-400 text-red-400"
                     }
                     key={index}
                   >
@@ -136,3 +168,14 @@ function VinculeArea({
 }
 
 export default VinculeArea;
+VinculeArea.propTypes = {
+  control: PropTypes.func,
+  watch: PropTypes.func,
+  Areas: PropTypes.string,
+  register: PropTypes.func,
+  dataAreas: PropTypes.any,
+  DataUsers: PropTypes.any,
+  IdUser: PropTypes.string,
+  nombreE: PropTypes.string,
+  sucursalN: PropTypes.string,
+};

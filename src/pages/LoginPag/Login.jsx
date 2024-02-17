@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -47,7 +46,7 @@ function Login() {
   async function LoginUsuario(datos) {
     if (datos?.usuario == "" || datos?.contraseña == "")
       return toast.error("Complete los campos");
-    const { data } = await axiosInstance.post("/auth/login", datos);
+    const { data } = await axiosInstance.post("auth/login", datos);
     if (data.loged) {
       AddToken(data.token_user, data.user);
 

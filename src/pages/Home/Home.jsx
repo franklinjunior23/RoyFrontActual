@@ -1,67 +1,63 @@
 import { Outlet, useParams } from "react-router-dom";
-import ItSection from "@Components/Navbar/components/ItSection";
 import ItemSection from "@Components/Section/ItemSection";
-import { UseContextLoged } from "@/context/AuhtLoged";
-import ListTickets from "./components/ListTickets";
-import ListDetail from "./components/ListDetail";
 import { useQuery } from "@tanstack/react-query";
-import { GetsInfoDash } from "../../services/ApiGets";
-import ListUserActive from "./components/ListUserActive";
 
-function formatDate(date) {
-  const options = {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  };
-  return date.toLocaleDateString("es-PE", options);
-}
+import Header from "./components/Header";
+import { ToggleActive } from "@/store/Dashboard/ActiveNotifi";
+import clsx from "clsx";
+import { GetsInfoDash } from "@/services/ApiGets";
+import ListNotify from "./components/ListNotify";
+import ItemView from "../empresa/components/ItemView";
 
 function Home() {
   const { nombreE } = useParams();
-  const { LogedAuth } = UseContextLoged();
-  const today = new Date();
-  const Format = formatDate(today);
+
   const { data, isLoading, isError } = useQuery({
     queryFn: GetsInfoDash,
     queryKey: ["DataInfoHome"],
   });
-
   return (
     <>
       {nombreE ? (
         <Outlet />
       ) : (
-        <main className="pb-10 md:pb-0">
-          <header className="flex justify-between">
-            <section>
-              <h4 className="text-Slet text-2xl font-bold capitalize">
-                Bienvenido {LogedAuth.nombre}
-              </h4>
-              <p className="text-Chiqui capitalize dark:text-white pb-2 mt-1  ">
-                {Format}
-              </p>
-            </section>
-            <div className="self-end">
-              <ItSection dato={true} />
-            </div>
-          </header>
-          <ItemSection />
-          <article className="grid mt-2 md:grid-cols-2 gap-6 ">
-            {isLoading && (
-              <>
-                <h2 className="dark:text-white">Cargando .....</h2>
-                <h2 className="dark:text-white">Cargando .....</h2>
-              </>
-            )}
-            {isError && (
-              <h2 className="dark:text-white">Error al cargar los datos</h2>
-            )}
-            <ListTickets TicketsData={data?.Ticket} />
-            <ListDetail DetailData={data?.Dispositivo} />
-            {/* <ListUserActive /> */}
+        <main className="md:h-full  md:pb-0 ">
+          <section>
+            <Header />
+
+            <ItemSection />
+          </section>
+          <article className="grid mt-2 md:grid-cols-3 gap-6">
+           
+            <article className="grid grid-cols-2 gap-6 grid-rows-2 h-fit ">
+              <ItemView
+                Count={data?.Dispositivo?.LaptopCount}
+                Title={"Tickets"}
+                Color={"#1c58f4"}
+              />
+              <ItemView
+                Count={data?.Dispositivo?.PcCount}
+                Title={"Pc"}
+                Color={"#f60842"}
+              />
+              <ItemView
+                Count={data?.Dispositivo?.ServidoresCount}
+                Title={"Laptops"}
+                Color={"#17d07a"}
+              />
+              <ItemView
+                Count={data?.Ticket?.TicketCount}
+                Title={"Servidores"}
+                Color={"#f5ac0f"}
+              />
+            </article>
+            <article className=""></article>
+            <ListNotify />
           </article>
+
+          {/* <aside>
+              Notificaciones
+            </aside> */}
         </main>
       )}
     </>

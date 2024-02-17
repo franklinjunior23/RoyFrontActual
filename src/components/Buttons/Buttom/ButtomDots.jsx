@@ -41,7 +41,7 @@ function ButtomDots({ ClassName, Title, Options, OptionDownload, Icon }) {
           )}
         </button>
         {ActiveButton && (
-          <aside className="absolute modal right-0 top-12 z-50  text-sm   w-[160px]  dark:text-white grid gap-1">
+          <aside className="absolute AsideDots right-0 top-12 z-50  text-sm   w-[160px]  dark:text-white grid gap-1">
             {Title && (
               <h4 className="pl-3 text-black dark:text-white font-semibold py-1.5 text-left">
                 {Title ?? "Opciones"}

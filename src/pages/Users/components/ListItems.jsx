@@ -23,7 +23,7 @@ function ListItems() {
     <main className="h-[500px]  mt-10">
       <main className="h-full ">
         <main className="flex flex-wrap gap-4">
-          <FilterList data={data} Search={Search}/>
+          <FilterList data={data} Search={Search} />
         </main>
       </main>
     </main>
@@ -33,10 +33,9 @@ function ListItems() {
 export default ListItems;
 
 export const FilterList = ({ data, Search }) => {
-    if (Search === '' || Search === null) {
-      return data?.map((user, index) => <ItemsUser key={index} {...user} />);
-    } else {
-      return null; // O puedes retornar algo diferente si no quieres renderizar nada en este caso
-    }
-  };
-  
+  if (Search === "" || Search === null) {
+    return data?.map((user, index) => <ItemsUser key={index} {...user} />);
+  } else {
+    return null; // O puedes retornar algo diferente si no quieres renderizar nada en este caso
+  }
+};

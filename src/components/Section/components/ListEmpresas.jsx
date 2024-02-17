@@ -26,7 +26,7 @@ function ListEmpresas({LinkDate}) {
       const windowWidth = window.innerWidth;
       // Definir valores de spaceBetween según el ancho de la pantalla
       if (windowWidth <= 260) {
-        setSpaceBetween(10); // Cambia a lo que quieras para dispositivos con ancho menor o igual a 260px
+        setSpaceBetween(0); // Cambia a lo que quieras para dispositivos con ancho menor o igual a 260px
       } else if (windowWidth <= 350) {
         setSpaceBetween(30); // Cambia a lo que quieras para dispositivos con ancho entre 260px y 350px
       } else if (windowWidth <= 474) {
@@ -34,7 +34,7 @@ function ListEmpresas({LinkDate}) {
       } else if (windowWidth <= 1600) {
         setSpaceBetween(280); // Valor por defecto para pantallas más grandes
       }else{
-        setSpaceBetween(190);
+        setSpaceBetween(160);
       }
     };
     if(DataEmpresas){
@@ -50,7 +50,7 @@ function ListEmpresas({LinkDate}) {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [spaceBetween,DataEmpresas,AddDataList]);
+  }, []);
   if (isLoading) return <h2 className="text-center">Cargando ...</h2>;
   if (isError) return <h2 className="text-center">Ha sucedido un error</h2>;
 
@@ -75,7 +75,7 @@ function ListEmpresas({LinkDate}) {
             slidesPerView: 1.3,
           },
           350: {
-            slidesPerView: 1.2
+            slidesPerView: 1.1
 ,
           },
           474: {
@@ -91,7 +91,7 @@ function ListEmpresas({LinkDate}) {
           },
           // Por defecto, cuando el ancho de la pantalla sea mayor que 1024px, mostrar 4 elementos
           1200: {
-            slidesPerView: 4.5,
+            slidesPerView: 5,
           },
         }}
       >

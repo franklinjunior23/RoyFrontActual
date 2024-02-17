@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ItemNotify from "./ItemNotify";
 import { ColorConteners } from "../../../assets/DataDefault";
 function ListNotifys({ pages, data, LabelList }) {
-  const ITEMS_PER_PAGE = pages ?? 3;
+  const ITEMS_PER_PAGE = pages ?? 2;
   const [itemsToShow, setItemsToShow] = useState(ITEMS_PER_PAGE);
   const [showMore, setShowMore] = useState(false);
 
@@ -16,12 +16,11 @@ function ListNotifys({ pages, data, LabelList }) {
     setShowMore(false);
   };
 
-
-if(data.length === 0) return ( "")
+  if (data.length === 0) return "";
   return (
-    <main>
-      <h3 className="font-bold text-black/50">{LabelList}</h3>
-     
+    <main className="">
+      <h3 className="font-bold text-black/50 dark:text-white mb-4">{LabelList}</h3>
+
       {data?.slice(0, itemsToShow).map((item, index) => (
         <ItemNotify
           key={index}
@@ -34,22 +33,22 @@ if(data.length === 0) return ( "")
         />
       ))}
       <section className="my-4">
-      {data?.length > itemsToShow && (
-        <button
-          onClick={handleShowMore}
-          className="text-blue-500 cursor-pointer"
-        >
-          Mostrar más
-        </button>
-      )}
-      {showMore && (
-        <button
-          onClick={handleShowLess}
-          className="text-blue-500 cursor-pointer mx-auto ml-4"
-        >
-          Mostrar menos
-        </button>
-      )}
+        {data?.length > itemsToShow && (
+          <button
+            onClick={handleShowMore}
+            className="text-blue-500 cursor-pointer dark:bg-white/20 px-3 py-1 dark:text-white font-medium text-sm rounded-lg "
+          >
+            Mostrar más
+          </button>
+        )}
+        {showMore && (
+          <button
+            onClick={handleShowLess}
+            className="text-blue-500 dark:bg-white/20 px-2 py-1 dark:text-white font-medium text-sm rounded-lg  cursor-pointer  ml-4"
+          >
+            Mostrar menos
+          </button>
+        )}
       </section>
     </main>
   );
