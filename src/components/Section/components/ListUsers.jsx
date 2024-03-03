@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { GetUserByEmpresaAndSucursal } from "../../../services/ApiGets";
 import { Link, useParams } from "react-router-dom";
 import ItemUsers from "./ItemUsers";
+import { PDFViewer } from '@react-pdf/renderer';
 import {
   createColumnHelper,
   flexRender,
@@ -17,6 +18,7 @@ import clsx from "clsx";
 import ItemInput from "@Components/Input/InputCopy/ItemInput";
 import Buttom from "@Components/Buttons/Buttom/Buttom";
 import NotRegistred from "@/pages/Inventario/Users/components/NotRegistred";
+import PDFUSERTOTAL from "@Components/pdf/users/pdf-user-total";
 
 function ListUsers() {
   const { nombreE, sucursalN } = useParams();
@@ -116,6 +118,7 @@ function ListUsers() {
     );
   return (
     <main className="">
+       <PDFViewer className="w-[800px] h-[500px]"><PDFUSERTOTAL data={data} /></PDFViewer>
       <header className="mb-5">
         <input
           type="text"

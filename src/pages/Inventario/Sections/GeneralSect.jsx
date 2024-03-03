@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFDownloadLink,PDFViewer } from "@react-pdf/renderer";
 // import ItemDisp from "./ItemDisp";
 import { Link, Outlet, useParams } from "react-router-dom";
 import HeadCategory from "@Components/Section/components/HeadCategory";
@@ -20,6 +20,8 @@ import { IconEye } from "@tabler/icons-react";
 import { UseContextLoged } from "@/context/AuhtLoged";
 import { DataFindIdDevice } from "./Utils/FindId";
 import TruncateText from "@/utils/TruncateTeaxt";
+import PDFUSERTOTAL from "@Components/pdf/users/pdf-user-total";
+import PDFDEVICES from "@Components/pdf/users/pdf-devices.total";
 
 function GeneralSect() {
   const [TextFilter, setTextFilter] = useState("");
@@ -175,6 +177,8 @@ function GeneralSect() {
     <>
       <HeadCategory data={"Dispositivo"} />
 
+
+      <PDFViewer className="w-[800px] h-[500px]"><PDFDEVICES data={data} /></PDFViewer>
       <main className="mt-3 pb-5">
         <header className="mb-5">
           <input

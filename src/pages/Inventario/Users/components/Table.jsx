@@ -26,6 +26,7 @@ function Table({ columns, data, ThClassName, TrClassName, TdClassName }) {
 
   return (
     <>
+   
       <header className="mb-5">
         <input
           type="text"

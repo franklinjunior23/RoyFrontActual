@@ -16,7 +16,7 @@ function ItemSection({ LinkDate }) {
         <ItSection />
       </header>
 
-      <main ondr>
+      <main >
         <header className="relative">
           <Buttom
             onClick={() => setActiveModal(!ActiveModal)}
