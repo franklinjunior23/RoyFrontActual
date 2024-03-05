@@ -2,7 +2,6 @@ import Form from "./components/Form";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { GetUserById } from "@Services/ApiGets";
-import { Suspense } from "react";
 function PageUser() {
   const { nombreE, sucursalN, idUsuario } = useParams();
 

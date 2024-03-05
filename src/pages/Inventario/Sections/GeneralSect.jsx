@@ -20,7 +20,7 @@ import { IconEye } from "@tabler/icons-react";
 import { UseContextLoged } from "@/context/AuhtLoged";
 import { DataFindIdDevice } from "./Utils/FindId";
 import TruncateText from "@/utils/TruncateTeaxt";
-import PDFUSERTOTAL from "@Components/pdf/users/pdf-user-total";
+
 import PDFDEVICES from "@Components/pdf/users/pdf-devices.total";
 
 function GeneralSect() {
@@ -171,11 +171,10 @@ function GeneralSect() {
       </>
     );
 
-  if (idDisp) return <Outlet />;
+  
 
   return (
     <>
-      <HeadCategory data={"Dispositivo"} />
 
 
       <PDFViewer className="w-[800px] h-[500px]"><PDFDEVICES data={data} /></PDFViewer>

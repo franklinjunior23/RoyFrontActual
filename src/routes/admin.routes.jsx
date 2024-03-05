@@ -3,7 +3,7 @@ import DashboardPage from "@Pages/Layaots/dashboard/DashboardPage";
 import Home from "@Pages/Home/Home";
 import EmpresaDet from "@Pages/empresa/EmpresaDet";
 import CategoryS from "@Pages/empresa/CategoryS";
-import UserPage from "@Components/Section/UserPage";
+import UserPage from "@/pages/Inventario/Users/Users";
 import UserForm from "@Components/User/components/UserForm";
 import CreateDisp from "@Pages/Inventario/Forms/CreateDisp";
 import GeneralSect from "@Pages/Inventario/Sections/GeneralSect";

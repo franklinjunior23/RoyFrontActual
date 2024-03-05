@@ -1,5 +1,3 @@
-import React from "react";
-
 import {
   Page,
   Text,
@@ -8,8 +6,11 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-function PDFUSERTOTAL({ data }) {
-  console.log(data);
+function PDFUSERTOTAL({ data, company, branch }) {
+  const Day = new Date().toLocaleDateString("es-Pe");
+  console.log(data)
+ 
+
   const styles = StyleSheet.create({
     page: {
       flexDirection: "row",
@@ -23,7 +24,6 @@ function PDFUSERTOTAL({ data }) {
       justifyContent: "space-between",
     },
     containerVacio: {
-     
       fontSize: 10,
       textAlign: "center",
       border: 1,
@@ -50,27 +50,48 @@ function PDFUSERTOTAL({ data }) {
       marginTop: 6,
     },
     boxContent: {
-      marginVertical: 10,
+     
     },
   });
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View style={styles.boxContent}>
-          <Text style={styles.text}>
-            Empresa :{" "}
-            <Text style={{ fontWeight: "extrabold" }}>Imer Soportes SAC</Text>
-          </Text>
-          <Text style={styles.textSecond}>
-            Sucursal <Text style={{ fontWeight: "extrabold" }}>Planta Ate</Text>
-          </Text>
+        <View
+          style={{
+            width:'100%',
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems:'flex-start'
+          }}
+        >
+          <View style={styles.boxContent}>
+            <Text style={styles.text}>
+              Empresa : 
+              <Text style={{ fontWeight: "extrabold" }}> {company}</Text>
+            </Text>
+            <Text style={styles.textSecond}>
+              Sucursal : <Text style={{ fontWeight: "extrabold" }}>{branch}</Text>
+            </Text>
+            <Text style={{ fontSize:'10px',marginTop:'10px' }}>
+              Fecha : {Day}
+            </Text>
+          </View>
+          <View >
+            <Image src={"/IntisLogo.png"} style={{ width: "40px" }} />
+            <Text style={{ fontSize: "10px", marginTop: "6px" }}>
+              IntisCorp
+            </Text>
+          </View>
         </View>
 
-        <View  style={{ marginTop:"40px" }}>
-          <Text style={{ fontSize:"12px",marginBottom:"10px" }}>Lista de usuarios registrados</Text>
+        <View style={{ marginTop: "40px" }}>
+          <Text style={{ fontSize: "12px", marginBottom: "10px" }}>
+            Lista de usuarios registrados
+          </Text>
           <View style={styles.containerVacio}>
             <TableHeader />
-            <TableBody data={data} />
+            <TableBody data={data ?? []} />
           </View>
         </View>
       </Page>
@@ -149,28 +170,27 @@ function TableBody({ data }) {
       borderColor: "#94a3b8",
     },
   });
-
-  return data?.map((ValueUser, index) => (
-    <View style={StyleHeader.container}>
+  if(data)return data?.map((ValueUser, index) => (
+    <View style={StyleHeader.container} key={index}>
       <Text style={StyleHeader.TextPrimary}>{index}</Text>
       <Text style={StyleHeader.TextSecond}>
-        {capitalizeText(`${ValueUser.nombre} ${ValueUser?.apellido}`)}
+        {capitalizeText(`${ValueUser?.nombre} ${ValueUser?.apellido}`)}
       </Text>
-      <Text style={StyleHeader.TextGnero}>{ValueUser.genero} </Text>
+      <Text style={StyleHeader.TextGnero}>{ValueUser?.genero} </Text>
       <Text style={StyleHeader.TextSpecialization}>
-        {ValueUser.cargo === "" ? "----" : capitalizeText(ValueUser.cargo)}{" "}
+        {ValueUser?.cargo === "" ? "----" : capitalizeText(ValueUser?.cargo ?? "------")}{" "}
       </Text>
       <Text
         style={{
           ...StyleHeader.TextStatus,
-          color: ValueUser.estado === "Activo" ? "#16a34a" : "tu_otro_color",
+          color: ValueUser?.estado === "Activo" ? "#16a34a" : "red",
         }}
       >
-        {ValueUser.estado}
+        {ValueUser?.estado ?? "------"}
       </Text>
-      <Text style={StyleHeader.Anydesk}>{ValueUser.anydesk_id} </Text>
+      <Text style={StyleHeader.Anydesk}>{ValueUser?.anydesk_id} </Text>
       <Text style={StyleHeader.Email}>
-        {ValueUser?.email[0]?.correo ?? "-----"}{" "}
+      {ValueUser?.email[0]?.correo ?? "-----"}{" "}
       </Text>
     </View>
   ));
