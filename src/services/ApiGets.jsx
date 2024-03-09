@@ -33,8 +33,8 @@ export const CreateUserByempresaAndSucursal = async (
   return resp.data;
 };
 export const GetUserById = async (id) => {
-  const resp = await axiosInstance.get(`Users/${id}`);
-  return resp.data;
+  const { data } = await axiosInstance.get(`Users/${id}`);
+  return data;
 };
 export const UpdateUserById = async (id, dat) => {
   const resp = await axiosInstance.put(`Users/${id}`, dat);
@@ -69,26 +69,24 @@ export const DeleteDisposito = async (id) => {
 };
 
 export const GetUserNullDispositivo = async ({ empresa, sucursal }) => {
-  console.log(empresa,sucursal)
+  console.log(empresa, sucursal);
   const { data } = await axiosInstance.get(
     `Users/Disp?empresa=${empresa}&sucursal=${sucursal}`
-    
   );
   return data;
 };
 
-export const GetsTicketsInfo=async()=>{
-  const {data}=await axiosInstance.get('Tickets')
-  return data
-}
-
-export const GetsBaseConocimiento = async()=>{ 
-   
-  const {data}=await axiosInstance.get('BaseConocimiento')
+export const GetsTicketsInfo = async () => {
+  const { data } = await axiosInstance.get("Tickets");
   return data;
-}
+};
 
-export const GetsInfoDash=async()=>{
-  const {data}=await axiosInstance.get('informes/Home')
+export const GetsBaseConocimiento = async () => {
+  const { data } = await axiosInstance.get("BaseConocimiento");
   return data;
-}
+};
+
+export const GetsInfoDash = async () => {
+  const { data } = await axiosInstance.get("informes/Home");
+  return data;
+};

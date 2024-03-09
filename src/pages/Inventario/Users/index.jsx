@@ -3,17 +3,16 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { GetUserById } from "@Services/ApiGets";
 function PageUser() {
-  const { nombreE, sucursalN, idUsuario } = useParams();
+  const {  idUsuario } = useParams();
 
-  var { data: DataUser,isLoading } = useQuery({
+  var { data,isLoading } = useQuery({
     queryKey: ["UserFind"],
     queryFn: () => GetUserById(idUsuario),
   });
   if(isLoading) return <h2>Cargando ...</h2>
-  console.log(DataUser);
   return (
     <main>
-      <Form data={DataUser?.resp ?? []} />
+      <Form data={data?.resp ?? []} />
     </main>
   );
 }

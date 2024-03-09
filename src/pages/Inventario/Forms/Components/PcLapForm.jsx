@@ -57,7 +57,7 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
     remove: RemoveAlmacenamiento,
   } = useFieldArray({
     control,
-    name: "Almacenamiento", // nombre del campo en el formulario
+    name: "Almacenamiento_detalle", // nombre del campo en el formulario
   });
   const { data: DataUsers } = useQuery(["Client_Disp"], async () => {
     const { data } = await axiosInstance.get(
@@ -68,6 +68,7 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
 
   return (
     <>
+      
       <section>
         <div className="grid grid-cols-3 gap-3 my-1">
           <InputSelect
@@ -264,7 +265,7 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                     <label className="text-sm dark:text-white grid gap-1.5">
                       Tipo
                       <select
-                        {...register(`Almacenamiento.${index}.tipo`, {
+                        {...register(`Almacenamiento_detalle.${index}.tipo`, {
                           require: true,
                         })}
                         defaultValue={field.marca}
@@ -284,19 +285,19 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                     <Input
                       label="Serial"
                       register={register}
-                      name={`Almacenamiento.${index}.serial`}
+                      name={`Almacenamiento_detalle.${index}.serial`}
                     />
                     <Input
                       label="Gb"
                       placeholder="GB"
                       register={register}
-                      name={`Almacenamiento.${index}.gb`}
+                      name={`Almacenamiento_detalle.${index}.gb`}
                     />
                     <Input
                       label="Tipo"
                       placeholder="Tipo"
                       register={register}
-                      name={`Almacenamiento.${index}.estado`}
+                      name={`Almacenamiento_detalle.${index}.estado`}
                     />
 
                     <button
@@ -312,7 +313,7 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                 <button
                   type="button"
                   className="border  px-3 dark:border-none font-medium text-sm py-1 mt-5 rounded-md bg-slate-500/70 text-white"
-                  onClick={() => AppendAlmacenamiento({})}
+                  onClick={() => AppendAlmacenamiento({gb:'',estado:'',serial:'',tipo:''})}
                 >
                   <IconPlus />
                 </button>
@@ -355,6 +356,7 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
           <input type="text" hidden {...register("IdUser")} />
         </section>
       </section>
+      
     </>
   );
 }

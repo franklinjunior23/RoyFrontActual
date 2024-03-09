@@ -1,5 +1,6 @@
+import { DataCategory } from "@/assets/DataDefault";
 import { Link } from "react-router-dom";
-import { DataCategory } from "../../../assets/DataDefault";
+
 
 function ListCategoy() {
   return (

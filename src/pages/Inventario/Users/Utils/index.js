@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 export function AddDataForm({ data, setValue }) {
-  console.log(data);
 
   const Campos = [
     { value: "nombre", key: "nombre" },
@@ -25,11 +24,11 @@ export function AddDataForm({ data, setValue }) {
     const { key, value } = campo;
 
     // Suponiendo que el objeto 'data' tiene propiedades coincidentes
-    const valor = value?.includes("[") ? eval(`data.${value}`) : data[value];
+    const valor = value?.includes("[") ? eval(`data?.${value}`) : data[value];
     if(valor === "undefined"){
       return  setValue(key, "");
     }
-    setValue(key, valor);
+    setValue(key, valor ?? '');
   });
 }
 

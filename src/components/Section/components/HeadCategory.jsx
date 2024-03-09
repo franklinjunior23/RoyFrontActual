@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import ButtomDots from "@Components/Buttons/Buttom/ButtomDots";
 import { useState } from "react";
 import PageCreateArea from "@Pages/Inventario/Area/PageCreate";
-function HeadCategory({ data }) {
+
+function HeadCategory({ title,PdfList}) {
   const navi = useNavigate();
   const Options = [
     {
@@ -41,25 +42,22 @@ function HeadCategory({ data }) {
     // },
   ];
   const OptionsDownloads = () => {
-    return <h2>Reporte PDF</h2>;
+    return (
+      <PdfList/>
+    );
   };
   return (
     <header className="flex justify-between items-center gap-2 pt-5 relative dark:text-white">
-      <h2 className="text-lg hidden md:block">{data}</h2>
+      <h2 className="text-lg hidden md:block">{title}</h2>
       <header>
         <header className="flex gap-2 items-end  text-sm">
           <button
-            className="bg-black py-1.5 font-light  text-white px-4 rounded-lg"
+            className="bg-black py-1.5  text-sn font-medium  text-white px-4 rounded-lg"
             onClick={() => navi("create")}
           >
-            Crear {data}
+            Crear {title}
           </button>
-          <button
-            className="bg-black py-1.5  text-white px-4 rounded-lg"
-            onClick={() => navi("create")}
-          >
-            Crear Usuario
-          </button>
+          
           <ButtonOpenMod Modal={PageCreateArea}>Crear Area</ButtonOpenMod>
 
           <ButtomDots
@@ -74,7 +72,8 @@ function HeadCategory({ data }) {
 }
 export default HeadCategory;
 HeadCategory.propTypes = {
-  data: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  PdfList:PropTypes.any
 };
 function ButtonOpenMod({ children, Modal }) {
   const [StatusSide, setStatusSide] = useState(false);
@@ -83,7 +82,7 @@ function ButtonOpenMod({ children, Modal }) {
   }
   return (
     <>
-      <div className="relative">
+      <div className="relative font-medium" >
         <button
           className="bg-black py-1.5  text-white px-4 rounded-lg"
           onClick={handleClick}

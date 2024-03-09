@@ -9,7 +9,6 @@ export default function InputSelect({
   className,
   watch
 }) {
-  console.log(options)
   return (
     <section className="grid gap-2 ">
       <label

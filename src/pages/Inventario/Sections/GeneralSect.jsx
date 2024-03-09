@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { PDFDownloadLink,PDFViewer } from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 // import ItemDisp from "./ItemDisp";
 import { Link, Outlet, useParams } from "react-router-dom";
 import HeadCategory from "@Components/Section/components/HeadCategory";
@@ -21,19 +21,14 @@ import { UseContextLoged } from "@/context/AuhtLoged";
 import { DataFindIdDevice } from "./Utils/FindId";
 import TruncateText from "@/utils/TruncateTeaxt";
 
-import PDFDEVICES from "@Components/pdf/users/pdf-devices.total";
 
-function GeneralSect() {
+import PdfDevices from "@Components/pdf/users/pdf-devices.total";
+
+function GeneralSect({data}) {
   const [TextFilter, setTextFilter] = useState("");
   const { nombreE, sucursalN, idDisp } = useParams();
-  const queryKey = ["GetDisp"];
   const { RoleUser } = UseContextLoged();
-  const { data, isLoading, isError } = useQuery(queryKey, async () => {
-    const { data } = await axiosInstance.get(
-      `Dispositivos/?empresa=${nombreE}&sucursal=${sucursalN}`
-    );
-    return data;
-  });
+  
 
   const SoporteOption = [
     { label: "Editar", Function: () => console.log("Editando") },
@@ -51,10 +46,13 @@ function GeneralSect() {
     ColumnDate.accessor((row) => row.estado, {
       id: "Estado",
       header: "Estado",
+      
       cell: (info) => (
         <span
           className={` px-4 py-0.5  font-semibold rounded-lg text-xs  border  ${
-            info.getValue() === "Activo" ? "border-green-500  text-green-400 " : "border-blue-500 text-blue-500"
+            info.getValue() === "Activo"
+              ? "border-green-500  text-green-400 "
+              : "border-blue-500 text-blue-500"
           }`}
         >
           {info.getValue()}{" "}
@@ -75,7 +73,7 @@ function GeneralSect() {
     }),
     ColumnDate.accessor((row) => row.updatedAt, {
       id: "UpdateAt",
-      header: "Update",
+      header: "Actualizado",
 
       cell: (ValueAgent) => {
         const DataId = data?.find(
@@ -84,7 +82,7 @@ function GeneralSect() {
         return (
           <span className="text-xs">
             {TimeFromPeruvian(
-              DataId?.DetalleDispositivos[0]?.updatedAt ?? "No hay Componentes"
+              DataId?.DetalleDispositivo?.updatedAt ?? "No hay Componentes"
             )}
           </span>
         );
@@ -153,31 +151,21 @@ function GeneralSect() {
     onGlobalFilterChange: setTextFilter,
   });
 
-  if (isLoading) return <h2>Cargando ....</h2>;
-
-  if (isError) return <h2>Hubo un error , recargue la pagina ....</h2>;
-
-  if (data.length == 0)
-    return (
-      <>
-        {idDisp === "create" ? (
-          <Outlet />
-        ) : (
-          <>
-            <HeadCategory data={"Dispositivo"} />
-            <h2 className="mt-10 text-center">No hay Dispositos. crea uno</h2>
-          </>
-        )}
-      </>
-    );
-
-  
 
   return (
     <>
-
-
-      <PDFViewer className="w-[800px] h-[500px]"><PDFDEVICES data={data} /></PDFViewer>
+      <HeadCategory
+        title="Dispositivo"
+        className="dark:text-white"
+        PdfList={() => (
+          <PDFDownloadLink
+            document={<PdfDevices data={data} ompany={nombreE} branch={sucursalN} />}
+            fileName={`List-devices-${nombreE}/${sucursalN}`}
+          >
+            List of Device
+          </PDFDownloadLink>
+        )}
+      />
       <main className="mt-3 pb-5">
         <header className="mb-5">
           <input
@@ -211,16 +199,22 @@ function GeneralSect() {
                   className=" border-t border-gray-200 dark:border-gray-100/10 dark:text-white dark:hover:bg-black/20 hover:bg-black/5 text-black "
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className={"py-2 px-1 text-sm text-center  border-b dark:border-gray-100/10"}>
-                      {
-                         cell.column.columnDef.cell && (
-                          <TruncateText
-                            text={flexRender(cell.column.columnDef.cell, cell.getContext())}
-                            ComponentNext={() => <></>}
-                            maxLength={5}
-                          />
-                        )
+                    <td
+                      key={cell.id}
+                      className={
+                        "py-2 px-1 text-sm text-center  border-b dark:border-gray-100/10"
                       }
+                    >
+                      {cell.column.columnDef.cell && (
+                        <TruncateText
+                          text={flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                          ComponentNext={() => <></>}
+                          maxLength={5}
+                        />
+                      )}
                     </td>
                   ))}
                 </tr>
@@ -244,7 +238,6 @@ function GeneralSect() {
             Siguiente
           </button>
         </footer>
-       
       </main>
     </>
   );

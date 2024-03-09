@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
 
-export default function InputSelect({ label, name, register, options, className,watch }) {
+export default function InputSelect({ label, name, register, options, className, watch }) {
 
   return (
     <section className="grid gap-2">
@@ -17,9 +17,9 @@ export default function InputSelect({ label, name, register, options, className,
         {options?.map((option,index) => (
           <option
             key={index}
-            value={option.value ?? option.id}
+            value={option?.value ?? option.id}
           >
-            {option.value ?? option?.name}
+            {option?.value ?? option?.name}
           </option>
         ))}
       </select>

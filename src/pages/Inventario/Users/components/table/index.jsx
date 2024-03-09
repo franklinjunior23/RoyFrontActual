@@ -5,7 +5,7 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { GetUserByEmpresaAndSucursal } from "@/services/ApiGets";
@@ -13,7 +13,9 @@ import { ColumnsUsers } from "./columns";
 import TruncateText from "@/utils/TruncateTeaxt";
 import NotRegistred from "../NotRegistred";
 import { useState } from "react";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import PDFUSERTOTAL from "@Components/pdf/users/pdf-user-total";
+import HeadCategory from "@Components/Section/components/HeadCategory";
 
 export function Users() {
   const { nombreE, sucursalN } = useParams();
@@ -45,6 +47,22 @@ export function Users() {
     );
   return (
     <>
+      <HeadCategory
+        data={data}
+        title={"Usuarios"}
+        category={{ nombreE: nombreE, sucursalN: sucursalN }}
+        className="dark:text-white"
+        PdfList={() => (
+          <PDFDownloadLink
+            document={
+              <PDFUSERTOTAL company={nombreE} branch={sucursalN} data={data} />
+            }
+            fileName={`List-users-${nombreE}/${sucursalN}`}
+          >
+            List of Users
+          </PDFDownloadLink>
+        )}
+      />
       <header className="mb-5 flex justify-between mt-3">
         <input
           type="text"
@@ -53,14 +71,6 @@ export function Users() {
           className="bg-black/30 rounded-lg py-1.5 px-2 text-white focus:outline-none placeholder:text-white"
           onChange={(e) => setTextFilter(e.target.value)}
         />
-        <PDFDownloadLink
-          fileName={`Lista-Usuarios-${nombreE}/${sucursalN}`}
-          document={
-            <PDFUSERTOTAL data={data} company={nombreE} branch={sucursalN} />
-          }
-        >
-          <button className="bg-black px-5 rounded-md py-1">List Users</button>
-        </PDFDownloadLink>
       </header>
       <section className="rounded-2xl border  border-collapse border-gray-200/60  dark:border-gray-100/10 min-h-[575px] dark:bg-DarkComponent">
         <table className="table text-center   md:w-full dark:bg-DarkComponent   rounded-2xl text-white">

@@ -8,15 +8,13 @@ import {
 } from "@react-pdf/renderer";
 function PDFUSERTOTAL({ data, company, branch }) {
   const Day = new Date().toLocaleDateString("es-Pe");
-  console.log(data)
- 
 
   const styles = StyleSheet.create({
     page: {
       flexDirection: "row",
       flexWrap: "wrap",
       backgroundColor: "#ffffff",
-      padding: 15,
+      padding: 20,
     },
     container: {
       flexDirection: "row",

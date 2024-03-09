@@ -6,7 +6,7 @@ function RetrocederItem() {
   const navi = useNavigate();
 
   return (
-    <section className="flex justify-between items-center mb-6">
+    <section className="flex justify-between items-center mb-4">
       <div>
         <span className=""></span>
       </div>

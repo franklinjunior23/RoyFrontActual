@@ -442,15 +442,16 @@ export const FormUser = [
 
 export const FormDisp = [
   "nombre",
+  "Agent",
   "tipo",
   "marca",
   "modelo",
+  "estado",
   "serie",
   "tipo_con",
   "estado",
   "tipo_Disp",
-  "Config_mac",
-  "Config_ip",
+  "codigo_dispositivo",
   "Config_user",
   "Config_contra",
   "Placa_modelo",
@@ -458,11 +459,11 @@ export const FormDisp = [
   "Procesador_marca",
   "Procesador_modelo",
   "Ram_Modulos",
-  "Almacenamiento",
+  "Almacenamiento_detalle",
   "Tarjet_Video",
-  "estado",
-  "codigo_dispositivo",
-  "Agent",
+  "Config_ip",
+  "Config_mac",
+  
 ];
 
 export const EstatusTicket = ["Abierto", "En progreso", "Cerrado", "Cancelado"];

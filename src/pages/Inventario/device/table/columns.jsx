@@ -57,7 +57,7 @@ export const ColumnDevice = [
         return (
           <span className="text-xs">
             {TimeFromPeruvian(
-              DataId?.DetalleDispositivos[0]?.updatedAt ?? "No hay Componentes"
+              DataId?.DetalleDispositivo?.updatedAt ?? "No hay Componentes"
             )}
           </span>
         );
@@ -69,7 +69,7 @@ export const ColumnDevice = [
     cell: (ValueAgent) => (
       <span className="text-xs">
         {TimeFromPeruvian(
-          ValueAgent?.getValue()?.DetalleDispositivos[0]?.updatedAt ??
+          ValueAgent?.getValue()?.DetalleDispositivo?.updatedAt ??
             "No hay Componentes"
         )}
       </span>

@@ -33,9 +33,10 @@ function SoporteRoutes() {
               <Route path="Usuarios/create" element={<PageUser />} />
               <Route path="Usuarios/:idUsuario" element={<PageUser />} />
               <Route path="Usuarios/create-area" element={<PageCreateArea />} />
-              <Route path="Inventario" element={<DevicePage />}>
-                <Route path=":idDisp" element={<CreateDisp />} />
-              </Route>
+
+              <Route path="Inventario" element={<DevicePage />}/>
+              <Route path="Inventario/:idDisp" element={<CreateDisp />} />
+              <Route path="Inventario/:idDisp/historial" element={<>h22</>} />
               <Route
                 path="Inventario/create-area"
                 element={<PageCreateArea />}

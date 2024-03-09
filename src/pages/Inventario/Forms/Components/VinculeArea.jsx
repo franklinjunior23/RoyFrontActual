@@ -5,11 +5,9 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "@/services/ConfigApi";
-import {toast} from "sonner";
+import { toast } from "sonner";
 function ButtonDeleteArea({ id }) {
-  console.log(`Id de Area ${id}`);
   const { idDisp } = useParams();
-  console.log(`Id Device : ${idDisp}`);
   const QueryClient = useQueryClient();
   const { mutate, isLoading } = useMutation({
     mutationKey: ["DeleteAreaTheDevice"],
@@ -48,7 +46,7 @@ function VinculeArea({
   nombreE,
   sucursalN,
 }) {
-  console.log(dataAreas);
+  
   if (dataAreas?.length > 0)
     return (
       <article>
@@ -66,6 +64,9 @@ function VinculeArea({
 
   return (
     <>
+      <header className="mb-3 text-sm">
+        
+      </header>
       <article className=" grid grid-cols-2   ">
         <section>
           <h4>Vincular por Usuario</h4>
@@ -169,9 +170,9 @@ function VinculeArea({
 
 export default VinculeArea;
 VinculeArea.propTypes = {
-  control: PropTypes.func,
+  control: PropTypes.any,
   watch: PropTypes.func,
-  Areas: PropTypes.string,
+  Areas: PropTypes.any,
   register: PropTypes.func,
   dataAreas: PropTypes.any,
   DataUsers: PropTypes.any,

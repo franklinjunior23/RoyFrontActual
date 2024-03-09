@@ -42,11 +42,11 @@ console.log(data?.data[param] + " parametro :" + param);
 setValue(param, data.data[param]);
 } else if (
 data?.DetalleDispositivos &&
-data.DetalleDispositivos[0] &&
-data.DetalleDispositivos[0][param] !== null
+data.DetalleDispositivo &&
+data.DetalleDispositivo[param] !== null
 ) {
 console.log("aca arriba");
-setValue(param, data.DetalleDispositivos[0][param]);
+setValue(param, data.DetalleDispositivo[param]);
 }
 });
 

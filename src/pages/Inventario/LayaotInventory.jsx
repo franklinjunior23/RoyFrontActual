@@ -6,7 +6,7 @@ function LayaotInventory() {
   return (
     <main>
       {!idDisp && !idUsuario && (
-        <div className="mb-4 md:mb-6 ">
+        <div className="mb-4 md:mb-4 ">
           <ListCategoy />
         </div>
       )}

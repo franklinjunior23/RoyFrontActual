@@ -37,18 +37,21 @@ export default function Form({ data }) {
   useEffect(() => {
     async function GetsAreas() {
       try {
+       
         const Response = await axiosInstance.get(
           `Areas?Company=${nombreE}&Branch=${sucursalN}`
         );
-        setValue("IdArea", data?.Areas[0]?.id ?? "");
-        return setAreas(Response?.data?.body);
+        return setAreas(Response?.data.body);
       } catch (error) {
-        alert(`Error : ${error?.message}`);
+        alert(`Error Form : ${error?.message}`);
       }
     }
     GetsAreas();
     if (data.length !== 0) AddDataForm({ data, setValue });
   }, [data, UsuarioId, nombreE, setValue, sucursalN]);
+  
+    // if(data?.Areas[0]?.length > 0) setValue("IdArea", data?.Areas[0]?.id ?? "");
+        
   async function handleEnv(datos) {
     if (data?.id || UsuarioId) {
       return await UpdateUser(datos, Navigator, UsuarioId);
