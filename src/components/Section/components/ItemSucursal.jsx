@@ -1,56 +1,59 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { IconDotsVertical } from "@tabler/icons-react";
-import ItemInput from "@Components/InputCopy/ItemInput";
+import ItemInput from "@Components/Input/InputCopy/ItemInput";
 import TruncateText from "@Helpers/TruncateTeaxt";
-
+import PropTypes from "prop-types";
+import ButtomDots from "@Components/Buttons/Buttom/ButtomDots";
+import { UseContextLoged } from "@/context/AuhtLoged";
 // ...
 
 function ItemSucursal({ value }) {
   const { nombre, id, Token } = value;
-
-  const [ActiveEdit, setActiveEdit] = useState(false);
-  const handleActiveEdit = () => {
-    setActiveEdit(!ActiveEdit);
-  };
+  const { RoleUser } = UseContextLoged();
+  const OptionsSoporte = [
+    { label: "Editar", Function: () => console.log(`Estais Editando ${id}`) },
+  ];
+  const OptionsAdministrador = [
+    { label: "Editar", Function: () => console.log(`Estais Editando ${id}`) },
+    {
+      label: "Eliminar",
+      Function: () => console.log(`Estais Eliminando ${id}`),
+    },
+  ];
 
   return (
-    <section className="relative flex  shadow-md border border-black/5 dark:border-none rounded-lg text-white dark:bg-DarkComponent pt-10 pb-5 px-3 text-center">
-      <div className="">
-        <Link to={nombre} className="capitalize h-full">
+    <section className="relative h-[170px]  shadow-md border border-black/5 dark:border-none rounded-lg text-white dark:bg-DarkComponent pt-10 pb-5 px-3 text-center">
+      <div className="grid  h-full items-end">
+        <Link to={`${nombre}/Usuarios`} className="capitalize h-full">
           <h3 className="md:text-xl text-base font-semibold dark:text-white text-black">
             <TruncateText
               text={nombre}
-              maxLength={8}
+              maxLength={14}
               ComponentNext={() => {
                 <></>;
               }}
             />
           </h3>
         </Link>
-        <ItemInput   Value={Token} Message={`Token Copeado`} className={"mt-5"} />
+        <ItemInput Value={Token} Message={`Token Copeado`} className={"mt-5"} />
       </div>
-      <aside
-        className="absolute top-3 right-3  cursor-pointer"
-        onClick={handleActiveEdit}
-      >
-        <IconDotsVertical size={27} strokeWidth={2} className="dark:text-white text-black" />
+      <aside className="absolute top-3 right-3 ">
+        {RoleUser === "Soporte" && (
+          <ButtomDots Title="Acciones" Options={OptionsSoporte} />
+        )}
+        {RoleUser === "Administrador" && (
+          <ButtomDots Title="Acciones" Options={OptionsAdministrador} />
+        )}
       </aside>
-      {ActiveEdit && (
-        <aside className="absolute bg-white rounded-md shadow-md -bottom-2 right-4 text-black grid">
-          <button
-            className="px-3 py-1"
-            onClick={() => {
-              console.log(id);
-            }}
-          >
-            Editar
-          </button>
-          <button className="px-3 py-1">Eliminar</button>
-        </aside>
-      )}
     </section>
   );
 }
 
 export default ItemSucursal;
+
+ItemSucursal.propTypes = {
+  value: PropTypes.shape({
+    nombre: PropTypes.string,
+    id: PropTypes.number,
+    Token: PropTypes.string,
+  }),
+};

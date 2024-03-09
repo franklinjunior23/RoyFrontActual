@@ -20,6 +20,7 @@ import { CreateUser, UpdateUser } from "../Utils/FunctionsApis";
 export default function Form({ data }) {
   const { idUsuario: UsuarioId, nombreE, sucursalN } = useParams();
   const [Areas, setAreas] = useState(null);
+
   const Navigator = useNavigate();
   const {
     handleSubmit,
@@ -33,28 +34,31 @@ export default function Form({ data }) {
       email: [data?.email ?? null],
     },
   });
+  useEffect(() => {
+    async function GetsAreas() {
+      try {
+       
+        const Response = await axiosInstance.get(
+          `Areas?Company=${nombreE}&Branch=${sucursalN}`
+        );
+        return setAreas(Response?.data.body);
+      } catch (error) {
+        alert(`Error Form : ${error?.message}`);
+      }
+    }
+    GetsAreas();
+    if (data.length !== 0) AddDataForm({ data, setValue });
+  }, [data, UsuarioId, nombreE, setValue, sucursalN]);
+  
+    // if(data?.Areas[0]?.length > 0) setValue("IdArea", data?.Areas[0]?.id ?? "");
+        
   async function handleEnv(datos) {
-    if (data?.id) {
+    if (data?.id || UsuarioId) {
       return await UpdateUser(datos, Navigator, UsuarioId);
     }
     return await CreateUser(datos, Navigator, nombreE, sucursalN);
   }
 
-  useEffect(() => {
-    async function GetsAreas() {
-      try {
-        const Response = await axiosInstance.get(
-          `Areas?Company=${nombreE}&Branch=${sucursalN}`
-        );
-       
-        return setAreas(Response?.data?.body);
-      } catch (error) {
-        alert(`Error : ${error?.message}`);
-      }
-    }
-    GetsAreas();
-    if (data.length !== 0) AddDataForm({ data, setValue });
-  }, [data]);
   return (
     <form onSubmit={handleSubmit(handleEnv)}>
       <RowColumn className={"gap-5"}>
@@ -111,7 +115,12 @@ export default function Form({ data }) {
               options={[{ value: "Masculino" }, { value: "Femenino" }]}
             />
             <h3 className="border-b mt-2 pb-1 mb-2 dark:text-white">Email</h3>
-            <FieldsEmail register={register} control={control} error={errors} />
+            <FieldsEmail
+              register={register}
+              control={control}
+              watch={watch}
+              error={errors}
+            />
           </section>
         </section>
         <section>
@@ -145,6 +154,13 @@ export default function Form({ data }) {
             className={"text-center"}
             options={Areas ?? []}
           />
+          {data?.Areas?.length > 0 && (
+            <button type="button" className="text-sm text-center w-full mt-3 py-2 bg-red-400">Desvincular Area</button>
+          )}
+
+          {data?.Areas?.length > 0 && (
+            <input type="text" hidden {...register("IdArea")} />
+          )}
           <h3 className="border-b pb-1 mb-2 mt-5 dark:text-white">Red</h3>
           <InputSelect
             label="Nivel de Red"
@@ -192,7 +208,7 @@ function Button({
   rounded,
   color,
 }) {
-  const baseStyles = "py-2 px-4 text-white font-medium ";
+  const baseStyles = "py-2 px-4 text-white font-medium  ";
   const Color = color ?? "bg-black";
   const Rounded = rounded ?? "rounded-lg";
   let variantStyles;

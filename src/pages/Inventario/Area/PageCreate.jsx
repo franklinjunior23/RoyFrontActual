@@ -25,7 +25,7 @@ function PageCreateArea({ Handle, TitleModal }) {
     }
   }
   return (
-    <aside className="absolute top-12 right-3 modal w-[250px]">
+    <aside className="absolute top-12 right-3 AsideDots w-[250px]">
       <h4 className="text-center font-semibold py-2  text-base">
         {TitleModal}
       </h4>

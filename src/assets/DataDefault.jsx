@@ -223,57 +223,80 @@ export const NavData = [
   {
     name: "Home",
     url: "Home",
-    icon: <IconLayoutDashboard width={27} height={27} />,
+    icon: <IconLayoutDashboard size={30} />,
   },
-  { name: "Empresas", url: "Empresas", icon: <IconBuildingWarehouse /> },
+  {
+    name: "Empresas",
+    url: "Empresas",
+    icon: <IconBuildingWarehouse size={30} />,
+  },
   {
     name: "Ticket",
     url: "Ticket",
-    icon: <IconTicket width={27} height={27} />,
+    icon: <IconTicket size={30} />,
   },
   {
     name: "Base de Conoc.",
     url: "BaseConocimiento",
-    icon: <IconBook width={27} height={27} />,
+    icon: <IconBook size={30} />,
   },
-  { name: "Reportes", url: "Reportes", icon: <IconFileText /> },
-  { name: "Configuracion", url: "Configuracion", icon: <IconSettings /> },
+  { name: "Reportes", url: "Reportes", icon: <IconFileText size={30} /> },
+  {
+    name: "Configuracion",
+    url: "Configuracion",
+    icon: <IconSettings size={30} />,
+  },
 ];
 
 export const LinksAdministratorData = [
   {
     name: "Home",
     url: "Home",
-    icon: <IconLayoutDashboard width={27} height={27} />,
+    icon: <IconLayoutDashboard size={30} />,
   },
-  { name: "Empresas", url: "Empresas", icon: <IconBuildingWarehouse /> },
+  {
+    name: "Empresas",
+    url: "Empresas",
+    icon: <IconBuildingWarehouse size={30} />,
+  },
   {
     name: "Ticket",
     url: "Ticket",
-    icon: <IconTicket width={27} height={27} />,
+    icon: <IconTicket size={30} />,
   },
   {
     name: "Base de Conoc.",
     url: "BaseConocimiento",
-    icon: <IconBook width={27} height={27} />,
+    icon: <IconBook size={30} />,
   },
   {
     name: "Usuarios",
     url: "Users",
-    icon: <IconUsersGroup width={27} height={27} />,
+    icon: <IconUsersGroup size={30} />,
   },
   {
     name: "Dispositivos",
     url: "Dispositivos",
-    icon: <IconAffiliate width={27} height={27} />,
+    icon: <IconAffiliate size={30} />,
   },
-  { name: "Reportes", url: "Reportes", icon: <IconFileText /> },
-  { name: "Configuracion", url: "Configuracion", icon: <IconSettings /> },
-  { name: "Configuracion", url: "Configuracion", icon: <IconSettings /> },
+  { name: "Reportes", url: "Reportes", icon: <IconFileText size={30} /> },
+  {
+    name: "Configuracion",
+    url: "Configuracion",
+    icon: <IconSettings size={30} />,
+  },
 ];
 
+// // export const ColorConteners = [
+// //   { name: "#add8e6" },
+// //   { name: "#a0d6b4" },
+// //   { name: "#778899" },
+// //   { name: "#FF8484" },
+// // ];
+// { name: "#8FC8CC" },
+
 export const ColorConteners = [
-  { name: "#8FC8CC" },
+  { name: "#328898" },
   { name: "#6E3278" },
   { name: "#F3794E" },
   { name: "#FF8484" },
@@ -419,15 +442,16 @@ export const FormUser = [
 
 export const FormDisp = [
   "nombre",
+  "Agent",
   "tipo",
   "marca",
   "modelo",
+  "estado",
   "serie",
   "tipo_con",
   "estado",
   "tipo_Disp",
-  "Config_mac",
-  "Config_ip",
+  "codigo_dispositivo",
   "Config_user",
   "Config_contra",
   "Placa_modelo",
@@ -435,11 +459,11 @@ export const FormDisp = [
   "Procesador_marca",
   "Procesador_modelo",
   "Ram_Modulos",
-  "Almacenamiento",
+  "Almacenamiento_detalle",
   "Tarjet_Video",
-  "estado",
-  "codigo_dispositivo",
-  "Agent",
+  "Config_ip",
+  "Config_mac",
+  
 ];
 
 export const EstatusTicket = ["Abierto", "En progreso", "Cerrado", "Cancelado"];

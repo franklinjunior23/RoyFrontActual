@@ -1,9 +1,11 @@
-
+import Buttom from "@Components/Buttons/Buttom/Buttom";
 import ItSection from "../Navbar/components/ItSection";
 import ListEmpresas from "./components/ListEmpresas";
+import { useState } from "react";
+import ModalCreate from "@Components/Modal/ModalCreate";
 
-function ItemSection({LinkDate}) {
-  
+function ItemSection({ LinkDate }) {
+  const [ActiveModal, setActiveModal] = useState(false);
 
   return (
     <section className="py-4 mt-5 md:mt-0">
@@ -13,7 +15,22 @@ function ItemSection({LinkDate}) {
         </div>
         <ItSection />
       </header>
-      <ListEmpresas LinkDate={LinkDate}/>
+
+      <main >
+        <header className="relative">
+          <Buttom
+            onClick={() => setActiveModal(!ActiveModal)}
+            label="Crear Empresa"
+          />
+          {ActiveModal && (
+            <ModalCreate
+              type={"CREATEEMPRESA"}
+              funct={() => setActiveModal(!ActiveModal)}
+            />
+          )}
+        </header>
+        <ListEmpresas LinkDate={LinkDate} />
+      </main>
     </section>
   );
 }

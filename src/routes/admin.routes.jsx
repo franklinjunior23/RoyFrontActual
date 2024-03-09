@@ -3,7 +3,7 @@ import DashboardPage from "@Pages/Layaots/dashboard/DashboardPage";
 import Home from "@Pages/Home/Home";
 import EmpresaDet from "@Pages/empresa/EmpresaDet";
 import CategoryS from "@Pages/empresa/CategoryS";
-import UserPage from "@Components/Section/UserPage";
+import UserPage from "@/pages/Inventario/Users/Users";
 import UserForm from "@Components/User/components/UserForm";
 import CreateDisp from "@Pages/Inventario/Forms/CreateDisp";
 import GeneralSect from "@Pages/Inventario/Sections/GeneralSect";
@@ -15,14 +15,14 @@ import {
   PageBaseConocimiento,
 } from "../pages/BaseConoc";
 import PageCreate from "@Pages/BaseConoc/PageCreate";
-import NavLinksAdmin from "@Components/Navlinks/NavLinksAdmin";
+
 import PageUser from "@Pages/Users/PageUser";
 
 function AdminRoutes() {
   return (
     <Routes>
       {/*<Route path="*" element={<Navigate to={-1} />} />*/}
-      <Route element={<DashboardPage NavUser={NavLinksAdmin} />}>
+      <Route element={<DashboardPage  />}>
         <Route index path="/" element={<Navigate to={"Home"} />} />
         <Route path="Home" element={<Home />}>
           <Route path=":nombreE" element={<EmpresaDet />}>

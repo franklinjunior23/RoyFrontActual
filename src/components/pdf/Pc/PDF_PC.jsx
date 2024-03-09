@@ -1,7 +1,15 @@
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 import PropTypes from "prop-types";
 
-function PDF_PC({ data }) { 
+function PDF_PC({ data }) {
+  if (!data)
+    return (
+      <Document>
+        <Page>
+          <Text>Error no existe la data </Text>
+        </Page>
+      </Document>
+    );
   const Day = new Date().toLocaleDateString("es-Pe");
   function ViewInformation() {
     return (
@@ -70,10 +78,10 @@ function PDF_PC({ data }) {
 
         <Text style={styles.Texto}>
           Placa Modelo :{" "}
-          {data?.data?.DetalleDispositivos[0]?.Placa_modelo ?? "#E"}
+          {data?.data?.DetalleDispositivo?.Placa_modelo ?? "#E"}
         </Text>
         <Text style={styles.Texto}>
-          Placa Detalle : {data?.data?.DetalleDispositivos[0]?.Placa_detalle}
+          Placa Detalle : {data?.data?.DetalleDispositivo?.Placa_detalle}
         </Text>
       </View>
     );
@@ -92,10 +100,10 @@ function PDF_PC({ data }) {
           Procesador
         </Text>
         <Text style={styles.Texto}>
-          Marca : {data?.data?.DetalleDispositivos[0]?.Procesador_marca}
+          Marca : {data?.data?.DetalleDispositivo?.Procesador_marca}
         </Text>
         <Text style={styles.Texto}>
-          Modelo : {data?.data?.DetalleDispositivos[0]?.Procesador_modelo}
+          Modelo : {data?.data?.DetalleDispositivo?.Procesador_modelo}
         </Text>
       </View>
     );
@@ -107,25 +115,30 @@ function PDF_PC({ data }) {
           border: "1px solid gray",
           paddingLeft: 10,
           paddingBottom: 20,
-        
         }}
       >
         <Text style={{ ...styles.TitleSection, textAlign: "center" }}>
           Almacenamiento
         </Text>
         <Text style={styles.Texto}>
-          Cantidad : {data?.data?.DetalleDispositivos[0]?.Almacenamiento_canti}
+          Cantidad : {data?.data?.DetalleDispositivo?.Almacenamiento_canti}
         </Text>
         <Text style={styles.Texto}>
-          Total : {data?.data?.DetalleDispositivos[0]?.Almacenamiento_detalle.reduce(
+          Total :{" "}
+          {data?.data?.DetalleDispositivo?.Almacenamiento_detalle?.reduce(
             (total, item) => total + Number(item.gb),
             0
           )}
         </Text>
         <View
-          style={{ display: "flex", flexDirection: "row", flexWrap: "wrap",marginTop:10 }}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            marginTop: 10,
+          }}
         >
-          {data?.data?.DetalleDispositivos[0]?.Almacenamiento_detalle.map(
+          {data?.data?.DetalleDispositivos?.Almacenamiento_detalle?.map(
             (ItemRam, index) => (
               <View
                 style={{
@@ -145,7 +158,6 @@ function PDF_PC({ data }) {
                 <Text>estado : {ItemRam.estado ?? "$e"} Mhz</Text>
                 <Text>Serial : {ItemRam.serial ?? "$e"}</Text>
                 <Text>Gb : {ItemRam.gb ?? "$e"} gb</Text>
-                
               </View>
             )
           )}
@@ -160,21 +172,21 @@ function PDF_PC({ data }) {
           border: "1px solid gray",
           paddingLeft: 10,
           paddingBottom: 20,
-        
         }}
       >
         <Text style={{ ...styles.TitleSection, textAlign: "center" }}>Red</Text>
         <Text style={styles.Texto}>
-          Ip : {data?.data?.DetalleDispositivos[0]?.Config_ip}
+          Ip : {data?.data?.DetalleDispositivo?.Config_ip}
         </Text>
         <Text style={styles.Texto}>
-          Mac : {data?.data?.DetalleDispositivos[0]?.Config_mac}
+          Mac : {data?.data?.DetalleDispositivo?.Config_mac}
         </Text>
         <Text style={styles.Texto}>
-          User : {data?.data?.DetalleDispositivos[0]?.Config_user ?? 'null'}
+          User : {data?.data?.DetalleDispositivo?.Config_user ?? "null"}
         </Text>
         <Text style={styles.Texto}>
-          Password : {data?.data?.DetalleDispositivos[0]?.Config_contra  ?? 'null'}
+          Password :{" "}
+          {data?.data?.DetalleDispositivo?.Config_contra ?? "null"}
         </Text>
       </View>
     );
@@ -190,20 +202,25 @@ function PDF_PC({ data }) {
       >
         <Text style={{ ...styles.TitleSection, textAlign: "center" }}>Ram</Text>
         <Text style={styles.Texto}>
-          Cantidad : {data?.data?.DetalleDispositivos[0]?.Ram_cantidad}
+          Cantidad : {data?.data?.DetalleDispositivo?.Ram_cantidad}
         </Text>
         <Text style={styles.Texto}>
           Total :{" "}
-          {data?.data?.DetalleDispositivos[0]?.Ram_Modulos.reduce(
+          {data?.data?.DetalleDispositivo?.Ram_Modulos.reduce(
             (total, item) => total + Number(item.gb),
             0
-          )}{" "}
-          gb
+          )}
+        
         </Text>
         <View
-          style={{ display: "flex", flexDirection: "row", flexWrap: "wrap",marginTop:10 }}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            marginTop: 10,
+          }}
         >
-          {data?.data?.DetalleDispositivos[0]?.Ram_Modulos.map(
+          {data?.data?.DetalleDispositivo?.Ram_Modulos.map(
             (ItemRam, index) => (
               <View
                 style={{
@@ -291,6 +308,6 @@ function PDF_PC({ data }) {
   );
 }
 PDF_PC.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.any.isRequired,
 };
 export default PDF_PC;

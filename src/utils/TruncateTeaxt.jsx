@@ -15,7 +15,7 @@ const TruncateText = ({ text, maxLength, ComponentNext }) => {
 export default TruncateText;
 
 TruncateText.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.any.isRequired,
   maxLength: PropTypes.number.isRequired,
   ComponentNext: PropTypes.elementType.isRequired,
 };

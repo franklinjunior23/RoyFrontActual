@@ -7,6 +7,8 @@ export const UrlDomain = VITE_API_DOMIN;
 
 const axiosInstance = axios.create({
   baseURL: VITE_API_DOMIN+VITE_API_VERSION,
+  // withCredentials: true,
+  
 });
 
 axiosInstance.interceptors.request.use((config) => {

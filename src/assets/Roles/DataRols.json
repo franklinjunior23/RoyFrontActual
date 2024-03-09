@@ -1,0 +1,7 @@
+{
+    "Rols":[
+        {"name":"Soporte"},
+        {"name":"Administrador"},
+        {"name":"Visitante"}
+    ]
+}

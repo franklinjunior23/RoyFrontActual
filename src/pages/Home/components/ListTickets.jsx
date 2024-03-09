@@ -13,7 +13,7 @@ function ListTickets({ TicketsData }) {
   };
   return (
     <main className=" md:w-full">
-      <div className="w-[270px] md:w-full overflow-hidden ">
+      <div className=" md:w-full overflow-hidden ">
         <h4 className="text-Slet text-2xl font-bold capitalize flex justify-between pr-5 items-end">
           Lista de Tickets
          

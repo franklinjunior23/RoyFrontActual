@@ -16,7 +16,7 @@ function IdDispositivo() {
 
   const { register, handleSubmit, setValue } = useForm();
 
-  console.log(data);
+
   return (
     <main className="mt-8">
       <header>
