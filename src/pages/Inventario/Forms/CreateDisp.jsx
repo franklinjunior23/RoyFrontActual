@@ -290,7 +290,7 @@ function CreateDisp() {
           <main className="max-h-[400px] min-h-[350px] overflow-x-clip overflow-y-auto CustomScroll">
             <main className=" flex flex-col flex-wrap gap-y-3 mr-2 ">
               {data?.data?.historial?.map((value, index) => (
-                <ItemHistory key={value.createdAt} {...value} />
+                <ItemHistory key={index} {...value} />
               )) ?? <h2>No hay historial</h2>}
               {
                 data?.data?.historial?.length === 0 && <h2>No hay historial</h2>
