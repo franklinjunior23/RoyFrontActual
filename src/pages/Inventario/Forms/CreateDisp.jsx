@@ -154,6 +154,7 @@ function CreateDisp() {
         "modelo",
         "FormArea",
         "FormUser",
+        "IdArea"
       ])
     );
     setValidateForm(true);
