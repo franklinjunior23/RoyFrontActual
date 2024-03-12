@@ -1,9 +1,9 @@
-import { UseContextLoged } from "../../../context/AuhtLoged";
+import { ContextAuth } from "../../../provider-auth";
 import { DataListDashboard } from "../../../store/Dashboard/DataDash";
 
 function ListUserActive() {
   const { DataList } = DataListDashboard();
-  const { LogedAuth } = UseContextLoged();
+  const { LogedAuth } = ContextAuth();
   console.log(LogedAuth);
   if (!DataList) return <h2>Cargando...</h2>;
 

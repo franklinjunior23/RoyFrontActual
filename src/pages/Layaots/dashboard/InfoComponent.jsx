@@ -6,10 +6,10 @@ import {
   IconUserCircle,
 } from "@tabler/icons-react";
 import { useState } from "react";
-import { UseContextLoged } from "@Contexts/AuhtLoged";
+import { ContextAuth } from "@Contexts/AuhtLoged";
 
 function InfoComponent() {
-  const { LogedAuth } = UseContextLoged();
+  const { LogedAuth } = ContextAuth();
 
   const ItemConfig = [
     {

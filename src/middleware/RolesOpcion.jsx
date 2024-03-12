@@ -1,11 +1,12 @@
 import { Navigate } from "react-router-dom";
-import { UseContextLoged } from "../context/AuhtLoged";
+
 import AdminRoutes from "../routes/admin.routes";
 import ClienteRoutes from "../routes/cliente.routes";
 import SoporteRoutes from "../routes/soporte.routes";
+import { UsecontextAuth } from "@/context/provider-auth";
 
 function RolesOpcion() {
-  const { RoleUser } = UseContextLoged();
+  const { RoleUser } = UsecontextAuth();
   if (!RoleUser ) {
     return <Navigate to={"/"} />;
   }

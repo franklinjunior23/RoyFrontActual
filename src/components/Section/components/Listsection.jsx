@@ -4,12 +4,12 @@ import { IconBuilding } from "@tabler/icons-react";
 import { IconDotsVertical } from "@tabler/icons-react";
 import ButtomDots from "@Components/Buttons/Buttom/ButtomDots";
 import { toast } from "sonner";
-import { UseContextLoged } from "@/context/AuhtLoged";
 import { DeleteCompany } from "@/pages/empresa/actions/Mutates";
+import { UsecontextAuth } from "@/context/provider-auth";
 
 // eslint-disable-next-line react/prop-types
 function Listsection({ datos, color, LinkDate }) {
-  const { RoleUser } = UseContextLoged();
+  const { RoleUser } = UsecontextAuth();
   const { nombre, id } = datos;
   const { mutate: Delete, isLoading: LoadingDelete } = DeleteCompany();
   const ListSoportIt = [

@@ -8,8 +8,9 @@ import {
   IconEyeOff,
   IconMoonFilled,
 } from "@tabler/icons-react";
-import { UseContextLoged } from "@/context/AuhtLoged";
+
 import axiosInstance from "@/services/ConfigApi";
+import { UsecontextAuth } from "@/context/provider-auth";
 
 function Login() {
   const [ThemeActual, setThemeActual] = useState(() => {
@@ -42,7 +43,7 @@ function Login() {
     formState: { errors },
   } = useForm();
   const navi = useNavigate();
-  const { AddToken, LogedAuth } = UseContextLoged();
+  const { AddToken, LogedAuth } = UsecontextAuth();
   async function LoginUsuario(datos) {
     if (datos?.usuario == "" || datos?.contraseña == "")
       return toast.error("Complete los campos");

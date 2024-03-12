@@ -5,13 +5,14 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import axiosInstance from "../../services/ConfigApi";
 import { DataImageUser } from "../../store/UploadImages";
-import { UseContextLoged } from "../../context/AuhtLoged";
+
 import { SearchUser } from "../../store/SearchUser";
 import HeadPage from "./Components/HeadPage";
 import InputComponent from "./Components/InputComponent";
 import ContentUpload from "./Components/ContentUpload";
 import QuillComponent from "../../components/ReactQuill/QuillComponent";
 import { DateTime } from "luxon";
+import { UsecontextAuth } from "@/context/provider-auth";
 
 function PageCreate() {
   const [WriteUser, setWriteUser] = useState("");
@@ -51,7 +52,7 @@ function PageCreate() {
   const navi = useNavigate({ replace: true });
   const {
     LogedAuth: { nombre: NameUser },
-  } = UseContextLoged();
+  } = UsecontextAuth();
   const { BaseConocimiento: DataBaseConocimiento } = SearchUser();
 
   function HandleCreate(datos) {

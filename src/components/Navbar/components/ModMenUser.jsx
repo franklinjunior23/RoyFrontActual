@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import { UseContextLoged } from "../../../context/AuhtLoged";
+import { UsecontextAuth } from "@/context/provider-auth";
 
 function ModMenUser() {
-const {LogautUser}=UseContextLoged();
+const {LogautUser}=UsecontextAuth();
 const navi = useNavigate()
 const handleLogaut = ()=>{
     LogautUser()

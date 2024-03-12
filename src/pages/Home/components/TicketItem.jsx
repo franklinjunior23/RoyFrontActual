@@ -12,7 +12,8 @@ import { useForm, Controller } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { formatTimeToPeruvian } from "../../../utils/FechaConvert";
-import { UseContextLoged } from "../../../context/AuhtLoged";
+import { UsecontextAuth } from "@/context/provider-auth";
+
 
 function TicketItem({
   id,
@@ -25,7 +26,7 @@ function TicketItem({
 }) {
   const {
     LogedAuth: { nombre: NameUserLoged },
-  } = UseContextLoged();
+  } = UsecontextAuth();
   const shouldDisable = () => {
     
     if(Estado === "En progreso" && NameUserLoged !== UserUpdateId){
