@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 import { Input } from "@Components/Input";
 import PropTypes from "prop-types";
-import axiosInstance from "@Services/ConfigApi";
+
 import { toast } from "sonner";
 import { useParams } from "react-router-dom";
+import axiosInstance from "@/helpers/config/axios-instance";
 function PageCreateArea({ Handle, TitleModal }) {
   const { nombreE, sucursalN } = useParams();
   const { register, handleSubmit } = useForm();

@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axiosInstance from "@/services/ConfigApi";
 import { toast } from "sonner";
+import axiosInstance from "@/helpers/config/axios-instance";
 function ButtonDeleteArea({ id }) {
   const { idDisp } = useParams();
   const QueryClient = useQueryClient();

@@ -9,8 +9,9 @@ import {
   IconMoonFilled,
 } from "@tabler/icons-react";
 
-import axiosInstance from "@/services/ConfigApi";
+
 import { UsecontextAuth } from "@/context/provider-auth";
+import axiosInstance from "@/helpers/config/axios-instance";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);

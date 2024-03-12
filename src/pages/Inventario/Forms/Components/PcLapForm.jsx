@@ -9,13 +9,14 @@ import InputsOptions from "./InputsOptions";
 import { useQuery } from "@tanstack/react-query";
 
 import { useParams } from "react-router-dom";
-import axiosInstance from "@Services/ConfigApi";
+
 import { IconPlus, IconTrash } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import VinculeArea from "./VinculeArea";
 import InputSelect from "@Components/Input/Select/Select";
 import { Input } from "@Components/Input";
+import axiosInstance from "@/helpers/config/axios-instance";
 
 function PcLapForm({ register, setValue, control, watch, getValues, data }) {
   const [Areas, setAreas] = useState(null);

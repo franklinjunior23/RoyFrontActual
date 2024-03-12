@@ -13,9 +13,10 @@ import FieldsEmail from "./FieldsEmail";
 import { AddDataForm } from "../Utils";
 import { useEffect, useState } from "react";
 import RowInfoDevice from "./RowInfoDevice";
-import axiosInstance from "@Services/ConfigApi";
+
 import { useParams, useNavigate } from "react-router-dom";
 import { CreateUser, UpdateUser } from "../Utils/FunctionsApis";
+import axiosInstance from "@/helpers/config/axios-instance";
 
 export default function Form({ data }) {
   const { idUsuario: UsuarioId, nombreE, sucursalN } = useParams();

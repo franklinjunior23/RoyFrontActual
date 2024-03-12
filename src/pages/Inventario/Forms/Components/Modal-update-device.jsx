@@ -1,5 +1,5 @@
 import Switch from "@Components/Buttons/Buttom/Switch";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FieldsUpdate } from "../context/fields-update";
 
 export default function UpdateDevice({
@@ -81,9 +81,13 @@ export default function UpdateDevice({
 }
 
 function UpdateViewChanges({ type, field, before, after }) {
+  
  
   const renderObject = (obj) => {
-    if (Object.keys(obj).length === 0) {
+    if (!obj) {
+      return null;
+    }
+    if (Object?.keys(obj)?.length === 0 || obj === null) {
       return (
         <>
           <span> se eliminó</span>

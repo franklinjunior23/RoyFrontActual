@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import InputComponent from "./Components/InputComponent";
 import { DateTime } from "luxon";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axiosInstance from "../../services/ConfigApi";
+
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -12,6 +12,7 @@ import { IconFileDescription } from "@tabler/icons-react";
 import ModalTotal from "../../components/Modal/ModalTotal";
 import ContentUpload from "./Components/ContentUpload";
 import { DataImageUser } from "../../store/UploadImages";
+import axiosInstance from "@/helpers/config/axios-instance";
 
 
 function CreatePageBC() {

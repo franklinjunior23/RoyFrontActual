@@ -3,8 +3,9 @@ import { useState } from "react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import PropTypes from "prop-types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axiosInstance from "@/services/ConfigApi";
+
 import TruncateText from "@/utils/TruncateTeaxt";
+import axiosInstance from "@/helpers/config/axios-instance";
 
 function ItemNotify({
   Description,

@@ -3,7 +3,7 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 // import ItemDisp from "./ItemDisp";
 import { Link, Outlet, useParams } from "react-router-dom";
 import HeadCategory from "@Components/Section/components/HeadCategory";
-import axiosInstance from "@Services/ConfigApi";
+
 import {
   useReactTable,
   getCoreRowModel,

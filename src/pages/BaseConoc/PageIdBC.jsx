@@ -12,8 +12,8 @@ import InputComponent from "./Components/InputComponent";
 import SwitchTogle from "../../components/assets/SwitchTogle";
 import HeadPage from "./Components/HeadPage";
 import { Item } from "./Components/ListContent";
+import axiosInstance, { UrlDomain } from "@/helpers/config/axios-instance";
 
-import axiosInstance, { UrlDomain } from "../../services/ConfigApi";
 
 
 function PageIdBC() {
@@ -87,7 +87,7 @@ function PageIdBC() {
       return toast.error(data?.message);
     },
   });
-  console.log(BaseConocimiento)
+ 
   if (!DatsId) return navi(-1);
   return (
     <div className="w-full h-full  ">

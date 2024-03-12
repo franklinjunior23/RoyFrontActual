@@ -1,4 +1,5 @@
-import axiosInstance from "./ConfigApi";
+import axiosInstance from "@/helpers/config/axios-instance";
+
 
 export const GetEmpresas = async () => {
   const resp = await axiosInstance.get("Empresas");

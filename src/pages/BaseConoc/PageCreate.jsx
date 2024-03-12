@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
-import axiosInstance from "../../services/ConfigApi";
+
 import { DataImageUser } from "../../store/UploadImages";
 
 import { SearchUser } from "../../store/SearchUser";
@@ -13,6 +13,7 @@ import ContentUpload from "./Components/ContentUpload";
 import QuillComponent from "../../components/ReactQuill/QuillComponent";
 import { DateTime } from "luxon";
 import { UsecontextAuth } from "@/context/provider-auth";
+import axiosInstance from "@/helpers/config/axios-instance";
 
 function PageCreate() {
   const [WriteUser, setWriteUser] = useState("");

@@ -12,9 +12,10 @@ import {
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
-import axiosInstance from "../../../services/ConfigApi";
+
 import { GetUserById, UpdateUserById } from "../../../services/ApiGets";
 import { useEffect } from "react";
+import axiosInstance from "@/helpers/config/axios-instance";
 
 const ContentInput = ({ label, name, type, register, defaultValue }) => {
   return (

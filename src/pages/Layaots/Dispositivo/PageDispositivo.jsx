@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import Navbar from "./Components/Navbar";
 import { useParams } from "react-router-dom";
-import axiosInstance from "@Services/ConfigApi";
+
 import { SwitchIconDisp } from "@Helpers/DispositivoIcon/SwitchDispositivo";
+import axiosInstance from "@/helpers/config/axios-instance";
 function PageDispositivo() {
   const [DataDisp, setDataDisp] = useState(null);
   const { id } = useParams();

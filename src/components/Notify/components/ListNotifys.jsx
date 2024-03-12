@@ -1,7 +1,8 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import ItemNotify from "./ItemNotify";
-import { ColorConteners } from "../../../assets/DataDefault";
+import { ColorConteners } from "@/assets/DataDefault";
+
 function ListNotifys({ pages, data, LabelList }) {
   const ITEMS_PER_PAGE = pages ?? 2;
   const [itemsToShow, setItemsToShow] = useState(ITEMS_PER_PAGE);

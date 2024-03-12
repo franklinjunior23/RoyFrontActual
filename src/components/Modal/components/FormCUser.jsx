@@ -1,10 +1,11 @@
+import axiosInstance from "@/helpers/config/axios-instance";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
 import { useParams } from "react-router-dom";
 
 import { toast } from "sonner";
-import axiosInstance from "../../../services/ConfigApi";
+
 
 // eslint-disable-next-line react/prop-types
 function FormCUser({ handle }) {

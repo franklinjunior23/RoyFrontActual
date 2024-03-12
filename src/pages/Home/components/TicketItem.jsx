@@ -7,12 +7,13 @@ import {
 import TruncateText from "../../../utils/TruncateTeaxt";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axiosInstance from "../../../services/ConfigApi";
+
 import { useForm, Controller } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { formatTimeToPeruvian } from "../../../utils/FechaConvert";
 import { UsecontextAuth } from "@/context/provider-auth";
+import axiosInstance from "@/helpers/config/axios-instance";
 
 
 function TicketItem({

@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "@Services/ConfigApi";
 import ItemsUser from "./ItemsUser";
-
 import { UseSearch } from "@States/UsersAdmin/StateUsers";
+import axiosInstance from "@/helpers/config/axios-instance";
 
 function ListItems() {
   const { searchParams } = UseSearch();

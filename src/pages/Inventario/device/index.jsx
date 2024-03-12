@@ -1,10 +1,9 @@
 import { Outlet, useParams } from "react-router-dom";
 import DeviceImage from "/Figures/DevicePage.svg";
 import GeneralSect from "../Sections/GeneralSect";
-
-import axiosInstance from "@/services/ConfigApi";
 import { useQuery } from "@tanstack/react-query";
 import HeadCategory from "@Components/Section/components/HeadCategory";
+import axiosInstance from "@/helpers/config/axios-instance";
 
 export default function DevicePage() {
   const { nombreE, sucursalN, idDisp } = useParams();

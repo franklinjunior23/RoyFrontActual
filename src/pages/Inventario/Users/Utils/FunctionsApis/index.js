@@ -1,5 +1,6 @@
+import axiosInstance from "@/helpers/config/axios-instance";
 import { toast } from "sonner";
-import axiosInstance from "@Services/ConfigApi";
+
 
 export async function UpdateUser(datos, Navigator, UsuarioId) {
   const { data } = await axiosInstance.put(`Users/${UsuarioId}`, datos);

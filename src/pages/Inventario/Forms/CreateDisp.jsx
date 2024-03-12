@@ -5,7 +5,7 @@ import PcLapForm from "./Components/PcLapForm";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import axiosInstance from "@Services/ConfigApi";
+
 import RedFrom from "./Components/RedFrom";
 import ImpresForm from "./Components/ImpresForm";
 import { Suspense, useEffect, useState } from "react";
@@ -19,6 +19,7 @@ import UpdateDevice from "./Components/Modal-update-device";
 import { findChanges, generateSummary } from "./utils/compare-objects";
 import { FieldsUpdate } from "./context/fields-update";
 import { TimeFromPeruvian } from "@/utils/FechaConvert";
+import axiosInstance from "@/helpers/config/axios-instance";
 
 function CreateDisp() {
   const { nombreE, sucursalN, idDisp } = useParams();
