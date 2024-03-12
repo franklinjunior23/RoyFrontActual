@@ -4,7 +4,7 @@ import EmpresaPage from "@Pages/empresa/EmpresaPage";
 import PageTickets from "@Pages/Tickets/PageTickets";
 
 import SettingPage from "@Pages/Setting/SettingPage";
-import RouteHome from "./home/route-home";
+import RouteHome from "../../home/route-home";
 
 //Page User the Inventario of Empresa and Sucursal
 

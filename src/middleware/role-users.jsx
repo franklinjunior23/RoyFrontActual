@@ -1,11 +1,11 @@
 import { Navigate } from "react-router-dom";
 
-import AdminRoutes from "../routes/admin.routes";
-import ClienteRoutes from "../routes/cliente.routes";
-import SoporteRoutes from "../routes/soporte.routes";
+import AdminRoutes from "../routes/role/admin/admin.routes";
+import ClienteRoutes from "../routes/role/client/cliente.routes";
+import SoporteRoutes from "../routes/role/soport/soporte.routes";
 import { UsecontextAuth } from "@/context/provider-auth";
 
-function RolesOpcion() {
+function RoleMiddleware() {
   const { RoleUser } = UsecontextAuth();
   if (!RoleUser ) {
     return <Navigate to={"/"} />;
@@ -20,4 +20,4 @@ function RolesOpcion() {
   }
 }
 
-export default RolesOpcion;
+export default RoleMiddleware;
