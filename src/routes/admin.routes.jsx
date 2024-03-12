@@ -1,16 +1,16 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+
+// routes shared by all users
+import RouteKnowledge from "./knowledge-base/route-knowledge";
+import RouteHome from "./home/route-home";
+//
 import DashboardPage from "@Pages/Layaots/dashboard/DashboardPage";
 import PageTickets from "@Pages/Tickets/PageTickets";
-import {
-  PageDetalle,
-  PageIdBC,
-  PageBaseConocimiento,
-} from "../pages/BaseConoc";
-import PageCreate from "@Pages/BaseConoc/PageCreate";
 
 import PageUser from "@Pages/Users/PageUser";
-import RouteHome from "./home/route-home";
+
 import EmpresaPage from "@/pages/empresa/EmpresaPage";
+
 
 function AdminRoutes() {
   return (
@@ -26,10 +26,7 @@ function AdminRoutes() {
         <Route path="Reportes" element={<h1>Reportes</h1>} />
         <Route path="Ticket" element={<PageTickets />} />
         <Route path="Ticket/:id" element={<h1>Ticket por Id</h1>} />
-        <Route path="BaseConocimiento" element={<PageBaseConocimiento />} />
-        <Route path="BaseConocimiento/create" element={<PageCreate />} />
-        <Route path="BaseConocimiento/:id" element={<PageIdBC />} />
-        <Route path="BaseConocimiento/:id/detalle" element={<PageDetalle />} />
+        <Route path="/BaseConocimiento/*" element={<RouteKnowledge />} />
  
        
         <Route path="Users" element={<PageUser />} />

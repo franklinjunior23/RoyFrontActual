@@ -3,12 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import {
-  IconBrightnessUp,
   IconEye,
   IconEyeOff,
-  IconMoonFilled,
+  /*IconMoonFilled,
+  IconBrightnessUp, */
 } from "@tabler/icons-react";
-
 
 import { UsecontextAuth } from "@/context/provider-auth";
 import axiosInstance from "@/helpers/config/axios-instance";
