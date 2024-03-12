@@ -1,5 +1,6 @@
+import { formatDateToPeruvian } from "@/helpers/utils/FechaConvert";
 import { NavLink } from "react-router-dom";
-import { formatDateToPeruvian } from "../../../utils/FechaConvert";
+
 
 function ListItem({ id, Titulo, Autor, createdAt, Categoria }) {
   if(id === undefined ||  id === '' ||id==null) return <h2>No se encontraron resultados.</h2>

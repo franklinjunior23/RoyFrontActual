@@ -14,7 +14,6 @@ import {
 } from "@tanstack/react-table";
 import ButtomDots from "@Components/Buttons/Buttom/ButtomDots";
 import PDF_PC from "@Components/pdf/Pc/PDF_PC";
-import { TimeFromPeruvian } from "@Helpers/FechaConvert";
 import { useState } from "react";
 import { IconEye } from "@tabler/icons-react";
 
@@ -24,6 +23,7 @@ import TruncateText from "@/utils/TruncateTeaxt";
 
 import PdfDevices from "@Components/pdf/users/pdf-devices.total";
 import { UsecontextAuth } from "@/context/provider-auth";
+import { TimeFromPeruvian } from "@/helpers/utils/conver-day-ddmmyy";
 
 function GeneralSect({data}) {
   const [TextFilter, setTextFilter] = useState("");

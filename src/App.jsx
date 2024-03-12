@@ -1,10 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import Login from "@Pages/LoginPag/Login";
-
-
 import RolesOpcion from "./middleware/RolesOpcion";
 import PageDispositivo from "@Pages/Layaots/Dispositivo/PageDispositivo";
 import { AuthProvider } from "./context/provider-auth";
+import Login from "./page/Login";
 
 function App() {
   return (

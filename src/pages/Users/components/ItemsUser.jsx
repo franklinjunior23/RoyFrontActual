@@ -1,6 +1,6 @@
 import { IconUser } from "@tabler/icons-react";
 import TruncateText from "../../../utils/TruncateTeaxt";
-import { formatDateToPeruvian } from "../../../utils/FechaConvert";
+import { formatDateToPeruvian } from "../../../helpers/utils/FechaConvert";
 
 function ItemsUser({
   nombre,

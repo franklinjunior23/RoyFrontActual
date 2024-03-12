@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { SearchUser } from "../../../store/SearchUser";
 import PropTypes from "prop-types";
 
-import { formatDateToPeruvian } from "../../../utils/FechaConvert";
+import { formatDateToPeruvian } from "../../../helpers/utils/FechaConvert";
 import { NavLink } from "react-router-dom";
 
 function ListContent() {

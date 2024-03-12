@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { formatTimeToPeruvian } from "../../../utils/FechaConvert";
+import { formatTimeToPeruvian } from "../../../helpers/utils/FechaConvert";
 import { UsecontextAuth } from "@/context/provider-auth";
 import axiosInstance from "@/helpers/config/axios-instance";
 

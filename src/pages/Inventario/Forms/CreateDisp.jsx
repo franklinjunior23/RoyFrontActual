@@ -18,8 +18,9 @@ import TruncateText from "@/utils/TruncateTeaxt";
 import UpdateDevice from "./Components/Modal-update-device";
 import { findChanges, generateSummary } from "./utils/compare-objects";
 import { FieldsUpdate } from "./context/fields-update";
-import { TimeFromPeruvian } from "@/utils/FechaConvert";
+
 import axiosInstance from "@/helpers/config/axios-instance";
+import { TimeFromPeruvian } from "@/helpers/utils/conver-day-ddmmyy";
 
 function CreateDisp() {
   const { nombreE, sucursalN, idDisp } = useParams();
