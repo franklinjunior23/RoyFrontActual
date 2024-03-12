@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "@Components/Navbar/Navbar";
-import { UseContextLoged } from "@Contexts/AuhtLoged";
+
 import { IconLogout } from "@tabler/icons-react";
 import ViewVersion from "./components/ViewVersion";
 import NavLinks from "@Components/Navlinks/NavLinks";
+import { UsecontextAuth } from "@/context/provider-auth";
 
 function DashboardPage() {
-  const { RoleUser, LogedAuth, LogautUser } = UseContextLoged();
+  const { RoleUser, LogedAuth, LogautUser } = UsecontextAuth();
   return (
     <main className="  dark:bg-DarkFondo bg-white/80  md:p-3 px-5 min-h-[100dvh] md:h-[100dvh] dark:text-white">
       <div className="md:hidden">

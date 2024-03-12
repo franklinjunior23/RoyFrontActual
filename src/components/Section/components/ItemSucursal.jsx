@@ -3,12 +3,12 @@ import ItemInput from "@Components/Input/InputCopy/ItemInput";
 import TruncateText from "@Helpers/TruncateTeaxt";
 import PropTypes from "prop-types";
 import ButtomDots from "@Components/Buttons/Buttom/ButtomDots";
-import { UseContextLoged } from "@/context/AuhtLoged";
+import { UsecontextAuth } from "@/context/provider-auth";
 // ...
 
 function ItemSucursal({ value }) {
   const { nombre, id, Token } = value;
-  const { RoleUser } = UseContextLoged();
+  const { RoleUser } = UsecontextAuth();
   const OptionsSoporte = [
     { label: "Editar", Function: () => console.log(`Estais Editando ${id}`) },
   ];

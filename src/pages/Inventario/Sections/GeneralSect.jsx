@@ -17,17 +17,18 @@ import PDF_PC from "@Components/pdf/Pc/PDF_PC";
 import { TimeFromPeruvian } from "@Helpers/FechaConvert";
 import { useState } from "react";
 import { IconEye } from "@tabler/icons-react";
-import { UseContextLoged } from "@/context/AuhtLoged";
+
 import { DataFindIdDevice } from "./Utils/FindId";
 import TruncateText from "@/utils/TruncateTeaxt";
 
 
 import PdfDevices from "@Components/pdf/users/pdf-devices.total";
+import { UsecontextAuth } from "@/context/provider-auth";
 
 function GeneralSect({data}) {
   const [TextFilter, setTextFilter] = useState("");
   const { nombreE, sucursalN, idDisp } = useParams();
-  const { RoleUser } = UseContextLoged();
+  const { RoleUser } = UsecontextAuth();
   
 
   const SoporteOption = [
