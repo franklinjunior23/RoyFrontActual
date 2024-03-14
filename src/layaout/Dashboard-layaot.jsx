@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "@Components/Navbar/Navbar";
 
 import { IconLogout } from "@tabler/icons-react";
-import ViewVersion from "./components/ViewVersion";
+import ViewVersion from "../pages/Layaots/dashboard/components/ViewVersion";
 import NavLinks from "@Components/Navlinks/NavLinks";
 import { UsecontextAuth } from "@/context/provider-auth";
 
@@ -48,7 +48,7 @@ function DashboardPage() {
             </header>
           </footer>
         </section>
-        <section className=" md:pr-1 w-full py-2  overflow-y-auto   custom-scrollbar relative">
+        <section className=" md:pr-1 w-full py-2   h-full overflow-y-auto   custom-scrollbar relative">
           <Outlet />
         </section>
       </article>

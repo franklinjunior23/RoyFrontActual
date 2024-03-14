@@ -1,5 +1,4 @@
-import Home from "@Pages/Home/Home";
-import EmpresaDet from "@Pages/empresa/EmpresaDet";
+
 import UserPage from "@/pages/Inventario/Users/Users";
 import LayaotInventory from "@/pages/Inventario/LayaotInventory";
 import PageUser from "@Pages/Inventario/Users";
@@ -8,12 +7,14 @@ import DevicePage from "@/pages/Inventario/device";
 import CreateDisp from "@Pages/Inventario/Forms/CreateDisp";
 
 import { Route, Routes } from "react-router-dom";
+import BranchsPage from "@/page/Branchs";
+import Home from "@/page/home/Home";
 
 function RouteHome() {
   return (
     <Routes>
       <Route path="/" element={<Home />}>
-        <Route path=":nombreE" element={<EmpresaDet />}>
+        <Route path=":nombreE" element={<BranchsPage />}>
           <Route path=":sucursalN" element={<LayaotInventory />}>
             <Route path="Usuarios" element={<UserPage />} />
             <Route path="Usuarios/create" element={<PageUser />} />
@@ -28,6 +29,11 @@ function RouteHome() {
           </Route>
         </Route>
       </Route>
+      {/**
+         * <Route path="/:nombreE" element={<EmpresaDet />}/>
+      <Route path="/:sucursalN" element={<LayaotInventory />}/>
+         * 
+         */}
     </Routes>
   );
 }

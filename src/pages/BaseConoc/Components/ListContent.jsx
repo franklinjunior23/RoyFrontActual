@@ -4,9 +4,8 @@ import Page404 from "../../../components/Error/Page404";
 import { useEffect } from "react";
 import { SearchUser } from "../../../store/SearchUser";
 import PropTypes from "prop-types";
-
-import { formatDateToPeruvian } from "../../../helpers/utils/FechaConvert";
 import { NavLink } from "react-router-dom";
+import { FormateDayD } from "@/helpers/utils/conver-day-ddmmyy";
 
 function ListContent() {
   // traer la funcion para agregar los articulos a la base de conocimiento storage
@@ -75,7 +74,7 @@ export const Item = ({ Titulo, Categoria, createdAt, id }) => {
           </h2>
           <div className="w-full grid gap-1">
             <span className="dark:text-white text-sm">
-              {formatDateToPeruvian(createdAt)}
+              {FormateDayD(createdAt)}
             </span>
             <span className="bg-Slet/70 px-2 font-medium text-center text-white break-all rounded-md truncate">
               {Categoria}

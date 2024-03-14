@@ -3,13 +3,13 @@ import { Navigate, Route, Routes } from "react-router-dom";
 // routes shared by all users
 import RouteKnowledge from "../../knowledge-base/route-knowledge";
 import RouteHome from "../../home/route-home";
-//
-import DashboardPage from "@Pages/Layaots/dashboard/DashboardPage";
+
 import PageTickets from "@Pages/Tickets/PageTickets";
 
 import PageUser from "@Pages/Users/PageUser";
 
 import EmpresaPage from "@/pages/empresa/EmpresaPage";
+import DashboardPage from "@/layaout/Dashboard-layaot";
 
 
 function AdminRoutes() {

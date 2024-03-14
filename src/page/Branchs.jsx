@@ -6,7 +6,7 @@ import ListSucursales from "@Components/Section/components/ListSucursales";
 
 import HeadSucur from "@Components/Section/components/HeadSucur";
 
-function EmpresaDet() {
+function BranchsPage() {
   const { nombreE, sucursalN } = useParams();
   const aleatorio = Math.floor(Math.random() * ColorConteners.length);
 
@@ -41,4 +41,4 @@ function EmpresaDet() {
     </main>
   );
 }
-export default EmpresaDet;
+export default BranchsPage;
