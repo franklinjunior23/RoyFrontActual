@@ -2,22 +2,21 @@ import { Outlet, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { GetsInfoDash } from "@/services/ApiGets";
 import Header from "@/pages/Home/components/Header";
-import ItemSection from "@Components/Section/ItemSection";
 import ItemView from "@/pages/empresa/components/ItemView";
 import ListNotify from "@/pages/Home/components/ListNotify";
 import Listbusiness from "./components/List-Company";
 import { IconBuilding } from "@tabler/icons-react";
 import PropTypes from "prop-types";
+import AddCompany from "./components/AddCompany";
 
 function Home() {
   const { nombreE } = useParams();
 
-  const { data, isLoading, isError } = useQuery({
+  const { data } = useQuery({
     queryFn: GetsInfoDash,
     queryKey: ["DataInfoHome"],
   });
 
-  console.log(data)
   if (nombreE) return <Outlet />;
 
   return (
@@ -25,7 +24,8 @@ function Home() {
       <Header />
       <main className="grid grid-rows-2">
         {/** <ItemSection /> */}
-        <section className="grid md:grid-cols-[1fr_320px] gap-5 h-fit">
+        <section className="grid md:grid-cols-[100px_1fr_320px] gap-5 h-fit mt-8">
+          <AddCompany/>
           <Listbusiness />
           <section className="grid grid-rows-2 gap-1 h-full">
             <ItemAll text="Empresas total" count={20} />
@@ -71,7 +71,7 @@ export default Home;
 
 function ItemAll({ count, text }) {
   return (
-    <aside className="flex justify-between items-center p-5 py-3 bg-black rounded-xl">
+    <aside className="flex justify-between items-center p-5 py-3 bg-black rounded-xl text-white">
       <span className="flex items-center gap-4 text-sm">
         {text} <IconBuilding  size={28} />
       </span>

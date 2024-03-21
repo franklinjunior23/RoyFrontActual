@@ -46,17 +46,6 @@ function Login() {
   return (
     <main className=" overflow-x-hidden h-screen grid place-content-center dark:bg-DarkFondo  dark:text-white relative">
       <div className="absolute top-5 right-5">
-        {/**
-           * <button onClick={HandleTheme}>
-          {" "}
-          {ThemeActual === "light" ? (
-            <IconMoonFilled />
-          ) : (
-            <IconBrightnessUp />
-          )}{" "}
-        </button>
-           * 
-           */}
       </div>
       <article className=" py-4   lg:py-4 px-10 lg:px-8 bg-white  dark:bg-[#484848] lg:w-[620px] lg:shadow-2xl rounded-xl ">
         <section>

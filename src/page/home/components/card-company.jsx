@@ -9,7 +9,7 @@ function CompanyItem({ nombre, createdAt }) {
     <section className="bg-orange-200/90 w-[360px] h-[140px] relative  p-3 rounded-lg overflow-hidden shadow-md ">
       <Link to={nombre}>
         <div className="flex flex-col justify-between h-full py-1 px-2 dark:text-white/80">
-          <h3 className="text-2xl font-extrabold">{TruncateText({text:nombre,maxLength:20})} </h3>
+          <h3 className="text-[27px] font-extrabold  ">{TruncateText({text:nombre,maxLength:20})} </h3>
           <span className="block z-50 text-sm font-bold">
             {FormateDayD(createdAt) ?? "00/00/00"}
           </span>

@@ -5,6 +5,7 @@ import PageTickets from "@Pages/Tickets/PageTickets";
 import SettingPage from "@Pages/Setting/SettingPage";
 import RouteHome from "../../home/route-home";
 import DashboardPage from "@/layaout/Dashboard-layaot";
+import RouteKnowledge from "@/routes/knowledge-base/route-knowledge";
 
 //Page User the Inventario of Empresa and Sucursal
 
@@ -24,7 +25,7 @@ function SoporteRoutes() {
         <Route path="Reportes" element={<h1>Reportes</h1>} />
         <Route path="Ticket" element={<PageTickets />} />
         <Route path="Ticket/:id" element={<h1>Ticket por Id</h1>} />
-        <Route path="/BaseConocimiento/*" element={<RouteHome />} />
+        <Route path="/BaseConocimiento/*" element={<RouteKnowledge />} />
 
         <Route path="Configuracion" element={<SettingPage />} />
       </Route>

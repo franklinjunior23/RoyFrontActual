@@ -156,6 +156,7 @@ function CreateDisp() {
         "modelo",
         "FormArea",
         "FormUser",
+        "Tarjeta_Video"
       ])
     );
     setValidateForm(true);

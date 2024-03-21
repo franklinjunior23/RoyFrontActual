@@ -2,7 +2,7 @@ import { GetEmpresas } from "@/services/ApiGets";
 import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, EffectFade } from "swiper/modules";
-import CompanyItem from "./card-business";
+import CompanyItem from "./card-company";
 
 function Listbusiness() {
   // llamada a la api
@@ -47,8 +47,8 @@ function Listbusiness() {
               spaceBetween:30
             },
             1400:{
-              slidesPerView:2.99,
-              spaceBetween:30
+              slidesPerView:2.8,
+              spaceBetween:50
             }
           }}
         >

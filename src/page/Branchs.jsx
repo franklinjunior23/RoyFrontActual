@@ -9,7 +9,6 @@ import HeadSucur from "@Components/Section/components/HeadSucur";
 function BranchsPage() {
   const { nombreE, sucursalN } = useParams();
   const aleatorio = Math.floor(Math.random() * ColorConteners.length);
-
   /* const CreateSuc = useMutation({
     mutationFn: CreateSucursalByEmpresa,
     onSuccess: QueryClitn.invalidateQueries("Sucursales"),
