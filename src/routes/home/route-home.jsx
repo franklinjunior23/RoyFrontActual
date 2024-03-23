@@ -22,9 +22,10 @@ function RouteHome() {
             <Route path="Usuarios/create-area" element={<PageCreateArea />} />
 
             <Route path="Inventario" element={<DevicePage />} />
+            <Route path="Inventario/create" element={<CreateDisp />} />
             <Route path="Inventario/:idDisp" element={<CreateDisp />} />
             <Route path="Inventario/:idDisp/historial" element={<>h22</>} />
-            <Route path="Inventario/create-area" element={<PageCreateArea />} />
+           {/*  <Route path="Inventario/create-area" element={<PageCreateArea />} /> */}
             {/*<Route path="*" element={<Navigate to={-1} />} />*/}
           </Route>
         </Route>

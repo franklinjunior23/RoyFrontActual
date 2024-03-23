@@ -176,7 +176,7 @@ VinculeArea.propTypes = {
   register: PropTypes.func,
   dataAreas: PropTypes.any,
   DataUsers: PropTypes.any,
-  IdUser: PropTypes.string,
+  IdUser: PropTypes.any,
   nombreE: PropTypes.string,
   sucursalN: PropTypes.string,
 };

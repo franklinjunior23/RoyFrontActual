@@ -22,6 +22,9 @@ import { FieldsUpdate } from "./context/fields-update";
 import axiosInstance from "@/helpers/config/axios-instance";
 import { TimeFromPeruvian } from "@/helpers/utils/conver-day-ddmmyy";
 
+import { Segmented } from "antd";
+import PeripheralsForm from "@/page/inventory/device/category/Peripherals-form";
+
 function CreateDisp() {
   const { nombreE, sucursalN, idDisp } = useParams();
   const [DataHistory, setDataHistory] = useState(false);
@@ -34,7 +37,7 @@ function CreateDisp() {
 
   const navi = useNavigate();
   const queryClien = useQueryClient();
-  if (idDisp !== undefined && idDisp !== "create") {
+  if (idDisp !== undefined ) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     var { data } = useQuery({
       queryKey: ["DispById"],
@@ -156,7 +159,7 @@ function CreateDisp() {
         "modelo",
         "FormArea",
         "FormUser",
-        "Tarjeta_Video"
+        "Tarjeta_Video",
       ])
     );
     setValidateForm(true);
@@ -171,6 +174,8 @@ function CreateDisp() {
     }
   };
 
+  const [CategoryDevice, setCategoryDevice] = useState("Hardware");
+
   return (
     <>
       {/** Section for Modal Update  */}
@@ -179,14 +184,23 @@ function CreateDisp() {
         <Suspense key={data?.data?.id} fallback={() => <h2>Cargando ....</h2>}>
           <div>
             {data && (
-              <header className="py-2 flex justify-end">
+              <header className="py-2 flex justify-between gap-3">
+                <Segmented
+                  className="bg-black/90 text-white hover:text-white"
+                  options={["Hardware", "Perifericos", "Software"]}
+                  value={CategoryDevice}
+                  onChange={setCategoryDevice}
+                />
                 <ButtomDots
                   Options={Options_Dispositivo}
                   OptionDownload={Options_Downloads}
                 />
               </header>
             )}
-            <form onSubmit={handleSubmit(HandleSubt)}>
+
+            {/** Coondiciones  */}
+            {
+              CategoryDevice === "Hardware" && (<form onSubmit={handleSubmit(HandleSubt)}>
               <main className="grid md:grid-cols-4 gap-x-3">
                 <section className="grid">
                   <Input
@@ -239,7 +253,6 @@ function CreateDisp() {
                       data={data?.data}
                     />
                   ) : null}
-
                   {typeDisp === "Red" ? (
                     <RedFrom
                       register={register}
@@ -283,9 +296,16 @@ function CreateDisp() {
                   Cancelar
                 </button>
               </article>
-            </form>
+            </form>)
+            }
+            {
+              CategoryDevice === "Perifericos" && (<PeripheralsForm/>)
+            }
           </div>
         </Suspense>
+        {
+          // Aside for History
+        }
         <aside className="bg-black flex flex-col p-4 rounded-xl max-h-fit min-h-[300px]">
           <h3 className="text-center text-xl font-semibold my-3 text-white">
             Historial
@@ -295,9 +315,7 @@ function CreateDisp() {
               {data?.data?.historial?.map((value, index) => (
                 <ItemHistory key={index} {...value} />
               )) ?? <h2>No hay historial</h2>}
-              {
-                data?.data?.historial?.length === 0 && <h2>No hay historial</h2>
-              }
+              {data?.data?.historial?.length === 0 && <h2>No hay historial</h2>}
             </main>
           </main>
           <footer className=" mt-auto">
@@ -309,6 +327,9 @@ function CreateDisp() {
             </button>
           </footer>
         </aside>
+        {
+          // End to Aside History
+        }
       </main>
     </>
   );
@@ -319,9 +340,14 @@ export default CreateDisp;
 function ItemHistory({ action, createdAt }) {
   return (
     <section className="bg-white/50 p-3 w-full  text-white rounded-xl">
-      <header className="flex justify-between items-center"><h4 className="my-1 font-semibold capitalize">
-        {TimeFromPeruvian(createdAt)}
-      </h4> <span className="text-xs font-semibold px-2 py-0.5 rounded-lg bg-black">Modified</span></header>
+      <header className="flex justify-between items-center">
+        <h4 className="my-1 font-semibold capitalize">
+          {TimeFromPeruvian(createdAt)}
+        </h4>{" "}
+        <span className="text-xs font-semibold px-2 py-0.5 rounded-lg bg-black">
+          Modified
+        </span>
+      </header>
       <p className="text-sm  break-all  ">
         <TruncateText
           text={generateSummary(action)}
@@ -329,13 +355,11 @@ function ItemHistory({ action, createdAt }) {
           ComponentNext={() => <></>}
         />
       </p>
-      
+
       <ul className="flex flex-wrap gap-1.5 text-sm mt-2">
-        {
-          action?.map((value, index) => (
-            <LabelCategory key={index} title={value?.field} />
-          )) ?? <h2></h2>
-        }
+        {action?.map((value, index) => (
+          <LabelCategory key={index} title={value?.field} />
+        )) ?? <h2></h2>}
       </ul>
     </section>
   );
