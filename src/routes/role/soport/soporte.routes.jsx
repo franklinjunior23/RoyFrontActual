@@ -2,10 +2,10 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import EmpresaPage from "@Pages/empresa/EmpresaPage";
 import PageTickets from "@Pages/Tickets/PageTickets";
 
-import SettingPage from "@Pages/Setting/SettingPage";
 import RouteHome from "../../home/route-home";
 import DashboardPage from "@/layaout/Dashboard-layaot";
 import RouteKnowledge from "@/routes/knowledge-base/route-knowledge";
+import RouteConfigure from "@/routes/configure/route-configure";
 
 //Page User the Inventario of Empresa and Sucursal
 
@@ -27,7 +27,7 @@ function SoporteRoutes() {
         <Route path="Ticket/:id" element={<h1>Ticket por Id</h1>} />
         <Route path="/BaseConocimiento/*" element={<RouteKnowledge />} />
 
-        <Route path="Configuracion" element={<SettingPage />} />
+        <Route path="/Configuracion/*" element={<RouteConfigure />} />
       </Route>
     </Routes>
   );

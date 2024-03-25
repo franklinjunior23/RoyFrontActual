@@ -106,7 +106,7 @@ function PeripheralsForm() {
                     AppendMouse({ name: "", brand: "", serial: "" })
                   }
                 >
-                  Add MOuse
+                  Agregar Mouse
                 </Button>
               )}
             </section>

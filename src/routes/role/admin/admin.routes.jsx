@@ -10,6 +10,7 @@ import PageUser from "@Pages/Users/PageUser";
 
 import EmpresaPage from "@/pages/empresa/EmpresaPage";
 import DashboardPage from "@/layaout/Dashboard-layaot";
+import RouteConfigure from "@/routes/configure/route-configure";
 
 
 function AdminRoutes() {
@@ -31,7 +32,7 @@ function AdminRoutes() {
        
         <Route path="Users" element={<PageUser />} />
         <Route path="Dispositivos" element={<h1>jpña</h1>} />
-        <Route path="Configuracion" element={<h1>Configuracion</h1>} />
+        <Route path="/Configuracion/*" element={<RouteConfigure />} />
       </Route>
     </Routes>
   );
