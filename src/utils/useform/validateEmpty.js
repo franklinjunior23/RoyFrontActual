@@ -1,0 +1,1 @@
+export const validateEmptyForm = (val) => val !== "" || "El campo no puede estar vacío";

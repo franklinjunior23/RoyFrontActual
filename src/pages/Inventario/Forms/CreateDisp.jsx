@@ -18,12 +18,11 @@ import TruncateText from "@/utils/TruncateTeaxt";
 import UpdateDevice from "./Components/Modal-update-device";
 import { findChanges, generateSummary } from "./utils/compare-objects";
 import { FieldsUpdate } from "./context/fields-update";
-
 import axiosInstance from "@/helpers/config/axios-instance";
 import { TimeFromPeruvian } from "@/helpers/utils/conver-day-ddmmyy";
-
 import { Segmented } from "antd";
 import PeripheralsForm from "@/page/inventory/device/category/Peripherals-form";
+import PageCreateDevice from "@/page/inventory/device/create-device";
 
 function CreateDisp() {
   const { nombreE, sucursalN, idDisp } = useParams();
@@ -37,7 +36,7 @@ function CreateDisp() {
 
   const navi = useNavigate();
   const queryClien = useQueryClient();
-  if (idDisp !== undefined ) {
+  if (idDisp !== undefined) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     var { data } = useQuery({
       queryKey: ["DispById"],
@@ -179,6 +178,30 @@ function CreateDisp() {
   return (
     <>
       {/** Section for Modal Update  */}
+      <main className="pb-8 grid gap-4 md:grid-cols-[1fr_minmax(360px,350px)]">
+        <PageCreateDevice id={idDisp} />
+        <aside className="bg-black flex flex-col p-4 rounded-xl max-h-fit min-h-[300px]">
+          <h3 className="text-center text-xl font-semibold my-3 text-white">
+            Historial
+          </h3>
+          <main className="max-h-[400px] min-h-[350px] overflow-x-clip overflow-y-auto CustomScroll">
+            <main className=" flex flex-col flex-wrap gap-y-3 mr-2 ">
+              {data?.data?.historial?.map((value, index) => (
+                <ItemHistory key={index} {...value} />
+              )) ?? <h2>No hay historial</h2>}
+              {data?.data?.historial?.length === 0 && <h2>No hay historial</h2>}
+            </main>
+          </main>
+          <footer className=" mt-auto">
+            <button
+              type="button"
+              className="w-full  bg-white/20 text-white  px-3 py-2 font-medium rounded-lg "
+            >
+              <Link to={"historial"}>Ver Historial Completo</Link>
+            </button>
+          </footer>
+        </aside>
+      </main>
 
       <main className=" pb-8 grid gap-4 md:grid-cols-[1fr_minmax(360px,350px)]">
         <Suspense key={data?.data?.id} fallback={() => <h2>Cargando ....</h2>}>
@@ -199,108 +222,106 @@ function CreateDisp() {
             )}
 
             {/** Coondiciones  */}
-            {
-              CategoryDevice === "Hardware" && (<form onSubmit={handleSubmit(HandleSubt)}>
-              <main className="grid md:grid-cols-4 gap-x-3">
-                <section className="grid">
-                  <Input
-                    register={register}
-                    name={"nombre"}
-                    label="Nombre"
-                    placeholder={"Nombres .."}
-                  />
-                </section>
-                <section className="grid">
-                  <Input
-                    label="Codigo"
-                    register={register}
-                    name="codigo_dispositivo"
-                  />
-                </section>
-                <section className="grid">
-                  <InputSelect
-                    name="tipo"
-                    label={"Tipo"}
-                    register={register}
-                    options={CategoryInventaio}
-                  />
-                </section>
-
-                <div className="grid ">
-                  <InputSelect
-                    name="estado"
-                    label={"Estado"}
-                    register={register}
-                    options={[
-                      { name: "Activo" },
-                      { name: "Inaperativa" },
-                      { name: "Malograda" },
-                    ]}
-                  />
-                </div>
-              </main>
-              {typeDisp !== "Seleccionar" && (
-                <>
-                  {typeDisp === "Pc" ||
-                  typeDisp === "Laptop" ||
-                  typeDisp === "Servidores" ? (
-                    <PcLapForm
+            {CategoryDevice === "Hardware" && (
+              <form onSubmit={handleSubmit(HandleSubt)}>
+                <main className="grid md:grid-cols-4 gap-x-3 text-sm">
+                  <section className="grid">
+                    <Input
                       register={register}
-                      watch={watch}
-                      getValues={getValues}
-                      setValue={setValue}
-                      control={control}
-                      data={data?.data}
+                      name={"nombre"}
+                      label="Nombre"
+                      placeholder={"Nombres .."}
                     />
-                  ) : null}
-                  {typeDisp === "Red" ? (
-                    <RedFrom
+                  </section>
+                  <section className="grid">
+                    <Input
+                      label="Codigo"
                       register={register}
-                      watch={watch}
-                      setValue={setValue}
-                      control={control}
+                      name="codigo_dispositivo"
                     />
-                  ) : null}
-
-                  {typeDisp === "Impresora" ? (
-                    <ImpresForm
+                  </section>
+                  <section className="grid">
+                    <InputSelect
+                      name="tipo"
+                      label={"Tipo"}
                       register={register}
-                      watch={watch}
-                      setValue={setValue}
-                      control={control}
+                      options={CategoryInventaio}
                     />
-                  ) : null}
-                </>
-              )}
+                  </section>
 
-              <article className="grid grid-cols-2 mt-5 gap-2">
-                {data === undefined ? (
-                  <button
-                    className="bg-black/90 rounded-md py-3 text-white"
-                    type="submit"
-                  >
-                    Crear
-                  </button>
-                ) : (
-                  <UpdateDevice
-                    setdataHistoryOption={setDataHistory}
-                    dataHistoryOption={DataHistory}
-                  />
+                  <div className="grid ">
+                    <InputSelect
+                      name="estado"
+                      label={"Estado"}
+                      register={register}
+                      options={[
+                        { name: "Activo" },
+                        { name: "Inaperativa" },
+                        { name: "Malograda" },
+                      ]}
+                    />
+                  </div>
+                </main>
+                {typeDisp !== "Seleccionar" && (
+                  <>
+                    {typeDisp === "Pc" ||
+                    typeDisp === "Laptop" ||
+                    typeDisp === "Servidores" ? (
+                      <PcLapForm
+                        register={register}
+                        watch={watch}
+                        getValues={getValues}
+                        setValue={setValue}
+                        control={control}
+                        data={data?.data}
+                      />
+                    ) : null}
+                    {typeDisp === "Red" ? (
+                      <RedFrom
+                        register={register}
+                        watch={watch}
+                        setValue={setValue}
+                        control={control}
+                      />
+                    ) : null}
+
+                    {typeDisp === "Impresora" ? (
+                      <ImpresForm
+                        register={register}
+                        watch={watch}
+                        setValue={setValue}
+                        control={control}
+                      />
+                    ) : null}
+                  </>
                 )}
 
-                <button
-                  type="button"
-                  className="bg-black/40 rounded-md py-3 text-white"
-                  onClick={() => navi(-1)}
-                >
-                  Cancelar
-                </button>
-              </article>
-            </form>)
-            }
-            {
-              CategoryDevice === "Perifericos" && (<PeripheralsForm/>)
-            }
+                <article className="grid grid-cols-2 mt-5 gap-2">
+                  {data === undefined ? (
+                    <button
+                      className="bg-black/90 rounded-md py-3 text-white"
+                      type="submit"
+                    >
+                      Crear
+                    </button>
+                  ) : (
+                    <UpdateDevice
+                      setdataHistoryOption={setDataHistory}
+                      dataHistoryOption={DataHistory}
+                    />
+                  )}
+
+                  <button
+                    type="button"
+                    className="bg-black/40 rounded-md py-3 text-white"
+                    onClick={() => navi(-1)}
+                  >
+                    Cancelar
+                  </button>
+                </article>
+              </form>
+            )}
+            {CategoryDevice === "Perifericos" && <PeripheralsForm />}
           </div>
         </Suspense>
         {

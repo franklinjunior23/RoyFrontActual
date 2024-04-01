@@ -333,6 +333,20 @@ export const MarcasPCLAP = [
   "Toshiba",
   "Msi",
   "Sony",
+  "Samsung",
+  "Compaq",
+  "Gateway",
+  "Apple",
+  "Alienware",
+  "Fujitsu",
+  "Medion",
+  "Packard Bell",
+  "Panasonic",
+  "Razer",
+  "Vizio",
+  "Microsoft",
+  "Nec",
+  "Sharp",
 ];
 export const PlacaModelPCLAP = [
   "Generico",
@@ -463,7 +477,6 @@ export const FormDisp = [
   "Tarjet_Video",
   "Config_ip",
   "Config_mac",
-  
 ];
 
 export const EstatusTicket = ["Abierto", "En progreso", "Cerrado", "Cancelado"];

@@ -195,4 +195,9 @@ body {
   .AsideDots {
     @apply border dark:border-white/20 dark:bg-[#262626] bg-white z-50 p-1.5 rounded-md shadow-md;
   }
+  .control-input{
+   @apply px-2 text-sm py-2 rounded-md border w-full bg-white focus:border-black/30 text-black focus:border-blue-400 focus:border-spacing-0.5
+   dark:bg-black/10 dark:border-white/20 dark:focus:border-white/50 dark:text-white
+  }
+  
 }

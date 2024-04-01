@@ -15,7 +15,9 @@ import VinculeArea from "./VinculeArea";
 import InputSelect from "@Components/Input/Select/Select";
 import { Input } from "@Components/Input";
 import axiosInstance from "@/helpers/config/axios-instance";
-
+import { DevTool } from "@hookform/devtools";
+import SelectAdd from "@Components/Input/SelectAdd";
+import { types_pc } from "@/data/Device/types_pc";
 
 
 function PcLapForm({ register, setValue, control, watch, getValues, data }) {
@@ -66,17 +68,20 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
     );
     return data;
   });
+ 
 
   return (
     <>
       <section>
         <div className="grid grid-cols-3 gap-3 my-1">
+          
           <InputSelect
             label={"Tipo"}
             register={register}
             name="tipo_Disp"
             options={Tipos_PCLAP}
           />
+         
           <div className="grid">
             <label className="dark:text-white text-sm">Marca</label>
             <InputsOptions
@@ -168,6 +173,7 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                   watch={watch}
                   register={register}
                 />
+                <DevTool control={control} />
               </section>
             </div>
           </div>
@@ -356,9 +362,7 @@ function PcLapForm({ register, setValue, control, watch, getValues, data }) {
                   ))}
                 </div>
               </article>
-              <article>
-                
-              </article>
+              <article></article>
             </article>
           </div>
         </div>
