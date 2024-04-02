@@ -20,7 +20,7 @@ function HeadForm({ control, errors }) {
             defaultValue={""}
             render={({ field }) => (
               <Label>
-                Nombre Dispositivo
+                Nombre 
                 <Input {...field} type="text" />
               </Label>
             )}

@@ -175,12 +175,14 @@ function CreateDisp() {
 
   const [CategoryDevice, setCategoryDevice] = useState("Hardware");
 
+  if (!idDisp) return <PageCreateDevice />;
   return (
     <>
       {/** Section for Modal Update  */}
-      <main className="pb-8 grid gap-4 md:grid-cols-[1fr_minmax(360px,350px)]">
+
+      <main className="pb-8 grid gap-4 md:grid-cols-[1fr_minmax(360px,350px)] relative">
         <PageCreateDevice id={idDisp} />
-        <aside className="bg-black flex flex-col p-4 rounded-xl max-h-fit min-h-[300px]">
+        <aside className="bg-black flex flex-col p-4 rounded-xl sticky top-0 min-h-[300px] max-h-[800px]">
           <h3 className="text-center text-xl font-semibold my-3 text-white">
             Historial
           </h3>

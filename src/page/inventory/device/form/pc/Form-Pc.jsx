@@ -12,6 +12,7 @@ import { Controller, useFieldArray } from "react-hook-form";
 import Optiondevice from "../Option-device";
 import Button from "@Components/Input/Button";
 import { typeStorage } from "@/data/Device/pc/types-storage";
+import { IconTrash } from "@tabler/icons-react";
 
 const FormPc = ({ control, errors, watch }) => {
   const WatchTypeDevice = watch("tipo");
@@ -92,7 +93,8 @@ const FormPc = ({ control, errors, watch }) => {
         </section>
       </main>
       <Ram control={control} errors={errors} />
-      <Storage control={control} errors={errors}/>
+      <Storage control={control} errors={errors} />
+      <GrapichCard control={control} />
     </>
   );
 };
@@ -277,7 +279,7 @@ function Ram({ control, errors }) {
       <div className="grid gap-2">
         {fields.map((field, index) => (
           <div key={field.id}>
-            <div className="grid md:grid-cols-5 gap-2 md:gap-3" >
+            <div className="grid md:grid-cols-[repeat(5,1fr)_35px] gap-2 md:gap-3">
               <Controller
                 control={control}
                 name={`Ram_Modulos.${index}.marca`}
@@ -299,7 +301,10 @@ function Ram({ control, errors }) {
                         );
                       })}
                     </Select>
-                    <ErrrorInput name={`Ram_Modulos.${index}.marca`} err={errors} />
+                    <ErrrorInput
+                      name={`Ram_Modulos.${index}.marca`}
+                      err={errors}
+                    />
                   </Label>
                 )}
               />
@@ -355,15 +360,15 @@ function Ram({ control, errors }) {
                   </Label>
                 )}
               />
+              <Button
+                type="button"
+                className="grid place-content-center"
+                variant="danger"
+                onClick={() => remove(index)}
+              >
+                <IconTrash />
+              </Button>
             </div>
-            <Button
-              type="button"
-              className="w-fit mt-1 !import:py-1 "
-              variant="danger"
-              onClick={() => remove(index)}
-            >
-              Eliminar
-            </Button>
           </div>
         ))}
       </div>
@@ -398,7 +403,7 @@ function Storage({ control, errors }) {
       <div className="grid gap-2">
         {fields.map((field, index) => (
           <div key={field.id}>
-            <div className="grid md:grid-cols-5 gap-2 md:gap-3">
+            <div className="grid md:grid-cols-[repeat(5,1fr)_35px] gap-2 md:gap-3">
               <Controller
                 control={control}
                 name={`Almacenamiento_detalle.${index}.marca`}
@@ -420,7 +425,10 @@ function Storage({ control, errors }) {
                         );
                       })}
                     </Select>
-                    <ErrrorInput name={`Almacenamiento_detalle.${index}.marca`} err={errors} />
+                    <ErrrorInput
+                      name={`Almacenamiento_detalle.${index}.marca`}
+                      err={errors}
+                    />
                   </Label>
                 )}
               />
@@ -440,10 +448,11 @@ function Storage({ control, errors }) {
                       <Option value="HDD">HDD</Option>
                       <Option value="SSD">SSD</Option>
                       <Option value="M.2">M.2</Option>
+                      <Option value="NVM">NVM</Option>
                       <Option value="NVMe">NVMe</Option>
                       <Option value="SATA">SATA</Option>
                       <Option value="OneDrive">OneDrive</Option>
-                      <Option value="GoogleDrive">GoogleDrive</Option>
+                      <Option value="Drive">Drive</Option>
                       <Option value="Dropbox">Dropbox</Option>
                     </Select>
                   </Label>
@@ -473,24 +482,24 @@ function Storage({ control, errors }) {
               />
               <Controller
                 control={control}
-                name={`Almacenamiento_detalle.${index}.rpm`}
+                name={`Almacenamiento_detalle.${index}.estado`}
                 defaultValue={""}
                 render={({ field }) => (
-                  < Label >
-                    RPM
+                  <Label>
+                    Ubicacion
                     <Input {...field} />
                   </Label>
                 )}
               />
+              <Button
+                type="button"
+                className="grid place-content-center"
+                variant="danger"
+                onClick={() => remove(index)}
+              >
+                <IconTrash />
+              </Button>
             </div>
-            <Button
-              type="button"
-              className="w-fit mt-1 !import:py-1 "
-              variant="danger"
-              onClick={() => remove(index)}
-            >
-              Eliminar
-            </Button>
           </div>
         ))}
       </div>
@@ -509,3 +518,91 @@ Storage.propTypes = {
   errors: PropTypes.any,
 };
 // end Component Storage Form
+
+// Component Grapich Card Form
+function GrapichCard({ control }) {
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "Tarjeta_Video",
+  });
+  return (
+    <div className="py-2">
+      <h2 className="font-semibold text-xl border-b my-2 border-black/20 dark:border-white/40">
+        Tarjeta Grafica
+      </h2>
+      <div>
+        {fields.map((field, index) => (
+          <main className="grid md:grid-cols-[repeat(4,1fr)_35px] gap-2 md:gap-3" key={field.id}>
+            <Controller
+              control={control}
+              name={`Tarjeta_Video.${index}.detalle`}
+              defaultValue={""}
+              render={({ field }) => (
+                <Label>
+                  Marca
+                  <Input {...field} />
+                  {/**  <Select {...field}>
+                      {["Nvidia", "Amd"].map((marca) => {
+                        return (
+                          <Option value={marca} key={marca}>
+                            {marca}
+                          </Option>
+                        );
+                      })}
+                    </Select> */}
+                </Label>
+              )}
+            />
+            <Controller
+              control={control}
+              name={`Tarjeta_Video.${index}.modelo`}
+              defaultValue={""}
+              render={({ field }) => (
+                <Label>
+                  Modelo
+                  <Input {...field} />
+                </Label>
+              )}
+            />
+            <Controller
+              control={control}
+              name={`Tarjeta_Video.${index}.bus`}
+              defaultValue={""}
+              render={({ field }) => (
+                <Label>
+                  Bus
+                  <Input {...field} />
+                </Label>
+              )}
+            />
+            <Controller
+              control={control}
+              name={`Tarjeta_Video.${index}.vram`}
+              defaultValue={""}
+              render={({ field }) => (
+                <Label>
+                  Vram
+                  <Input {...field} />
+                </Label>
+              )}
+            />
+            <Button
+              type="button"
+              className="grid place-content-center"
+              variant="danger"
+              onClick={() => remove(index)}
+            >
+              <IconTrash />
+            </Button>
+          </main>
+        ))}
+        <Button className="mt-2" onClick={()=>append({bus:''})}>Agregar</Button>
+      </div>
+    </div>
+  );
+}
+GrapichCard.propTypes = {
+  control: PropTypes.any,
+};
+
+// end Component Grapich Card Form

@@ -80,23 +80,23 @@ export function findChanges(original, updated, ignoredFields = []) {
 
 export function generateSummary(action) {
   if (!action || action.length === 0) {
-    return 'No se detectaron cambios.';
+    return "No se detectaron cambios.";
   }
 
-  const summary = action.map(change => {
+  const summary = action.map((change) => {
     let after = JSON.stringify(change.after);
 
     switch (change.type) {
-      case 'modified':
+      case "modified":
         return `El campo ${change.field} fue modificado a ${after}.`;
-      case 'removed':
+      case "removed":
         return `El campo ${change.field} fue eliminado.`;
-      case 'added':
+      case "added":
         return `El campo ${change.field} fue agregado con el valor ${after}.`;
       default:
-        return '';
+        return "";
     }
   });
 
-  return summary.join(' ');
+  return summary.join(" ");
 }
