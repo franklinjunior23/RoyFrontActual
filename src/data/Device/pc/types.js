@@ -1,6 +1,6 @@
 export const typePc=[
     'Escritorio',
-    'All in one',
+    'All in One',
     'Compatible',
     'Workstation',
    
