@@ -7,7 +7,6 @@ import Label from "@Components/Input/Label";
 import Option from "@Components/Input/Option";
 import Select from "@Components/Input/Select";
 import PropTypes from "prop-types";
-
 import { Controller, useFieldArray } from "react-hook-form";
 import Optiondevice from "../Option-device";
 import Button from "@Components/Input/Button";
@@ -85,7 +84,7 @@ const FormPc = ({ control, errors, watch }) => {
       <main className="grid grid-cols-2 gap-3">
         <section>
           <RedForm control={control} />
-          <Optiondevice />
+          <Optiondevice control={control} watch={watch} />
         </section>
         <section>
           <PlacaMadreForm control={control} errors={errors} />
@@ -231,7 +230,7 @@ function Procesador({ control, errors }) {
             <Label>
               Marca
               <Select {...field}>
-                {["Intel", "Amd"].map((marca) => {
+                {["INTEL", "AMD"].map((marca) => {
                   return (
                     <Option value={marca} key={marca}>
                       {marca}

@@ -178,31 +178,9 @@ function CreateDisp() {
   if (!idDisp) return <PageCreateDevice />;
   return (
     <>
-      {/** Section for Modal Update  */}
-
       <main className="pb-8 grid gap-4 md:grid-cols-[1fr_minmax(360px,350px)] relative">
         <PageCreateDevice id={idDisp} />
-        <aside className="bg-black flex flex-col p-4 rounded-xl sticky top-0 min-h-[300px] max-h-[800px]">
-          <h3 className="text-center text-xl font-semibold my-3 text-white">
-            Historial
-          </h3>
-          <main className="max-h-[400px] min-h-[350px] overflow-x-clip overflow-y-auto CustomScroll">
-            <main className=" flex flex-col flex-wrap gap-y-3 mr-2 ">
-              {data?.data?.historial?.map((value, index) => (
-                <ItemHistory key={index} {...value} />
-              )) ?? <h2>No hay historial</h2>}
-              {data?.data?.historial?.length === 0 && <h2>No hay historial</h2>}
-            </main>
-          </main>
-          <footer className=" mt-auto">
-            <button
-              type="button"
-              className="w-full  bg-white/20 text-white  px-3 py-2 font-medium rounded-lg "
-            >
-              <Link to={"historial"}>Ver Historial Completo</Link>
-            </button>
-          </footer>
-        </aside>
+        <HistoryDevice data={data}/>
       </main>
 
       <main className=" pb-8 grid gap-4 md:grid-cols-[1fr_minmax(360px,350px)]">
@@ -354,11 +332,39 @@ function CreateDisp() {
           // End to Aside History
         }
       </main>
+
+      
     </>
   );
 }
 
 export default CreateDisp;
+
+function HistoryDevice({data}){
+  return(
+    <aside className="bg-black flex flex-col p-4 rounded-xl sticky top-0  min-h-[300px] max-h-[800px]">
+    <h3 className="text-center text-xl font-semibold my-3 text-white">
+      Historial
+    </h3>
+    <main className="max-h-[400px] min-h-[350px] overflow-x-clip overflow-y-auto CustomScroll">
+      <main className=" flex flex-col flex-wrap gap-y-3 mr-2 ">
+        {data?.data?.historial?.map((value, index) => (
+          <ItemHistory key={index} {...value} />
+        )) ?? <h2>No hay historial</h2>}
+        {data?.data?.historial?.length === 0 && <h2>No hay historial</h2>}
+      </main>
+    </main>
+    <footer className=" mt-auto">
+      <button
+        type="button"
+        className="w-full  bg-white/20 text-white  px-3 py-2 font-medium rounded-lg "
+      >
+        <Link to={"historial"}>Ver Historial Completo</Link>
+      </button>
+    </footer>
+  </aside>
+  )
+}
 
 function ItemHistory({ action, createdAt }) {
   return (

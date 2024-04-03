@@ -1,15 +1,19 @@
 import PropTypes from "prop-types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import HeadForm from "./form/head-form";
 import { useForm } from "react-hook-form";
 import Button from "@Components/Input/Button";
 import FormPc from "./form/pc/Form-Pc";
+import { useParams } from "react-router-dom";
 import { CreateDevice } from "./form/utils/CreateDevice";
-import { GetDevice, SetValueDevice } from "./form/utils/GetDevice";
+import {  SetValueDevice } from "./form/utils/GetDevice";
+import axiosInstance from "@/helpers/config/axios-instance";
+import FormLaptop from "./form/pc/Form-Laptop";
 
-function PageCreateDevice({ id }) {
+function PageCreateDevice() {
+  const [dataDevice, setdataDevice] = useState(null);
+  const { idDisp } = useParams();
   const { mutate, isLoading, error } = CreateDevice();
-  const { data, isLoading: LoadinGet, isError } = GetDevice(id);
 
   const {
     control,
@@ -23,9 +27,8 @@ function PageCreateDevice({ id }) {
       Almacenamiento_detalle: [{}],
     },
   });
-
   function switchAction(datos) {
-    if (id) return console.log("SI existe el AIDI");
+    if (idDisp) return console.log("SI existe el AIDI");
     mutate(datos);
   }
 
@@ -33,24 +36,28 @@ function PageCreateDevice({ id }) {
   const WatchTypeDevice = watch("tipo");
 
   useEffect(() => {
-    (() => {
-      if (id && data) {
-        SetValueDevice(data, setValue, isError);
+    (async () => {
+      if (idDisp) {
+        const { data: dataDevice } = await axiosInstance.get(
+          `Dispositivos/${idDisp}`
+        );
+        setdataDevice(dataDevice?.data);
+        SetValueDevice(dataDevice, setValue);
       }
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, setValue, LoadinGet,data]);
+  }, [idDisp, setValue]);
   return (
     <main>
       <form onSubmit={handleSubmit(switchAction)}>
         <HeadForm control={control} errors={errors} />
         {WatchTypeDevice === "Pc" && (
-          <>
-            <FormPc control={control} errors={errors} watch={watch} />
-          </>
+          <FormPc control={control} errors={errors} watch={watch} />
+        )}
+        {WatchTypeDevice === "Laptop" && (
+          <FormLaptop control={control} errors={errors} watch={watch} />
         )}
         <footer className="md:w-[400px] grid grid-cols-2 gap-2 mt-5">
-          {id ? (
+          {idDisp ? (
             <Button variant="primary" type="submit">
               Guardar Cambios
             </Button>
