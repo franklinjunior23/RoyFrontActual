@@ -83,6 +83,7 @@ const detailDevice = {
 
     //Almacenamiento
     { key: "Almacenamiento_detalle", value: "Almacenamiento_detalle" },
+    {key: "Tarjeta_Video", value: "Tarjeta_Video"},
     ...deviceConnectUser,
   ],
   Laptop: [],

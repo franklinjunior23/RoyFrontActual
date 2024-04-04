@@ -25,6 +25,7 @@ function PageCreateDevice() {
     values: {
       Ram_Modulos: [{}],
       Almacenamiento_detalle: [{}],
+      Tarjeta_Video:[{}]
     },
   });
   function switchAction(datos) {

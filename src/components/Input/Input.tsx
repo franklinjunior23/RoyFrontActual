@@ -1,9 +1,13 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import { forwardRef } from "react";
+import { forwardRef, InputHTMLAttributes } from "react";
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  placeholder?: string;
+}
 
 // eslint-disable-next-line react/display-name
-const Input = forwardRef(
+const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       placeholder,
