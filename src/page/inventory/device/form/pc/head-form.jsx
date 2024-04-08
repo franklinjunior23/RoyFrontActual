@@ -13,7 +13,7 @@ function HeadForm({ control, errors }) {
   return (
     <>
       <header>
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid md:grid-cols-4 md:gap-3 gap-1">
           <Controller
             control={control}
             name="nombre"

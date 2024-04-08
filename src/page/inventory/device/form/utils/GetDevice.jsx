@@ -1,24 +1,16 @@
 import axiosInstance from "@/helpers/config/axios-instance";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
-function ActionGet(id) {
+export function ActionGet(id) {
   return useQuery({
-    queryKey: ["device"],
+    queryKey: ["deviceGet"],
     queryFn: async () => {
       const { data } = await axiosInstance.get(`Dispositivos/${id}`);
       return data;
     },
   });
 }
-export function GetDevice(id) {
-  const { data, isLoading, isError } = ActionGet(id);
 
-  return {
-    isLoading,
-    data,
-    isError,
-  };
-}
 
 export function SetValueDevice(data, setvalue) {
   try {
@@ -90,3 +82,18 @@ const detailDevice = {
 };
 // Incluir las mismas propiedades de Pc en Laptop
 detailDevice.Laptop = [...detailDevice.Pc];
+
+
+export function UpdateDevice(id) {
+  return useMutation({
+    mutationKey: ["UpdateDevice"],
+    mutationFn: async (data) => {
+     
+      const { data: dataResponse } = await axiosInstance.put(
+        `Dispositivos/${id}`,
+        data
+      );
+      return dataResponse;
+    },
+  });
+}

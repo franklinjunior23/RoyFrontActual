@@ -6,7 +6,6 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
 }
 
-// eslint-disable-next-line react/display-name
 const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {

@@ -8,7 +8,7 @@ import Option from "@Components/Input/Option";
 import Select from "@Components/Input/Select";
 import PropTypes from "prop-types";
 import { Controller } from "react-hook-form";
-import Optiondevice from "../Option-device";
+import Optiondevice from "../../link/Option-device";
 
 // Components Form
 import FormRam from "../components/Form-ram";
@@ -21,7 +21,7 @@ import FormStorage from "../components/Form-storage";
 const FormPc = ({ control, errors, watch }) => {
   return (
     <>
-      <div className="grid grid-cols-4 gap-3 mt-2">
+      <div className="grid md:grid-cols-4 md:gap-3 gap-1 mt-2">
         <Controller
           control={control}
           name="tipo_Disp"
@@ -84,15 +84,16 @@ const FormPc = ({ control, errors, watch }) => {
           )}
         />
       </div>
-      <main className="grid grid-cols-2 gap-3">
+      <main className="md:flex   gap-3">
         <section>
-          <FormRed control={control} />
-          <Optiondevice control={control} watch={watch} />
-        </section>
-        <section>
-          <FormMotherboard control={control} errors={errors} />
+          <div className="grid md:grid-cols-2 md:gap-3">
+            <FormRed control={control} />
+            <FormMotherboard control={control} errors={errors} />
+          </div>
           <FormProcessor control={control} errors={errors} />
         </section>
+
+        <Optiondevice control={control} watch={watch} />
       </main>
       <FormRam control={control} errors={errors} />
       <FormStorage control={control} errors={errors} />

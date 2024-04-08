@@ -1,19 +1,20 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import HeadForm from "./form/head-form";
+import HeadForm from "./form/pc/head-form";
 import { useForm } from "react-hook-form";
 import Button from "@Components/Input/Button";
 import FormPc from "./form/pc/Form-Pc";
 import { useParams } from "react-router-dom";
 import { CreateDevice } from "./form/utils/CreateDevice";
-import {  SetValueDevice } from "./form/utils/GetDevice";
-import axiosInstance from "@/helpers/config/axios-instance";
+import {  ActionGet, SetValueDevice, UpdateDevice } from "./form/utils/GetDevice";
 import FormLaptop from "./form/pc/Form-Laptop";
 
 function PageCreateDevice() {
   const [dataDevice, setdataDevice] = useState(null);
   const { idDisp } = useParams();
+  const {data,isLoading:LoadingGetDevice}= ActionGet(idDisp)
   const { mutate, isLoading, error } = CreateDevice();
+  const {mutate:updateDevice}= UpdateDevice(idDisp)
 
   const {
     control,
@@ -29,7 +30,7 @@ function PageCreateDevice() {
     },
   });
   function switchAction(datos) {
-    if (idDisp) return console.log("SI existe el AIDI");
+    if (idDisp) updateDevice(datos,idDisp)
     mutate(datos);
   }
 
@@ -39,14 +40,11 @@ function PageCreateDevice() {
   useEffect(() => {
     (async () => {
       if (idDisp) {
-        const { data: dataDevice } = await axiosInstance.get(
-          `Dispositivos/${idDisp}`
-        );
-        setdataDevice(dataDevice?.data);
+        setdataDevice(data);
         SetValueDevice(dataDevice, setValue);
       }
     })();
-  }, [idDisp, setValue]);
+  }, [dataDevice, idDisp, setValue,LoadingGetDevice,data]);
   return (
     <main>
       <form onSubmit={handleSubmit(switchAction)}>

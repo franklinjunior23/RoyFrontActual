@@ -14,8 +14,7 @@ import FormProcessor from "../components/Form-processor";
 import FormRam from "../components/Form-ram";
 import FormStorage from "../components/Form-storage";
 import FormGraphics from "../components/Form-graphics";
-import Optiondevice from "../Option-device";
-
+import Optiondevice from "../../link/Option-device";
 
 function FormLaptop({ control, errors, watch }) {
   return (
@@ -94,15 +93,16 @@ function FormLaptop({ control, errors, watch }) {
           )}
         />
       </div>
-      <main className="grid grid-cols-2 gap-3">
+      <main className="grid gap-3">
         <section>
-          <FormRed control={control} />
-          <Optiondevice control={control} watch={watch} />
-        </section>
-        <section>
-          <FormMotherboard control={control} errors={errors} />
+          <div className="grid md:grid-cols-2 gap-3">
+            <FormRed control={control} />
+            <FormMotherboard control={control} errors={errors} />
+          </div>
           <FormProcessor control={control} errors={errors} />
         </section>
+
+        <Optiondevice control={control} watch={watch} />
       </main>
       <FormRam control={control} errors={errors} />
       <FormStorage control={control} errors={errors} />

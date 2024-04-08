@@ -41,7 +41,7 @@ export default function FormCompany({ handleCancel }) {
       />
 
       <footer className="mt-5 flex justify-end">
-        <Button>Crear</Button>
+        <Button type="submit">Crear</Button>
         <Button variant="second" type="button" onClick={handleCancel}>
           Cancelar
         </Button>
