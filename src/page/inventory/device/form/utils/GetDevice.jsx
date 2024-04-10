@@ -12,7 +12,6 @@ export function ActionGet(id) {
   });
 }
 
-
 export function SetValueDevice(data, setvalue) {
   try {
     const dataNew = FactoryDataDevice(data);
@@ -34,14 +33,14 @@ export function SetValueDevice(data, setvalue) {
 
 export function FactoryDataDevice(data) {
   // Hacemos una copia del objeto original para evitar modificarlo directamente
-  const { DetalleDispositivo,historial, ...DataStorage } = data || [];
+  // eslint-disable-next-line no-unused-vars
+  const { DetalleDispositivo, historial, ...DataStorage } = data || [];
 
   return {
     ...DataStorage,
     ...(DetalleDispositivo && { ...DetalleDispositivo }), // Añadimos los detalles del dispositivo si existen
   };
 }
-
 
 const deviceConnectUser = [
   { key: "IdUser", value: "IdUser" },
@@ -77,7 +76,7 @@ const detailDevice = {
 
     //Almacenamiento
     { key: "Almacenamiento_detalle", value: "Almacenamiento_detalle" },
-    {key: "Tarjeta_Video", value: "Tarjeta_Video"},
+    { key: "Tarjeta_Video", value: "Tarjeta_Video" },
     ...deviceConnectUser,
   ],
   Laptop: [],
@@ -85,25 +84,18 @@ const detailDevice = {
 // Incluir las mismas propiedades de Pc en Laptop
 detailDevice.Laptop = [...detailDevice.Pc];
 
-
 export function UpdateDevice(id) {
   return useMutation({
     mutationKey: ["UpdateDevice"],
     mutationFn: async (data) => {
-     
       const { data: dataResponse } = await axiosInstance.put(
         `Dispositivos/${id}`,
         data
       );
       return dataResponse;
     },
-    onSuccess: (data) => {
-      if (data?.create) {
-        toast.success("Dispositivo Actualizado correctamente");
-        
-      }
-    }
+    onSuccess: () => {
+      toast.success("Dispositivo Actualizado correctamente");
+    },
   });
-
-
 }

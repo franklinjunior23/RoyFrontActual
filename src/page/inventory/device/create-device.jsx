@@ -13,8 +13,9 @@ import {
 } from "./form/utils/GetDevice";
 import FormLaptop from "./form/pc/Form-Laptop";
 import Sectionchangesdevice from "./form/components/Section-changes-device";
-import { useDataDevice } from "./form/hoocks/state-device-changes";
 import { compareChanges } from "./form/utils/compare-changes";
+import { useDataDevice } from "./form/hoocks/state-device-changes";
+import { toast } from "sonner";
 
 function PageCreateDevice() {
   const [dataDevice, setdataDevice] = useState(null);
@@ -53,22 +54,28 @@ function PageCreateDevice() {
 
   function switchAction(datos) {
     if (data?.data) {
-      compareChanges(datos, dataDevice, [
-        // Arrray 
+      if (ShowChanges) {
+        updateDevice(datos);
+        toast.success('Dispositivo actualizado correctamente')
+        return setShowChanges(false);
+      }
+
+      const DataComparing = compareChanges(datos, dataDevice, [
+        // Arrray
         "Ram_Modulos",
         "Almacenamiento_detalle",
         "Tarjeta_Video",
-        
+
         // String
         "Placa_detalle",
         "Placa_modelo",
         "Procesador_marca",
         "Procesador_modelo",
       ]);
+      AddDataDevice(DataComparing);
       return setShowChanges(true);
 
-     // updateDevice(datos, idDisp);
-      
+      // updateDevice(datos, idDisp);
     }
     mutate(datos);
   }
