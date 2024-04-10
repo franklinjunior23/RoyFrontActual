@@ -84,7 +84,7 @@ const FormPc = ({ control, errors, watch }) => {
           )}
         />
       </div>
-      <main className="md:flex   gap-3">
+      <main className="md:min-[200px]:flex   gap-3">
         <section>
           <div className="grid md:grid-cols-2 md:gap-3">
             <FormRed control={control} />

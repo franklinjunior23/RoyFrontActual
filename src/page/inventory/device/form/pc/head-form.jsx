@@ -21,7 +21,7 @@ function HeadForm({ control, errors }) {
             render={({ field }) => (
               <Label>
                 Nombre 
-                <Input {...field} type="text" />
+                <Input {...field}  type="text" />
               </Label>
             )}
           />

@@ -11,7 +11,7 @@ function LinkCreate({ control }) {
   const [UserAct, setUserAct] = useState(false);
   const [AreaAct, setAreaAct] = useState(false);
   return (
-    <div className="bg-slate-400/30 rounded-lg mt-2 p-4">
+    <div className="bg-slate-400/30 h-full rounded-lg mt-2 p-4">
       <h2 className="text-center font-semibold text-xl">Vincular</h2>
       <main className="grid grid-cols-2 text-center">
         <section>

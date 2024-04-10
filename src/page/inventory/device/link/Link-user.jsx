@@ -17,14 +17,14 @@ function LinkUser({ dataUser }) {
         {dataUser?.apellido}
       </h3>
       <h3 className="capitalize">
-        <span className="font-bold">Cargo:</span>
+        <span className="font-bold">Cargo: </span>
         {String(dataUser?.cargo).toLowerCase()}
       </h3>
       <h3>
         <span className="font-bold">Usuario:</span> {dataUser?.usuario}
       </h3>
       <h3>
-        <span className="font-bold">Contraseña:</span>
+        <span className="font-bold">Contraseña: </span>
         {dataUser?.contraseña !== ""
           ? dataUser?.contraseña
           : "No tiene contraseña"}

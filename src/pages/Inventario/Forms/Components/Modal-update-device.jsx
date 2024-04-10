@@ -1,6 +1,8 @@
 import Switch from "@Components/Buttons/Buttom/Switch";
 import { useState } from "react";
 import { FieldsUpdate } from "../context/fields-update";
+import { Checkbox } from "antd";
+import { Controller } from "react-hook-form";
 
 export default function UpdateDevice({
   setdataHistoryOption,
@@ -18,11 +20,15 @@ export default function UpdateDevice({
       >
         Actualizar
       </button>
-      <dialog open={Show} className="modal  dark:text-black bg-black/40 ">
+      <dialog open={Show} className="modal dark:text-black bg-black/40 ">
         <div className="modal-box ">
           <h3 className="font-bold mb-6 text-2xl text-center">
             ¿Desea registrar en el historial?
           </h3>
+          <header>
+         <Controller control={control} />
+          <Checkbox>No</Checkbox>
+          </header>
 
           <section className="mt-3">
             <span>Opción</span>

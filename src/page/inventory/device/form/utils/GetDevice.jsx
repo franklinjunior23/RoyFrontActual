@@ -1,5 +1,6 @@
 import axiosInstance from "@/helpers/config/axios-instance";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 export function ActionGet(id) {
   return useQuery({
@@ -14,7 +15,7 @@ export function ActionGet(id) {
 
 export function SetValueDevice(data, setvalue) {
   try {
-    const dataNew = addDetalleDevice(data?.data);
+    const dataNew = FactoryDataDevice(data);
     const switchDevice = dataNew?.tipo;
     const deviceDetails = detailDevice[switchDevice] || [];
     deviceDetails.forEach(({ key, value }) => {
@@ -31,15 +32,16 @@ export function SetValueDevice(data, setvalue) {
   }
 }
 
-function addDetalleDevice(data) {
-  const DataStorage = data;
-  const detailsDevice = data?.DetalleDispositivo;
-  delete DataStorage?.DetalleDispositivo;
+export function FactoryDataDevice(data) {
+  // Hacemos una copia del objeto original para evitar modificarlo directamente
+  const { DetalleDispositivo,historial, ...DataStorage } = data || [];
+
   return {
     ...DataStorage,
-    ...detailsDevice,
+    ...(DetalleDispositivo && { ...DetalleDispositivo }), // Añadimos los detalles del dispositivo si existen
   };
 }
+
 
 const deviceConnectUser = [
   { key: "IdUser", value: "IdUser" },
@@ -95,5 +97,13 @@ export function UpdateDevice(id) {
       );
       return dataResponse;
     },
+    onSuccess: (data) => {
+      if (data?.create) {
+        toast.success("Dispositivo Actualizado correctamente");
+        
+      }
+    }
   });
+
+
 }

@@ -17,7 +17,7 @@ export function CreateDevice() {
     },
     onSuccess: (data) => {
       if(data?.create){
-        toast.success("Dispositivo creado correctamente");
+        toast.success("Dispositivo Actualizado correctamente");
         return navigate(-1)
       }
     },
