@@ -20,7 +20,6 @@ function Listbusiness() {
           className="md:min-w-full md:max-w-full "
           modules={[A11y, EffectFade]}
           spaceBetween={1}
-          slidesPerView={2.8}
           breakpoints={{
             320: {
               slidesPerView: 1,
@@ -47,8 +46,8 @@ function Listbusiness() {
               spaceBetween:30
             },
             1400:{
-              slidesPerView:2.8,
-              spaceBetween:50
+              slidesPerView:2.7,
+              spaceBetween:60
             }
           }}
         >

@@ -84,20 +84,20 @@ const FormPc = ({ control, errors, watch }) => {
           )}
         />
       </div>
-      <main className="md:min-[200px]:flex   gap-3">
+      <main className="grid md:grid-cols-2 gap-5">
         <section>
-          <div className="grid md:grid-cols-2 md:gap-3">
-            <FormRed control={control} />
-            <FormMotherboard control={control} errors={errors} />
-          </div>
+          <FormRed control={control} />
+          <FormMotherboard control={control} errors={errors} />
           <FormProcessor control={control} errors={errors} />
+          <Optiondevice control={control} watch={watch} />
         </section>
-
-        <Optiondevice control={control} watch={watch} />
+        <section>
+          <FormRam control={control} errors={errors} />
+          <FormStorage control={control} errors={errors} />
+          <FormGraphics control={control} />
+        </section>
       </main>
-      <FormRam control={control} errors={errors} />
-      <FormStorage control={control} errors={errors} />
-      <FormGraphics control={control} />
+      
     </>
   );
 };

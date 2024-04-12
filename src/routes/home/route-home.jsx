@@ -9,6 +9,7 @@ import CreateDisp from "@Pages/Inventario/Forms/CreateDisp";
 import { Route, Routes } from "react-router-dom";
 import BranchsPage from "@/page/Branchs";
 import Home from "@/page/home/Home";
+import PageCreateDevice from "@/page/inventory/device/create-device";
 
 function RouteHome() {
   return (
@@ -22,8 +23,8 @@ function RouteHome() {
             <Route path="Usuarios/create-area" element={<PageCreateArea />} />
 
             <Route path="Inventario" element={<DevicePage />} />
-            <Route path="Inventario/create" element={<CreateDisp />} />
-            <Route path="Inventario/:idDisp" element={<CreateDisp />} />
+            <Route path="Inventario/create" element={<PageCreateDevice />} />
+            <Route path="Inventario/:idDisp" element={<PageCreateDevice />} />
             <Route path="Inventario/:idDisp/historial" element={<>h22</>} />
            {/*  <Route path="Inventario/create-area" element={<PageCreateArea />} /> */}
             {/*<Route path="*" element={<Navigate to={-1} />} />*/}

@@ -21,7 +21,7 @@ function FormGraphics({ control }: FormGraphicsProps) {
       <div>
         {fields.map((field, index) => (
           <main
-            className="grid md:grid-cols-[repeat(4,1fr)_35px] gap-2 md:gap-3"
+            className="grid md:grid-cols-[repeat(4,1fr)_35px] my-0.5 gap-2 md:gap-3"
             key={field.id}
           >
             <Controller

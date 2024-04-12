@@ -25,7 +25,7 @@ export default function FormCompany({ handleCancel }) {
         defaultValue={""}
         render={({ field }) => (
           <Label>
-            Nombre <Input {...field} placeholder="Nombre de la empresa" />
+            Nombre <Input className="!text-black" {...field} placeholder="Nombre de la empresa" />
           </Label>
         )}
       />
@@ -35,7 +35,7 @@ export default function FormCompany({ handleCancel }) {
         defaultValue={""}
         render={({ field }) => (
           <Label>
-            Nombre <Input {...field} placeholder="Lugar de la empresa" />
+            Nombre <Input className="!text-black" {...field} placeholder="Lugar de la empresa" />
           </Label>
         )}
       />

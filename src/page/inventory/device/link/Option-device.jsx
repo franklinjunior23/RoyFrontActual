@@ -7,8 +7,7 @@ import clsx from "clsx";
 
 function Optiondevice({ watch, control }) {
   const [idUser, setidUser] = useState(undefined);
-  const [UserConnect, setUserConnect] = useState(false);
-  const [AreaConnect, setAreaConnect] = useState(false);
+
   const [AreaData, setAreaData] = useState(undefined);
   const dataUser = watch("User");
 
@@ -16,9 +15,6 @@ function Optiondevice({ watch, control }) {
     (() => {
       setidUser(watch("IdUser"));
       setAreaData(watch("Area"));
-
-      setAreaConnect(AreaData?.length === 0 && true);
-      setUserConnect(Boolean(idUser));
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch("IdUser"), watch("Area")]);
@@ -28,10 +24,8 @@ function Optiondevice({ watch, control }) {
       {!idUser && !AreaData && <LinkCreate control={control} />}
       <main
         className={clsx(
-          "md:h-full",
-          "md:min-w-[290px]",
+          "md:h-full", 
           "h-fit",
-          "md:max-w-[300px]",
           "rounded-lg",
           (AreaData || idUser) && "bg-slate-400/30 dark:bg-white"
         )}

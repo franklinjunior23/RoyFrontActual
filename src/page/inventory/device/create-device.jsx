@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import HeadForm from "./form/pc/head-form";
+import HeadForm from "./form/form devices/head-form";
 import { useForm } from "react-hook-form";
 import Button from "@Components/Input/Button";
-import FormPc from "./form/pc/Form-Pc";
+import FormPc from "./form/form devices/Form-Pc";
 import { useParams } from "react-router-dom";
 import { CreateDevice } from "./form/utils/CreateDevice";
 import {
@@ -11,11 +11,13 @@ import {
   SetValueDevice,
   UpdateDevice,
 } from "./form/utils/GetDevice";
-import FormLaptop from "./form/pc/Form-Laptop";
+import FormLaptop from "./form/form devices/Form-Laptop";
 import Sectionchangesdevice from "./form/components/Section-changes-device";
 import { compareChanges } from "./form/utils/compare-changes";
 import { useDataDevice } from "./form/hoocks/state-device-changes";
 import { toast } from "sonner";
+import HistoryDevice from "./history/History";
+import clsx from "clsx";
 
 function PageCreateDevice() {
   const [dataDevice, setdataDevice] = useState(null);
@@ -56,7 +58,7 @@ function PageCreateDevice() {
     if (data?.data) {
       if (ShowChanges) {
         updateDevice(datos);
-        toast.success('Dispositivo actualizado correctamente')
+        toast.success("Dispositivo actualizado correctamente");
         return setShowChanges(false);
       }
 
@@ -82,8 +84,10 @@ function PageCreateDevice() {
 
   if (LoadingGetDevice) return <h1>Cargando...</h1>;
   return (
-    <main>
+    <main className={clsx(data?.data?.historial && "grid grid-cols-[1fr_340px] gap-4")}>
+
       <form onSubmit={handleSubmit(switchAction)}>
+
         {ShowChanges && (
           <Sectionchangesdevice
             Show={ShowChanges}
@@ -91,6 +95,12 @@ function PageCreateDevice() {
             control={control}
           />
         )}
+        {
+          data?.data?.tipo === "Pc" | data?.data?.tipo === "Laptop" ? ( 
+            <h3>Hola</h3>
+          ):null
+        }
+
         <HeadForm control={control} errors={errors} />
         {WatchTypeDevice === "Pc" && (
           <FormPc control={control} errors={errors} watch={watch} />
@@ -98,10 +108,13 @@ function PageCreateDevice() {
         {WatchTypeDevice === "Laptop" && (
           <FormLaptop control={control} errors={errors} watch={watch} />
         )}
+
         <footer className="md:w-[400px] grid grid-cols-2 gap-2 mt-5">
           <TypeButton />
         </footer>
+
       </form>
+      <HistoryDevice data={data?.data?.historial ?? []} />
     </main>
   );
 }
