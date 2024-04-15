@@ -1,27 +1,25 @@
-import { MarcasPCLAP } from "@/assets/DataDefault";
-import { typePc } from "@/data/Device/pc/types";
-import { validateEmptyForm } from "@/utils/useform/validateEmpty";
-import ErrrorInput from "@Components/Input/ErrrorInput";
-import Input from "@Components/Input/Input";
-import Label from "@Components/Input/Label";
-import Option from "@Components/Input/Option";
-import Select from "@Components/Input/Select";
-import PropTypes from "prop-types";
-import { Controller } from "react-hook-form";
-import Optiondevice from "../../link/Option-device";
+import { MarcasPCLAP } from '@/assets/DataDefault';
+import { typePc } from '@/data/Device/pc/types';
+import { validateEmptyForm } from '@/utils/useform/validateEmpty';
+import ErrrorInput from '@Components/Input/ErrrorInput';
+import Input from '@Components/Input/Input';
+import Label from '@Components/Input/Label';
+import Option from '@Components/Input/Option';
+import Select from '@Components/Input/Select';
+import React from 'react'
+import { Controller } from 'react-hook-form';
+import FormRed from '../components/Form-red';
+import FormMotherboard from '../components/Form-motherboard';
+import FormProcessor from '../components/Form-processor';
+import Optiondevice from '../../link/Option-device';
+import FormRam from '../components/Form-ram';
+import FormStorage from '../components/Form-storage';
+import FormGraphics from '../components/Form-graphics';
 
-// Components Form
-import FormRam from "../components/Form-ram";
-import FormGraphics from "../components/Form-graphics";
-import FormRed from "../components/Form-red";
-import FormProcessor from "../components/Form-processor";
-import FormMotherboard from "../components/Form-motherboard";
-import FormStorage from "../components/Form-storage";
-
-const FormPc = ({ control, errors, watch }) => {
+export default function FormServer({control,errors,watch}) {
   return (
     <>
-      <div className="grid gap-1 mt-2 md:grid-cols-4 md:gap-3">
+    <div className="grid gap-1 mt-2 md:grid-cols-4 md:gap-3">
         <Controller
           control={control}
           name="tipo_Disp"
@@ -100,11 +98,5 @@ const FormPc = ({ control, errors, watch }) => {
       <FormGraphics control={control} />
       
     </>
-  );
-};
-export default FormPc;
-FormPc.propTypes = {
-  control: PropTypes.any,
-  errors: PropTypes.any,
-  watch: PropTypes.any,
-};
+  )
+}

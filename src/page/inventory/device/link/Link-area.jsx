@@ -8,9 +8,9 @@ function LinkArea({ name, createdAt, id }) {
   return (
     <section
       key={name}
-      className=" p-4 mt-4  rounded-lg text-sm text-black"
+      className="p-4 mt-4 text-sm text-black rounded-lg "
     >
-      <header className="flex justify-between items-center">
+      <header className="flex items-center justify-between">
         <div>
           <h3 className="text-xl font-medium">{name} </h3>
           <span className="bg-black py-0.5 px-2 rounded-md text-xs text-white">
@@ -34,5 +34,5 @@ export default LinkArea;
 LinkArea.propTypes = {
   name: PropTypes.string,
   createdAt: PropTypes.string,
-  id: PropTypes.string,
+  id: PropTypes.any,
 };

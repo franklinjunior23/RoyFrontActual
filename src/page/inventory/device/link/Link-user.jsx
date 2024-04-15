@@ -10,7 +10,7 @@ function LinkUser({ dataUser }) {
   const { pathname } = useLocation();
   const { mutate, isLoading, isError } = UnlickUser();
   return (
-    <section className=" p-3 mt-4 rounded-lg text-sm text-black">
+    <section className="p-3 mt-4 text-sm text-black rounded-lg ">
       <IconUser className="mx-auto my-3" size={40} />
       <h3 className="capitalize">
         <span className="font-bold"> Nombre: </span> {dataUser?.nombre}
@@ -30,7 +30,7 @@ function LinkUser({ dataUser }) {
           : "No tiene contraseña"}
       </h3>
 
-      <footer className="mt-4  flex justify-end gap-2">
+      <footer className="flex justify-end gap-2 mt-4">
         <Button
           onClick={mutate}
           type="button"
@@ -44,7 +44,7 @@ function LinkUser({ dataUser }) {
             to={pathnameNav({
               path: pathname,
               newPath: `/Usuarios/${dataUser?.id}`,
-              quantity: 2,
+              quantity: 3,
             })}
           >
             Ver

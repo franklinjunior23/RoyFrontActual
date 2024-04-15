@@ -17,7 +17,7 @@ function ItemNav({ datos }) {
           }  py-3 w-full flex gap-3 rounded-lg hover:bg-white/20  dark:hover:bg-white/20  px-4  items-center`;
         }}
       >
-        <span className="text-xl">{icon}</span> <h3 className="text-base">{name}</h3>
+        <span className="text-xl">{icon}</span> <h3 className="text-sm">{name}</h3>
       </NavLink>
     </div>
   );

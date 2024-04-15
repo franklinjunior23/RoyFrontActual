@@ -13,28 +13,28 @@ function DashboardPage() {
       <div className="md:hidden">
         <Navbar />
       </div>
-      <article className="md:grid grid-cols-[275px_1fr] h-full gap-10 w-full relative">
+      <article className="md:grid grid-cols-[260px_1fr] h-full gap-10 w-full relative">
         <section className="hidden text-white  lg:grid bg-black/95 py-6   rounded-[25px] md:grid ">
-          <header className=" ">
-            <section className="  px-4 custom-scrollNav">
+          <header className="">
+            <section className="px-4 custom-scrollNav">
               <NavLinks Rol={RoleUser} />
             </section>
           </header>
 
-          <footer className="h-auto mx-4 self-end ">
+          <footer className="self-end h-auto mx-4 ">
             <ViewVersion />
 
-            <header className="grid bg-DarkFondo rounded-lg grid-cols-[50px_1fr_30px] justify-between items-center p-2">
+            <header className="grid bg-DarkFondo rounded-lg grid-cols-[46px_1fr_25px] justify-between items-center p-1.5">
               <img
                 src="https://img.freepik.com/psd-gratis/3d-ilustracion-persona-gafas-sol_23-2149436188.jpg?w=826&t=st=1691383252~exp=1691383852~hmac=614a2ba0e9acb94285c13bc9901478344128a4e04bb3e634fcd57264a95d9fe5"
-                className="block  rounded-lg md:justify-between"
+                className="block rounded-lg md:justify-between"
                 alt=""
               />
               <div className="pl-3">
-                <h2 className="text-lg text-white font-semibold">
+                <h2 className="text-sm font-semibold text-white ">
                   {LogedAuth?.nombre}
                 </h2>
-                <span className="self-end text-xs text-white">{RoleUser}</span>
+                <span className="self-end text-[10px] white text-">{RoleUser}</span>
               </div>
               <div>
                 <div className=" tooltip" data-tip="Cerrar Seccion">
@@ -48,7 +48,7 @@ function DashboardPage() {
             </header>
           </footer>
         </section>
-        <section className=" md:pr-1 w-full py-2   h-full overflow-y-auto   custom-scrollbar relative">
+        <section className="relative w-full h-full py-2 overflow-y-auto md:pr-1 custom-scrollbar">
           <Outlet />
         </section>
       </article>

@@ -13,7 +13,7 @@ function HeadForm({ control, errors }) {
   return (
     <>
       <header>
-        <div className="grid md:grid-cols-4 md:gap-3 gap-1">
+        <div className="grid gap-1 md:grid-cols-4 md:gap-3">
           <Controller
             control={control}
             name="nombre"
@@ -70,7 +70,7 @@ function HeadForm({ control, errors }) {
           <Controller
             control={control}
             name="estado"
-            defaultValue={""}
+            defaultValue={"Activo"}
             rules={{
               validate: {
                 validateEmptyForm,

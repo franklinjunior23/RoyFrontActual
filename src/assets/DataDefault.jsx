@@ -1,3 +1,4 @@
+import { IconDatabase } from "@tabler/icons-react";
 import {
   IconTicket,
   IconBook,
@@ -223,28 +224,29 @@ export const NavData = [
   {
     name: "Home",
     url: "Home",
-    icon: <IconLayoutDashboard size={30} />,
+    icon: <IconLayoutDashboard size={28} />,
   },
   {
     name: "Empresas",
     url: "Empresas",
-    icon: <IconBuildingWarehouse size={30} />,
+    icon: <IconBuildingWarehouse size={28} />,
   },
   {
     name: "Ticket",
     url: "Ticket",
-    icon: <IconTicket size={30} />,
+    icon: <IconTicket size={28} />,
   },
   {
     name: "Base de Conoc.",
     url: "BaseConocimiento",
-    icon: <IconBook size={30} />,
+    icon: <IconBook size={28} />,
   },
-  { name: "Reportes", url: "Reportes", icon: <IconFileText size={30} /> },
+  { name: "CMDB", url: "cmdb", icon: <IconDatabase size={28} /> },
+  { name: "Reportes", url: "Reportes", icon: <IconFileText size={28} /> },
   {
     name: "Configuracion",
     url: "Configuracion",
-    icon: <IconSettings size={30} />,
+    icon: <IconSettings size={28} />,
   },
 ];
 
@@ -252,38 +254,39 @@ export const LinksAdministratorData = [
   {
     name: "Home",
     url: "Home",
-    icon: <IconLayoutDashboard size={30} />,
+    icon: <IconLayoutDashboard size={28} />,
   },
   {
     name: "Empresas",
     url: "Empresas",
-    icon: <IconBuildingWarehouse size={30} />,
+    icon: <IconBuildingWarehouse size={28} />,
   },
   {
     name: "Ticket",
     url: "Ticket",
-    icon: <IconTicket size={30} />,
+    icon: <IconTicket size={28} />,
   },
   {
     name: "Base de Conoc.",
     url: "BaseConocimiento",
-    icon: <IconBook size={30} />,
+    icon: <IconBook size={28} />,
   },
   {
     name: "Usuarios",
     url: "Users",
-    icon: <IconUsersGroup size={30} />,
+    icon: <IconUsersGroup size={28} />,
   },
   {
     name: "Dispositivos",
     url: "Dispositivos",
-    icon: <IconAffiliate size={30} />,
+    icon: <IconAffiliate size={28} />,
   },
-  { name: "Reportes", url: "Reportes", icon: <IconFileText size={30} /> },
+  { name: "CMDB", url: "cmdb", icon: <IconDatabase size={28} /> },
+  { name: "Reportes", url: "Reportes", icon: <IconFileText size={28} /> },
   {
     name: "Configuracion",
     url: "Configuracion",
-    icon: <IconSettings size={30} />,
+    icon: <IconSettings size={28} />,
   },
 ];
 
@@ -316,6 +319,7 @@ export const CategoryInventaio = [
   { name: "Red" },
   { name: "Impresora" },
   { name: "Camara" },
+  {name:'Acces Point'}
 ];
 
 export const MarcasPCLAP = [

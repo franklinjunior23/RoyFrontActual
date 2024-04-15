@@ -16,7 +16,7 @@ function NavLinks({ Rol }) {
     }
 
     return (
-      <section className="grid gap-2 mb-10   mt-5 dark:text-white ">
+      <section className="grid gap-2    mt-2 dark:text-white ">
         {LinksUrl.data?.map((dat, index) => (
           <ItemNav key={index} datos={dat} />
         ))}

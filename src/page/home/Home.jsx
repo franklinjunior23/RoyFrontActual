@@ -12,11 +12,13 @@ import AddCompany from "./components/AddCompany";
 function Home() {
   const { nombreE } = useParams();
 
-  const { data } = useQuery({
+  const { data,isLoading } = useQuery({
     queryFn: GetsInfoDash,
     queryKey: ["DataInfoHome"],
   });
 
+  if (isLoading) return <h2>Cargando...</h2>;
+  
   if (nombreE) return <Outlet />;
 
   return (
@@ -27,15 +29,15 @@ function Home() {
         <section className="grid md:grid-cols-[100px_1fr_320px] gap-5 h-fit mt-8">
           <AddCompany/>
           <Listbusiness />
-          <section className="grid grid-rows-2 gap-1 h-full">
+          <section className="grid h-full grid-rows-2 gap-1">
             <ItemAll text="Empresas total" count={20} />
             <ItemAll text="Sucursales total" count={20} />
           </section>
         </section>
       </main>
 
-      <article className="grid mt-2 md:grid-cols-3 gap-6">
-        <article className="grid grid-cols-2 gap-6 grid-rows-2 h-fit ">
+      <article className="grid gap-6 mt-2 md:grid-cols-3">
+        <article className="grid grid-cols-2 grid-rows-2 gap-6 h-fit ">
           <ItemView
             Count={data?.Dispositivo?.LaptopCount}
             Title={"Tickets"}
@@ -71,7 +73,7 @@ export default Home;
 
 function ItemAll({ count, text }) {
   return (
-    <aside className="flex justify-between items-center p-5 py-3 bg-black rounded-xl text-white">
+    <aside className="flex items-center justify-between p-5 py-3 text-white bg-black rounded-xl">
       <span className="flex items-center gap-4 text-sm">
         {text} <IconBuilding  size={28} />
       </span>

@@ -25,7 +25,7 @@ function Optiondevice({ watch, control }) {
       <main
         className={clsx(
           "md:h-full", 
-          "h-fit",
+          "h-fit w-full",
           "rounded-lg",
           (AreaData || idUser) && "bg-slate-400/30 dark:bg-white"
         )}

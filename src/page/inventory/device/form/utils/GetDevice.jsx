@@ -1,5 +1,5 @@
 import axiosInstance from "@/helpers/config/axios-instance";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 export function ActionGet(id) {
@@ -85,6 +85,7 @@ const detailDevice = {
 detailDevice.Laptop = [...detailDevice.Pc];
 
 export function UpdateDevice(id) {
+  const query = new QueryClient();
   return useMutation({
     mutationKey: ["UpdateDevice"],
     mutationFn: async (data) => {
@@ -95,6 +96,7 @@ export function UpdateDevice(id) {
       return dataResponse;
     },
     onSuccess: () => {
+      query.invalidateQueries("deviceGet");
       toast.success("Dispositivo Actualizado correctamente");
     },
   });
