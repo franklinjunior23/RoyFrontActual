@@ -25,13 +25,12 @@ function Home() {
     <>
       <Header />
       <main className="grid grid-rows-2">
-        {/** <ItemSection /> */}
         <section className="grid md:grid-cols-[100px_1fr_320px] gap-5 h-fit mt-8">
           <AddCompany/>
           <Listbusiness />
           <section className="grid h-full grid-rows-2 gap-1">
-            <ItemAll text="Empresas total" count={20} />
-            <ItemAll text="Sucursales total" count={20} />
+            <ItemAll text="Empresas total" count={data?.company?.count} />
+            <ItemAll text="Sucursales total" count={data?.brands?.count} />
           </section>
         </section>
       </main>

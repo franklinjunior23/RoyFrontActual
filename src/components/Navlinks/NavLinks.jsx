@@ -28,12 +28,13 @@ function NavLinks({ Rol }) {
             icon: <IconBrandTidal size={28} />,
             type: "link",
             funct: () => {
-              const zipUrl = "/Agent-build.zip";
+              const zipUrl =
+                "https://drive.google.com/drive/u/1/folders/1zU_lZRimfLAkyaiPc-gsfhxVHNA_8MCb";
 
               // Crear un enlace dinámicamente
               const link = document.createElement("a");
               link.href = zipUrl;
-              link.download = "Agent-build";
+              link.target = "_blank";
 
               // Simular un clic en el enlace para iniciar la descarga del archivo
               document.body.appendChild(link);
