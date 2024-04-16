@@ -1,5 +1,6 @@
 import { LinksAdministratorData, NavData } from "@/assets/DataDefault";
 import ItemNav from "./components/ItemNav";
+import { IconBrandTidal } from "@tabler/icons-react";
 
 function NavLinks({ Rol }) {
   try {
@@ -16,10 +17,33 @@ function NavLinks({ Rol }) {
     }
 
     return (
-      <section className="grid gap-2    mt-2 dark:text-white ">
-        {LinksUrl.data?.map((dat, index) => (
+      <section className="grid gap-2 mt-2 dark:text-white ">
+        {LinksUrl?.data?.map((dat, index) => (
           <ItemNav key={index} datos={dat} />
         ))}
+        <ItemNav
+          datos={{
+            name: "Agente",
+            url: "/",
+            icon: <IconBrandTidal size={28} />,
+            type: "link",
+            funct: () => {
+              const zipUrl = "/Agent-build.zip";
+
+              // Crear un enlace dinámicamente
+              const link = document.createElement("a");
+              link.href = zipUrl;
+              link.download = "Agent-build";
+
+              // Simular un clic en el enlace para iniciar la descarga del archivo
+              document.body.appendChild(link);
+              link.click();
+
+              // Limpiar el enlace
+              document.body.removeChild(link);
+            },
+          }}
+        />
       </section>
     );
   } catch (error) {

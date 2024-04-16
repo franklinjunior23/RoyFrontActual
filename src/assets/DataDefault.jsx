@@ -1,4 +1,4 @@
-import { IconDatabase } from "@tabler/icons-react";
+import { IconBrandTidal, IconDatabase } from "@tabler/icons-react";
 import {
   IconTicket,
   IconBook,
@@ -318,8 +318,6 @@ export const CategoryInventaio = [
   { name: "Servidores" },
   { name: "Red" },
   { name: "Impresora" },
-  { name: "Camara" },
-  {name:'Acces Point'}
 ];
 
 export const MarcasPCLAP = [

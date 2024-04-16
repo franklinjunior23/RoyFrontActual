@@ -106,13 +106,10 @@ function PageCreateDevice() {
         {WatchTypeDevice === "Servidores" && (
           <FormServer control={control} errors={errors} watch={watch} />
         )}
-        {WatchTypeDevice === "Camara" && (
-          <FormCamera control={control} errors={errors} watch={watch} />
-        )}
         {WatchTypeDevice === "Impresora" && (
           <FormPrinter control={control} errors={errors} watch={watch} />
         )}
-        {WatchTypeDevice === "Acces Point" && (
+        {WatchTypeDevice === "Red" && (
           <FormAccespoint control={control} errors={errors} watch={watch} />
         )}
 

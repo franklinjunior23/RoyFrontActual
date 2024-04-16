@@ -3,11 +3,14 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
 function ItemNav({ datos }) {
-  const { name, url, icon } = datos;
+  const { name, url, icon,funct } = datos;
+
+
 
   return (
     <div
       className={`transition-all ease-in-out hover:duration-300  flex gap-5`}
+      onClick={funct}
     >
       <NavLink
         to={url}
@@ -30,5 +33,6 @@ ItemNav.propTypes = {
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     icon: PropTypes.any,
+    funct: PropTypes.func,
   }).isRequired,
 };
