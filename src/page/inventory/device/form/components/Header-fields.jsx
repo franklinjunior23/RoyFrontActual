@@ -21,7 +21,7 @@ function Headerfields({ fields }) {
   return (
     <>
       <header className="flex items-center justify-between">
-        <section className="flex items-center gap-5 px-2 py-4">
+        <section className="flex items-center gap-5 px-2 pb-4 ">
           <div className="mx-2">
             {data?.data?.tipo === "Pc" && Typedevice.pc}
             {data?.data?.tipo === "Laptop" && Typedevice.laptop}

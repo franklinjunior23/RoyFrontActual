@@ -92,7 +92,6 @@ const FormPc = ({ control, errors, watch }) => {
           </div>
           <FormProcessor control={control} errors={errors} />
         </section>
-
         <Optiondevice control={control} watch={watch} />
       </main>
       <FormRam control={control} errors={errors} />

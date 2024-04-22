@@ -19,6 +19,7 @@ import { IconUser } from "@tabler/icons-react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { pathnameNav } from "@/helpers/utils/link-pathname";
 import { TimeFromPeruvian } from "@/helpers/utils/conver-day-ddmmyy";
+import Notes from "./Notes";
 
 function Summary() {
   const date = new Date().toLocaleDateString();
@@ -39,7 +40,7 @@ function Summary() {
   };
   if (isLoading) return <h3>Cargando...</h3>;
   const dataDevice = FactoryDataDevice(data?.data);
-  console.log(dataDevice);
+
   return (
     <>
       <section className="grid gap-5 md:grid-cols-4">
@@ -186,8 +187,8 @@ function Summary() {
         </section>
 
         <section>
-          <section className="flex justify-between gap-5">
-            <section className="w-1/2">
+          <section className="grid gap-5 md:grid-cols-2">
+            <section className="">
               <ContentBox className=" md:h-fit">
                 <h3 className="flex items-center justify-between gap-2">
                   Vinculado <IconBrandOpenSource size={30} />
@@ -199,7 +200,7 @@ function Summary() {
                       <h3 className="flex items-center justify-center gap-2 my-1">
                         User Conected <IconUser size={25} />
                       </h3>
-                      <ul className="text-xs">
+                      <ul className="grid text-xs">
                         <ItemVincule label="Nombre">
                           {dataDevice?.User?.nombre}
                           {dataDevice?.User?.apellido}
@@ -275,16 +276,8 @@ function Summary() {
                 </div>
               </ContentBox>
             </section>
-            <ContentBox className=" w-1/2 h-[200px] md:h-[320px]">
-              <div className="flex justify-between">
-                <h3 className="flex items-center gap-2">
-                  Notas <IconNotes size={24} />
-                </h3>
-                <Button>
-                  <IconPlus size={15} className="text-white" />
-                </Button>
-              </div>
-              <div></div>
+            <ContentBox className="h-[200px] md:h-[440px] ">
+              <Notes notes={dataDevice?.notes} />
             </ContentBox>
           </section>
         </section>

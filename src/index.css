@@ -190,7 +190,7 @@ body {
 }
 @layer components {
   .form-input {
-    @apply border-2 focus:border-blue-500/40 p-2 dark:bg-DarkComponent text-sm outline-none dark:text-white/80 dark:border-DarkColor  rounded-md w-full;
+    @apply w-full p-2 text-sm border-2 rounded-md outline-none focus:border-blue-500/40 dark:bg-DarkComponent dark:text-white/80 dark:border-DarkColor;
   }
   .AsideDots {
     @apply border dark:border-white/20 dark:bg-[#262626] bg-white z-50 p-1.5 rounded-md shadow-md;
@@ -200,4 +200,12 @@ body {
    dark:bg-black/10 dark:border-white/20 dark:focus:border-white/50 dark:text-white
   }
   
+}
+textarea{
+  field-sizing: content;
+  max-width: 100%;
+  min-height: 100px;
+  max-height: 220px;
+  @apply px-2 text-sm py-2 rounded-md border w-full bg-white focus:border-black/30 text-black focus:border-blue-400 focus:border-spacing-0.5
+  dark:bg-black/10 dark:border-white/20 dark:focus:border-white/50 dark:text-white
 }

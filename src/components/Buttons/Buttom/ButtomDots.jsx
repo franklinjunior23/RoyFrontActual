@@ -10,7 +10,6 @@ function ButtomDots({ ClassName, Title, Options, OptionDownload, Icon }) {
 
   function HandleOption(FuntionOption, IsLoading) {
     HandleOpen();
-    console.log(FuntionOption)
     if (FuntionOption) {
       FuntionOption();
       // Ejecutar la función solo si no está en proceso de carga (IsLoading !== true)
@@ -37,7 +36,7 @@ function ButtomDots({ ClassName, Title, Options, OptionDownload, Icon }) {
           {Icon ? (
             Icon
           ) : (
-            <IconDots className="dark:text-white text-black " size={22} />
+            <IconDots className="text-black dark:text-white " size={22} />
           )}
         </button>
         {ActiveButton && (
@@ -50,7 +49,7 @@ function ButtomDots({ ClassName, Title, Options, OptionDownload, Icon }) {
             {OptionDownload && (
               <button
                 onClick={() => OptionDownload}
-                className="text-left hover:bg-neutral-400/20 dark:hover:bg-white/20 pl-3 py-2 rounded-md"
+                className="py-2 pl-3 text-left rounded-md hover:bg-neutral-400/20 dark:hover:bg-white/20"
               >
                 <OptionDownload />
               </button>
@@ -60,7 +59,7 @@ function ButtomDots({ ClassName, Title, Options, OptionDownload, Icon }) {
               <button
                 key={index}
                 onClick={() => HandleOption(item.Function, item?.IsLoading)}
-                className="text-left text-black dark:text-white hover:bg-neutral-400/20 dark:hover:bg-white/20 pl-3 py-2 rounded-md"
+                className="py-2 pl-3 text-left text-black rounded-md dark:text-white hover:bg-neutral-400/20 dark:hover:bg-white/20"
               >
                 {item?.IsLoading ? "Cargando ..." : item.label}
               </button>
@@ -70,7 +69,7 @@ function ButtomDots({ ClassName, Title, Options, OptionDownload, Icon }) {
       </div>
       {ActiveButton && (
         <div
-          className="fixed w-screen h-screen  top-0 right-0 overflow-hidden z-30"
+          className="fixed top-0 right-0 z-30 w-screen h-screen overflow-hidden"
           onClick={HandleOpen}
         ></div>
       )}
