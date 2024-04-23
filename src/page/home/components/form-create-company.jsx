@@ -35,12 +35,12 @@ export default function FormCompany({ handleCancel }) {
         defaultValue={""}
         render={({ field }) => (
           <Label>
-            Nombre <Input className="!text-black" {...field} placeholder="Lugar de la empresa" />
+            Lugar <Input className="!text-black" {...field} placeholder="Lugar de la empresa" />
           </Label>
         )}
       />
 
-      <footer className="mt-5 flex justify-end">
+      <footer className="flex justify-end mt-5">
         <Button type="submit">Crear</Button>
         <Button variant="second" type="button" onClick={handleCancel}>
           Cancelar

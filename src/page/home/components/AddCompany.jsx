@@ -16,7 +16,7 @@ function AddCompany() {
   return (
     <>
       <button
-        className="border-2 border-dashed	rounded-lg grid place-content-center "
+        className="grid border-2 border-dashed rounded-lg place-content-center "
         onClick={handleOk}
       >
         Crear Empresa
@@ -30,19 +30,6 @@ function AddCompany() {
         onOk={handleCancel}
         onCancel={handleCancel}
         footer={null}
-        /**
-         * footer={[
-          <Button key="back" onClick={handleCancel}>
-            Return
-          </Button>,
-          <button
-            className="bg-black ml-3 hover:bg-black/90 text-[14px] py-1.5 px-3.5 text-white rounded-[6px]"
-            key="submit"
-          >
-            Submit
-          </button>,
-        ]}
-         */
       >
        <FormCompany handleCancel={handleCancel}  />
       </Modal>
