@@ -9,11 +9,6 @@ import HeadSucur from "@Components/Section/components/HeadSucur";
 function BranchsPage() {
   const { nombreE, sucursalN } = useParams();
   const aleatorio = Math.floor(Math.random() * ColorConteners.length);
-  /* const CreateSuc = useMutation({
-    mutationFn: CreateSucursalByEmpresa,
-    onSuccess: QueryClitn.invalidateQueries("Sucursales"),
-    
-  }); */
   return (
     <main>
       <RetrocederItem />
@@ -23,7 +18,7 @@ function BranchsPage() {
         <>
           <section className="mt-6">
             <div
-              className="w-full px-4 py-4 rounded-lg flex justify-center items-center gap-4 text-2xl font-bold text-white"
+              className="flex items-center justify-center w-full gap-4 px-4 py-4 text-2xl font-bold text-white rounded-lg"
               style={{ background: ColorConteners[aleatorio]?.name }}
             >
               {nombreE} <IconEmpresa />
@@ -33,7 +28,7 @@ function BranchsPage() {
             <HeadSucur />
           </section>
           <section>
-            <ListSucursales empresa={nombreE} />
+            <ListSucursales  />
           </section>
         </>
       )}

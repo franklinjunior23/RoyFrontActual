@@ -24,20 +24,16 @@ import TruncateText from "@/utils/TruncateTeaxt";
 import PdfDevices from "@Components/pdf/users/pdf-devices.total";
 import { UsecontextAuth } from "@/context/provider-auth";
 import { TimeFromPeruvian } from "@/helpers/utils/conver-day-ddmmyy";
+import { DeleteDevice } from "./Utils/Device-services";
 
 function GeneralSect({data}) {
   const [TextFilter, setTextFilter] = useState("");
   const { nombreE, sucursalN, idDisp } = useParams();
   const { RoleUser } = UsecontextAuth();
+  const {mutate}= DeleteDevice()
   
 
-  const SoporteOption = [
-    { label: "Editar", Function: () => console.log("Editando") },
-  ];
-  const AdminOptions = [
-    { label: "Editar", Function: () => console.log("Editando") },
-    { label: "Eliminar", Function: () => console.log("Eliminar") },
-  ];
+
   const ColumnDate = createColumnHelper();
   const columns = [
     { header: "#", accessorFn: (row, index) => index + 1 },
@@ -97,7 +93,7 @@ function GeneralSect({data}) {
           to={`${ValueAgent.getValue()}`}
           className="grid place-content-center"
         >
-          <IconEye className="bg-black p-1 rounded-md text-white " size={35} />
+          <IconEye className="p-1 text-white bg-black rounded-md " size={35} />
         </Link>
       ),
     }),
@@ -108,7 +104,6 @@ function GeneralSect({data}) {
         const Options_Downloads = () => {
           const DataDevice = DataFindIdDevice({ data, IdItem });
           const DataDisp = { data: { ...DataDevice } };
-
           return (
             <PDFDownloadLink
               fileName={`${DataDevice?.codigo_dispositivo ?? "Disp"}`}
@@ -118,6 +113,14 @@ function GeneralSect({data}) {
             </PDFDownloadLink>
           );
         };
+        const SoporteOption = [
+          { label: "Editar", Function: () => console.log("Editando") },
+          { label: "Eliminar", Function: () => mutate(IdItem.getValue()) },
+        ];
+        const AdminOptions = [
+          { label: "Editar", Function: () => console.log("Editando") },
+          { label: "Eliminar", Function: () => mutate(IdItem.getValue()) },
+        ];
 
         if (RoleUser === "Soporte") {
           return (
@@ -167,7 +170,7 @@ function GeneralSect({data}) {
           </PDFDownloadLink>
         )}
       />
-      <main className="mt-3 pb-5">
+      <main className="pb-5 mt-3">
         <header className="mb-5">
           <input
             type="text"
@@ -178,7 +181,7 @@ function GeneralSect({data}) {
           />
         </header>
         <section className="rounded-2xl border  border-collapse border-gray-200/60  dark:border-gray-100/10 h-[575px] dark:bg-DarkComponent">
-          <table className="table text-center    md:w-full dark:bg-DarkComponent   rounded-2xl text-white">
+          <table className="table text-center text-white md:w-full dark:bg-DarkComponent rounded-2xl">
             <thead>
               {Table.getHeaderGroups().map((HeaderGroup) => (
                 <tr key={HeaderGroup.id}>
@@ -197,7 +200,7 @@ function GeneralSect({data}) {
               {Table.getRowModel()?.rows.map((row, index) => (
                 <tr
                   key={index}
-                  className=" border-t border-gray-200 dark:border-gray-100/10 dark:text-white dark:hover:bg-black/20 hover:bg-black/5 text-black "
+                  className="text-black border-t border-gray-200 dark:border-gray-100/10 dark:text-white dark:hover:bg-black/20 hover:bg-black/5"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <td
