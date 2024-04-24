@@ -14,7 +14,7 @@ function ModalCreate({ funct, type }) {
     }
   };
   return (
-    <aside className="absolute top-16 right-8 z-10  w-[270px] py-4 px-3 rounded-2xl bg-slate-800 lg:w-[300px] ">
+    <aside className="absolute top-50 right-8 z-10  w-[270px] py-4 px-3 rounded-2xl bg-slate-800 lg:w-[300px] ">
       <TypeModal />
     </aside>
   );

@@ -4,11 +4,11 @@ import PageUser from "@Pages/Inventario/Users";
 import PageCreateArea from "@Pages/Inventario/Area/PageCreate";
 import DevicePage from "@/pages/Inventario/device";
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import BranchsPage from "@/page/Branchs";
 import Home from "@/page/home/Home";
 import PageCreateDevice from "@/page/inventory/device/create-device";
 import { DataFieldsBandle } from "@/page/inventory/device/form/const/Fields-brangdle";
 import Headerfields from "@/page/inventory/device/form/components/Header-fields";
+import BranchsPage from "@/page/branch/Branchs";
 
 
 

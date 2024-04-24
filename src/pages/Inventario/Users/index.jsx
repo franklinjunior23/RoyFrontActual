@@ -5,14 +5,16 @@ import { GetUserById } from "@Services/ApiGets";
 function PageUser() {
   const {  idUsuario } = useParams();
 
-  var { data,isLoading } = useQuery({
+  const { data,isLoading } = useQuery({
     queryKey: ["UserFind"],
     queryFn: () => GetUserById(idUsuario),
   });
+  
   if(isLoading) return <h2>Cargando ...</h2>
+  console.log(data)
   return (
     <main>
-      <Form data={data?.resp ?? []} />
+      <Form data={data.resp ?? []} />
     </main>
   );
 }
