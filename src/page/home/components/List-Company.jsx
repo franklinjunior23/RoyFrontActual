@@ -16,7 +16,7 @@ function Listbusiness() {
   if (isError) return <h2>Ha sucedido un error</h2>;
   return (
     <>
-      <section className="min-w-full h-fit max-w-full flex gap-4">
+      <section className="min-w-full h-fit max-w-full flex flex-col md:flex-row gap-4">
         <AddCompany />
         <Swiper
           className="w-full flex gap-5"
@@ -24,11 +24,11 @@ function Listbusiness() {
           spaceBetween={1}
           breakpoints={{
             320: {
-              slidesPerView: 1,
+              slidesPerView: .7,
               spaceBetween: 20,
             },
             480: {
-              slidesPerView: 1.2,
+              slidesPerView: 1,
               spaceBetween: 40,
             },
             640: {

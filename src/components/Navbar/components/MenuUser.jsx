@@ -10,26 +10,27 @@ import Notify from "../../Notify/Notify";
 /* eslint-disable react/prop-types */
 function MenuUser({ User }) {
   const [ActiveModUser, setActiveModUser] = useState(false);
-  const [ThemeActual, setThemeActual] = useState(() => {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    } else {
-      return "light";
-    }
-  });
-
   const { nombre } = User;
-  useEffect(() => {
-    if (ThemeActual == "dark") {
-      document.querySelector("html").classList.add("dark");
-    } else {
-      document.querySelector("html").classList.remove("dark");
-    }
-  }, [ThemeActual]);
+  // const [ThemeActual, setThemeActual] = useState(() => {
+  //   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  //     return "dark";
+  //   } else {
+  //     return "light";
+  //   }
+  // });
 
-  function HandleTheme() {
-    setThemeActual((value) => (value == "light" ? "dark" : "light"));
-  }
+  //
+  // useEffect(() => {
+  //   if (ThemeActual == "dark") {
+  //     document.querySelector("html").classList.add("dark");
+  //   } else {
+  //     document.querySelector("html").classList.remove("dark");
+  //   }
+  // }, [ThemeActual]);
+
+  // function HandleTheme() {
+  //   setThemeActual((value) => (value == "light" ? "dark" : "light"));
+  // }
   const ModUserActive = () => {
     setActiveModUser(!ActiveModUser);
   };
@@ -46,7 +47,7 @@ function MenuUser({ User }) {
         {ActiveModUser && <ModMenUser />}
       </section>
       <section className="  rounded-lg px-2 border  lg:px-3 py-1">
-        {ThemeActual == "light" ? (
+        {/* {ThemeActual == "light" ? (
           <IconMoonFilled
             onClick={HandleTheme}
             className=" cursor-pointer
@@ -63,12 +64,9 @@ function MenuUser({ User }) {
             width={30}
             height={30}
           />
-        )}
+        )} */}
       </section>
-      <section
-        className="border relative  rounded-lg px-2 py-1 h-full flex items-center cursor-pointer text-black dark:text-white"
-       
-      >
+      <section className="border relative  rounded-lg px-2 py-1 h-full flex items-center cursor-pointer text-black dark:text-white">
         <Notify />
       </section>
     </div>

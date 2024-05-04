@@ -5,8 +5,6 @@ import { toast } from "sonner";
 import {
   IconEye,
   IconEyeOff,
-  /*IconMoonFilled,
-  IconBrightnessUp, */
 } from "@tabler/icons-react";
 
 import { UsecontextAuth } from "@/context/provider-auth";

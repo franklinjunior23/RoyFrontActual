@@ -20,7 +20,7 @@ function Optiondevice({ watch, control }) {
   }, [watch("IdUser"), watch("Area")]);
 
   return (
-    <div className="">
+    <div className="md:w-[300px]">
       {!idUser && !AreaData && <LinkCreate control={control} />}
       <main
         className={clsx(

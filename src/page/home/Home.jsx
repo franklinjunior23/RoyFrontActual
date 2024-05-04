@@ -7,18 +7,17 @@ import ListNotify from "@/pages/Home/components/ListNotify";
 import Listbusiness from "./components/List-Company";
 import { IconBuilding } from "@tabler/icons-react";
 import PropTypes from "prop-types";
-import AddCompany from "./components/AddCompany";
 
 function Home() {
   const { nombreE } = useParams();
 
-  const { data,isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: GetsInfoDash,
     queryKey: ["DataInfoHome"],
   });
 
   if (isLoading) return <h2>Cargando...</h2>;
-  
+
   if (nombreE) return <Outlet />;
 
   return (
@@ -26,7 +25,6 @@ function Home() {
       <Header />
       <main className="grid grid-rows-2">
         <section className="grid md:grid-cols-[1fr_320px] gap-5 h-fit mt-8">
-         
           <Listbusiness />
           <section className="grid h-full grid-rows-2 gap-1">
             <ItemAll text="Empresas total" count={data?.company?.count} />
@@ -61,10 +59,6 @@ function Home() {
         <article className=""></article>
         <ListNotify />
       </article>
-
-      {/* <aside>
-              Notificaciones
-            </aside> */}
     </>
   );
 }
@@ -74,7 +68,7 @@ function ItemAll({ count, text }) {
   return (
     <aside className="flex items-center justify-between p-5 py-3 text-white bg-black rounded-xl">
       <span className="flex items-center gap-4 text-sm">
-        {text} <IconBuilding  size={28} />
+        {text} <IconBuilding size={28} />
       </span>
       <span className="font-bold">{count}</span>
     </aside>

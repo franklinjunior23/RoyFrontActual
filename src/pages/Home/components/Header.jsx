@@ -1,4 +1,5 @@
 
+import { Input } from "@/componentUI/ui/input";
 import Buttom from "@Components/Buttons/Buttom/Buttom";
 
 import { IconBell, IconSearch } from "@tabler/icons-react";
@@ -18,13 +19,11 @@ function Header() {
         </p>
       </section>
       <section className="self-start  gap-2 hidden md:flex ">
-        <label className="flex items-center gap-2 form-input ">
+        <label className="flex items-center gap-2 form-input focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
+        focus:outline-1 border rounded-md px-2">
           <IconSearch />
-          <input
-            type="text"
-            placeholder="Buscar"
-            className=" w-[400px] border-none form-input p-0"
-          />
+          <Input className="md:w-[400px]  border-none focus:outline-none focus:border-none file:bg-none focus-visible:ring-0 focus-visible:ring-offset-0" />
+          
         </label>
         <Buttom >
           <IconBell />

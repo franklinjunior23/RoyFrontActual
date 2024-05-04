@@ -14,7 +14,7 @@ function FormMotherboard({ control, errors }: { control: any; errors: any }) {
       <h2 className="font-semibold text-xl border-b my-2 border-black/20 dark:border-white/40">
         Placa Madre
       </h2>
-      <main className="grid grid-cols-[1fr_1fr_60px] gap-3">
+      <main className="grid grid-cols-3 gap-3">
         <Controller
           control={control}
           name="Placa_modelo"

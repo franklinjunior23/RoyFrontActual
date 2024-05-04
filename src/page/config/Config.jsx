@@ -6,11 +6,11 @@ import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 function PageConfig() {
-  const { control, handleSubmit,setValue } = useForm();
-  const {LogedAuth} = UsecontextAuth();
+  const { control, handleSubmit, setValue } = useForm();
+  const { LogedAuth } = UsecontextAuth();
 
   useEffect(() => {
-    function SetValues(){
+    function SetValues() {
       setValue("name", LogedAuth?.nombre);
       setValue("lastname", LogedAuth?.apellido);
     }
@@ -57,7 +57,7 @@ function PageConfig() {
             render={({ field }) => (
               <Label>
                 Correo
-                <Input {...field} type={'email'}    />
+                <Input {...field} type={"email"} />
               </Label>
             )}
           />
@@ -74,7 +74,9 @@ function PageConfig() {
             alt="Imagen User for intisoft"
             className="w-48 rounded-full"
           />
-          <div className="absolute hidden  place-content-center group-hover/imageupload:visible group-hover/imageupload:grid 	 top-0 w-full h-full bg-black/20  left-0">Cambiar Imagen</div>
+          <div className="absolute hidden  place-content-center group-hover/imageupload:visible group-hover/imageupload:grid 	 top-0 w-full h-full bg-black/20  left-0">
+            Cambiar Imagen
+          </div>
         </section>
       </main>
 
