@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, EffectFade } from "swiper/modules";
 import CompanyItem from "./card-company";
+import AddCompany from "./AddCompany";
 
 function Listbusiness() {
   // llamada a la api
@@ -15,9 +16,10 @@ function Listbusiness() {
   if (isError) return <h2>Ha sucedido un error</h2>;
   return (
     <>
-      <section className="min-w-full h-fit max-w-full">
+      <section className="min-w-full h-fit max-w-full flex gap-4">
+        <AddCompany />
         <Swiper
-          className="md:min-w-full md:max-w-full "
+          className="w-full flex gap-5"
           modules={[A11y, EffectFade]}
           spaceBetween={1}
           breakpoints={{
@@ -33,22 +35,30 @@ function Listbusiness() {
               slidesPerView: 1.7,
               spaceBetween: 40,
             },
-            700:{
-              slidesPerView:2,
-              spaceBetween:30
+            700: {
+              slidesPerView: 2,
+              spaceBetween: 30,
             },
-            900:{
-              slidesPerView:3,
-              spaceBetween:30
+            900: {
+              slidesPerView: 3,
+              spaceBetween: 30,
             },
-            1000:{
-              slidesPerView:1,
-              spaceBetween:30
+            1000: {
+              slidesPerView: 1,
+              spaceBetween: 30,
             },
-            1400:{
-              slidesPerView:2.7,
-              spaceBetween:60
-            }
+            1400: {
+              slidesPerView: 2.1,
+              spaceBetween: 60,
+            },
+            1500: {
+              slidesPerView: 2.1,
+              spaceBetween: 60,
+            },
+            1700: {
+              slidesPerView: 2.7,
+              spaceBetween: 80,
+            },
           }}
         >
           {data?.data?.map((company, index) => (

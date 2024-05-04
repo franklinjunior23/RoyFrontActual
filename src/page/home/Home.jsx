@@ -25,8 +25,8 @@ function Home() {
     <>
       <Header />
       <main className="grid grid-rows-2">
-        <section className="grid md:grid-cols-[100px_1fr_320px] gap-5 h-fit mt-8">
-          <AddCompany/>
+        <section className="grid md:grid-cols-[1fr_320px] gap-5 h-fit mt-8">
+         
           <Listbusiness />
           <section className="grid h-full grid-rows-2 gap-1">
             <ItemAll text="Empresas total" count={data?.company?.count} />
