@@ -1,54 +1,93 @@
 import { Outlet, useParams } from "react-router-dom";
 import RetrocederItem from "@Components/Navlinks/components/RetrocederItem";
-import { ColorConteners, IconEmpresa } from "@Data/DataDefault";
-
 import ListSucursales from "@Components/Section/components/ListSucursales";
-
-import HeadSucur from "@Components/Section/components/HeadSucur";
-import { Tab } from "@headlessui/react";
 import Setting from "./section/Setting";
+import { IconBuilding } from "@tabler/icons-react";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/componentUI/ui/tabs";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/componentUI/ui/popover";
+
+import { Button } from "@/componentUI/ui/button";
+import FormBranch from "./section/FormBranch";
+import { useQuery } from "@tanstack/react-query";
+import axiosInstance from "@/helpers/config/axios-instance";
+import { Skeleton } from "@/componentUI/ui/skeleton";
+import { FormateDayD } from "@/helpers/utils/conver-day-ddmmyy";
 
 function BranchsPage() {
   const { nombreE, sucursalN } = useParams();
-  const aleatorio = Math.floor(Math.random() * ColorConteners.length);
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["GetEmpresaByiD"],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get(`/empresas/${nombreE}`);
+      return data;
+    },
+  });
+
+
   return (
     <main>
       <RetrocederItem />
+
       {sucursalN ? (
         <Outlet />
       ) : (
         <>
-          <section className="mt-6">
-            <div
-              className="flex items-center justify-center w-full gap-4 px-4 py-4 text-2xl font-bold text-white rounded-lg"
-              style={{ background: ColorConteners[aleatorio]?.name }}
-            >
-              {nombreE} <IconEmpresa />
-            </div>
-          </section>
-          <main className="mt-5">
-            <Tab.Group>
-              <header className="flex justify-between">
-                <Tab.List className={"flex gap-4 mt-2"}>
-                  <Tab className="border-black dark:border-white ui-selected:border-b focus:outline-none">
-                    Sucursales
-                  </Tab>
-                  <Tab className="border-black dark:border-white ui-selected:border-b focus:outline-none">
-                    Configuracion
-                  </Tab>
-                  <Tab>Tab 3</Tab>
-                </Tab.List>
-                <HeadSucur />
-              </header>
+          <div className="border-b pb-3 flex justify-between items-end gap-2">
+            <div>
+              <h3 className="flex  items-center gap-3 text-2xl capitalize font-bold mb-3">
+                {nombreE?.toLowerCase()} <IconBuilding size={30} />{" "}
+              </h3>
+              <footer className="text-sm">
+                {isLoading ? (
+                  <div className="grid gap-2">
+                    <Skeleton className="w-[120px] h-[10px] rounded-full" />
+                    <Skeleton className="w-[180px] h-[10px] rounded-full" />
+                  </div>
+                ) : (
+                  <ul>
+                    <li>Lugar : {data?.body?.data?.lugar} </li>
+                    <li>Creado : {FormateDayD(data?.body?.data?.createdAt)}</li>
+                  </ul>
+                )}
 
-              <Tab.Panels className={"mt-8"}>
-                <Tab.Panel>
-                  <ListSucursales />
-                </Tab.Panel>
-                <Tab.Panel><Setting/></Tab.Panel>
-                <Tab.Panel>Content 3</Tab.Panel>
-              </Tab.Panels>
-            </Tab.Group>
+               
+              </footer>
+            </div>
+            <div className="flex gap-2 items-center">
+              <Popover>
+                <PopoverTrigger>
+                  <Button>Crear Sucursal</Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <h3 className="text-center mb-2">Crear Sucursal</h3>
+                  <FormBranch />
+                </PopoverContent>
+              </Popover>
+            </div>
+          </div>
+
+          <main className="mt-5 ">
+            <Tabs defaultValue="list" className="">
+              <TabsList>
+                <TabsTrigger value="list">Lista</TabsTrigger>
+                <TabsTrigger value="config">Configuracion</TabsTrigger>
+              </TabsList>
+              <TabsContent value="list">
+                <ListSucursales />
+              </TabsContent>
+              <TabsContent value="config">
+                <Setting />
+              </TabsContent>
+            </Tabs>
           </main>
         </>
       )}

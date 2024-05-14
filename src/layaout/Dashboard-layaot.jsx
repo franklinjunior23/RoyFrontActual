@@ -1,9 +1,21 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Navbar from "@Components/Navbar/Navbar";
-import { IconLogout } from "@tabler/icons-react";
+import {
+  IconDotsVertical,
+} from "@tabler/icons-react";
 import ViewVersion from "../pages/Layaots/dashboard/components/ViewVersion";
 import NavLinks from "@Components/Navlinks/NavLinks";
 import { UsecontextAuth } from "@/context/provider-auth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/componentUI/ui/dropdown-menu";
+import { Bolt, LogOut, User } from "lucide-react";
+import { Badge } from "@/componentUI/ui/badge";
 
 function DashboardPage() {
   const { RoleUser, LogedAuth, LogautUser } = UsecontextAuth();
@@ -33,16 +45,38 @@ function DashboardPage() {
                 <h2 className="text-sm font-semibold text-white ">
                   {LogedAuth?.nombre}
                 </h2>
-                <span className="self-end text-[10px] white text-">{RoleUser}</span>
+                <Badge
+                  variant="default"
+                  className="self-end bg-white text-[8px] text-black"
+                >
+                  {RoleUser}
+                </Badge>
+
+               
               </div>
               <div>
-                <div className=" tooltip" data-tip="Cerrar Seccion">
-                  <IconLogout
-                    className="text-white cursor-pointer tooltip"
-                    data-tip="Cerrar Seccion"
-                    onClick={LogautUser}
-                  />
-                </div>
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <IconDotsVertical className="text-white cursor-pointer tooltip" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>
+                      <User className="mr-2 w-4 h-4" />
+                      <Link to={"Configuracion"}>Perfil</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>Billing</DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <Bolt className="mr-2 w-4 h-4" />
+                      <Link to={"Configuracion"}>Configuración</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <LogOut className="mr-2 w-4 h-4" />
+                      <span onClick={LogautUser}>Cerrar Sesion</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </header>
           </footer>

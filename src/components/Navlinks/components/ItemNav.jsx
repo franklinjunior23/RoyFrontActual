@@ -17,7 +17,7 @@ function ItemNav({ datos }) {
         className={({ isActive }) => {
           return ` ${
             isActive && "bg-white/20  dark:text-white "
-          }  py-3 w-full flex gap-3 rounded-lg hover:bg-white/20  dark:hover:bg-white/20  px-4  items-center`;
+          }  py-2.5 w-full flex gap-3 rounded-lg hover:bg-white/20  dark:hover:bg-white/20  px-4  items-center`;
         }}
       >
         <span className="text-xl">{icon}</span> <h3 className="text-sm">{name}</h3>

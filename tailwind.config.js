@@ -18,6 +18,9 @@ export default {
       },
     },
     extend: {
+      backgroundColor: {
+        DarkFondo: "#292929",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

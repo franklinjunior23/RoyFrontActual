@@ -106,7 +106,21 @@ function ItemSucursal({ value }) {
           </DropdownMenu>
         )}
         {RoleUser === "Administrador" && (
-          <ButtomDots Title="Acciones" Options={OptionsAdministrador} />
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <IconDots className="text-black dark:text-white " size={25} />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Acciones</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {OptionsAdministrador.map((item, index) => (
+                <DropdownMenuItem key={index} onClick={item.Function}>
+                  {item.icon && <item.icon className="mr-2" />}
+                  {item.label}
+                </DropdownMenuItem>
+              )) ?? "Colocar las Opciones"}
+            </DropdownMenuContent>
+          </DropdownMenu>
         )}
       </aside>
     </section>

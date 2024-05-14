@@ -1,4 +1,4 @@
-import { Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { GetsInfoDash } from "@/services/ApiGets";
 import Header from "@/pages/Home/components/Header";
@@ -22,6 +22,7 @@ function Home() {
 
   return (
     <>
+     
       <Header />
       <main className="grid grid-rows-2">
         <section className="grid md:grid-cols-[1fr_320px] gap-5 h-fit mt-8">

@@ -9,6 +9,7 @@ import { PostCompany } from "../utils/actions/company-action";
 
 export default function FormCompany({ handleCancel }) {
   const { mutate } = PostCompany();
+  
   function HandleCreate(datos) {
     mutate(datos);
     handleCancel();

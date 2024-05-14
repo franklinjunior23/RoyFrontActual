@@ -12,9 +12,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/componentUI/ui/sheet";
-import { TrashIcon } from "@radix-ui/react-icons";
 import { IconTrash } from "@tabler/icons-react";
-import { GetBranchsDelete } from "@/page/branch/actions/UseBranchs";
+import { TimeFromPeruvian } from "@/helpers/utils/conver-day-ddmmyy";
+import { Card } from "antd";
+import { CardContent, CardFooter, CardTitle } from "@/componentUI/ui/card";
+import { Button } from "@/componentUI/ui/button";
+import {
+  GetBranchsDelete,
+  RemoveDefine,
+  RestaureBranch,
+} from "@/page/branch/actions/UseBranchDelete";
 
 function ListSucursales() {
   const { nombreE } = useParams();
@@ -32,7 +39,7 @@ function ListSucursales() {
   if (isFetching) return <BranchSkeleton />;
   return (
     <main className="">
-      <section className="grid grid-cols-1 gap-4 md:grid-cols-4">
+      <section className="grid grid-cols-1 gap-4 md:grid-cols-4 mt-4">
         {data?.map((value) => (
           <ItemSucursal key={value.id} value={value} />
         ))}
@@ -53,6 +60,8 @@ export default ListSucursales;
 
 function BranchsDeleting() {
   const { data, isLoading } = GetBranchsDelete();
+  const { mutate, isLoading: LoadingRestaure } = RestaureBranch();
+  const { mutate: RemoveBranch, isLoading: LoadingRemove } = RemoveDefine();
   if (isLoading) {
     return <h1>Cargando...</h1>;
   }
@@ -66,15 +75,35 @@ function BranchsDeleting() {
         <SheetHeader>
           <SheetTitle>Sucursales Eliminadas</SheetTitle>
           <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            Lista de las sucursales eliminadas
           </SheetDescription>
         </SheetHeader>
-        <section className="grid grid-cols-1 gap-4 md:grid-cols-4">
+        <section className=" gap-2 mt-5 ">
           {data?.data.map((value) => (
-            <>
-             <h3 className="capitalize">{value?.nombre}</h3>
-            </>
+            <Card key={value?.id} className=" text-sm">
+              <CardTitle>
+                <h3 className="capitalize">{value?.nombre}</h3>
+              </CardTitle>
+              <CardContent className="p-0 mt-2">
+                <h3>Creado : {TimeFromPeruvian(value.createdAt)}</h3>
+                <h3>Eliminado : {TimeFromPeruvian(value.deletedAt)} </h3>
+              </CardContent>
+              <CardFooter className="p-0 mt-5 grid grid-cols-2 gap-2">
+                <Button
+                  onClick={() => mutate(value?.id)}
+                  disabled={LoadingRestaure}
+                >
+                  {LoadingRestaure ? "Restaurando" : "Restaurar"}
+                </Button>
+                <Button
+                  variant="destructive"
+                  onClick={() => RemoveBranch(value?.id)}
+                  disabled={LoadingRemove}
+                >
+                  {LoadingRemove ? "Eliminando" : "Eliminar"}
+                </Button>
+              </CardFooter>
+            </Card>
           ))}
           {data?.length === 0 && (
             <h1 className="dark:text-white">No tiene sucursales</h1>

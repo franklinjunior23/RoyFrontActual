@@ -21,30 +21,21 @@ function NavLinks({ Rol }) {
         {LinksUrl?.data?.map((dat, index) => (
           <ItemNav key={index} datos={dat} />
         ))}
-        <ItemNav
-          datos={{
-            name: "Agente",
-            url: "/",
-            icon: <IconBrandTidal size={28} />,
-            type: "link",
-            funct: () => {
-              const zipUrl =
-                "https://drive.google.com/drive/u/1/folders/1zU_lZRimfLAkyaiPc-gsfhxVHNA_8MCb";
-
-              // Crear un enlace dinámicamente
-              const link = document.createElement("a");
-              link.href = zipUrl;
-              link.target = "_blank";
-
-              // Simular un clic en el enlace para iniciar la descarga del archivo
-              document.body.appendChild(link);
-              link.click();
-
-              // Limpiar el enlace
-              document.body.removeChild(link);
-            },
-          }}
-        />
+        <div
+          className={`transition-all ease-in-out hover:duration-300  flex gap-5`}
+        >
+          <a
+            href="https://drive.google.com/drive/u/1/folders/1zU_lZRimfLAkyaiPc-gsfhxVHNA_8MCb"
+            target="_blank"
+            className="py-2.5 w-full flex gap-3 rounded-lg hover:bg-white/20  dark:hover:bg-white/20  px-4  items-center"
+            rel="noreferrer"
+          >
+            <span className="text-xl">
+              <IconBrandTidal size={28} />
+            </span>
+            <h3 className="text-sm">Agente</h3>
+          </a>
+        </div>
       </section>
     );
   } catch (error) {
