@@ -1,14 +1,25 @@
 import { IconClipboardText, IconSearch, IconX } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/componentUI/ui/breadcrumb";
 
 function Header({ setValue, Value }) {
   return (
     <header className="grid ">
       <div>
-        <h2 className="dark:text-white  pb-2  mb-5">
-          Base de Conocimiento / Listas
-        </h2>
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to={'/Dashboard/home'}>Home</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Base de conocimiento</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
       </div>
       <nav className="md:justify-self-end md:flex md:gap-2 flex-col md:flex-row md:mt-2">
         <div className="flex dark:bg-DarkComponent border dark:border-none py-2 px-2 rounded-md gap-2 justify-between">

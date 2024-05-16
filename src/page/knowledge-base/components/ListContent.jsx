@@ -1,12 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-
 import { useEffect } from "react";
 import { SearchUser } from "../../../store/SearchUser";
 import Page404 from "@/page/Not-found";
 import Cardknowledge from "./Card-knowledge";
 import { GetsBaseConocimiento } from "@/services/ApiGets";
+import { badgeVariants } from "@/componentUI/ui/badge";
+import Editor from "./Editor";
 
 function ListContent() {
+
+
   // traer la funcion para agregar los articulos a la base de conocimiento storage
   const AddBase = SearchUser((state) => state.AddBaseConocimiento);
 
@@ -28,20 +31,23 @@ function ListContent() {
 
   return (
     <main className="mt-8">
-      <section className="flex gap-3 dark:text-white mb-4">
-        <span className="bg-DarkComponent px-3 py-1 rounded-md text-white text-sm">
+      <section className="flex gap-3 dark:text-white mb-4 justify-between">
+        <span
+          className={` px-3 py-1 rounded-md  text-sm ${badgeVariants({
+            variant: "secondary",
+          })}`}
+        >
           Total : {data.details.cantidad}
         </span>
-         
+        <header>hola buttones</header>
       </section>
-      <section
-        className="overflow-y-auto custom custom-scrollbar py-4 flex flex-wrap gap-x-8 gap-y-5"
-      >
-     
-         {data.data.map((item, index) => (
-           <Cardknowledge {...item} key={index} />
-         ))}
-     
+      {/* <section>
+        <Editor/>
+      </section> */}
+      <section className="overflow-y-auto custom custom-scrollbar py-4 flex flex-wrap gap-x-8 gap-y-5">
+        {data.data.map((item, index) => (
+          <Cardknowledge {...item} key={index} />
+        ))}
       </section>
     </main>
   );
