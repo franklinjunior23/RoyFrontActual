@@ -113,7 +113,7 @@ function GeneralSect({ data }) {
       header: "",
       cell: (ValueAgent) => (
         <Link
-          to={`${ValueAgent.getValue()}`}
+          to={`${ValueAgent.getValue()}/summary`}
           className="grid place-content-center"
         >
           <IconEye className="p-1 text-white bg-black rounded-md " size={35} />

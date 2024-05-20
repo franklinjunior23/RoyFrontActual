@@ -26,7 +26,12 @@ function PageCreateDevice() {
   const { idDisp } = useParams();
   const { data, isLoading: LoadingGetDevice } = ActionGet(idDisp);
   const { mutate, error } = CreateDevice();
-  const { mutate: updateDevice } = UpdateDevice(idDisp);
+  const {
+    mutate: updateDevice,
+    isLoading: LoadingUpdate,
+    isSuccess,
+    isError,
+  } = UpdateDevice();
   const [ShowChanges, setShowChanges] = useState(false);
   const { AddDataDevice } = useDataDevice();
 
@@ -46,6 +51,14 @@ function PageCreateDevice() {
 
   if (error) alert("Ocurrio un error al crear el dispositivo");
   const WatchTypeDevice = watch("tipo");
+  useEffect(() => {
+    if (isSuccess) {
+      setShowChanges(false);
+    }
+    if (isError) {
+      toast.error("Ocurrio un error al actualizar el dispositivo");
+    }
+  }, [isSuccess, isError]);
 
   useEffect(() => {
     (async () => {
@@ -58,11 +71,10 @@ function PageCreateDevice() {
 
   function switchAction(datos) {
     if (data?.data) {
-      if (ShowChanges) {
-        updateDevice(datos);
-        toast.success("Dispositivo actualizado correctamente");
-        return setShowChanges(false);
-      }
+      // if (ShowChanges) {
+      //   updateDevice(datos);
+      //   return setShowChanges(false);
+      // }
 
       const DataComparing = compareChanges(datos, dataDevice, [
         // Arrray
@@ -77,11 +89,19 @@ function PageCreateDevice() {
         "Procesador_modelo",
       ]);
       AddDataDevice(DataComparing);
-      return setShowChanges(true);
+      localStorage.setItem("data-device-update", JSON.stringify(datos));
+      localStorage.getItem(
+        "data-device-history",
+        JSON.stringify(DataComparing)
+      );
 
-      // updateDevice(datos, idDisp);
+      if (ShowChanges) {
+        return updateDevice(datos, idDisp);
+      } else {
+        return setShowChanges(true);
+      }
     }
-    mutate(datos);
+    return mutate(datos);
   }
 
   if (LoadingGetDevice) return <h1>Cargando...</h1>;
@@ -90,12 +110,13 @@ function PageCreateDevice() {
       <form onSubmit={handleSubmit(switchAction)}>
         {ShowChanges && (
           <Sectionchangesdevice
+            watch={watch}
             Show={ShowChanges}
             setShow={setShowChanges}
             control={control}
+            Func={switchAction}
           />
         )}
-
         <HeadForm control={control} errors={errors} />
         {WatchTypeDevice === "Pc" && (
           <FormPc control={control} errors={errors} watch={watch} />
@@ -134,7 +155,7 @@ function TypeButton() {
         <Button type="submit">Crear</Button>
       )}
 
-      <Button variant="second" type="button" onClick={()=>navi(-1)}>
+      <Button variant="second" type="button" onClick={() => navi(-1)}>
         Cancelar
       </Button>
     </>
@@ -142,6 +163,7 @@ function TypeButton() {
 }
 
 export default PageCreateDevice;
+
 PageCreateDevice.propTypes = {
   id: PropTypes.string,
 };

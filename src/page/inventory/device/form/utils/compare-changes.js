@@ -37,7 +37,7 @@ export function compareChanges(dataForm, dataApi, Fields) {
         continue;
       } else {
         Changes.push({
-          type: "modified",
+          type: "removed",
           field: dataapi,
           before: Apidata,
           after: Formdata,

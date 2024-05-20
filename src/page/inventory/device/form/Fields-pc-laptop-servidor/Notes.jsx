@@ -13,6 +13,7 @@ import { useParams } from "react-router-dom";
 import axiosInstance from "@/helpers/config/axios-instance";
 import { toast } from "sonner";
 import { DeleteTask } from "./services/Task-services";
+import { CardContent, CardHeader } from "@/componentUI/ui/card";
 
 function ItemEdit(data) {
   const [Open, setOpen] = useState(false);
@@ -42,14 +43,16 @@ function ItemRemove({ title }) {
   const [Open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { mutate,isLoading } = DeleteTask();
+  const { mutate, isLoading } = DeleteTask();
 
   async function Delete() {
     mutate(title);
-    if (isLoading) { return toast.loading("Eliminando nota") }
-    if (!isLoading) { return handleClose()}
-      
-   
+    if (isLoading) {
+      return toast.loading("Eliminando nota");
+    }
+    if (!isLoading) {
+      return handleClose();
+    }
   }
   return (
     <>
@@ -177,13 +180,15 @@ ItemNotes.propTypes = {
 function Notes({ notes }) {
   return (
     <>
-      <div className="flex justify-between">
-        <h3 className="flex items-center gap-2 text-lg">
-          Notas <IconNotes size={24} />
-        </h3>
-        <FormCreateNote />
-      </div>
-      <main className="w-full h-full">
+      <CardHeader>
+        <div className="flex justify-between">
+          <h3 className="flex items-center gap-2 text-lg">
+            Notas <IconNotes size={24} />
+          </h3>
+          <FormCreateNote />
+        </div>
+      </CardHeader>
+      <CardContent >
         <main
           className="w-full h-full gap-2 mt-2 overflow-y-auto "
           style={{
@@ -197,7 +202,7 @@ function Notes({ notes }) {
           {notes &&
             notes.map((note, index) => <ItemNotes key={index} {...note} />)}
         </main>
-      </main>
+      </CardContent>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import axiosInstance from "@/helpers/config/axios-instance";
 import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 
 export function ActionGet(id) {
@@ -79,18 +80,94 @@ const detailDevice = {
     { key: "Tarjeta_Video", value: "Tarjeta_Video" },
     ...deviceConnectUser,
   ],
-  Laptop: [],
+  Laptop: [
+    { key: "nombre", value: "nombre" },
+    { key: "Codigo", value: "codigo_dispositivo" },
+    { key: "tipo", value: "tipo" },
+    { key: "estado", value: "estado" },
+    { key: "Marca", value: "marca" },
+    { key: "tipo_Disp", value: "tipo_Disp" },
+    { key: "marca", value: "marca" },
+    { key: "modelo", value: "modelo" },
+    //Red
+    { key: "Config_ip", value: "Config_ip" },
+    { key: "Config_mac", value: "Config_mac" },
+
+    //Placa Madre
+    { key: "Placa_modelo", value: "Placa_modelo" },
+    { key: "Placa_detalle", value: "Placa_detalle" },
+    { key: "Placa_slots", value: "Placa_slots" },
+
+    // Procesador
+    { key: "Procesador_marca", value: "Procesador_marca" },
+    { key: "Procesador_modelo", value: "Procesador_modelo" },
+
+    //Ram
+    { key: "Ram_Modulos", value: "Ram_Modulos" },
+
+    //Almacenamiento
+    { key: "Almacenamiento_detalle", value: "Almacenamiento_detalle" },
+    { key: "Tarjeta_Video", value: "Tarjeta_Video" },
+    ...deviceConnectUser,
+  ],
+  Servidor: [
+    { key: "nombre", value: "nombre" },
+    { key: "Codigo", value: "codigo_dispositivo" },
+    { key: "tipo", value: "tipo" },
+    { key: "estado", value: "estado" },
+    { key: "Marca", value: "marca" },
+    { key: "tipo_Disp", value: "tipo_Disp" },
+    { key: "marca", value: "marca" },
+    { key: "modelo", value: "modelo" },
+    //Red
+    { key: "Config_ip", value: "Config_ip" },
+    { key: "Config_mac", value: "Config_mac" },
+
+    //Placa Madre
+    { key: "Placa_modelo", value: "Placa_modelo" },
+    { key: "Placa_detalle", value: "Placa_detalle" },
+    { key: "Placa_slots", value: "Placa_slots" },
+
+    // Procesador
+    { key: "Procesador_marca", value: "Procesador_marca" },
+    { key: "Procesador_modelo", value: "Procesador_modelo" },
+
+    //Ram
+    { key: "Ram_Modulos", value: "Ram_Modulos" },
+
+    //Almacenamiento
+    { key: "Almacenamiento_detalle", value: "Almacenamiento_detalle" },
+    { key: "Tarjeta_Video", value: "Tarjeta_Video" },
+    ...deviceConnectUser,
+  ],
+  Impresora: [
+    { key: "nombre", value: "nombre" },
+    { key: "Codigo", value: "codigo_dispositivo" },
+    { key: "tipo", value: "tipo" },
+    { key: "estado", value: "estado" },
+    { key: "Marca", value: "marca" },
+    { key: "tipo_Disp", value: "tipo_Disp" },
+    { key: "marca", value: "marca" },
+    { key: "modelo", value: "modelo" },
+    { key: "tipo_con", value: "tipo_con" },
+    { key: "Config_user", value: "Config_user" },
+    { key: "Config_ip", value: "Config_ip" },
+    { key: "Config_mac", value: "Config_mac" },
+    {key:'Config_contra',value:'Config_contra'},
+    ...deviceConnectUser,
+  ],
 };
 // Incluir las mismas propiedades de Pc en Laptop
 detailDevice.Laptop = [...detailDevice.Pc];
 
-export function UpdateDevice(id) {
+export function UpdateDevice() {
+  const { idDisp } = useParams();
   const query = new QueryClient();
   return useMutation({
     mutationKey: ["UpdateDevice"],
     mutationFn: async (data) => {
       const { data: dataResponse } = await axiosInstance.put(
-        `Dispositivos/${id}`,
+        `Dispositivos/${idDisp}`,
         data
       );
       return dataResponse;
@@ -98,6 +175,9 @@ export function UpdateDevice(id) {
     onSuccess: () => {
       query.invalidateQueries("deviceGet");
       toast.success("Dispositivo Actualizado correctamente");
+    },
+    onError: (data) => {
+      toast.error(data?.message ?? "Error al actualizar el dispositivo");
     },
   });
 }

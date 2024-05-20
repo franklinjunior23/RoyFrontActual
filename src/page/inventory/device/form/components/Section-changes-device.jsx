@@ -1,35 +1,31 @@
-import { Switch } from "antd";
 import { Controller } from "react-hook-form";
 import PropTypes from "prop-types";
 import { useDataDevice } from "../hoocks/state-device-changes";
 import clsx from "clsx";
 import { TypeStyles } from "../const/type-changes-item";
+import { Label } from "@/componentUI/ui/label";
+import { Switch } from "@/componentUI/ui/switch";
+
+import { Button } from "@/componentUI/ui/button";
+
+import { Input } from "@/componentUI/ui/input";
+
 
 function Sectionchangesdevice({ Show, setShow, control }) {
   const { dataDevice } = useDataDevice();
-  console.log(dataDevice);
 
   return (
-    <div>
-      <dialog open={Show} className="modal  dark:text-black bg-black/40 ">
-        <div className="modal-box max-w-[800px] overflow-hidden">
-          <main className="grid md:grid-cols-2 gap-2">
-            <section>
-              <h3 className="font-bold mb-6 text-2xl text-center">
-                ¿Desea registrar en el historial?
-              </h3>
-              <span className="grid place-content-center">
-                <Controller
-                  control={control}
-                  name="isHistory"
-                  defaultValue={false}
-                  render={({ field }) => (
-                    <Switch {...field} className="bg-black" size="default" />
-                  )}
-                />
-              </span>
-
-              <section className="mt-3">
+    <>
+      <dialog
+        open={Show}
+        onChange={setShow}
+        className={`bg-black/20 fixed z-50 top-0 right-0 grid place-content-center w-full h-full`}
+      >
+        <div className=" inset-1 z-[60] bg-white p-8 rounded-lg max-w-[800px] overflow-hidden grid grid-cols-2 gap-2">
+          <div>
+            <div>
+              <div>¿Desea registrar en la base de datos?</div>
+              <div>
                 <div className="my-6 text-sm">
                   <h4 className="font-semibold">Importante:</h4>
 
@@ -51,8 +47,42 @@ function Sectionchangesdevice({ Show, setShow, control }) {
                     irreversible.
                   </p>
                 </div>
-              </section>
-            </section>
+              </div>
+            </div>
+            <div>
+              <Controller
+                control={control}
+                name="isHistory"
+                defaultValue={false}
+                render={({ field }) => (
+                  <div className="flex flex-row items-center justify-between rounded-lg border p-4">
+                    <div className="space-y-0.5">
+                      <Label className="text-base">
+                        ¿Desea registrar en la base de datos?
+                      </Label>
+                    </div>
+                    <Switch
+                      disabled={dataDevice?.length === 0}
+                      value={field.value}
+                      onCheckedChange={(value) => field.onChange(value)}
+                      {...field}
+                    />
+                  </div>
+                )}
+              />
+              <Controller
+                control={control}
+                name="History"
+                defaultValue={JSON.stringify(dataDevice) ?? ""}
+                render={({ field }) => (
+                  <div >
+                    <Input value={JSON.stringify(field.value) ?? ""} />
+                  </div>
+                )}
+              />
+            </div>
+          </div>
+          <main className="">
             <section className="h-full">
               <h3 className="font-semibold">Cambios</h3>
               <div className="w-full max-h-[320px] px-2 overflow-y-auto gap-3 flex flex-col overflow-hidden text-sm custom-scrollbar ">
@@ -73,18 +103,18 @@ function Sectionchangesdevice({ Show, setShow, control }) {
 
                         <table className="w-full mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
                           <thead className="text-xs text-gray-700 uppercase  bg-slate-300 dark:text-gray-00">
-                            <th scope="col" className="py-2 px-6">
+                            <th scope="col" className="py-2 px-6 w-[50%]">
                               Antes
                             </th>
-                            <th scope="col" className="py-2 px-6">
+                            <th scope="col" className="py-2 px-6 w-[50%]">
                               Despues
                             </th>
                           </thead>
                           <tbody className="bg-white text-black  border-b text-xs ">
-                            <td className="py-3 px-6">
+                            <td className="py-3 px-6 text-pretty w-[50%]">
                               {JSON.stringify(itemChange?.before)}
                             </td>
-                            <td className="py-3 px-6">
+                            <td className="py-3 px-6 text-pretty w-1/2">
                               {JSON.stringify(itemChange?.after)}
                             </td>
                           </tbody>
@@ -104,23 +134,22 @@ function Sectionchangesdevice({ Show, setShow, control }) {
               </div>
             </section>
           </main>
-
           <footer className="grid grid-cols-2 gap-3 mt-4">
-            <button
-              className="btn"
-              onClick={() => setShow(!Show)}
+            <Button
+              variant="destructive"
               type="button"
+              onClick={() => setShow(false)}
             >
               Cerrar
-            </button>
+            </Button>
 
-            <button className="btn btn-neutral" type="submit">
+            <Button type="submit" variant="default">
               Actualizar
-            </button>
+            </Button>
           </footer>
         </div>
       </dialog>
-    </div>
+    </>
   );
 }
 

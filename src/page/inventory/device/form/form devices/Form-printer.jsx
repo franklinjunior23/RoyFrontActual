@@ -132,7 +132,7 @@ function FormPrinter({ control, errors, watch }) {
           defaultValue={""}
           render={({ field }) => (
             <Label>
-              Ysuario
+              Usuario
               <Input {...field} />
             </Label>
           )}

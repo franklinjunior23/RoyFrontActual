@@ -24,7 +24,7 @@ function DashboardPage() {
       <div className="md:hidden">
         <Navbar />
       </div>
-      <article className="md:grid grid-cols-[260px_1fr] h-full gap-10 w-full relative">
+      <article className="md:grid grid-cols-[245px_1fr] h-full gap-10 w-full relative">
         <section className="hidden text-white  lg:grid bg-black/95 py-6   rounded-[25px] md:grid ">
           <header className="">
             <section className="px-4 custom-scrollNav">
