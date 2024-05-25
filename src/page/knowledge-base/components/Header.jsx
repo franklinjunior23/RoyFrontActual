@@ -1,60 +1,51 @@
 import { IconClipboardText, IconSearch, IconX } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/componentUI/ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/componentUI/ui/breadcrumb";
+import { Button } from "@/componentUI/ui/button";
 
-function Header({ setValue, Value }) {
+function Header({ children }) {
+  const navi = useNavigate();
   return (
-    <header className="grid ">
-      <div>
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link to={'/Dashboard/home'}>Home</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
+    <header className="flex flex-col md:items-end md:flex-row md:justify-between">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link to={"/Dashboard/home"}>Home</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            {!children ? (
               <BreadcrumbPage>Base de conocimiento</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
-      <nav className="md:justify-self-end md:flex md:gap-2 flex-col md:flex-row md:mt-2">
-        <div className="flex dark:bg-DarkComponent border dark:border-none py-2 px-2 rounded-md gap-2 justify-between">
-          <input
-            type="text"
-            className="bg-transparent indent-0.5 border-none focus:outline-none text-base dark:text-white text-black"
-            placeholder="Busqueda de Conocimiento"
-            value={Value}
-            onChange={(e) => setValue(e.target.value)}
-          />
-          <div className="flex items-center gap-1 dark:text-white">
-            {Value !== "" && (
-              <IconX
-                strokeWidth={2}
-                size={20}
-                onClick={() => setValue("")}
-                className="cursor-pointer"
-              />
+            ) : (
+              <BreadcrumbLink asChild>
+                <Link to={"/Dashboard/BaseConocimiento"}>
+                  Base de conocimiento
+                </Link>
+              </BreadcrumbLink>
             )}
-            <IconSearch />
-          </div>
-        </div>
-        <Link
-          to={"Create"}
-          className="bg-black mt-4 md:mt-0 px-2  w-[100px] justify-center  py-2 lg:py-0  text-white rounded-md flex items-center gap-1"
-        >
-          Crear <IconClipboardText />
-        </Link>
-      </nav>
+          </BreadcrumbItem>
+          {children}
+        </BreadcrumbList>
+      </Breadcrumb>
+
+      <Button onClick={() => navi(-1)} size="sm" className="w-fit mt-5 md:mt-0">
+        Retroceder
+      </Button>
     </header>
   );
 }
 export default Header;
 
 Header.propTypes = {
-  setValue: PropTypes.func,
-  Value: PropTypes.string,
+  children: PropTypes.node,
 };

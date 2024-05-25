@@ -1,38 +1,22 @@
 import {
-  Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/componentUI/ui/breadcrumb";
-import { Link } from "react-router-dom";
+
 import FormCreate from "./components/FormCreate";
+import Header from "./components/Header";
 function KnowledgeeCreate() {
   return (
     <div>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link to={"/Dashboard/home"}>Home</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
+      <Header>
+        <BreadcrumbItem>
           <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link to={"/Dashboard/BaseConocimiento"}>Base de conocimiento</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Crear</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+          <BreadcrumbPage>Crear</BreadcrumbPage>
+        </BreadcrumbItem>
+      </Header>
       <main className="mt-5">
-       <FormCreate/>
-
+        <FormCreate />
       </main>
     </div>
   );

@@ -1,43 +1,87 @@
-import { FormateDayD } from "@/helpers/utils/conver-day-ddmmyy";
-import { NavLink } from "react-router-dom";
-import PropTypes from "prop-types";
-import TruncateText from "@/helpers/utils/truncate-text";
-import { convertCapitalize } from "@/helpers/utils/convert-capitalize";
-function Cardknowledge({ Titulo, Categoria, createdAt, id }) {
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/componentUI/ui/accordion";
+import {buttonVariants } from "@/componentUI/ui/button";
+import { CirclePlus, FolderIcon, Trash } from "lucide-react";
+import { Link } from "react-router-dom";
+import CreateFolder from "./CreateFolder";
+import ROLE from "@/types/Rols";
+import DeleteFolder from "./DeleteFolder";
+
+function FolderAccordion({ item, level = 0 }) {
+  const mr = `ml-${level * 3}`;
+  function handleRightClick(e) {
+    e.preventDefault();
+  }
   return (
-    <div className="">
-      <NavLink
-        to={{ pathname: `/Dashboard/BaseConocimiento/${id}` }}
-        className="md:w-[350px] md:h-[140px]  border rounded-lg overflow-hidden md:flex shadow-lg dark:shadow-none grid cursor-pointer"
-      >
-        <div className="w-full p-4 flex flex-col justify-between capitalize pointer-events-none min-w-0">
-          <h2 className=" font-semibold text-balance	 dark:text-white">
-            {convertCapitalize(TruncateText({ text: Titulo, maxLength: 40 }))}
-          </h2>
-          <span className="bg-blue-700 w-fit text-xs py-0.5 px-2 capitalize font-semibold text-center text-white break-all rounded-md truncate">
-            {convertCapitalize(Categoria)}
-          </span>
-          <span className="dark:text-white text-xs font-bold">
-            {FormateDayD(createdAt)}
-          </span>
-        </div>
-        <div className="md:w-[54%] bg-slate-300">
-          <img
-            src="/Images/BoockBaseCon.png"
-            className="w-full h-full object-cover"
-            alt=""
-          />
-        </div>
-      </NavLink>
-    </div>
+    <Accordion type="multiple" collapsible>
+      <AccordionItem value={`item-${item.id}`}>
+        <AccordionTrigger
+          className="hover:bg-gray-50 rounded-lg"
+          onContextMenu={handleRightClick}
+        >
+          <header
+            className={`flex gap-2 py-0 px-4 items-center justify-start ${mr} ${
+              level === 2 && "ml-6"
+            }`}
+          >
+            {item.name}
+            <FolderIcon strokeWidth={2.3} className="w-5 h-5 " />
+            <div className="pl-6">
+              {ROLE.ADMIN && (
+               <DeleteFolder {...item} />
+              )}
+            </div>
+          </header>
+        </AccordionTrigger>
+        <AccordionContent className={`${mr}`}>
+          <div className="flex ml-6">
+            {item?.subfolders?.length === 0 &&
+              item?.knowledges?.length === 0 && (
+                <div>
+                  <>
+                    <CreateFolder id={item.id} />
+                    <CreateArticle />
+                  </>
+                </div>
+              )}
+            {item?.subfolders?.length > 0 && item?.knowledges?.length < 0 && (
+              <CreateArticle />
+            )}
+
+            {!item?.subfolders && item?.knowledges?.length === 0 && (
+              <>
+                <CreateArticle />
+              </>
+            )}
+          </div>
+          {item?.subfolders?.map((sub) => (
+            <FolderAccordion key={sub.id} item={sub} level={level + 1} />
+          ))}
+
+          {item?.knowledges?.map((article) => (
+            <div key={article.id} className={`${mr}`}>
+              <p>{article.title}</p>
+            </div>
+          ))}
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 }
 
-export default Cardknowledge;
+export default FolderAccordion;
 
-Cardknowledge.propTypes = {
-  Titulo: PropTypes.string,
-  Categoria: PropTypes.string,
-  createdAt: PropTypes.string,
-  id: PropTypes.string,
-};
+function CreateArticle() {
+  return (
+    <Link
+      to={""}
+      className={buttonVariants({ variant: "outline", size: "sm" })}
+    >
+      <CirclePlus className="w-4 h-4 mr-2" /> Crear Articulo
+    </Link>
+  );
+}

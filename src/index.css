@@ -74,5 +74,12 @@
     body {
       @apply text-foreground;
     }
+     .ql-tooltip{
+      z-index: 1000000000000;
+    }
+    .ql-editor{
+      height: auto;
+      overflow-x: auto;
+    }
    
   }
