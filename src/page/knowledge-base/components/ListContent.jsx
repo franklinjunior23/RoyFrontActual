@@ -2,32 +2,23 @@ import { SearchUser } from "../../../store/SearchUser";
 import Page404 from "@/page/Not-found";
 import Cardknowledge from "./Card-knowledge";
 import { badgeVariants } from "@/componentUI/ui/badge";
-import { IconClipboardText, IconFolders, IconX } from "@tabler/icons-react";
+import { IconClipboardText, IconX } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { IconSearch } from "@tabler/icons-react";
-import { Button, buttonVariants } from "@/componentUI/ui/button";
-
+import {  buttonVariants } from "@/componentUI/ui/button";
 import { GetKnowledge } from "../action/Useknowledge";
 import { Skeleton } from "@/componentUI/ui/skeleton";
 import PropTypes from "prop-types";
-
-import {
-  AlertDialog,
-
-  AlertDialogContent,
-
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/componentUI/ui/alert-dialog";
 import CreateFolder from "./CreateFolder";
-
-
 import FolderAccordion from "./Card-knowledge";
+import RestaureFolders from "./Restaure-Folder";
+import ROLE from "@/types/Rols";
+import { UsecontextAuth } from "@/context/provider-auth";
 
 function ListContent({ text, setText }) {
   // traer la funcion para agregar los articulos a la base de conocimiento storage
   const AddBase = SearchUser((state) => state.AddBaseConocimiento);
+  const { RoleUser } = UsecontextAuth();
 
   // traer los datos de la base de conocimiento con react query
   const { data, isLoading, isError } = GetKnowledge();
@@ -100,29 +91,13 @@ function ListContent({ text, setText }) {
           </main>
         ) : (
           <h1>
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="flex items-center gap-2"
-                >
-                  Crear Carpeta <IconFolders />
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Crear Carpeta</AlertDialogTitle>
-                  <CreateFolder className={"mt-5"} />
-                </AlertDialogHeader>
-              </AlertDialogContent>
-            </AlertDialog>
-            No hay articulos
+            <CreateFolder className={"mt-5"} />
           </h1>
         )}
         <div className="mt-5">
           <CreateFolder />
         </div>
+        {RoleUser ===ROLE.ADMIN && <RestaureFolders />}
       </section>
     </main>
   );

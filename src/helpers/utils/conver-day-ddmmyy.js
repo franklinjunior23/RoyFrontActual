@@ -21,4 +21,16 @@ export function TimeFromPeruvian(dateString) {
     .toFormat(formatoPersonalizado);
 
   return fechaFormateada;
+
+}
+export function TimeFormated(dateString) {
+  const date = new Date(dateString);
+
+  const optionsDate = { day: '2-digit', month: 'short', year: 'numeric' };
+  const optionsTime = { hour: '2-digit', minute: '2-digit' };
+
+  const formattedDate = date.toLocaleDateString('es-ES', optionsDate);
+  const formattedTime = date.toLocaleTimeString('es-ES', optionsTime);
+
+  return `${formattedDate} - ${formattedTime}`;
 }

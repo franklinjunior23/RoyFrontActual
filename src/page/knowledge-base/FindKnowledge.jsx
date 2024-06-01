@@ -9,6 +9,9 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/componentUI/ui/breadcrumb";
+import FormCreate from "./components/FormCreate";
+import { Skeleton } from "@/componentUI/ui/skeleton";
+
 
 function FindKnowledge() {
   const navi = useNavigate();
@@ -31,10 +34,19 @@ function FindKnowledge() {
         <BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>{data?.data?.Titulo}</BreadcrumbPage>
+            {isLoading ? (
+              <BreadcrumbPage>
+                <Skeleton className="w-[80px] h-4" />
+              </BreadcrumbPage>
+            ) : (
+              <BreadcrumbPage>{data?.data?.Titulo}</BreadcrumbPage>
+            )}
           </BreadcrumbItem>
         </BreadcrumbItem>
       </Header>
+      <div>
+        {isLoading ? <p>Cargando...</p> : <FormCreate data={data?.data} />}
+      </div>
     </div>
   );
 }

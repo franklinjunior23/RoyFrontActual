@@ -3,26 +3,31 @@ import { Button, buttonVariants } from "@/componentUI/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogTitle,
   DialogTrigger,
 } from "@/componentUI/ui/dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { Trash } from "lucide-react";
+import { DeleteFolderApi } from "../action/UseFolderKnowledge";
+import { useEffect, useState } from "react";
 
 export default function DeleteFolder({ name, id }) {
+  const [OpenDialog, setOpenDialog] = useState(false);
+  const { mutate, isLoading, isSuccess } = DeleteFolderApi({
+    funct: () => setOpenDialog(false),
+  });
+
   if (!id) return;
   return (
-    <Dialog>
+    <Dialog open={OpenDialog} onOpenChange={setOpenDialog}>
       <DialogTrigger asChild>
-        <Trash
-          className={`${buttonVariants({
-            variant: "destructive",
-            size: "icon",
-          })} p-2 w-4 h-4`}
-          color="white"
-        />
+        <Button variant="destructive" size="sm" className="">
+          <Trash
+            className={` w-5 h-5`}
+            color="white"
+          />
+        </Button>
       </DialogTrigger>
       <DialogContent className="p-8 md:w-[500px] w-[90%]">
         <AlertDialogHeader>
@@ -35,9 +40,13 @@ export default function DeleteFolder({ name, id }) {
             Estas seguro de eliminar la carpeta <br />{" "}
             <span className="inline-block mt-2 ">{name}</span> ?
           </DialogTitle>
-          <DialogFooter className={'grid grid-cols-2 pt-5'}>
-            <Button variant="default">
-                Confirmar
+          <DialogFooter className={"grid grid-cols-2 pt-5"}>
+            <Button
+              variant="default"
+              disabled={isLoading}
+              onClick={() => mutate(id)}
+            >
+              {isLoading ? "Eliminando..." : "Confirmar"}
             </Button>
             <DialogClose>Cancelar</DialogClose>
           </DialogFooter>

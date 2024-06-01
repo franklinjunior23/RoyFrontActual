@@ -24,11 +24,28 @@ export function GetKnowledge() {
   });
 }
 export function CreateKnowledge() {
-  const nav = useNavigate();
-  const client = useQueryClient();
+  const { folder } = useParams();
   return useMutation({
     mutationFn: async (datos) => {
-      const { data } = await axiosInstance.post("BaseConocimiento", datos);
+      const formd = new FormData();
+
+      formd.append("Titulo", datos.Titulo);
+      formd.append("Categoria", JSON.stringify(datos.Categoria));
+      formd.append("Contenido", datos.Contenido);
+
+      for (const file of datos.image) {
+        formd.append("image", file);
+      }
+
+      const { data } = await axiosInstance.post(
+        `BaseConocimiento/${folder}/article`,
+        formd,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       return data;
     },
     onSuccess: ({ create, message }) => {
@@ -42,7 +59,7 @@ export function CreateKnowledge() {
     },
   });
 }
-export function UseCreateFolder() {
+export function UseCreateFolder({ funct }) {
   const client = useQueryClient();
   return useMutation({
     mutationFn: async (datos) => {
@@ -55,12 +72,51 @@ export function UseCreateFolder() {
     onSuccess: ({ create, message }) => {
       if (create) {
         toast.success("Carpeta creada con exito");
+        funct();
         return client.invalidateQueries("BaseConocimiento");
       }
       return toast.error(`Error al crear carpeta | ${message}`);
     },
     onError: (error) => {
       toast.error(error.message ?? "Error al crear carpeta");
+    },
+  });
+}
+
+export function UpdateKnowledge() {
+  const { id } = useParams();
+
+  return useMutation({
+    mutationFn: async (datos) => {
+      const formd = new FormData();
+      formd.append("Titulo", datos.Titulo);
+      formd.append("Categoria", JSON.stringify(datos.Categoria));
+      formd.append("Contenido", datos.Contenido);
+      formd.append("imageAfter", datos.imageAfter);
+
+      for (const file of datos.image) {
+        formd.append("image", file);
+      }
+
+      const { data } = await axiosInstance.put(
+        `BaseConocimiento/article/${id}`,
+        formd,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      return data;
+    },
+    onSuccess: ({ ok, message }) => {
+      if (ok) {
+        return toast.success("Documento actualizado con exito");
+      }
+      return toast.error(`Error al actualizar documento | ${message}`);
+    },
+    onError: (error) => {
+      toast.error(error.message ?? "Error al actualizar documento");
     },
   });
 }

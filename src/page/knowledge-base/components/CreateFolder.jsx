@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/componentUI/ui/dialog";
-import { Button } from "@/componentUI/ui/button";
+import { Button, buttonVariants } from "@/componentUI/ui/button";
 import {
   Form,
   FormControl,
@@ -20,12 +20,19 @@ import {
 } from "@/componentUI/ui/form";
 import { Input } from "@/componentUI/ui/input";
 import { useForm } from "react-hook-form";
-import { CirclePlus } from "lucide-react";
+import { CirclePlus, FileText, FolderMinus } from "lucide-react";
 import { UseCreateFolder } from "../action/Useknowledge";
+import { Link } from "react-router-dom";
+import { IconClipboardText } from "@tabler/icons-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 function CreateFolder({ id }) {
+  const [OpenDialog, setOpenDialog] = useState(false);
   const formd = useForm();
-  const { mutate, isLoading } = UseCreateFolder();
+  const { mutate, isLoading } = UseCreateFolder({
+    funct: () => setOpenDialog(false),
+  });
   function onSub(data) {
     if (!id) return mutate(data);
 
@@ -35,7 +42,7 @@ function CreateFolder({ id }) {
 
   return (
     <>
-      <Dialog>
+      <Dialog open={OpenDialog} onOpenChange={setOpenDialog}>
         <DialogTrigger asChild>
           <Button variant="outline" size="sm">
             <CirclePlus className="w-4 h-4 mr-2" /> Crear Carpeta
@@ -68,7 +75,7 @@ function CreateFolder({ id }) {
                   </>
                 )}
               />
-              <DialogFooter className="mt-5">
+              <DialogFooter className="mt-5 grid grid-cols-2 gap-2">
                 <Button type="submit" disabled={isLoading}>
                   {isLoading ? "Creando..." : "Crear"}
                 </Button>
@@ -87,3 +94,16 @@ function CreateFolder({ id }) {
 }
 
 export default CreateFolder;
+
+export function CreateArticle({id}) {
+  if(!id) return toast.error("Selecciona la carpeta para crear un articulo");
+  return (
+    <Link
+      to={`${id}/create-article`}
+      className={buttonVariants({ variant: "outline", size: "sm" })}
+    >
+      <CirclePlus className="w-4 h-4 mr-2" />
+     Crear Articulo
+    </Link>
+  );
+}

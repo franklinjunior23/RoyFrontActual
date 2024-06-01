@@ -8,9 +8,9 @@ function RouteKnowledge() {
   return (
     <Routes>
       <Route path="/" element={<PageKnowledge />} />
-      <Route path="/:id" element={<FindKnowledge />} />
+      <Route path="/:folder/create-article" element={<KnowledgeeCreate />} />
+      <Route path="/article/:id" element={<FindKnowledge />} />
       <Route path="/:id/detalle" element={<PageDetalle />} />
-      <Route path="/create" element={<KnowledgeeCreate />} />
     </Routes>
   );
 }
