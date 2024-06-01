@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import QuillComponent from "../../../components/ReactQuill/QuillComponent";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { filtrarDatos } from "../../../utils/FiltUsersDisp";
-import axiosInstance from "../../../services/ConfigApi";
+
 import { toast } from "sonner";
+import axiosInstance from "@/helpers/config/axios-instance";
 
 function FormCreate({ handleActive}) {
   

@@ -1,9 +1,11 @@
+
+import { FormateDayD } from "@/helpers/utils/conver-day-ddmmyy";
 import { NavLink } from "react-router-dom";
-import { formatDateToPeruvian } from "../../../utils/FechaConvert";
+
 
 function ListItem({ id, Titulo, Autor, createdAt, Categoria }) {
   if(id === undefined ||  id === '' ||id==null) return <h2>No se encontraron resultados.</h2>
-  const fecha = formatDateToPeruvian(createdAt);
+  const fecha = FormateDayD(createdAt);
   return (
     <NavLink
       to={id}

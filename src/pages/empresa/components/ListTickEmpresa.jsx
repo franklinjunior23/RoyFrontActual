@@ -6,7 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { PDFViewer } from "@react-pdf/renderer";
 import { ItemPdfEtiqueta } from "../../../components/pdf/ItemEtiquetas";
-import axiosInstance from "../../../services/ConfigApi";
+import axiosInstance from "@/helpers/config/axios-instance";
+
 
 function ListTickEmpresa() {
   const [modalActiveEtiqts, setModalActiveEtiqts] = useState(false);

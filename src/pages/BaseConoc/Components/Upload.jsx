@@ -1,5 +1,6 @@
+import axiosInstance from "@/helpers/config/axios-instance";
 import { useForm } from "react-hook-form";
-import axiosInstance from "../../../services/ConfigApi";
+
 
 export default function Upload() {
   const { register,watch, handleSubmit } = useForm();

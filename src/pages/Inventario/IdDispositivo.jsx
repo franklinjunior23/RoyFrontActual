@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import axiosInstance from "../../services/ConfigApi";
+
 import { useForm } from "react-hook-form";
+import axiosInstance from "@/helpers/config/axios-instance";
 
 function IdDispositivo() {
   const { idDisp } = useParams();

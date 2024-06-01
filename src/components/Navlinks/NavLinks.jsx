@@ -1,5 +1,6 @@
 import { LinksAdministratorData, NavData } from "@/assets/DataDefault";
 import ItemNav from "./components/ItemNav";
+import { IconBrandTidal } from "@tabler/icons-react";
 
 function NavLinks({ Rol }) {
   try {
@@ -16,10 +17,25 @@ function NavLinks({ Rol }) {
     }
 
     return (
-      <section className="grid gap-2 mb-10   mt-5 dark:text-white ">
-        {LinksUrl.data?.map((dat, index) => (
+      <section className="grid gap-2 mt-2 dark:text-white ">
+        {LinksUrl?.data?.map((dat, index) => (
           <ItemNav key={index} datos={dat} />
         ))}
+        <div
+          className={`transition-all ease-in-out hover:duration-300  flex gap-5`}
+        >
+          <a
+            href="https://drive.google.com/drive/u/1/folders/1zU_lZRimfLAkyaiPc-gsfhxVHNA_8MCb"
+            target="_blank"
+            className="py-2.5 w-full flex gap-3 rounded-lg hover:bg-white/20  dark:hover:bg-white/20  px-4  items-center"
+            rel="noreferrer"
+          >
+            <span className="text-xl">
+              <IconBrandTidal size={28} />
+            </span>
+            <h3 className="text-sm">Agente</h3>
+          </a>
+        </div>
       </section>
     );
   } catch (error) {

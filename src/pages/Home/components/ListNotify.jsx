@@ -1,4 +1,5 @@
-import { VITE_API_DOMIN, VITE_TOKE_USER } from "@/services/ConfigApi";
+
+import { VITE_API_DOMIN, VITE_TOKE_USER } from "@/helpers/config/axios-instance";
 import ListNotifys from "@Components/Notify/components/ListNotifys";
 
 import { useEffect, useState } from "react";

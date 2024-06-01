@@ -1,54 +1,105 @@
 import { useFieldArray } from "react-hook-form";
 import InputSelect from "./InputSelect";
 import { RowColumn } from "./Form";
-import Input from "./Input";
 import { TYPE_EMAILS } from "@Data/DataDefault";
 import PropTypes from "prop-types";
+import {
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/componentUI/ui/form";
+import { Input } from "@/componentUI/ui/input";
+import { Button } from "@/componentUI/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/componentUI/ui/select";
 
-function EmailField({ index, register, error, remove }) {
+function EmailField({ index, remove, control }) {
+  console.log(TYPE_EMAILS);
   return (
     <article>
-      <InputSelect
+      <FormField
+        control={control}
         name={`email.${index}.type`}
-        label="Tipo Email"
-        register={register}
-        options={TYPE_EMAILS}
-        error={error}
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Tipo</FormLabel>
+            <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <FormControl>
+                <SelectTrigger>
+                  <SelectValue placeholder="Seleccionar Tipo de correo" />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                {TYPE_EMAILS?.map((item) => (
+                  <SelectItem key={item.value} value={item.value}>
+                    {item.value}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <FormMessage />
+          </FormItem>
+        )}
       />
 
       <RowColumn className={""}>
-        <Input
-          label="Correo"
+        <FormField
+          control={control}
           name={`email.${index}.correo`}
-          register={register}
-          error={error}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Correo</FormLabel>
+              <FormControl>
+                <Input placeholder="Correo" {...field} />
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        <Input
-          label="Contraseña"
+        <FormField
+          control={control}
           name={`email.${index}.password`}
-          register={register}
-          error={error}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Contraseña</FormLabel>
+              <FormControl>
+                <Input placeholder="Contraseña" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
       </RowColumn>
-      <button
+      <Button
+        variant="destructive"
         type="button"
         className="bg-red-400 flex justify-between text-white text-xl px-2.5 font-semibold rounded-md"
         onClick={() => remove(index)}
       >
         -
-      </button>
+      </Button>
     </article>
   );
 }
 
 EmailField.propTypes = {
   index: PropTypes.number,
-  register: PropTypes.func,
   error: PropTypes.any,
   remove: PropTypes.func,
+  control: PropTypes.any,
 };
 
-function FieldsEmail({ control, register, error }) {
+function FieldsEmail({ control, error }) {
   const { fields, append, remove } = useFieldArray({
     control,
     name: "email",
@@ -60,9 +111,8 @@ function FieldsEmail({ control, register, error }) {
         <EmailField
           key={field.id}
           index={index}
-          register={register}
-          error={error}
           remove={remove}
+          control={control}
         />
       ))}
       <button

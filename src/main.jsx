@@ -11,10 +11,11 @@ import "swiper/css/effect-fade";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "sonner";
 import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.bubble.css';
+
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-// Supports weights 100-900
 import '@fontsource-variable/montserrat';
-import { ThemeProvider } from "./context/provider-theme.jsx";
+import { ThemeProvider } from "./context/Theme-shadcn.jsx";
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(

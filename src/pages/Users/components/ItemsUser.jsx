@@ -1,6 +1,7 @@
 import { IconUser } from "@tabler/icons-react";
 import TruncateText from "../../../utils/TruncateTeaxt";
-import { formatDateToPeruvian } from "../../../utils/FechaConvert";
+import { FormateDayD } from "@/helpers/utils/conver-day-ddmmyy";
+
 
 function ItemsUser({
   nombre,
@@ -23,7 +24,7 @@ function ItemsUser({
             {apellido ?? ""}
           </li>
           <li className="dark:text-white text-xs font-semibold">
-            {formatDateToPeruvian(createdAt)}
+            {FormateDayD(createdAt)}
           </li>
         </ul>
         <p className="dark:text-white text-sm"><span className="font-semibold">User: </span>{usuario}</p>

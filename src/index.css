@@ -1,198 +1,85 @@
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
+  @tailwind components;
+  @tailwind utilities;
 
-/* CustomScrollbar.css */
-@media (min-width: 700px) {
-  /* Estilos para tamaños de pantalla 'lg' o más grandes */
-  .custom-scrollbar {
-    /* Añade scroll-snap-type para controlar el comportamiento del scroll */
-    scroll-snap-type: y proximity;
-    scroll-behavior: smooth; /* Hace que el scroll sea suave */
+  @layer base {
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 222.2 84% 4.9%;
+
+      --card: 0 0% 100%;
+      --card-foreground: 222.2 84% 4.9%;
+
+      --popover: 0 0% 100%;
+      --popover-foreground: 222.2 84% 4.9%;
+
+      --primary: 222.2 47.4% 11.2%;
+      --primary-foreground: 210 40% 98%;
+
+      --secondary: 210 40% 96.1%;
+      --secondary-foreground: 222.2 47.4% 11.2%;
+
+      --muted: 210 40% 96.1%;
+      --muted-foreground: 215.4 16.3% 46.9%;
+
+      --accent: 210 40% 96.1%;
+      --accent-foreground: 222.2 47.4% 11.2%;
+
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 210 40% 98%;
+
+      --border: 214.3 31.8% 91.4%;
+      --input: 214.3 31.8% 91.4%;
+      --ring: 222.2 84% 4.9%;
+
+      --radius: 0.5rem;
+    }
+
+    .dark {
+      --background: 222.2 84% 4.9%;
+      --foreground: 210 40% 98%;
+
+      --card: 222.2 84% 4.9%;
+      --card-foreground: 210 40% 98%;
+
+      --popover: 222.2 84% 4.9%;
+      --popover-foreground: 210 40% 98%;
+
+      --primary: 210 40% 98%;
+      --primary-foreground: 222.2 47.4% 11.2%;
+
+      --secondary: 217.2 32.6% 17.5%;
+      --secondary-foreground: 210 40% 98%;
+
+      --muted: 217.2 32.6% 17.5%;
+      --muted-foreground: 215 20.2% 65.1%;
+
+      --accent: 217.2 32.6% 17.5%;
+      --accent-foreground: 210 40% 98%;
+
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 210 40% 98%;
+
+      --border: 217.2 32.6% 17.5%;
+      --input: 217.2 32.6% 17.5%;
+      --ring: 212.7 26.8% 83.9%;
+    }
   }
 
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 10px; /* Ancho del scrollbar en pantallas grandes */
+  @layer base {
+    * {
+      @apply border-border;
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    body {
+      @apply text-foreground;
+    }
+     .ql-tooltip{
+      z-index: 1000000000000;
+    }
+    .ql-editor{
+      height: auto;
+      overflow-x: auto;
+    }
+   
   }
-
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #888; /* Color del thumb en pantallas grandes */
-    border-radius: 5px; /* Bordes redondeados para el thumb en pantallas grandes */
-  }
-
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Color del fondo del scrollbar en pantallas grandes */
-    border-radius: 5px; /* Bordes redondeados para el fondo del scrollbar en pantallas grandes */
-  }
-}
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 22px;
-}
-
-@media (min-width: 700px) {
-  /* Estilos para tamaños de pantalla 'lg' o más grandes */
-  .custom-scrollNav {
-    /* Añade scroll-snap-type para controlar el comportamiento del scroll */
-    scroll-snap-type: y proximity;
-    scroll-behavior: smooth; /* Hace que el scroll sea suave */
-  }
-
-  .custom-scrollNav::-webkit-scrollbar {
-    width: 1px; /* Ancho del scrollbar en pantallas grandes */
-  }
-
-  .custom-scrollNav::-webkit-scrollbar-thumb {
-    background-color: #888; /* Color del thumb en pantallas grandes */
-    border-radius: 5px; /* Bordes redondeados para el thumb en pantallas grandes */
-  }
-
-  .custom-scrollNav::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Color del fondo del scrollbar en pantallas grandes */
-    border-radius: 5px; /* Bordes redondeados para el fondo del scrollbar en pantallas grandes */
-  }
-}
-
-/**
- * 
- * 
- * This CSS file contains custom styles for the Quill text editor in a React application.
- * 
- * The styles include:
- * - Removing the border from the toolbar and container
- * - Setting the background color of the toolbar and container to white
- * - Adding a border radius of 7px to the toolbar
- * - Setting the background color of the formats button on hover to #aaaaaa
- * - Adding a border radius of 3px to the formats button on hover
- * - Setting the color of the formats button on hover to white
- * - Adding a scrollbar to the editor with a width of 10px and a background color of #f1f1f1
- * - Adding a thumb to the scrollbar with a background color of #888 and border radius of 5px
- * - Adding a track to the scrollbar with a background color of #f1f1f1 and border radius of 5px
- */
-/* Custom Css Qrill to react */
-
-.ql-toolbar {
-  background-color: white !important;
-  border-radius: 7px;
-  border: 1px solid gray !important;
-}
-.ql-container {
-  background-color: white !important;
-  margin-top: 12px !important;
-  border: none !important;
-  border-radius: 8px;
-}
-.ql-formats > button:hover {
-  background-color: #aaaaaa !important;
-  border-radius: 3px;
-  color: white;
-  transition: all ease-in 0.2s;
-}
-
-.ql-editor {
-}
-.ql-editor::-webkit-scrollbar {
-  width: 10px; /* Ancho del scrollbar en pantallas grandes */
-}
-.ql-editor::-webkit-scrollbar-thumb {
-  background-color: #888; /* Color del thumb en pantallas grandes */
-  border-radius: 5px; /* Bordes redondeados para el thumb en pantallas grandes */
-}
-
-.ql-editor::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* Color del fondo del scrollbar en pantallas grandes */
-  border-radius: 5px; /* Bordes redondeados para el fondo del scrollbar en pantallas grandes */
-}
-
-/* Fin the custom Qrill to react */
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 14px;
-  width: 14px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: #2196f3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-.CustomScroll {
-  scroll-snap-type: y proximity;
-  scroll-behavior: smooth; /* Hace que el scroll sea suave */
-}
-.CustomScroll::-webkit-scrollbar {
-  width: 10px; /* Ancho del scrollbar en pantallas grandes */
-}
-.CustomScroll::-webkit-scrollbar-thumb {
-  background-color: #888; /* Color del thumb en pantallas grandes */
-  border-radius: 5px; /* Bordes redondeados para el thumb en pantallas grandes */
-}
-
-.CustomScroll::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* Color del fondo del scrollbar en pantallas grandes */
-  border-radius: 5px; /* Bordes redondeados para el fondo del scrollbar en pantallas grandes */
-}
-@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
-@import "~@flaticon/flaticon-uicons/css/all/all";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap');
-
-
-/* Resto de tus estilos */
-body {
-  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-@layer components {
-  .form-input {
-    @apply border-2 focus:border-blue-500/40 p-2 dark:bg-DarkComponent text-sm outline-none dark:text-white/80 dark:border-DarkColor  rounded-md w-full;
-  }
-  .AsideDots {
-    @apply border dark:border-white/20 dark:bg-[#262626] bg-white z-50 p-1.5 rounded-md shadow-md;
-  }
-}

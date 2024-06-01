@@ -1,10 +1,10 @@
 import { Outlet, useParams } from "react-router-dom";
 import DeviceImage from "/Figures/DevicePage.svg";
 import GeneralSect from "../Sections/GeneralSect";
-
-import axiosInstance from "@/services/ConfigApi";
 import { useQuery } from "@tanstack/react-query";
 import HeadCategory from "@Components/Section/components/HeadCategory";
+import axiosInstance from "@/helpers/config/axios-instance";
+import { clsx } from "clsx";
 
 export default function DevicePage() {
   const { nombreE, sucursalN, idDisp } = useParams();
@@ -15,79 +15,61 @@ export default function DevicePage() {
     );
     return data;
   });
-
+  {
+    isLoading && <div>Cargando...</div>;
+  }
   if (idDisp) return <Outlet />;
 
   return (
-    <main className=" pb-5 md:grid md:grid-cols-[1fr_320px] gap-5 ">
+    <main className=" pb-5  gap-5 ">
+      <header className="flex gap-3 flex-wrap ">
+        <ItemCount count={data?.length} label={"Total"} />
+        <ItemCount
+          count={data?.filter((item) => item?.tipo === "Pc")?.length}
+          label={"Pc"}
+        />
+        <ItemCount
+          label={"Laptop"}
+          count={data?.filter((item) => item?.tipo === "Laptop")?.length}
+        />
+        <ItemCount label={'Impresora'} count={data?.filter((item) => item?.tipo === "Impresora")?.length} />
+        <ItemCount label={'Activos'} count={data?.filter((item) => item?.estado === "Activo")?.length} />
+      </header>
       <section>
         {isLoading && <div>Cargando...</div>}
         {isError && <div>Error al cargar los dispositivos</div>}
         {!isLoading && !isError && (
           <>
             <GeneralSect data={data} />
-            {data?.length === 0 && (
-              <>
-                {idDisp === "create" ? (
-                  <Outlet />
-                ) : (
-                  <>
-                    <HeadCategory data={"Dispositivo"} />
-                    <h2 className="mt-10 text-center">
-                      No hay Dispositivos. Crea uno.
-                    </h2>
-                  </>
-                )}
-              </>
-            )}
+            
           </>
         )}
-      </section>
-      <section className="bg-black/30 dark:bg-black/20 px-4 rounded-xl">
-        <h2 className="text-center text-lg my-4 text-white">Dispositivos</h2>
-        <main className="mt-4 grid grid-cols-2 gap-3">
-          <CountDevices
-            count={data?.filter((item) => item?.tipo === "Pc")?.length}
-            title={"Pc"}
-          />
-          <CountDevices
-            count={data?.filter((item) => item?.tipo === "Laptop")?.length}
-            title={"Laptop"}
-          />
-          <CountDevices
-            count={data?.filter((item) => item?.tipo === "Red")?.length}
-            title={"Red"}
-          />
-          <CountDevices
-            count={data?.filter((item) => item?.tipo === "Camara")?.length}
-            title={"Camara"}
-          />
-        </main>
-        <ContentInfo />
       </section>
     </main>
   );
 }
-function CountDevices({ title, count }) {
+function ItemCount({ icon, label, count, color, hover }) {
+  const colors = {
+    green: "text-green-500",
+    red: "text-red-500",
+    blue: "text-blue-400",
+  };
   return (
-    <section className="bg-black/60 p-3 rounded-lg text-white  ">
-      <span className="text-center block text-[45px] font-bold">{count}</span>
-      <h3 className="text-center text-lg mt-4">{title}</h3>
-    </section>
-  );
-}
-
-function ContentInfo() {
-  return (
-    <section className="bg-black/60 mt-10 p-4 py-7 rounded-xl">
-      <img
-        src={DeviceImage}
-        className="p-6"
-        alt="Register Users on the branch"
-      />
-      <span className="block text-center font-bold text-white mt-2 text-lg">
-        Register Devices
-      </span>
-    </section>
+    <article
+      className={clsx(
+        "border flex-1 px-5 py-2 max-h-[200px] h-[60px] rounded-lg border-green",
+        color
+      )}
+    >
+      <div className="flex justify-between">
+        <div className="flex gap-2 items-center ">
+          <span className="text-xl font-bold">{label}</span>
+          <span> {icon && icon}</span>
+        </div>
+        <span className={clsx("text-3xl font-bold ", colors[color])}>
+          {count}
+        </span>
+      </div>
+    </article>
   );
 }

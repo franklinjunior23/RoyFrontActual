@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axiosInstance from "@/services/ConfigApi";
 import { toast } from "sonner";
+import axiosInstance from "@/helpers/config/axios-instance";
+import Button from "@Components/Input/Button";
 function ButtonDeleteArea({ id }) {
   const { idDisp } = useParams();
   const QueryClient = useQueryClient();
@@ -129,7 +130,7 @@ function VinculeArea({
         )}
         {watch("FormUser") && (
           <section>
-            <div className="grid">
+            <div className="grid text-sm">
               <label className="dark:text-white mb-3">Nombre Usuario</label>
               <select
                 {...register("IdUser")}
@@ -151,14 +152,22 @@ function VinculeArea({
                 ))}
               </select>
             </div>
-            <section className="mt-10 grid place-content-center">
+            <section className="mt-10 flex gap-2 text-sm">
               {IdUser && (
                 <Link
                   to={`/Dashboard/Home/${nombreE}/${sucursalN}/Usuarios/${IdUser}`}
-                  className="dark:text-white text-center border py-2 px-5 rounded-md"
+                  className="dark:text-white text-center border py-1 px-5 rounded-md"
                 >
                   Ver Personal Registrado
                 </Link>
+              )}
+              {IdUser && (
+                <Button
+                variant="danger"
+                  
+                >
+                 Eliminar Usuario
+                </Button>
               )}
             </section>
           </section>
@@ -176,7 +185,7 @@ VinculeArea.propTypes = {
   register: PropTypes.func,
   dataAreas: PropTypes.any,
   DataUsers: PropTypes.any,
-  IdUser: PropTypes.string,
+  IdUser: PropTypes.any,
   nombreE: PropTypes.string,
   sucursalN: PropTypes.string,
 };

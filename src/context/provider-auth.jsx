@@ -2,7 +2,8 @@ import { createContext, useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import { VITE_TOKE_USER } from "@/services/ConfigApi";
+import { VITE_TOKE_USER } from "@/helpers/config/axios-instance";
+
 
 const ContextAuth = createContext();
 

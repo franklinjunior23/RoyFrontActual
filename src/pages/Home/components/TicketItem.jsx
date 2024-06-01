@@ -7,12 +7,13 @@ import {
 import TruncateText from "../../../utils/TruncateTeaxt";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axiosInstance from "../../../services/ConfigApi";
+
 import { useForm, Controller } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { formatTimeToPeruvian } from "../../../utils/FechaConvert";
 import { UsecontextAuth } from "@/context/provider-auth";
+import axiosInstance from "@/helpers/config/axios-instance";
+import { FormateDayD } from "@/helpers/utils/conver-day-ddmmyy";
 
 
 function TicketItem({
@@ -93,7 +94,7 @@ function TicketItem({
           <div className="flex w-full gap-2 flex-col md:flex-row md:items-end">
             <span className="text-sm  flex gap-1 items-center tracking-wider font-bold  ">
               <IconClock size={24} /> {Hora}
-              {Estado === "Cerrado" && ` -  ${formatTimeToPeruvian(updatedAt)}`}
+              {Estado === "Cerrado" && ` -  ${FormateDayD(updatedAt)}`}
             </span>
             {Estado === "En progreso" | Estado === "Cerrado" ? (
               <span className=" ml-2 bg-black text-white px-3 text-sm rounded-md text-center">

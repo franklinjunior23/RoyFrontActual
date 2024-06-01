@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import HeadPage from "./Components/HeadPage";
 import { useQuery } from "@tanstack/react-query";
-import axiosInstance, { UrlDomain } from "../../services/ConfigApi";
 import QuillComponent from "../../components/ReactQuill/QuillComponent";
 import InputComponent from "./Components/InputComponent";
 import { useForm } from "react-hook-form";
@@ -12,8 +11,7 @@ import ModalTotal from "../../components/Modal/ModalTotal";
 import { IconFileDescription } from "@tabler/icons-react";
 import ContentUpload from "./Components/ContentUpload";
 import SwitchTogle from "../../components/assets/SwitchTogle";
-
-import LoadingSkeleton from "./Components/Skeleton";
+import axiosInstance, { UrlDomain } from "@/helpers/config/axios-instance";
 
 export function ModalImage({ Src }) {
   const [ActiveModal, setActiveModal] = useState(false);
@@ -70,6 +68,7 @@ function PageDetalle() {
       setWriteUser(data?.data.Contenido);
       setValue("Categoria", data?.data?.Categoria);
       if (data?.data?.Archivos?.length > 0) {
+        // eslint-disable-next-line no-unsafe-optional-chaining
         return AddApi([...data?.data?.Archivos]);
       } else {
         DeleteBaseUd();

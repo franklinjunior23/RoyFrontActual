@@ -1,13 +1,15 @@
 import { IconBell } from "@tabler/icons-react";
 import { useState, useEffect } from "react";
-import { VITE_API_DOMIN, VITE_TOKE_USER } from "../../services/ConfigApi";
+
 import { io } from "socket.io-client";
 import ListNotifys from "./components/ListNotifys";
+import { VITE_API_DOMIN, VITE_TOKE_USER } from "@/helpers/config/axios-instance";
 
 /**
  * Component for displaying notifications.
  *
- * @returns {JSX.Element} The Notify component.
+ * @returns {JS
+ * .Element} The Notify component.
  */
 function Notify() {
   const [ActiveNotifyView, setActiveNotifyView] = useState(false);

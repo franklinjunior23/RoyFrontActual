@@ -10,15 +10,15 @@ export const UsecontextTheme = () => {
 
 export const ThemeProvider = ({ children }) => {
     const [ThemeActual, setThemeActual] = useState(() => {
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            return "dark";
+        if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+            return "light";
         } else {
             return "light";
         }
     });
     useEffect(() => {
         if (ThemeActual == "dark") {
-            document.querySelector("html").classList.add("dark");
+            document.querySelector("html").classList.remove("dark");
         } else {
             document.querySelector("html").classList.remove("dark");
         }

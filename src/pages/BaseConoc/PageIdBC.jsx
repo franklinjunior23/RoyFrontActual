@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -12,12 +12,9 @@ import InputComponent from "./Components/InputComponent";
 import SwitchTogle from "../../components/assets/SwitchTogle";
 import HeadPage from "./Components/HeadPage";
 import { Item } from "./Components/ListContent";
-
-import axiosInstance, { UrlDomain } from "../../services/ConfigApi";
-
+import axiosInstance, { UrlDomain } from "@/helpers/config/axios-instance";
 
 function PageIdBC() {
-
   // estate where the data of each knowledge base will be stored
   const [DatsId, setDatsId] = useState([]);
 
@@ -32,7 +29,7 @@ function PageIdBC() {
   // react query function to be able to use the state of the knowledge base data
   const { register, setValue, handleSubmit, watch } = useForm();
 
-  const {BaseConocimiento} = SearchUser()
+  const { BaseConocimiento } = SearchUser();
 
   // components to be able to display inputs with styles
   function DivContentInput({ label, name, isRequired }) {
@@ -57,7 +54,7 @@ function PageIdBC() {
     isRequired: PropTypes.bool,
   };
   const ViewSwitch = watch("UpdateDat");
-  
+
   const Base = SearchUser((state) => state.BaseConocimiento);
 
   useEffect(() => {
@@ -87,8 +84,11 @@ function PageIdBC() {
       return toast.error(data?.message);
     },
   });
-  console.log(BaseConocimiento)
-  if (!DatsId) return navi(-1);
+
+  if (!DatsId) {
+    toast.error("No se encontró la base de conocimiento");
+    return navi("/Dashboard/BaseConocimiento");
+  }
   return (
     <div className="w-full h-full  ">
       <HeadPage site={"Detalle"} />
@@ -106,7 +106,6 @@ function PageIdBC() {
             <div className="flex gap-4 items-center">
               <label className="dark:text-white">Actualizar</label>
               <SwitchTogle register={register} name={"UpdateDat"} />
-              
             </div>
             {ViewSwitch && (
               <button
@@ -127,10 +126,14 @@ function PageIdBC() {
         />
       </div>
       <section className="mt-5">
-        <h3 className="text-center dark:text-white text-xl">Archivos Adjuntos</h3>
+        <h3 className="text-center dark:text-white text-xl">
+          Archivos Adjuntos
+        </h3>
 
         {DatsId.Archivos?.length === 0 || null ? (
-          <h3 className="text-center dark:text-white">No hay archivos subidos</h3>
+          <h3 className="text-center dark:text-white">
+            No hay archivos subidos
+          </h3>
         ) : (
           <article className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-5">
             {DatsId.Archivos?.map((item, index) => (
@@ -147,15 +150,14 @@ function PageIdBC() {
         )}
       </section>
       <main className="mt-5">
-        <h3 className="text-center text-xl dark:text-white">Base de conocimiento</h3>
+        <h3 className="text-center text-xl dark:text-white">
+          Base de conocimiento
+        </h3>
         <section className="grid grid-cols-2 md:grid-cols-3 gap-5 mt-5 h-[400px] overflow-y-auto">
-
-        {BaseConocimiento?.map((BaseConocimientoList ,index)=>(
+          {BaseConocimiento?.map((BaseConocimientoList, index) => (
             <Item key={index} {...BaseConocimientoList} />
-          ))
-        }
+          ))}
         </section>
-
       </main>
     </div>
   );

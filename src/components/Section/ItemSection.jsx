@@ -8,7 +8,7 @@ function ItemSection({ LinkDate }) {
   const [ActiveModal, setActiveModal] = useState(false);
 
   return (
-    <section className="py-4 mt-5 md:mt-0">
+    <section className=" w-[300px] py-4 mt-5 md:mt-0 ">
       <header className=" flex  lg:hidden justify-between items-center mb-6">
         <div>
           <h3 className="text-Slet font-bold text-xl">Empresas</h3>
