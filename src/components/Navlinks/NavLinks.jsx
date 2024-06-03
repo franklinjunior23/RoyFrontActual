@@ -7,7 +7,7 @@ function NavLinks({ Rol }) {
     const TypesNav = [
       { name: "Soporte", data: NavData },
       { name: "Administrador", data: LinksAdministratorData },
-      // {name:"Visitante",data:LinksAdministratorData},
+      {name:"Visitante",data:LinksAdministratorData},
     ];
 
     const LinksUrl = TypesNav.find((nav) => nav.name === Rol);

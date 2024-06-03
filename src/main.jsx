@@ -26,7 +26,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <App /> <Toaster expand={false} closeButton />
         </ThemeProvider>
         
-        <ReactQueryDevtools initialIsOpen={false} />
+        <ReactQueryDevtools position="top-left" initialIsOpen={false} />
       </QueryClientProvider>
     </BrowserRouter>
   </React.StrictMode>
