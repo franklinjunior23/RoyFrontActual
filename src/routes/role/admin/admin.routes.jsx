@@ -28,7 +28,7 @@ function AdminRoutes() {
         <Route path="Reportes" element={<h1>Reportes</h1>} />
         <Route path="Ticket" element={<PageTickets />} />
         <Route path="Ticket/:id" element={<h1>Ticket por Id</h1>} />
-        <Route path="BaseConocimiento/*" element={<RouteKnowledge />} />
+        <Route path="base-conocimiento/*" element={<RouteKnowledge />} />
         <Route path="Cmdb/*" element={<Routecmdb />} />
  
        
