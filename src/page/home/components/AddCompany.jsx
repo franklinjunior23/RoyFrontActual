@@ -16,7 +16,7 @@ function AddCompany() {
   return (
     <>
       <button
-        className="grid border-2 border-dashed rounded-lg place-content-center "
+        className="grid border-2 border-dashed md:w-[100px] md:min-w-[100px] md:h-[140px] rounded-lg place-content-center "
         onClick={handleOk}
       >
         Crear Empresa
