@@ -1,88 +1,123 @@
+import { Button } from "@/componentUI/ui/button";
+import { Card, CardContent } from "@/componentUI/ui/card";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/componentUI/ui/form";
+import { Input } from "@/componentUI/ui/input";
 import { UsecontextAuth } from "@/context/provider-auth";
-import Button from "@Components/Input/Button";
-import Input from "@Components/Input/Input";
-import Label from "@Components/Input/Label";
 import { useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { UseGetUser } from "./action/useGetProfile";
 
 function PageConfig() {
-  const { control, handleSubmit, setValue } = useForm();
+  const formd = useForm();
   const { LogedAuth } = UsecontextAuth();
+  const { data, isLoading, isError } = UseGetUser();
 
   useEffect(() => {
     function SetValues() {
-      setValue("name", LogedAuth?.nombre);
-      setValue("lastname", LogedAuth?.apellido);
+      formd.setValue("name", LogedAuth?.nombre);
+      formd.setValue("lastname", LogedAuth?.apellido);
     }
     SetValues();
   }, []);
   function SaveChanges(data) {
     console.log(data);
   }
+  isLoading && <IsLoading />
   return (
-    <div>
-      <h2 className="text-xl ">Configuración</h2>
-      <main className="flex justify-between items-center md:w-[60%] mx-auto mt-5">
-        <form onSubmit={handleSubmit(SaveChanges)} className="">
-          <h3 className="text-xl mb-5">Perfil</h3>
-          <section className="grid grid-cols-2 gap-3">
-            <Controller
-              control={control}
-              name="name"
-              defaultValue={""}
-              render={({ field }) => (
-                <Label>
-                  Nombre
-                  <Input {...field} />
-                </Label>
-              )}
-            />
-            <Controller
-              control={control}
-              name="lastname"
-              defaultValue={""}
-              render={({ field }) => (
-                <Label>
-                  Apellido
-                  <Input {...field} />
-                </Label>
-              )}
-            />
-          </section>
-          <Controller
-            control={control}
-            name="email"
-            defaultValue={""}
-            type="email"
-            render={({ field }) => (
-              <Label>
-                Correo
-                <Input {...field} type={"email"} />
-              </Label>
-            )}
-          />
+    <main className="mx-auto md:w-[70%]">
+      <Card>
+        <CardContent>
+          <Form {...formd}>
+            <form onSubmit={formd.handleSubmit(SaveChanges)}>
+              <section className="md:flex justify-between items-center ">
+                <div>
+                  <div className="flex gap-3">
+                    <FormField
+                      control={formd.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Nombre</FormLabel>
 
-          <section className="flex gap-2 mt-5">
-            <Button>Guardar</Button>
-            <Button variant="second">Cancelar</Button>
-          </section>
-        </form>
+                          <FormControl>
+                            <Input placeholder="Nombre" {...field} />
+                          </FormControl>
 
-        <section className="relative group/imageupload overflow-hidden rounded-full transition-all duration-100	ease-out">
-          <img
-            src="https://img.freepik.com/psd-gratis/3d-ilustracion-persona-gafas-sol_23-2149436188.jpg"
-            alt="Imagen User for intisoft"
-            className="w-48 rounded-full"
-          />
-          <div className="absolute hidden  place-content-center group-hover/imageupload:visible group-hover/imageupload:grid 	 top-0 w-full h-full bg-black/20  left-0">
-            Cambiar Imagen
-          </div>
-        </section>
-      </main>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={formd.control}
+                      name="lastname"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Apellido</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Apellido" {...field} />
+                          </FormControl>
 
-      {/**<HeaderRoutes/> */}
-    </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <FormField
+                    control={formd.control}
+                    name="lastname"
+                    render={({ field }) => (
+                      <FormItem className="mt-3">
+                        <FormLabel>Correo</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Correo" {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          Correo electronico para el envio de mensajes o
+                          alarmas.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <section className="relative group/imageupload overflow-hidden rounded-full transition-all duration-100	ease-out">
+                  <img
+                    src={`https://ui-avatars.com/api/?name=${LogedAuth?.nombre}+${LogedAuth?.apellido}`}
+                    alt="Imagen User for intisoft"
+                    className="w-32 rounded-full"
+                  />
+                  <div className="absolute hidden  place-content-center group-hover/imageupload:visible group-hover/imageupload:grid 	 top-0 w-full h-full bg-black/20  left-0">
+                    Cambiar Imagen
+                  </div>
+                </section>
+              </section>
+
+              <section className="flex gap-2 mt-5">
+                <Button type="submit">Guardar</Button>
+                <Button type="button" variant="secondary">
+                  Cancelar
+                </Button>
+              </section>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+    </main>
   );
 }
 
 export default PageConfig;
+
+function IsLoading(){
+  return <main>
+    <h2>Cargando...</h2>
+  </main>
+}

@@ -39,7 +39,7 @@ export const PublicRoutes: RouteType[] = [
     items: [
       {
         label: "Tablero",
-        path: "tareas",
+        path: "Tasks",
         Icon: Notebook,
       },
     ],

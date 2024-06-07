@@ -4,13 +4,14 @@ import PageDispositivo from "@Pages/Layaots/Dispositivo/PageDispositivo";
 import { AuthProvider } from "./context/provider-auth";
 import Login from "./page/Login";
 import Page404 from "./page/Not-found";
+import SignIn from "./page/auth/SignIn";
 
 function App() {
   return (
     <>
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<SignIn />} />
           <Route path="/Dashboard/*" element={<RolesMiddleware />} />
           <Route path="/Dispositivo/:id" element={<PageDispositivo />} />
           <Route path="*" element={<Page404/>} />

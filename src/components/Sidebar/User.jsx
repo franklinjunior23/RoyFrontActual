@@ -28,7 +28,7 @@ function UserHead() {
       <ViewVersion />
 
       <header className="flex justify-between items-center">
-        <Link to={"Configuracion"} className="flex items-center gap-2">
+        <Link to={"configuracion/profile"} className="flex items-center gap-2">
           <Settings className="w-5 h-5" />
           <span className="text-[12px]">Ajustes</span>
         </Link>
@@ -62,7 +62,7 @@ function UserHead() {
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <User className="mr-2 w-4 h-4" />
-              <Link to={"Configuracion"}>Mi Perfil</Link>
+              <Link to={"configuracion/profile"}>Mi Perfil</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <LogOut className="mr-2 w-4 h-4" />

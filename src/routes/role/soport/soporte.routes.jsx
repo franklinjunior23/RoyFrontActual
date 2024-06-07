@@ -8,6 +8,7 @@ import RouteKnowledge from "@/routes/knowledge-base/route-knowledge";
 import RouteConfigure from "@/routes/configure/route-configure";
 import RoutesHome from "@/routes/home/RouteHome";
 import Routecmdb from "@/routes/cmdb/route-cmdb";
+import TaskRoutes from "@/routes/task/route-task";
 
 //Page User the Inventario of Empresa and Sucursal
 
@@ -25,7 +26,9 @@ function SoporteRoutes() {
         <Route path="Ticket/:id" element={<h1>Ticket por Id</h1>} />
         <Route path="base-conocimiento/*" element={<RouteKnowledge />} />
         <Route path="Cmdb/*" element={<Routecmdb />} />
-        <Route path="/Configuracion/*" element={<RouteConfigure />} />
+
+        <Route path="tasks/*" element={<TaskRoutes/>} />
+        <Route path="configuracion/*" element={<RouteConfigure />} />
       </Route>
     </Routes>
   );

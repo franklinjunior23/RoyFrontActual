@@ -34,7 +34,7 @@ function AdminRoutes() {
        
         <Route path="Users" element={<PageUser />} />
         <Route path="Dispositivos" element={<h1>jpña</h1>} />
-        <Route path="Configuracion/*" element={<RouteConfigure />} />
+        <Route path="configuracion/*" element={<RouteConfigure />} />
       </Route>
     </Routes>
   );
