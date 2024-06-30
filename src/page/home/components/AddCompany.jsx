@@ -12,11 +12,10 @@ function AddCompany() {
     setModalpen(false);
   };
 
- 
   return (
     <>
       <button
-        className="grid border-2 border-dashed md:w-[100px] md:min-w-[100px] md:h-[140px] rounded-lg place-content-center "
+        className="grid dark:border-white border-2 border-dashed md:w-[100px] md:min-w-[100px] md:h-[140px] rounded-lg place-content-center "
         onClick={handleOk}
       >
         Crear Empresa
@@ -31,7 +30,7 @@ function AddCompany() {
         onCancel={handleCancel}
         footer={null}
       >
-       <FormCompany handleCancel={handleCancel}  />
+        <FormCompany handleCancel={handleCancel} />
       </Modal>
     </>
   );

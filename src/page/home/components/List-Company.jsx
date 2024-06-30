@@ -19,14 +19,14 @@ function Listbusiness() {
       <section className="min-w-full h-fit max-w-full flex flex-col md:flex-row gap-4">
         <AddCompany />
         {(isLoading | isFetching )? (
-          <main className="flex gap-4 ">
+          <main className="flex  gap-4 ">
             <Skeleton className="w-[360px] h-[140px] p-5 flex flex-col justify-between">
               <Skeleton className="w-[70%] h-5"/><Skeleton className="w-[25%] h-4"/>
             </Skeleton>
-            <Skeleton className="w-[360px] h-[140px] p-5 flex flex-col justify-between">
+            <Skeleton className="w-[360px] h-[140px] hidden md:visible p-5 md:flex flex-col justify-between">
               <Skeleton className="w-[70%] h-5"/><Skeleton className="w-[25%] h-4"/>
             </Skeleton>
-            <Skeleton className="w-[360px] h-[140px] p-5 flex flex-col justify-between">
+            <Skeleton className="w-[360px] h-[140px] hidden md:visible p-5 md:flex flex-col justify-between">
               <Skeleton className="w-[70%] h-5"/><Skeleton className="w-[25%] h-4"/>
             </Skeleton>
            

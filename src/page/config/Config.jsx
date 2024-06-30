@@ -72,7 +72,7 @@ function PageConfig() {
                   </div>
                   <FormField
                     control={formd.control}
-                    name="lastname"
+                    name="correo"
                     render={({ field }) => (
                       <FormItem className="mt-3">
                         <FormLabel>Correo</FormLabel>

@@ -36,7 +36,7 @@ function Home() {
         </section>
       </main>
 
-      <article className="lg:grid-cols-[1fr_1fr_auto] gap-4 grid mt-6">
+      <article className="lg:grid-cols-[1fr_1fr] gap-4 grid mt-6">
         <article></article>
 
         <main className="lg:grid  gap-4">

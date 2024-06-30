@@ -3,14 +3,11 @@ import Sidebar from "@Components/Sidebar/Sidebar";
 
 function DashboardPage() {
   return (
-    <main className="relative items-start md:flex justify-between gap-5 ">
-      {/* <div className="md:hidden">
-        <Navbar />
-      </div> */}
+    <main className="dark:bg-DarkFondo  ">
       <nav className="">
         <Sidebar />
       </nav>
-      <section className="w-full md:pl-[260px] p-5 md:px-10  overflow-y-hidden ">
+      <section className="w-full md:pl-[270px] p-5 min-h-screen md:px-10  overflow-y-hidden ">
         <Outlet />
       </section>
     </main>

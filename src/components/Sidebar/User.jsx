@@ -20,7 +20,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/componentUI/ui/tooltip";
+import { MyAvatar } from "@/helpers/utils/avatar-ui";
 function UserHead() {
+
   const { RoleUser, LogedAuth, LogautUser } = UsecontextAuth();
 
   return (
@@ -37,7 +39,7 @@ function UserHead() {
           <DropdownMenuTrigger asChild>
             <Avatar className="cursor-pointer">
               <AvatarImage
-                src={`https://ui-avatars.com/api/?name=${LogedAuth?.nombre}+${LogedAuth?.apellido}`}
+                src={MyAvatar()}
                 alt="User"
               />
               <AvatarFallback>{LogedAuth?.nombre}</AvatarFallback>
@@ -64,9 +66,9 @@ function UserHead() {
               <User className="mr-2 w-4 h-4" />
               <Link to={"configuracion/profile"}>Mi Perfil</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={LogautUser}>
               <LogOut className="mr-2 w-4 h-4" />
-              <span onClick={LogautUser}>Cerrar Sesion</span>
+             Cerrar Sesion
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

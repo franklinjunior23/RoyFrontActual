@@ -11,28 +11,42 @@ import { Input } from "@/componentUI/ui/input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useSignIn } from "../action/useSignIn";
 
 const shema = z.object({
-  user: z.string().min(3).max(20),
+  usuario: z
+    .string({
+      message: "El usuario debe tener entre 3 y 20 caracteres",
+    })
+    .min(3)
+    .max(20),
+    contraseña: z
+    .string({
+      message: "La contraseña debe tener entre 3 y 20 caracteres",
+    })
+    .min(6)
+    .max(20),
 });
 
 function FormSign() {
+  const { mutate } = useSignIn();
   const formd = useForm({
-    resolver:  zodResolver(shema),
+    resolver: zodResolver(shema),
   });
-  function SignIn(data) {
-    console.log(data);
+
+  function Submit(data) {
+    mutate(data);
   }
+
   return (
     <Form {...formd}>
       <form
-        onSubmit={formd.handleSubmit(SignIn)}
+        onSubmit={formd.handleSubmit(Submit)}
         className="mt-5 flex flex-col gap-2"
       >
         <FormField
           control={formd.control}
-          name="user"
-          
+          name="usuario"
           render={({ field }) => (
             <FormItem>
               <FormControl>
@@ -45,7 +59,7 @@ function FormSign() {
         />
         <FormField
           control={formd.control}
-          name="password"
+          name="contraseña"
           render={({ field }) => (
             <FormItem>
               <FormControl>

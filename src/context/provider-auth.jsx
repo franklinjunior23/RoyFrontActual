@@ -4,7 +4,6 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { VITE_TOKE_USER } from "@/helpers/config/axios-instance";
 
-
 const ContextAuth = createContext();
 
 export const UsecontextAuth = () => {
@@ -26,8 +25,9 @@ export const AuthProvider = ({ children }) => {
 
   //
   useEffect(() => {
-
+   
     setRoleUser(UserAuth?.rol);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [UserAuth]);
 
   const addStorage = ({ user, token }) => {
@@ -54,7 +54,13 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <ContextAuth.Provider
-      value={{ LogedAuth:UserAuth, AddToken: SignIn, RoleUser, setRoleUser, LogautUser:SignUp }}
+      value={{
+        LogedAuth: UserAuth,
+        AddToken: SignIn,
+        RoleUser,
+        setRoleUser,
+        LogautUser: SignUp,
+      }}
     >
       {children}
     </ContextAuth.Provider>

@@ -23,7 +23,7 @@ function Header() {
   const Format = formatDate(today);
 
   return (
-    <header className="flex justify-between">
+    <header className="flex justify-between items-start">
       <section>
         <h4 className="text-blue-600 text-3xl font-bold capitalize">
           Dashboard
@@ -48,7 +48,6 @@ function Header() {
               className="md:w-[200px]"
               placeholder="Escriba palabra clave..."
             />
-
             <CommandList>
               <CommandEmpty>No results found.</CommandEmpty>
               <CommandGroup heading="Suggestions">
@@ -67,7 +66,7 @@ function Header() {
         </CommandDialog>
 
         <Notifications>
-          <Button size="icon" className="relative" variant="outline">
+          <Button size="" className="relative  " variant="outline">
             <Bell className="w-6 h-5" />
             <div className="bg-green-500 absolute w-3 h-3  rounded-full -top-1 -right-1" />
           </Button>

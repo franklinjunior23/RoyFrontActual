@@ -12,6 +12,7 @@ import EmpresaPage from "@/pages/empresa/EmpresaPage";
 import DashboardPage from "@/layaout/Dashboard-layaot";
 import RouteConfigure from "@/routes/configure/route-configure";
 import Routecmdb from "@/routes/cmdb/route-cmdb";
+import TaskRoutes from "@/routes/task/route-task";
 
 
 function AdminRoutes() {
@@ -30,6 +31,7 @@ function AdminRoutes() {
         <Route path="Ticket/:id" element={<h1>Ticket por Id</h1>} />
         <Route path="base-conocimiento/*" element={<RouteKnowledge />} />
         <Route path="Cmdb/*" element={<Routecmdb />} />
+        <Route path="tasks/*" element={<TaskRoutes/>} />
  
        
         <Route path="Users" element={<PageUser />} />

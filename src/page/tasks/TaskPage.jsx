@@ -8,7 +8,10 @@ import {
 } from "@/componentUI/ui/breadcrumb";
 import { Link } from "react-router-dom";
 
+import Board from "./_components/Board";
+
 function TaskPage() {
+ 
   return (
     <>
       <Breadcrumb>
@@ -26,7 +29,8 @@ function TaskPage() {
       </Breadcrumb>
 
       <main className="mt-5">
-      <h1 className="text-xl">Tareas</h1>
+        <h1 className="text-xl">Tareas</h1>
+        <Board />
       </main>
     </>
   );
