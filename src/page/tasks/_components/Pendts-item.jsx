@@ -17,7 +17,7 @@ import clsx from "clsx";
 import { Clock } from "lucide-react";
 import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
-function Pendts({ title, id, index,users }) {
+function Pendts({ title, id, index, users }) {
   const [Active, setActive] = useState(false);
   function handleActive() {
     setActive(!Active);
@@ -28,17 +28,16 @@ function Pendts({ title, id, index,users }) {
       {(provided, snapshot) => (
         <div
           ref={provided.innerRef}
-           // eslint-disable-next-line react/no-unknown-property
+          // eslint-disable-next-line react/no-unknown-property
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-         
-         
-          className={
-            clsx("rounded-lg my-3 min-h-fit h-fit cursor-pointer overflow-hidden border", {
+          className={clsx(
+            "rounded-lg my-3 min-h-fit h-fit cursor-pointer overflow-hidden border",
+            {
               "bg-white": snapshot.isDragging, // ejemplo de clase condicional
               // puedes agregar más clases según necesites
-            })
-          }
+            }
+          )}
         >
           <div className="w-full h-[30px] bg-blue-600/90" />
           <div className="p-3" onClick={handleActive}>
@@ -49,15 +48,8 @@ function Pendts({ title, id, index,users }) {
               <Clock className=" w-4 h-4" /> Lunes 23 23:30
             </span>
             <div className="flex   ">
-              <GroupAvatar lastName={"User"} name={"Franx"} className={""} />
-              <GroupAvatar
-                lastName={"User"}
-                name={"Cristofer"}
-                className={"-ml-3.5"}
-              />
-              <GroupAvatar
-                data={users}
-              />
+            
+              <GroupAvatar data={users} />
             </div>
           </footer>
           {Active && <PendtsDialog setChange={setActive} />}
@@ -67,8 +59,6 @@ function Pendts({ title, id, index,users }) {
     </Draggable>
   );
 }
-
-
 
 function PendtsDialog({ setChange }) {
   return (
@@ -93,7 +83,7 @@ function GroupAvatar({ data, maxGroup = 2 }) {
           <Tooltip>
             <TooltipTrigger asChild>
               <div className="flex">
-                <Avatar key={index} className={`-ml-3.5 cursor-pointer`}>
+                <Avatar key={index} className={`-ml-3 cursor-pointer`}>
                   <AvatarImage
                     className="w-8 h-8 m-1 rounded-full"
                     src={AvatarImg({
@@ -120,13 +110,13 @@ function GroupAvatar({ data, maxGroup = 2 }) {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Avatar key="more" className={`-ml-3.5 cursor-pointer`}>
-                <AvatarFallback>+{hiddenAvatars.length}</AvatarFallback>
+              <Avatar key="more" className={`-ml-3 cursor-pointer`}>
+                <AvatarFallback className="w-8 h-8 mt-1 text-sm text-gray-600">+{hiddenAvatars.length}</AvatarFallback>
                 <div className="hidden group-hover:flex flex-col absolute -left-8 top-8 z-10">
                   {hiddenAvatars.map((avatar, index) => (
                     <Avatar
                       key={index}
-                      className="w-8 h-8 cursor-pointer"
+                      className="w-8 h-8  cursor-pointer"
                       name={avatar.name}
                       lastName={avatar.lastName}
                     />
